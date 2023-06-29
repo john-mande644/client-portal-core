@@ -1,0 +1,149 @@
+
+
+//apply plugin: 'java'
+org.gradle.util.SingleMessageLogger.whileDisabled {
+    apply plugin: 'groovy'
+}
+apply plugin: 'war'
+
+
+
+
+compileJava.doFirst {
+    println "source compatibility internal: " + sourceCompatibility
+    println "target compatibility internal: " + targetCompatibility
+}
+
+
+compileGroovy.doFirst {
+    println "source compatibility internal: " + sourceCompatibility
+    println "target compatibility internal: " + targetCompatibility
+}
+
+
+
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
+}
+
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
+}
+
+repositories {
+    // jcenter()
+    mavenCentral()
+    ivy {
+        artifactPattern "http://internal.owd.com/ivyrepo/[organisation]/[module]/[artifact].[ext]"
+       // m2compatible=false
+    }
+
+}
+
+// We define a new configuration with the name 'sshAntTask'.
+// This configuration is used to define our dependencies.
+configurations {
+    sshAntTask
+}
+
+configurations.all {
+    resolutionStrategy {
+        // fail eagerly on version conflict (includes transitive dependencies)
+        // e.g. multiple different versions of the same dependency (group and name are equal)
+     //   failOnVersionConflict()
+
+        // force certain versions of dependencies (including transitive)
+        //  *append new forced modules:
+        force 'c3p0:c3p0:0.9.1.2'
+    }
+}
+dependencies {
+
+
+    compile project(':owd_core')
+
+    compile 'org.apache.axis:axis:1.4'
+
+    compile 'javax.xml.rpc:javax.xml.rpc-api:1.1.1'
+
+    compile 'axis:axis-wsdl4j:1.5.1'
+
+    compile 'commons-discovery:commons-discovery:0.5'
+    compile 'commons-httpclient:commons-httpclient:3.1'
+
+
+
+    providedCompile 'javax.servlet.jsp:jsp-api:2.1+'
+    providedCompile 'javax.servlet:servlet-api:2.5'
+
+
+}
+
+
+
+
+sourceSets {
+    main {
+        groovy {
+            srcDirs = ['src']
+        }
+    }
+}
+/*    configurations.compile.each {
+        println "compile: $it"
+    }*/
+
+
+    war {
+        from 'web' // adds a file-set to the root of the archive
+       // webInf { from 'src/additionalWebInf' } // adds a file-set to the WEB-INF dir.
+       // classpath fileTree('additionalLibs') // adds a file-set to the WEB-INF/lib dir.
+       // classpath configurations.moreLibs // adds a configuration to the WEB-INF/lib dir.
+       // webXml = file('src/someWeb.xml') // copies a file to WEB-INF/web.xml
+    }
+
+
+processResources{
+    from fileTree(dir: 'src', includes: ['**/*.xml', '**/*.properties', '**/*.0', '**/*.pem', '**/*.p12'])
+}
+
+task deployToStagingServer << {
+        description = 'Update files on remote server.'
+
+        // Get passphrase from user input.
+        //def console = System.console()
+        //def passphrase = console.readPassword('%s: ', 'Please enter the passphrase for the keyfile')
+
+        // Redefine scp Ant task, with the classpath property set to our newly defined
+        // sshAntTask configuration classpath.
+        ant.taskdef(name: 'scpme', classname: 'org.apache.tools.ant.taskdefs.optional.ssh.Scp',
+                classpath: configurations.sshAntTask.asPath)
+
+        // Invoke the scp Ant task. (Use gradle -i update to see the output of the Ant task.)
+        ant.scpme(todir: 'owd@service2.owd.com:/home/owd/',
+                keyfile: '${user.home}/.ssh/id_dsa',
+             //   passphrase: passphrase as String, // Use phassphrase entered by the user.
+                passphrase:'' ,
+                verbose: true,
+        file: war.archivePath)
+
+
+    }
+
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+    distributionPath = '../owd_core/wrapper/dists'
+    jarFile = '../owd_core/wrapper/gradle-wrapper.jar'
+}
+
+
+
+
+
+
+

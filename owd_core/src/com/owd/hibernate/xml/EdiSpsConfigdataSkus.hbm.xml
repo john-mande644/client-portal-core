@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+
+    <class name="com.owd.hibernate.generated.EdiSpsConfigdataSkus" table="edi_sps_configdata_skus" >
+        <id
+                name="id"
+                type="java.lang.Integer"
+                column="id"
+                >
+            <generator class="identity"/>
+        </id>
+
+        <property name="vendorSku" column="vendor_sku"
+                  type="java.lang.String"  length="254" not-null="true">
+        </property>
+        <property name="owdSku" column="owd_sku"
+                  type="java.lang.String" length="254" not-null="true">
+        </property>
+
+        <many-to-one
+                name="ediSpsConfigData"
+                class="com.owd.hibernate.generated.EdiSpsConfigdata"
+                not-null="true"
+                >
+            <column name="configdata_fkey"/>
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

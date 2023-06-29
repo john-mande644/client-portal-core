@@ -1,0 +1,112 @@
+<!-- BEGIN: main -->
+<div id="sidebar">
+    &nbsp;
+</div>
+
+<div id="section_title">{SECTION_TITLE}</div>
+
+<div class="section_tabs">
+    <a href="{CLIENT_CONTRACTS_URL}">Contracts</a> |
+    <a href="{CLIENT_INVOICES_URL}">Invoices</a> |
+    <a href="{CLIENT_BILLABLE_EVENTS_URL}">Billable Events</a> |
+    <a href="{CLIENT_PRICED_EVENTS_URL}">Priced Events</a>
+</div>
+
+<div id="frame">
+    <div id="content">
+
+        <div id="page_title">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="width: 140px; font-size: 18px; font-weight: bold; color: rgb(128, 128, 128);">{PAGE_TITLE}</td>
+
+                <td style="margin-left: 10px" >
+                    <!-- BEGIN: invoice_open -->
+                    <button onclick="location.href='{CLOSE_INVOICE_URL}'">Close Invoice</button>
+                    <!-- END: invoice_open -->
+                    <!-- BEGIN: invoice_closed -->
+                    <span style="color: red; font-size: 13px; font-weight: normal" >
+                        Invoice Closed
+                    </span>
+                    <!-- END: invoice_closed -->
+                </td>
+
+                <td align="right"><span style="font-weight: bold;">Period:</span> <span>{INVOICE_PERIOD}</span></td>
+            </tr>
+            </table>
+        </div>
+
+        <table class="table_list" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td class="table_list_header" width="40">&nbsp;</td>
+            <td class="table_list_header">&nbsp;</td>
+            <td class="table_list_header" width="70">Quantity</td>
+            <td class="table_list_header" width="70">Unit Price</td>
+            <td class="table_list_header" width="70">Extended</td>
+        </tr>
+
+        <!-- BEGIN: line_items -->
+
+            <!-- BEGIN: department_header_line -->
+            <tr>
+                <td class="table_list_text_field">&nbsp;</td>
+                <td colspan="4" class="table_list_text_field" style="padding-top: 10px; font-weight: bold">{DEPARTMENT_NAME}</td>
+            </tr>
+            <!-- END: department_header_line -->
+
+            <!-- BEGIN: line_item -->
+            <tr>
+                <td class="table_list_text_field">{GL_ACCOUNT_CODE}</td>
+                <td class="table_list_text_field">{DESCRIPTION}</td>
+                <td class="table_list_text_field">{QUANTITY}</td>
+                <td class="table_list_text_field" style="text-align: right">{UNIT_PRICE}</td>
+                <td class="table_list_text_field" style="text-align: right">{PRICE}</td>
+            </tr>
+            <!-- END: line_item -->
+
+            <!-- BEGIN: department_total_line -->
+            <tr>
+                <td class="table_list_text_field">&nbsp;</td>
+                <td class="table_list_text_field">&nbsp;</td>
+                <td class="table_list_text_field">&nbsp;</td>
+                <td class="table_list_text_field">&nbsp;</td>
+                <td class="table_list_text_field" style="text-align: right; font-weight: bold">{DEPARTMENT_TOTAL_PRICE}</td>
+            </tr>
+            <!-- END: department_total_line -->
+
+        <!-- END: line_items -->
+
+        <tr>
+            <td class="table_list_text_field" colspan="5" style="height: 20px">&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td class="table_list_text_field" colspan="4" style="text-align: right">Total Services Applied to Minimum:</td>
+            <td class="table_list_text_field" style="text-align: right">{TOTAL_APPLIED_TO_MINIMUM}</td>
+        </tr>
+        <tr>
+            <td class="table_list_text_field" colspan="4" style="text-align: right">Difference to Meet Minimum:</td>
+            <td class="table_list_text_field" style="text-align: right">{DIFFERENCE_TO_MEET_MINIMUM}</td>
+        </tr>
+        <tr>
+            <td class="table_list_text_field" colspan="4" style="text-align: right; font-weight: bold">Subtotal:</td>
+            <td class="table_list_text_field" style="text-align: right; font-weight: bold">{INVOICE_SUBTOTAL}</td>
+        </tr>
+        <tr>
+            <td class="table_list_text_field" colspan="4" style="text-align: right">Not Applied to Minimum:</td>
+            <td class="table_list_text_field" style="text-align: right">{TOTAL_NOT_APPLIED_TO_MINIMUM}</td>
+        </tr>
+        <tr>
+            <td class="table_list_text_field" colspan="4" style="text-align: right; font-weight: bold">Sales Tax:</td>
+            <td class="table_list_text_field" style="text-align: right; font-weight: bold">{INVOICE_SALES_TAX}</td>
+        </tr>
+        <tr>
+            <td class="table_list_text_field" colspan="4" style="text-align: right; font-weight: bold">Total due for this month:</td>
+            <td class="table_list_text_field" style="text-align: right; font-weight: bold">{INVOICE_TOTAL}</td>
+        </tr>
+
+        </table>
+
+    </div>
+</div>
+<!-- END: main -->

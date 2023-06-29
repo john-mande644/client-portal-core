@@ -1,0 +1,202 @@
+ <project name="core" default="resolve" basedir="."  xmlns:ivy="antlib:org.apache.ivy.ant">
+     <description>
+        Builds OWD Core project
+     </description>
+     <!-- set global properties for this build -->
+     <property name="src" location="src"/>
+     <property name="build" location="build"/>
+     <property name="dist" location="dist"/>
+     <property name="certs" location="src/com/owd/certs"/>
+     <property name="sharedlibDirPath" location="../sharedlibs/"/>
+
+     <property name="build_libs" value="../buildlibs"/>
+
+     <property name="hbm.xml" value="./src/com/owd/hibernate/xml"/>
+     <property name="cr.hbm.xml" value="./src/com/owd/hibernate/clientreports/xml"/>
+     <property name="hbm" value="./src/com/owd/hibernate"/>
+     <property name="castor.dtd.to.transform" value="bob"/>
+
+     <property name="hbm.mapping.definition" value="placeholder"/>
+
+     <target name="init" depends="clean">
+         <!-- Create the time stamp -->
+         <tstamp/>
+         <!-- Create the build directory structure used by compile -->
+         <mkdir dir="build"/>
+     </target>
+
+
+    <taskdef name="groovyc"
+             classname="org.codehaus.groovy.ant.Groovyc"
+             />
+<taskdef resource="org/apache/ivy/ant/antlib.xml"
+         uri="antlib:org.apache.ivy.ant" />
+
+
+     <target name="resolve">
+        <ivy:configure file="./conf/ivysettings.xml" />
+
+        <ivy:resolve file="./conf/ivy.xml" conf="default" />
+
+    </target>
+
+    <target name="retrieve-default" depends="resolve">
+         <delete dir="./lib/default"/>
+        <ivy:retrieve pattern="./lib/default/[organization]-[module]-[artifact]-[revision].[ext]" conf="*" type="jar"/>
+    </target>
+       <taskdef name="hibernatetool"
+              classname="org.hibernate.tool.ant.HibernateToolTask"
+              >
+
+               <classpath>
+                   <fileset dir="../sharedlibs/hibernate3">
+                          <include name="**/*.jar"/>
+                      </fileset>
+                  <!-- <fileset dir="../sharedlibs">
+                          <include name="**/*.jar"/>
+                      </fileset>-->
+                      <fileset dir="../sharedlibs/hibernate3/tools">
+                          <include name="**/*.jar"/>
+                      </fileset>
+              </classpath>
+         </taskdef>
+
+     <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+         <classpath>
+             <pathelement location="${build_libs}/ant-contrib-0.5.jar"/>
+         </classpath>
+     </taskdef>
+
+
+     <target name="generatehibclasses" >
+       <hibernatetool destdir="${src}">
+
+ <configuration >
+            <fileset dir="${hbm.xml}">
+                     <include name="**/*.hbm.xml"/>
+                 </fileset>
+ </configuration>
+ <hbm2java jdk5="true" />
+
+</hibernatetool>
+
+         <hibernatetool destdir="${src}">
+
+             <configuration >
+                 <fileset dir="${cr.hbm.xml}">
+                     <include name="**/*.hbm.xml"/>
+                 </fileset>
+             </configuration>
+             <hbm2java jdk5="true" />
+
+         </hibernatetool>
+
+
+
+     </target>
+
+
+     <target name="compile" depends="init"
+         description="compile the source ">
+         <!-- Compile the java code from src into build -->
+
+
+        <!-- Compile the java code from src into build -->
+        <groovyc srcdir="src" destdir="build" >
+            <classpath>
+                <pathelement path="${classpath}"/>
+                <fileset dir="./lib/default">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+            <javac />
+        </groovyc>
+
+         <copy todir="${build}/hibernate">
+             <fileset dir="${src}/com/owd/hibernate/xml">
+                 <include name="*.xml"/>
+             </fileset>
+         </copy>
+         <copy todir="${build}/clientreports">
+             <fileset dir="${src}/com/owd/hibernate/clientreports/xml">
+                 <include name="*.xml"/>
+             </fileset>
+         </copy>
+          <copy todir="${build}">
+             <fileset dir="${src}">
+                 <include name="**/*.properties"/>
+             </fileset>
+         </copy>
+
+     </target>
+
+
+     <target name="export drools model jar" depends="clean,compile"
+             description="generate the distribution">
+         <!-- Create the distribution directory -->
+         <delete  dir="dist/exportmodel" />
+         <mkdir dir="dist/exportmodel"/>
+
+         <jar jarfile="dist/exportmodel/ruleadapter-models.jar">
+             <fileset dir="${build}">
+                 <include name="**/*RuleAdapter.class"/>
+             </fileset>
+                 </jar>
+     </target>
+
+     <target name="dist" depends="clean,generatehibclasses,compile"
+         description="generate the distribution">
+         <!-- Create the distribution directory -->
+          <delete  dir="${sharedlibDirPath}/certs" />
+         <delete  dir="dist/lib" />
+          <delete  dir="${sharedlibDirPath}/corehibernatemappings" />
+         <delete  dir="${sharedlibDirPath}/clientreportshibernatemappings" />
+         <mkdir dir="dist/lib"/>
+         <mkdir dir="${sharedlibDirPath}/certs"/>
+         <mkdir dir="${sharedlibDirPath}/corehibernatemappings"/>
+         <mkdir dir="${sharedlibDirPath}/clientreportshibernatemappings"/>
+
+
+         <!-- Optional: Intermediate file containing resolved version numbers -->
+        <!--  <ivy:deliver ="./conf/ivy.xml" deliverpattern="build/ivy.xml" pubrevision="${publish.revision}" status="release"/>
+-->
+          <!-- Generate the Maven POM -->
+<!--
+          <ivy:makepom ivyfile="build/ivy.xml" pomfile="build/META-INF/owd-core.pom"/>
+-->
+         <!-- Copy production environment.properties file to build directory -->
+         <copyfile src="src/com/owd/properties/production.properties" dest="build/environment.properties"/>
+
+         <!-- Put everything in build into the MyProject-.jar file -->
+         <jar jarfile="dist/lib/owd-core.jar" basedir="build"/>
+         <copyfile src="dist/lib/owd-core.jar" dest="${sharedlibDirPath}/owd-core.jar"/>
+         
+         <copy todir="${sharedlibDirPath}/corehibernatemappings">
+             <fileset dir="${src}/com/owd/hibernate/xml">
+                 <include name="*.xml"/>
+             </fileset>
+         </copy>
+         <copy todir="${sharedlibDirPath}/clientreportshibernatemappings">
+             <fileset dir="${src}/com/owd/hibernate/clientreports/xml">
+                 <include name="*.xml"/>
+             </fileset>
+         </copy>
+         <copy todir="${sharedlibDirPath}/certs">
+             <fileset dir="/com/owd/certs">
+                 <include name="*.*"/>
+             </fileset>
+         </copy>          <copy todir="${sharedlibDirPath}/../certs">
+             <fileset dir="/com/owd/certs">
+                 <include name="*.*"/>
+             </fileset>
+         </copy>
+     </target>
+
+     <target name="clean"
+         description="clean up" >
+         <!-- Delete the build and dist directory trees -->
+         <delete dir="build"/>
+         <delete dir="dist"/>
+         <delete file="${sharedlibDirPath}/owd-core.jar" verbose="true" />
+     </target>
+ </project>

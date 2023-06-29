@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OwdOrderAutoHistory"
+        table="owd_order_auto_history"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="message"
+            type="java.lang.String"
+            column="message"
+            not-null="true"
+            length="2147483647"
+            />
+        <property
+            name="type"
+            type="java.lang.Integer"
+            column="type"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="created"
+            type="java.util.Date"
+            column="created"
+            length="23"
+            />
+
+        <!-- associations -->
+        <!-- bi-directional many-to-one association to OwdOrderAuto -->
+        <many-to-one
+            name="owdOrderAuto"
+            class="com.owd.hibernate.OwdOrderAuto"
+            not-null="true"
+            >
+            <column name="order_auto_fkey"/>
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

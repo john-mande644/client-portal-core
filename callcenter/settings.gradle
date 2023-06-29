@@ -1,0 +1,5 @@
+rootProject.name = 'callcenter'
+includeFlat('owd_core')
+//project(':owd_core').projectDir = new File(settingsDir, '../owd_core')
+//project(':owd_core').buildFileName = 'build.gradle'
+

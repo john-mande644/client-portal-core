@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="build printserver dist directory" name="jasperprinter">
+
+
+    <target name="init">
+
+        <property name="src" value="./src"/>
+
+        <property name="deploy.dir" value="printserver"/>
+        <property name="deploy.classes" value="${deploy.dir}/classes"/>
+        <property name="deploy.lib" value="${deploy.dir}/lib"/>
+        <property name="deploy.classes" value="${deploy.dir}/classes"/>
+        <property name="deploy.classes" value="${deploy.dir}/classes"/>
+
+
+        <property name="lib" value="lib"/>
+
+
+    </target>
+
+
+    <target name="prepare" depends="init">
+
+
+        <delete dir="${deploy.dir}"/>
+
+        <mkdir dir="${deploy.dir}"/>
+
+        <mkdir dir="${deploy.classes}"/>
+        <mkdir dir="${deploy.lib}"/>
+
+    </target>
+
+
+    <target depends="prepare" name="compile">
+
+
+        <javac debug="true" deprecation="true" destdir="${deploy.classes}" srcDir="${src}">
+
+            <classpath location="${lib}/RXTXComm.jar"/>
+            <classpath location="../sharedlibs/owd-core.jar"/>
+
+
+        </javac>
+
+    </target>
+
+
+    <target name="build orb dist directory" depends="compile">
+        <copy todir="${deploy.lib}">
+            <fileset dir="${lib}"/>
+        </copy>
+
+        <copy file="../sharedlibs/owd-core.jar" tofile="${deploy.lib}/owd-core.jar"/>
+        <copy file="orb.bat" tofile="${deploy.dir}/orb.bat"/>
+        <copy file="orb.sh" tofile="${deploy.dir}/orb.sh"/>
+        <copy file="README.txt" tofile="${deploy.dir}/README.txt"/>
+        <exec executable="chmod 755 ${deploy.dir}/orb.sh"/>
+    </target>
+
+
+</project>
+

@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.WInvLocations"
+        table="w_inv_locations"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+
+        <property
+            name="location"
+            type="java.lang.String"
+            column="location"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="inventoryNum"
+            type="java.lang.String"
+            column="inventory_num"
+            not-null="false"
+            length="50"
+            />
+
+        <property
+            name="inventoryId"
+            type="java.lang.Integer"
+            column="inventory_id"
+            not-null="false"
+            length="10"
+            />
+        <property
+            name="originalScan"
+            type="java.lang.Integer"
+            column="original_scan"
+            not-null="false"
+            length="10"
+            />
+        <property
+            name="done"
+            type="java.lang.Integer"
+            column="done"
+            not-null="false"
+            length="10"
+            />
+        <property
+            name="remove"
+            type="java.lang.Integer"
+            column="remove"
+            not-null="false"
+            length="10"
+            />
+        <property
+            name="locationDisplay"
+            type="java.lang.String"
+            column="locationDisplay"
+            not-null="false"
+            length="150"
+            />
+
+        <!-- associations -->
+        <!-- bi-directional one-to-many association to OrderPickItem -->
+        <many-to-one
+            name="winvreques"
+            class="com.owd.hibernate.WInvRequest"
+            not-null="true"
+            >
+            <column name="inv_request_fkey"/>
+        </many-to-one>
+
+
+    </class>
+</hibernate-mapping>

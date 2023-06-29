@@ -1,0 +1,1966 @@
+<!DOCTYPE quartz PUBLIC
+        "-//Quartz Enterprise Job Scheduler//DTD Job Scheduling Data 1.5//EN"
+        "http://www.quartzscheduler.org/dtd/job_scheduling_data_1_5.dtd">
+<quartz
+        version="1.6" overwrite-existing-jobs="true">
+    <calendar class-name="org.quartz.impl.calendar.HolidayCalendar" replace="true">
+        <name>holidayCalendar</name>
+        <description>HolidayCalendar</description>
+        <base-calendar class-name="org.quartz.impl.calendar.WeeklyCalendar">
+            <name>weeklyCalendar</name>
+            <description>WeeklyCalendar</description>
+            <base-calendar class-name="org.quartz.impl.calendar.AnnualCalendar">
+                <name>annualCalendar</name>
+                <description>AnnualCalendar</description>
+            </base-calendar>
+        </base-calendar>
+    </calendar>
+
+    <!--region internalJobs-->
+    <job>
+        <job-detail>
+            <name>NightlyDatabaseJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.NightlyDatabaseJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>NightlyDatabaseJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>NightlyDatabaseJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 23 ? * *</cron-expression>
+                <!-- Daily: at 11:00pm... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>UpdatePendingOWDGuaranteeCredits</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.updatePendingOWDGuaranteeCreditsJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>UpdatePendingOWDGuaranteeCreditsTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>UpdatePendingOWDGuaranteeCredits</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 22 ? * *</cron-expression>
+                <!-- Daily: at 10PM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>PayrollStatusReportingJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.PayrollStatusReportingJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>PayrollStatusReportingJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>PayrollStatusReportingJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 15 5 ? * WED,SAT</cron-expression>
+                <!--Special: Wednesday and Saturday at 5:15AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>UpdateInventoryMovementsJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.UpdateInventoryMovementsJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>UpdateInventoryMovementsJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>UpdateInventoryMovementsJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 17 0 ? * *</cron-expression>
+                <!--Hourly: at 17 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>CaptureDailyBoxUsage</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.CaptureDailyBoxUsageJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>CaptureDailyBoxUsageTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>CaptureDailyBoxUsage</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 1 ? * *</cron-expression>
+                <!-- Daily: at 1:00AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>CaptureDailyPackageAddonsUsage</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.CaptureDailyPackageAddonsUsageJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>CaptureDailyPackageAddonsTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>CaptureDailyPackageAddonsUsage</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 1 ? * *</cron-expression>
+                <!-- Daily: at 1:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>PackDataUpdate</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.PackDataUpdateJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>PackDataUpdateTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>PackDataUpdate</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 1 ? * *</cron-expression>
+                <!-- Daily: at 1:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>FridayNoonJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.TimeFrameJobs.FridayNoonJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>FridayNoonJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>FridayNoonJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 12 ? * FRI</cron-expression>
+                <!-- Weekly: Friday at 12:00 PM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>AllInclusiveBillingJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.AllInclusiveBillingWeeklyJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>AllInclusiveBillingWeeklyJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>AllInclusiveBillingWeeklyJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 8 ? * MON</cron-expression>
+                <!-- Weekly: Monday at 8:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>WeeklyBillingReportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.WeeklyBillingReportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>WeeklyBillingReportJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>WeeklyBillingReportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 8 ? * MON</cron-expression>
+                <!-- Weekly: Monday at 8:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>WeeklyClientBillingReportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.WeeklyClientBillingReportsJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>WeeklyClientBillingReportJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>WeeklyClientBillingReportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 8 ? * MON</cron-expression>
+                <!-- Weekly: 8:00 AM Monday... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>CubicStorageBillingJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.jobobjects.billing.storage.CubicStorageBillingJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>CubicStorageBillingJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>CubicStorageBillingJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 1 ? * SAT</cron-expression>
+                <!-- Weekly: Saturday at 1:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>WeeklyActivitySpreadsheetJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.WeeklyActivitySpreadsheetJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>WeeklyActivitySpreadsheetJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>WeeklyActivitySpreadsheetJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 15 9 ? * SAT</cron-expression>
+                <!-- Weekly: Saturday at 9:15 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>MonthlyClientBillingReportsJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.MonthlyClientBillingReportsJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>MonthlyClientBillingReportsJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>MonthlyClientBillingReportsJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 9 1 * ?</cron-expression>
+                <!-- Monthly: first day of the month at 9:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>MonthlyActivitySpreadsheetJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.MonthlyActivitySpreadsheetJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>MonthlyActivitySpreadsheetJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>MonthlyActivitySpreadsheetJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 11 1 * ?</cron-expression>
+                <!-- Monthly: first day of the month at 11:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>UPICInsuranceNumbers</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.UPICInsuranceNumbersJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>UPICInsuranceNumbersTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>UPICInsuranceNumbers</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 30 9 1 * ?</cron-expression>
+                <!-- Monthly: first day of the month at 9:30 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>UPSTracking</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.UPSTrailerTrackingNumbersJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>UPSTrackingTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>UPSTracking</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 30 18 ? * *</cron-expression>
+                <!-- Daily: at 6:30 PM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>CheckAndUnpostDuplicateOrders</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.VerificationJobs.CheckAndUnpostDuplicateOrders</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>CheckAndUnpostDuplicateOrdersTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>CheckAndUnpostDuplicateOrders</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 */15 * ? * *</cron-expression>
+                <!-- Periodically: every 15 minutes... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>DailyOWDBillingSpreadsheetJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.DailyOWDBillingSpreadsheetJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>DailyOWDBillingSpreadsheetJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>DailyOWDBillingSpreadsheetJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 6 ? * *</cron-expression>
+                <!-- Daily: at 6:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>DailyShippingUpdate</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.DailyShippingUpdateJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>DailyShippingUpdateTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>DailyShippingUpdate</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 30 2 ? * *</cron-expression>
+                <!-- Daily: at 2:30AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>flatRateShippingUpdateTrackingJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.jobobjects.billing.hourlyRules.flatRateShippingUpdateTrackingJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>flatRateShippingUpdateTrackingJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>flatRateShippingUpdateTrackingJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 2 * ? * *</cron-expression>
+                <!-- Hourly: at 2 past the hour -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>CasetrackerWorkorderInjectionJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.CasetrackerWorkorderInjectionJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>CasetrackerWorkorderInjectionJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>CasetrackerWorkorderInjectionJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0/2 * ? * *</cron-expression>
+                <!-- Periodically: every 2 minutes ... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>PackingSlipStorage</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.OrderPDFProcessJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>PackingSlipStorageTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>PackingSlipStorage</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0/2 * ? * *</cron-expression>
+                <!-- Periodically: every 2 minutes... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>AddressCheck</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.AddressVerifyPrintQueueJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>AddressCheckTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>AddressCheck</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0/2 * ? * *</cron-expression>
+                <!-- Periodically: every 2 minutes... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>ShortShipQueueCheck</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.processShortShipPackingSlipQueue</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>processShortShipPackingSlipQueueTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>ShortShipQueueCheck</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0/2 * ? * *</cron-expression>
+                <!-- Periodically: every 2 minutes... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>ShipWeighedOrdersJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.ShipWeighedOrdersJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>ShipWeighedOrdersJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>ShipWeighedOrdersJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0/5 * * ? * *</cron-expression>
+                <!-- Periodically: every 5 seconds... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>ShipWVOrdersJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.ShipWVOrdersJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>AShipWVOrdersJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>ShipWVOrdersJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0/5 * ? * *</cron-expression>
+                <!-- Periodically: every 5 minutes... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>UpdateKnownShippingBilling</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.jobobjects.billing.QuarterHourRules.UpdateKnownShippingBilling</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>UpdateKnownShippingBillingTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>UpdateKnownShippingBilling</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 1,16,31,46 * ? * *</cron-expression>
+                <!-- Periodically: 4 times an hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>Five9AudioTransferJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.Five9AudioTransferJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>Five9AudioTransferJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>Five9AudioTransferJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0/15 * ? * *</cron-expression>
+                <!-- Periodically: every fifteen minutes... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>Five9CopyToReportingServerJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.Five9CopyToReportingServerJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>Five9CopyToReportingServerJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>Five9CopyToReportingServerJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 40 * ? * *</cron-expression>
+                <!-- Hourly: at 40 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>Five9CallReportingJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.Five9CallReportingJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>Five9CallReportingJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>Five9CallReportingJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0/15 * ? * *</cron-expression>
+                <!-- Periodically: every fifteen minutes (five9 limits reports to 4/hour)... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>HourlySyncDBsJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.HourlySyncDBsJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>HourlySyncDBsJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>HourlySyncDBsJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 50 * ? * *</cron-expression>
+                <!-- Hourly: at 50 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>PackSlipRelease</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.PackSlipReleaseJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>PackSlipReleaseTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>PackSlipRelease</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0/1 * ? * *</cron-expression>
+                <!-- Periodically: every one minute... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>DCHoldNotify</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.DCHoldNotifyJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>DCHoldNotifyTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>DCHoldNotify</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 19 ? * 1-5</cron-expression>
+                <!-- Daily: every week day at 7:00 pm... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>HarvestSyncJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.HarvestSyncJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>HarvestSyncJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>HarvestSyncJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 30 * ? * *</cron-expression>
+                <!-- Hourly: at 30 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>DeadmanSwitchJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.DeadmanSwitchJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>DeadmanSwitchJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>DeadmanSwitchJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 2 * ? * *</cron-expression>
+                <!-- Hourly: at 2 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+<!--    <job>-->
+<!--        <job-detail>-->
+<!--            <name>TrackingTransitCalculationsAndCleanupJob</name>-->
+<!--            <group>sweepers</group>-->
+<!--            <job-class>com.owd.jobs.jobobjects.easypost.TrackingTransitCalculationsAndCleanupJob</job-class>-->
+<!--            <volatility>false</volatility>-->
+<!--            <durability>false</durability>-->
+<!--            <recover>false</recover>-->
+<!--        </job-detail>-->
+<!--        <trigger>-->
+<!--            <cron>-->
+<!--                <name>TrackingTransitCalculationsAndCleanupJobTrigger</name>-->
+<!--                <group>sweepTriggers</group>-->
+<!--                <job-name>TrackingTransitCalculationsAndCleanupJob</job-name>-->
+<!--                <job-group>sweepers</job-group>-->
+<!--                <cron-expression>0 55 * ? * *</cron-expression>-->
+<!--                &lt;!&ndash; Hourly: at 55 past the hour... &ndash;&gt;-->
+<!--            </cron>-->
+<!--        </trigger>-->
+<!--    </job>-->
+    <job>
+        <job-detail>
+            <name>Five9EmalChatReportingJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.Five9EmalChatReportingJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>Five9EmalChatReportingJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>Five9EmalChatReportingJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 55 * ? * *</cron-expression>
+                <!-- Hourly: at 55 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>ShippingHoldJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.ShippingHoldJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>ShippingHoldJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>ShippingHoldJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 2 ? * *</cron-expression>
+                <!-- Daily: at 2:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>FedexNotifyJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.FedexNotifyJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>FedexNotifyJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>FedexNotifyJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 9 ? * *</cron-expression>
+                <!-- Daily: at 9:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>USPSNotifyJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.USPSNotifyJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>USPSNotifyJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>USPSNotifyJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 8 ? * *</cron-expression>
+                <!-- Daily: at 8:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>BackorderRelease</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.BackorderReleaseJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>BackorderReleaseTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>BackorderRelease</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 30 * ? * *</cron-expression>
+                <!-- Hourly: at 30 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>SystemShipmentNotification</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.SystemShipmentNotificationJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>SystemShipNotifyTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>SystemShipmentNotification</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 10 * ? * *</cron-expression>
+                <!-- Hourly: at 10 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>oldASNCheck</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.OldASNCheckJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>oldASNCheckTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>oldASNCheck</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 22 ? * *</cron-expression>
+                <!-- Daily: at 10:00 PM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>autoshipCheck</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.GenerateAutoshipOrdersJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>autoshipCheckTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>autoshipCheck</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 6 ? * *</cron-expression>
+                <!-- Daily: at 6:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>ReportInventoryReorderJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.ReportInventoryReorderJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>reorderCreateTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>rReportInventoryReorderJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 3 ? * *</cron-expression>
+                <!-- Daily: at 3:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+
+    <!-- Refactor -->
+    <job>
+        <job-detail>
+            <name>SneakpeeqBillingUpdateJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.SneakpeeqBillingUpdateJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>SneakpeeqBillingUpdateJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>SneakpeeqBillingUpdateJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 5 ? * *</cron-expression>
+                <!-- Daily: at 5:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>CustomerShipmentNotification</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.CustomerShipmentNotificationJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>CustomerShipmentNotificationTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>CustomerShipmentNotification</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 48 * ? * *</cron-expression>
+                <!-- Hourly: at 48 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+
+    <!--endregion internalJobs-->
+
+    <!--region clientJobs-->
+    <!--region FOH-->
+    <job>
+        <job-detail>
+            <name>FOHPostInventoryLevelsJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.FOHPostInventoryLevelsJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>FOHPostInventoryLevelsJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>FOHPostInventoryLevelsJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 55 * ? * *</cron-expression>
+                <!-- Hourly: at 55 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>FOHStatusReprotsJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.FOHStatusReprotsJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>FOHStatusReprotsJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>FOHStatusReprotsJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 14,17,22 ? * *</cron-expression>
+                <!-- Daily: at 2:00, 5:00 and 10:00 PM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>FOHReturnInventoryTransferJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.FOHReturnInventoryTransferJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>FOHReturnInventoryTransferJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>FOHReturnInventoryTransferJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 23 ? * *</cron-expression>
+                <!-- Daily: at 11:00 PM... -->
+            </cron>
+        </trigger>
+    </job>
+    <!--endregion-->
+
+    <!--region Lyft -->
+    <job>
+        <job-detail>
+            <name>LyftMailHouseOrdersDailyFileJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.LyftMailHouseOrdersDailyFileJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>LyftMailHouseOrdersDailyFileJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>LyftMailHouseOrdersDailyFileJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 30 13 ? * MON-FRI</cron-expression>
+                <!-- Daily: at 1:30 PM Monday through Friday... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>LyftMonthlyReportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.LyftMonthlyReportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>LyftMonthlyReportJob</name>
+                <group>sweepTriggers</group>
+                <job-name>LyftMailHouseOrdersDailyFileJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 9 1 * ?</cron-expression>
+                <!-- Monthly: first day of the month at 9:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>LyftHourlyFlagOrdersAsPaid</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.LyftHourlyFlagOrdersAsPaid</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>LyftHourlyFlagOrdersAsPaidTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>LyftHourlyFlagOrdersAsPaid</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 40 * ? * *</cron-expression>
+                <!-- Hourly: at 40 past the hour -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>LyftWeeklyOutboundTrackingJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.LyftWeeklyOutboundTrackingJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>LyftWeeklyOutboundTrackingJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>LyftWeeklyOutboundTrackingJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 15 9 ? * SAT</cron-expression>
+                <!-- Weekly: Saturday at 9:15 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>LyftDailyShippedSpreadsheetJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.LyftDailyShippedSpreadsheetJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>LyftDailyShippedSpreadsheetJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>LyftDailyShippedSpreadsheetJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 23 ? * *</cron-expression>
+                <!-- Daily: at 11:00 PM... -->
+            </cron>
+        </trigger>
+    </job>
+    <!-- endregion -->
+
+    <!--region JustBrands -->
+    <job>
+        <job-detail>
+            <name>JustBrandsSPSDailyInventoryJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.JustBrands.JustBrandsSPSDailyInventoryJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>JustBrandsSPSDailyInventoryJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>JustBrandsSPSDailyInventoryJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 5 ? * *</cron-expression>
+                <!-- Daily: at 5:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>JustBrandsRSVPDailyInventoryJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.JustBrands.JustBrandsRSVPDailyInventoryJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>JustBrandsRSVPDailyInventoryJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>JustBrandsRSVPDailyInventoryJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 2 ? * *</cron-expression>
+                <!-- Daily: at 2:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>JustBrandsRetailOpsImportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.JustBrandsRetailOpsImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>JustBrandsRetailOpsImportJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>JustBrandsRetailOpsImportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 21 * ? * *</cron-expression>
+                <!-- Hourly: at 21 past the hour -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>JustBrandsCommerceHubBlueStemJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.JustBrands.JustBrandsCommerceHubBlueStemJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>JustBrandsCommerceHubBlueStemJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>JustBrandsCommerceHubBlueStemJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 5,35 * ? * *</cron-expression>
+                <!-- Hourly: at 5 and 35 minutes past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>JustBrandsCommerceHubWalmartJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.JustBrands.JustBrandsCommerceHubWalmartJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>JustBrandsCommerceHubWalmartJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>JustBrandsCommerceHubWalmartJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 10,40 * ? * *</cron-expression>
+                <!-- Hourly: at 10 and 40 minutes past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>JustBrandsCommerceHubLowesJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.JustBrands.JustBrandsCommerceHubLowesJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>JustBrandsCommerceHubLowesJobJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>JustBrandsCommerceHubLowesJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 15,45 * ? * *</cron-expression>
+                <!-- Hourly: at 15 and 45 minutes past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>JustBrandsCommerceHubImportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.JustBrands.JustBrandsCommerceHubImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>JustBrandsCommerceHubImportJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>JustBrandsCommerceHubImportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 20,50 * ? * *</cron-expression>
+                <!-- Hourly: at 20 and 50 minutes past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>JustBrandsCommerceHubDicksJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.JustBrands.JustBrandsCommerceHubDicksJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>JustBrandsCommerceHubDicksJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>JustBrandsCommerceHubDicksJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 25,55 * ? * *</cron-expression>
+                <!-- Hourly: at 25 and 55 minutes past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>JustBrandsCommerceHubQVCJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.JustBrands.JustBrandsCommerceHubQVCtJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>JustBrandsCommerceHubQVCJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>JustBrandsCommerceHubQVCJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 18,48 * ? * *</cron-expression>
+                <!-- Hourly: at 18 and 48 minutes past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>JustBrandsCommerceHubHomeDepotJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.JustBrands.JustBrandsCommerceHubHomeDepotJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>JustBrandsCommerceHubHomeDepotJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>JustBrandsCommerceHubHomeDepotJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 16,46 * ? * *</cron-expression>
+                <!-- Hourly: at 16 and 46 minutes past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <!--endregion-->
+
+    <!--region AlgaeCal-->
+    <job>
+        <job-detail>
+            <name>AlgaeCalBrazilAmazonDownloader</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.AlgaeCalBrazilAmazonDownloader</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>AlgaeCalBrazilAmazonDownloaderTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>AlgaeCalBrazilAmazonDownloader</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 55 * ? * *</cron-expression>
+                <!-- Hourly: at 55 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>AlgaeCalAmazonDownloader</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.AlgaeCalAmazonDownloader</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>AlgaeCalAmazonDownloaderTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>AlgaeCalAmazonDownloader</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 27 * ? * *</cron-expression>
+                <!-- Hourly: at 27 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>AlgaeCalInfusionSoftOrdersImportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.AlgaeCalInfusionSoftOrdersImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>AlgaeCalInfusionSoftOrdersImportJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>AlgaeCalInfusionSoftOrdersImportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 22 * ? * *</cron-expression>
+                <!-- Hourly: at 22 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+<!--    <job>-->
+<!--        <job-detail>-->
+<!--            <name>AlgaeCoreCommerceImporter</name>-->
+<!--            <group>sweepers</group>-->
+<!--            <job-class>com.owd.jobs.clients.AlgaeCoreCommerceImporter</job-class>-->
+<!--            <volatility>false</volatility>-->
+<!--            <durability>false</durability>-->
+<!--            <recover>false</recover>-->
+<!--        </job-detail>-->
+<!--        <trigger>-->
+<!--            <cron>-->
+<!--                <name>AlgaeCoreCommerceImporterTrigger</name>-->
+<!--                <group>sweepTriggers</group>-->
+<!--                <job-name>AlgaeCoreCommerceImporter</job-name>-->
+<!--                <job-group>sweepers</job-group>-->
+<!--                <cron-expression>0 7 * ? * *</cron-expression>-->
+<!--                &lt;!&ndash; Hourly: at 7 past the hour... &ndash;&gt;-->
+<!--            </cron>-->
+<!--        </trigger>-->
+<!--    </job>-->
+    <!--endregion-->
+
+    <!--region Domestify-->
+    <job>
+        <job-detail>
+            <name>DomestifyDuoplaneOrdersImportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.DomestifyDuoplaneOrdersImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>DomestifyDuoplaneOrdersImportJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>DomestifyDuoplaneOrdersImportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0/15 * ? * *</cron-expression>
+                <!-- Periodically: every 15 minutes... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>DomestifyDuoplaneOrderStatusUpdateJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.DomestifyDuoplaneOrderStatusUpdateJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>DomestifyDuoplaneOrderStatusUpdateJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>DomestifyDuoplaneOrderStatusUpdateJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 20 ? * *</cron-expression>
+                <!-- Daily: at 8:00 PM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>DomestifyDuoplaneInventoryUpdateJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.DomestifyDuoplaneInventoryUpdateJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>DomestifyDuoplaneInventoryUpdateJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>DomestifyDuoplaneInventoryUpdateJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 15 20 ? * *</cron-expression>
+                <!-- Daily: at 8:15 PM... -->
+            </cron>
+        </trigger>
+    </job>
+    <!--endregion-->
+
+    <!--region Phion-->
+    <job>
+        <job-detail>
+            <name>PhionDailyWholeOrdersReport</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.PhionDailyWholeOrdersReport</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>PhionDailyWholeOrdersReportTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>PhionDailyWholeOrdersReport</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 20 ? * *</cron-expression>
+                <!-- Daily: at 8:00 PM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>PhionMagentoImportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.PhionMagentoImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>PhionMagentoImportJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>PhionMagentoImportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 10 * ? * *</cron-expression>
+                <!-- Hourly: at 10 minutes past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>phionEmailOrderImport</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.PhionOrdersImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>phionEmailOrderImportTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>phionEmailOrderImport</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 */15 * ? * *</cron-expression>
+                <!-- Periodically: every 15 minutes... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>phionSendShipFile</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.PhionShipmentsUpdateJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>phionSendShipFileTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>phionSendShipFile</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 22 ? * *</cron-expression>
+                <!-- Daily: at 10:00 PM... -->
+            </cron>
+        </trigger>
+    </job>
+    <!--endregion-->
+
+    <job>
+        <job-detail>
+            <name>OneWorldStudiosJesperImportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.OneWorldStudiosJesperImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>OneWorldStudiosJesperImportJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>OneWorldStudiosJesperImportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 38 * ? * *</cron-expression>
+                <!-- Hourly: at 38 minutes past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>OneWorldStudiosImport</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.OneWorldStudiosBigCommerceImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>OneWorldStudiosImportTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>OneWorldStudiosImport</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 53 * ? * *</cron-expression>
+                <!-- Hourly: at 53 minutes past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>OriliASNStatusUpdateJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.OriliASNStatusUpdateJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>OriliASNStatusUpdateJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>OriliASNStatusUpdateJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 20 ? * *</cron-expression>
+                <!-- Daily: at 8:00 PM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>RenuHerbsInfusionSoftOrdersImportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.RenuHerbsInfusionSoftOrdersImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>RenuHerbsInfusionSoftOrdersImportTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>RenuHerbsInfusionSoftOrdersImportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 16 * ? * *</cron-expression>
+                <!-- Hourly: at 16 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>NugenicsInfusionSoftOrdersImportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.NugenicsInfusionSoftOrdersImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>NugenicsInfusionSoftOrdersImportJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>NugenicsInfusionSoftOrdersImportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 18 * ? * *</cron-expression>
+                <!-- Hourly: at 18 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>RIEOrdersImportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.RIEOrdersImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>RIEOrdersImportJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>RIEOrdersImportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 54 * ? * *</cron-expression>
+                <!-- Hourly: at 54 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>FreelyYourPartnerInCareOrderImportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.FreelyYourPartnerInCareOrderImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>FreelyYourPartnerInCareOrderImportJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>FreelyYourPartnerInCareOrderImportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 50 * ? * *</cron-expression>
+                <!-- Hourly: at 50 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>HVMNMonthlyWorkOrderJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.HVMNMonthlyWorkOrderJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>HVMNMonthlyWorkOrderJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>HVMNWeeklyLotCodeJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 10 1 * ?</cron-expression>
+                <!-- Monthly: first day of the month at 10:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>HVMNWeeklyLotCodeJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.HVMNWeeklyLotCodeJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>HVMNWeeklyLotCodeJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>HVMNWeeklyLotCodeJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 8 ? * MON</cron-expression>
+                <!-- Weekly: Monday at 8:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>MarineEssentialsEBayImportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.MarineEssentialsEBayImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>MarineEssentialsEBayImportJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>MarineEssentialsEBayImportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 35 * ? * *</cron-expression>
+                <!-- Hourly: at 35 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>PlayHawkersShopifyOrderImportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.PlayHawkersShopifyOrderImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>PlayHawkersShopifyOrderImportJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>PlayHawkersShopifyOrderImportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 09 * ? * *</cron-expression>
+                <!-- Hourly: at 9 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>PMConceptsMagentoImportJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.PMConceptsMagentoImportJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>PMConceptsMagentoImportJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>PMConceptsMagentoImportJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 35 * ? * *</cron-expression>
+                <!-- Hourly: at 35 past the hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>SPSNightlyInventoryUploadJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.SPSNightlyInventoryUploadJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>SPSNightlyInventoryUploadJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>SPSNightlyInventoryUploadJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 22 ? * *</cron-expression>
+                <!-- Daily: at 10:00 PM... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>SPSProcessEDIOrdersJobJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.SPSProcessEDIOrdersJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>SPSProcessEDIOrdersJobJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>SPSProcessEDIOrdersJobJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 5,20,35,50 * ? * *</cron-expression>
+                <!-- Periodically: 4 times an hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>BeautyCropMacysCommerceHubJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.BeautyCropMacysCommerceHubJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>BeautyCropMacysCommerceHubJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>BeautyCropMacysCommerceHubJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0/15 * ? * *</cron-expression>
+                <!-- Periodically: every 15 minutes... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>LawlessCommerceHubQVCJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.LawlessCommerceHubQVCJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>LawlessCommerceHubQVCJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>LawlessCommerceHubQVCJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 18,48 * ? * *</cron-expression>
+                <!-- Periodically: twice an hour... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>SokoMacysCommerceHubJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.SokoMacysCommerceHubJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>SokoMacysCommerceHubJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>SokoMacysCommerceHubJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0/15 * ? * *</cron-expression>
+                <!-- Periodically: every 15 minutes... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>NewRootsHerbalInventoryJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.NewRootsHerbalInventoryJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>NewRootsHerbalInventoryJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>NewRootsHerbalInventoryJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 23 ? * *</cron-expression>
+                <!-- Daily: at 11:00 PM (12:00 AM Eastern) ... -->
+            </cron>
+        </trigger>
+    </job>
+    <job>
+        <job-detail>
+            <name>SoldThroughWeeklyWorkOrderJob</name>
+            <group>sweepers</group>
+            <job-class>com.owd.jobs.clients.SoldThroughWeeklyWorkOrderJob</job-class>
+            <volatility>false</volatility>
+            <durability>false</durability>
+            <recover>false</recover>
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>SoldThroughWeeklyWorkOrderJobTrigger</name>
+                <group>sweepTriggers</group>
+                <job-name>SoldThroughWeeklyWorkOrderJob</job-name>
+                <job-group>sweepers</job-group>
+                <cron-expression>0 0 5 ? * FRI</cron-expression>
+                <!-- Weekly: Friday at 5:00 AM... -->
+            </cron>
+        </trigger>
+    </job>
+
+    <!--endregion clientJobs-->
+</quartz>

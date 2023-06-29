@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE struts PUBLIC
+                "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+                "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+        <struts>
+    <constant name="struts.multipart.maxSize" value="1000000000" />
+     <package name="miscMenu"   namespace="/miscMenu" extends="struts-default">
+         <action name="start"  method="menu" class="com.owd.dc.warehouse.misc.menuAction">
+             <result name="success">/warehouse/misc/menu.jsp</result>
+         </action>
+     </package>
+    <package name="bulkLocationCheck" namespace="/bulkLocationCheck" extends="struts-default">
+        <action name="start">
+            <result>/warehouse/misc/bulkLocationCheck/start.jsp</result>
+        </action>
+        <action name="location"  method="location" class="com.owd.dc.warehouse.misc.bulkLocationCheck">
+            <result name="success">/warehouse/misc/bulkLocationCheck/start.jsp</result>
+
+        </action>
+        <action name="set"  method="set" class="com.owd.dc.warehouse.misc.bulkLocationCheck">
+            <result name="success">/warehouse/misc/bulkLocationCheck/start.jsp</result>
+
+        </action>
+    </package>
+    <package name="workOrderHold" namespace="/workOrderHold" extends="struts-default">
+        <action name="start"  class="com.owd.dc.warehouse.misc.workOrderHoldAction">
+            <result name="success">/warehouse/misc/workOrderHold/workOrderHold.jsp</result>
+
+        </action>
+        <action name="set"  method="set" class="com.owd.dc.warehouse.misc.workOrderHoldAction">
+            <result name="success">/warehouse/misc/workOrderHold/workOrderHold.jsp</result>
+
+        </action>
+    </package>
+
+     <package name="checkDCHold" namespace="/checkDCHold" extends="struts-default">
+         <action name="start"  class="com.owd.dc.warehouse.misc.checkDCHoldAction">
+             <result name="success">/warehouse/misc/checkDCHold/checkDCHold.jsp</result>
+
+         </action>
+         <action name="check"  method="check" class="com.owd.dc.warehouse.misc.checkDCHoldAction">
+             <result name="success">/warehouse/misc/checkDCHold/checkDCHold.jsp</result>
+
+         </action>
+     </package>
+    <package name="midcoBarcode" namespace="/midcoBarcode" extends="struts-default">
+
+
+        <action name="start"  class="com.owd.dc.warehouse.misc.midcoBarcodeAction">
+            <result name="success">/warehouse/misc/midco/midco.jsp</result>
+
+        </action>
+
+        <action name="getSerial" method="getSerial" class="com.owd.dc.warehouse.misc.midcoBarcodeAction">
+            <result name="success">/warehouse/misc/midco/midco.jsp</result>
+
+        </action>
+        <action name="getUa" method="getUa" class="com.owd.dc.warehouse.misc.midcoBarcodeAction" >
+            <result name="success">/warehouse/misc/midco/midco.jsp</result>
+        </action>
+</package>
+    <package name="removeSerialFromOrder" namespace="/removeSerialFromOrder" extends="struts-default">
+        <action name="start">
+            <result >/warehouse/misc/removeSerial/start.jsp</result>
+        </action>
+        <action name="remove" class="com.owd.dc.warehouse.misc.removeSerialAction">
+            <result name="success">/warehouse/misc/removeSerial/start.jsp</result>
+        </action>
+    </package>
+
+    <package name="noScanReport" namespace="/noScanReport" extends="struts-default">
+        <action name="start" class="com.owd.dc.warehouse.misc.noScanReportAction">
+                <result name="success">/warehouse/misc/noScan/scan.jsp</result>
+        </action>
+        <action name="selectClient" method="selectClient" class="com.owd.dc.warehouse.misc.noScanReportAction">
+                 <result name="success">/warehouse/misc/noScan/scan.jsp</result>
+
+        </action>
+        <action name="saveChanges" method="saveChanges"  class="com.owd.dc.warehouse.misc.noScanReportAction">
+                         <result name="success">/warehouse/misc/noScan/scan.jsp</result>
+
+                </action>
+    </package>
+    <package name="sneakPack" namespace="/sneakPack" extends="struts-default">
+        <action name="start" class="com.owd.dc.warehouse.misc.sneakPackAction">
+            <result name="success">/warehouse/misc/sneakPack/start.jsp</result>
+            <result name="packing">/warehouse/misc/sneakPack/items.jsp</result>
+            <result name="boxes">/warehouse/misc/sneakPack/boxSelect.jsp</result>
+        </action>
+        <action name="loadOrder"  method="loadOrder" class="com.owd.dc.warehouse.misc.sneakPackAction">
+            <result name="success">/warehouse/misc/sneakPack/items.jsp</result>
+            <result name="error">/warehouse/misc/sneakPack/start.jsp</result>
+            <result name="boxes">/warehouse/misc/sneakPack/boxSelect.jsp</result>
+        </action>
+        <action name="selectBox"  method="selectBox" class="com.owd.dc.warehouse.misc.sneakPackAction">
+            <result name="success">/warehouse/misc/sneakPack/items.jsp</result>
+            <result name="error">/warehouse/misc/sneakPack/boxSelect.jsp</result>
+
+        </action>
+        <action name="scanItem"  method="scanItem" class="com.owd.dc.warehouse.misc.sneakPackAction">
+            <result name="success">/warehouse/misc/sneakPack/items.jsp</result>
+            <result name="error">/warehouse/misc/sneakPack/items.jsp</result>
+            <result name="done">/warehouse/misc/sneakPack/start.jsp</result>
+        </action>
+        <action name="cancelPack" method="cancelPack" class="com.owd.dc.warehouse.misc.sneakPackAction">
+            <result name="success">/warehouse/misc/sneakPack/start.jsp</result>
+            <result name="error">/warehouse/misc/sneakPack/items.jsp</result>
+
+        </action>
+        <action name="setupPrinter" method="setupPrinter" class="com.owd.dc.warehouse.misc.sneakPackAction">
+            <result name="success">/warehouse/misc/sneakPack/printer.jsp</result>
+            <result name="error">/warehouse/misc/sneakPack/start.jsp</result>
+        </action>
+        <action name="savePrinter" method="savePrinter" class="com.owd.dc.warehouse.misc.sneakPackAction">
+            <result name="success">/warehouse/misc/sneakPack/start.jsp</result>
+            <result name="error">/warehouse/misc/sneakPack/printer.jsp</result>
+
+        </action>
+        <action name="clearBoxes" method="clearBoxes" class="com.owd.dc.warehouse.misc.sneakPackAction">
+            <result name="success">/warehouse/misc/sneakPack/start.jsp</result>
+        </action>
+    </package>
+    <package name="cycleCountSheets" namespace="/cycleCountSheets" extends="struts-default">
+        <result-types>
+            <result-type name="customJSON" class="com.owd.results.JSONResult"/>
+        </result-types>
+        <action name="searchSku" method="searchSku" class="com.owd.dc.warehouse.cycleCountSheets.cycleCountSheetsAction">
+            <result type="customJSON"/>
+        </action>
+        <action name="start" method="start" class="com.owd.dc.warehouse.cycleCountSheets.cycleCountSheetsAction">
+            <result name="success">/warehouse/cycleCountSheets/start.jsp</result>
+        </action>
+        <action name="load" method="load" class="com.owd.dc.warehouse.cycleCountSheets.cycleCountSheetsAction">
+            <result name="success">/warehouse/cycleCountSheets/cycleCountSheet.jsp</result>
+            <result name="error">/warehouse/cycleCountSheets/start.jsp</result>
+        </action>
+        <action name="getSkus" method="getSkus" class="com.owd.dc.warehouse.cycleCountSheets.cycleCountSheetsAction">
+            <result name="success">/warehouse/cycleCountSheets/skus.jsp</result>
+        </action>
+    </package>
+    <package name="boxCounts" namespace="/boxCounts" extends="struts-default">
+
+        <action name="start" class="com.owd.dc.warehouse.misc.boxCountsAction">
+            <result name="success">/warehouse/misc/boxCounts/start.jsp</result>
+        </action>
+        <action name="getCount" method="getCount" class="com.owd.dc.warehouse.misc.boxCountsAction">
+            <result name="success">/warehouse/misc/boxCounts/start.jsp</result>
+        </action>
+
+    </package>
+    <package name="warehouseInfo" namespace="/warehouseInfo" extends="struts-default">
+        <action name="start" class="com.owd.dc.warehouse.misc.warehouseInfo.warehouseInfoAction">
+            <result name="success">/warehouse/misc/warehouseInfo/start.jsp</result>
+        </action>
+        <action name="skuStart" method="skuStart" class="com.owd.dc.warehouse.misc.warehouseInfo.warehouseInfoAction">
+            <result name="success">/warehouse/misc/warehouseInfo/skuInfo.jsp</result>
+        </action>
+        <action name="skuLoadInfo" method="skuLoadInfo" class="com.owd.dc.warehouse.misc.warehouseInfo.warehouseInfoAction">
+            <result name="success">/warehouse/misc/warehouseInfo/skuInfoPrint.jsp</result>
+        </action>
+    </package>
+
+    <package name="quickToteAssign" namespace="/quickToteAssign" extends="struts-default">
+        <action name="start">
+            <result>/warehouse/misc/quickToteAssign/toteStart.jsp</result>
+        </action>
+        <action name="getTote" method="getTote" class="com.owd.dc.warehouse.misc.quickToteAssign.quickToteAssignAction">
+            <result name="success">/warehouse/misc/quickToteAssign/orderAssign.jsp</result>
+            <result name="error">/warehouse/misc/quickToteAssign/toteStart.jsp</result>
+
+        </action>
+
+        <action name="getOrder" method="getOrder" class="com.owd.dc.warehouse.misc.quickToteAssign.quickToteAssignAction">
+            <result name="error">/warehouse/misc/quickToteAssign/orderAssign.jsp</result>
+            <result name="success">/warehouse/misc/quickToteAssign/toteStart.jsp</result>
+
+        </action>
+
+
+
+    </package>
+
+    <package name="nonConformingReceive" namespace="/nonConformingReceive" extends="struts-default">
+        <action name="start" class="com.owd.dc.warehouse.misc.nonConformingReceive">
+            <result name="success">/warehouse/misc/nonConformingReceive/start.jsp</result>
+
+        </action>
+
+        <action name="enterForm" method="enterForm" class="com.owd.dc.warehouse.misc.nonConformingReceive">
+            <result name="success">/warehouse/misc/nonConformingReceive/start.jsp</result>
+            <result name="input">/warehouse/misc/nonConformingReceive/input.jsp</result>
+
+        </action>
+    </package>
+    <package name="slackProxy" namespace="/slackProxy" extends="struts-default">
+        <action name="sendCaseTracker" class="com.owd.dc.warehouse.misc.slackProxyAction">
+            <result name="success">/warehouse/misc/slackProxy/start.jsp</result>
+        </action>
+    </package>
+</struts>

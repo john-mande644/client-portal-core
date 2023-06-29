@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" lineSpacing="Single" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" lineSpacing="Single" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" lineSpacing="Single" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" lineSpacing="Single" fontName="Arial" fontSize="12"/>
+	<style name="light gray background" backcolor="#E6E6E6" fill="Solid" lineSpacing="Single">
+		<pen lineColor="#E6E6E6"/>
+		<box rightPadding="3">
+			<pen lineWidth="1.0" lineColor="#E6E6E6"/>
+			<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#E6E6E6"/>
+			<leftPen lineWidth="1.0" lineColor="#E6E6E6"/>
+			<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#E6E6E6"/>
+			<rightPen lineWidth="1.0" lineColor="#E6E6E6"/>
+		</box>
+	</style>
+	<style name="right padding" backcolor="#FFFFFF" fill="Solid" lineSpacing="Single">
+		<box rightPadding="3">
+			<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+			<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#CCCCCC"/>
+			<leftPen lineWidth="0.0" lineColor="#CCCCCC"/>
+			<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#CCCCCC"/>
+			<rightPen lineWidth="0.0" lineColor="#CCCCCC"/>
+		</box>
+	</style>
+	<parameter name="order_id" class="java.lang.String"/>
+	<parameter name="imageDir" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["images/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select o.*,s.*,l.*,i.upc_code,dbo.udf_getsladate(order_id) as sladate, i.description as title, (select convert(varchar(100),ISNULL(value,'')) from owd_tags where external_id=order_id and name='CustomerOrderNumber') as customer_order_number,(select convert(varchar(100),ISNULL(value,'')) from owd_tags where external_id=order_id and name='CustomerPONumber') as customer_po_number  from owd_order o
+join owd_order_ship_info s on s.order_fkey=order_id join owd_line_item l join owd_inventory i on i.inventory_id=l.inventory_id on order_id=l.order_fkey and order_num=$P{order_id} and quantity_actual>0 and cust_refnum<>'']]>
+	</queryString>
+	<field name="order_id" class="java.lang.Integer"/>
+	<field name="client_fkey" class="java.lang.Integer"/>
+	<field name="customer_fkey" class="java.lang.Integer"/>
+	<field name="order_num" class="java.lang.String"/>
+	<field name="order_refnum" class="java.lang.String"/>
+	<field name="order_num_barcode" class="java.lang.String"/>
+	<field name="po_num" class="java.lang.String"/>
+	<field name="order_type" class="java.lang.String"/>
+	<field name="salesperson" class="java.lang.String"/>
+	<field name="actual_order_date" class="java.sql.Timestamp"/>
+	<field name="order_sub_total" class="java.math.BigDecimal"/>
+	<field name="discount" class="java.math.BigDecimal"/>
+	<field name="tax_pct" class="java.math.BigDecimal"/>
+	<field name="tax_amount" class="java.math.BigDecimal"/>
+	<field name="ship_handling_fee" class="java.math.BigDecimal"/>
+	<field name="order_total" class="java.math.BigDecimal"/>
+	<field name="paid_amount" class="java.math.BigDecimal"/>
+	<field name="paid_date" class="java.sql.Timestamp"/>
+	<field name="order_balance" class="java.math.BigDecimal"/>
+	<field name="customer_num" class="java.lang.String"/>
+	<field name="customer_vendor_no" class="java.lang.String"/>
+	<field name="bill_last_name" class="java.lang.String"/>
+	<field name="bill_first_name" class="java.lang.String"/>
+	<field name="bill_address_one" class="java.lang.String"/>
+	<field name="bill_address_two" class="java.lang.String"/>
+	<field name="bill_city" class="java.lang.String"/>
+	<field name="bill_state" class="java.lang.String"/>
+	<field name="bill_zip" class="java.lang.String"/>
+	<field name="bill_country" class="java.lang.String"/>
+	<field name="bill_company_name" class="java.lang.String"/>
+	<field name="bill_title" class="java.lang.String"/>
+	<field name="bill_phone_num" class="java.lang.String"/>
+	<field name="bill_fax_num" class="java.lang.String"/>
+	<field name="bill_email_address" class="java.lang.String"/>
+	<field name="prt_pick_reqd" class="java.lang.Boolean"/>
+	<field name="prt_invoice_reqd" class="java.lang.Boolean"/>
+	<field name="prt_pack_reqd" class="java.lang.Boolean"/>
+	<field name="prt_priceonslip_reqd" class="java.lang.Boolean"/>
+	<field name="is_backorder" class="java.lang.Boolean"/>
+	<field name="backorder_order_num" class="java.lang.String"/>
+	<field name="original_order_num" class="java.lang.String"/>
+	<field name="is_future_ship" class="java.lang.Integer"/>
+	<field name="is_void" class="java.lang.Integer"/>
+	<field name="post_date" class="java.sql.Timestamp"/>
+	<field name="created_date" class="java.sql.Timestamp"/>
+	<field name="created_by" class="java.lang.String"/>
+	<field name="modified_date" class="java.sql.Timestamp"/>
+	<field name="modified_by" class="java.lang.String"/>
+	<field name="row_is_locked" class="java.lang.Boolean"/>
+	<field name="cc_type" class="java.lang.String"/>
+	<field name="is_gift" class="java.lang.Integer"/>
+	<field name="gift_message" class="java.lang.String"/>
+	<field name="gift_wrap_fee" class="java.math.BigDecimal"/>
+	<field name="reported" class="java.lang.Boolean"/>
+	<field name="cc_num" class="java.lang.String"/>
+	<field name="cc_exp_mon" class="java.lang.Integer"/>
+	<field name="cc_exp_year" class="java.lang.Integer"/>
+	<field name="pick_status" class="java.lang.Integer"/>
+	<field name="payment_status" class="java.lang.String"/>
+	<field name="pick_by" class="java.lang.String"/>
+	<field name="coupon" class="java.lang.String"/>
+	<field name="backorder_level" class="java.lang.Integer"/>
+	<field name="discount_pct" class="java.math.BigDecimal"/>
+	<field name="order_status" class="java.lang.String"/>
+	<field name="shipped_on" class="java.sql.Timestamp"/>
+	<field name="ship_packs" class="java.lang.Integer"/>
+	<field name="tracking_nums" class="java.lang.String"/>
+	<field name="shipped_cost" class="java.math.BigDecimal"/>
+	<field name="shipped_weight" class="java.math.BigDecimal"/>
+	<field name="shipped_lines" class="java.lang.Integer"/>
+	<field name="shipped_units" class="java.lang.Long"/>
+	<field name="ship_sub_total" class="java.math.BigDecimal"/>
+	<field name="ship_tax" class="java.math.BigDecimal"/>
+	<field name="ship_total" class="java.math.BigDecimal"/>
+	<field name="facility_code" class="java.lang.String"/>
+	<field name="group_name" class="java.lang.String"/>
+	<field name="packing_instructions" class="java.sql.Clob"/>
+	<field name="facility_policy" class="java.lang.String"/>
+	<field name="not_billed" class="java.lang.Integer"/>
+	<field name="no_customs_account" class="java.lang.Integer"/>
+	<field name="is_shipping" class="java.lang.Integer"/>
+	<field name="order_ship_info_id" class="java.lang.Integer"/>
+	<field name="order_fkey" class="java.lang.Integer"/>
+	<field name="scheduled_ship_date" class="java.sql.Timestamp"/>
+	<field name="ship_last_name" class="java.lang.String"/>
+	<field name="ship_first_name" class="java.lang.String"/>
+	<field name="ship_address_one" class="java.lang.String"/>
+	<field name="ship_address_two" class="java.lang.String"/>
+	<field name="ship_city" class="java.lang.String"/>
+	<field name="ship_state" class="java.lang.String"/>
+	<field name="ship_zip" class="java.lang.String"/>
+	<field name="ship_country" class="java.lang.String"/>
+	<field name="ship_country_ref_num" class="java.lang.String"/>
+	<field name="ship_company_name" class="java.lang.String"/>
+	<field name="ship_title" class="java.lang.String"/>
+	<field name="ship_phone_num" class="java.lang.String"/>
+	<field name="ship_fax_num" class="java.lang.String"/>
+	<field name="ship_email_address" class="java.lang.String"/>
+	<field name="carr_service" class="java.lang.String"/>
+	<field name="carr_service_ref_num" class="java.lang.String"/>
+	<field name="carr_freight_terms" class="java.lang.String"/>
+	<field name="carr_freight_terms_ref_num" class="java.lang.String"/>
+	<field name="third_party_refnum" class="java.lang.String"/>
+	<field name="ss_addl_hand" class="java.lang.Boolean"/>
+	<field name="ss_declared_value" class="java.lang.Boolean"/>
+	<field name="declared_value" class="java.math.BigDecimal"/>
+	<field name="ss_proof_delivery" class="java.lang.Boolean"/>
+	<field name="ss_call_tag" class="java.lang.Boolean"/>
+	<field name="call_tag" class="java.lang.String"/>
+	<field name="ss_cod" class="java.lang.Boolean"/>
+	<field name="cod_charge" class="java.math.BigDecimal"/>
+	<field name="ss_saturday" class="java.lang.Boolean"/>
+	<field name="ss_tracking" class="java.lang.Boolean"/>
+	<field name="ss_oversize" class="java.lang.Boolean"/>
+	<field name="ss_hazardous" class="java.lang.Boolean"/>
+	<field name="ss_residential" class="java.lang.Boolean"/>
+	<field name="comments" class="java.lang.String"/>
+	<field name="whse_notes" class="java.lang.String"/>
+	<field name="customs_value" class="java.math.BigDecimal"/>
+	<field name="customs_desc" class="java.sql.Clob"/>
+	<field name="status" class="java.lang.Integer"/>
+	<field name="print_date" class="java.sql.Timestamp"/>
+	<field name="line_item_id" class="java.lang.Integer"/>
+	<field name="inventory_id" class="java.lang.Integer"/>
+	<field name="inventory_num" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="cust_refnum" class="java.lang.String"/>
+	<field name="quantity_request" class="java.lang.Integer"/>
+	<field name="quantity_actual" class="java.lang.Integer"/>
+	<field name="quantity_back" class="java.lang.Integer"/>
+	<field name="price" class="java.math.BigDecimal"/>
+	<field name="total_price" class="java.math.BigDecimal"/>
+	<field name="item_color" class="java.lang.String"/>
+	<field name="item_size" class="java.lang.String"/>
+	<field name="line_item_disc" class="java.lang.Double"/>
+	<field name="long_desc" class="java.sql.Clob"/>
+	<field name="dec_item_value" class="java.math.BigDecimal"/>
+	<field name="parent_line" class="java.lang.Integer"/>
+	<field name="is_parent" class="java.lang.Integer"/>
+	<field name="is_insert" class="java.lang.Integer"/>
+	<field name="upc_code" class="java.lang.String"/>
+	<field name="sladate" class="java.sql.Timestamp"/>
+	<field name="title" class="java.lang.String"/>
+	<field name="customer_order_number" class="java.lang.String"/>
+	<field name="customer_po_number" class="java.lang.String"/>
+	<group name="order">
+		<groupExpression><![CDATA[$F{order_id}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="194" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="93" width="174" height="68"/>
+				<textElement lineSpacing="Single">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ship_first_name}+" "+$F{ship_last_name}+"\n"+
+$F{ship_address_one}+"\n"+
+($F{ship_address_two}.equals("")?"":$F{ship_address_two}+"\n")+
+$F{ship_city}+", "+$F{ship_state}+"  "+$F{ship_zip}+"\n"+
+$F{ship_country}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape" isUsingCache="false">
+				<reportElement x="0" y="0" width="218" height="38"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{imageDir}+"nordstrom.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="4" y="38" width="162" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Phone: 1-888-282-6060]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="38" width="156" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Order Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="75" width="76" height="18"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ship To:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="54" width="162" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email: orders@nordstrom.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="70" width="156" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Order Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="54" width="156" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer PO Number]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="466" y="38" width="106" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{customer_order_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="54" width="106" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{customer_po_number}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="466" y="70" width="106" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{post_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9" y="178" width="551" height="15"/>
+				<textElement lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Thank you for your order of : (Order ID: "+$F{customer_order_number}+")"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="122" y="1" width="292" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4" y="1" width="118" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UPC Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="414" y="1" width="68" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement style="SubTitle" stretchType="RelativeToBandHeight" mode="Opaque" x="4" y="1" width="118" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{upc_code}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="122" y="1" width="292" height="19" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="SubTitle" stretchType="RelativeToBandHeight" mode="Opaque" x="414" y="1" width="68" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{quantity_actual}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Prevent"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<textField pattern="MM/dd/yyyy h:mm a">
+				<reportElement style="Column header" x="9" y="22" width="197" height="13"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sladate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Column header" x="206" y="22" width="80" height="13"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="289" y="22" width="40" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="331" y="6" width="241" height="29"/>
+				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="1.0" textPosition="bottom">
+					<jr:codeExpression><![CDATA[$F{order_num_barcode}]]></jr:codeExpression>
+				</jr:Code39>
+			</componentElement>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

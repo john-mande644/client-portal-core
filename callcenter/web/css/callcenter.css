@@ -1,0 +1,108 @@
+body {
+	background-color: #fff;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	margin-left: auto;
+	margin-right: auto;
+	background-repeat: repeat-y;
+	font-size: 13px;
+	padding: 15px;
+}
+table.calls {
+	border: 1px solid #666;
+	width: 80%;
+	margin: 20px 0 20px 0 !important;
+    font-size: 11px;
+}
+table.cases {
+	border: 1px solid #666;
+	width: 99%;
+	margin: 20px 0 20px 0 !important;
+    font-size: 11px;
+}
+table.search{
+    border: none;
+    width: auto;
+    margin: 0 0 0 0;
+    font-size:13px;
+}
+tr.even {
+    background-color: #BFFFBF;
+}
+
+th,td {
+	padding: 2px 4px 2px 4px !important;
+	text-align: left;
+	vertical-align: top;
+}
+
+thead tr {
+	background-color: #80FF80;
+}
+
+th.sorted {
+	background-color: #008F00;
+}
+
+th a,th a:visited {
+	color: black;
+}
+
+th a:hover {
+	text-decoration: underline;
+	color: black;
+}
+
+th.sorted a,th.sortable a {
+	background-position: right;
+	display: block;
+	width: 100%;
+}
+
+th.sortable a {
+	background-image: url(/callcenter/images/arrow_off.png);
+    background-repeat: no-repeat;
+}
+
+th.order1 a {
+	background-image: url(/callcenter/images/arrow_down.png);
+    background-repeat: no-repeat;
+}
+
+th.order2 a {
+	background-image: url(/callcenter/images/arrow_up.png);
+    background-repeat: no-repeat;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+span.label {
+    font-weight: bold;
+}
+td.right {
+    text-align: right;
+}
+td.left {
+    text-align: left;
+}
+span.pagebanner {
+	background-color: #eee;
+	border: 1px dotted #999;
+	padding: 2px 4px 2px 4px;
+	width: 79%;
+	margin-top: 10px;
+	display: block;
+	border-bottom: none;
+}
+
+span.pagelinks {
+	background-color: #eee;
+	border: 1px dotted #999;
+	padding: 2px 4px 2px 4px;
+	width: 79%;
+	display: block;
+	border-top: none;
+	margin-bottom: -5px;
+}

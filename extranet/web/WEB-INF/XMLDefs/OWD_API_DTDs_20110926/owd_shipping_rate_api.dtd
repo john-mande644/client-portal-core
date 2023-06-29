@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<!-- DTD for TOCC shipping rate requests   S. Buskirk	2010.5.26 -->
+<!-- Copyright (c) 2000-2010 by One World Direct All Rights Reserved. -->
+
+<-- Updated 9/23/2011 -->
+
+
+<!-- OWD_SHIPPING_RATE_REQUEST description
+
+	This request returns an OWD_SHIPPING_RATE_RESPONSE if successful. See OWD_SHIPPING_RATE_RESPONSE below for response details.
+
+	This call accepts a mailing address, a list of item SKUs and quantities, and a list of OWD ship method codes. Each request
+	causes the address to be validated (US addresses only) and corrected or standardized if possible. The updated address is then
+	rated against each indicated ship method, using a predicted package size and weight based on the item list provided.
+	
+	The response document returns an ADDRESS and RATES element. The ADDRESS->RESULTS element indicates whether or not the ADDRESS
+	could be validated and standardized. If correction was successful, the value of RESULTS will be CORRECTED, otherwise it will 
+	be UNCORRECTED. The rest of the ADDRESS subelements either provide the corrected address or echo the original address values
+	if validation was not successful. Regardless of whether correction was successful, the rest of the values returned in the 
+	ADDRESS element will be the values that were used to rate the shipment. 
+	
+	The RATES response contains a RATE element for each ship method requested. Each RATE contains the OWD ship method code, the
+	name of the ship method (suitable to display to customers), and either a COST or ERROR element. If the ship method was rated
+	successfully, the COST element is present - otherwise the appropriate error message is displayed in the ERROR element. 
+
+	Note that you may use international addresses and ship method codes, but address validation will not be provided for non-US 
+	addresses. The process of determining rates will provide some validation of international postal code patterns, etc., but
+	will not correct invalid addresses.
+	
+	Notes on each defined element are below:
+	
+-->
+
+<!ELEMENT ADDRESS_1 (#PCDATA)> <!--Street address line 1 of billing address-->
+<!ELEMENT ADDRESS_2 (#PCDATA)> <!--Street address line 2 of billing address-->
+<!ELEMENT CITY (#PCDATA)> <!--City of billing address-->
+<!ELEMENT COUNTRYCODE (#PCDATA)><!--ISO 2-letter code for country name-->
+<!ELEMENT REGION (#PCDATA)><!--State or region of billing address-->
+<!ELEMENT POSTCODE (#PCDATA)><!--Postal code of billing address-->
+<!ELEMENT CODE (#PCDATA)><!-- OWD ship method code. See http://service.owd.com/webapps/clienttools/shipmethods.jsp for current list (login required) -->
+<!ELEMENT RESULTS (#PCDATA)><!-- indicates results of address validation. May have values CORRECTED or UNCORRECTED or VALID (validated as correct without changes) -->
+<!ELEMENT NAME (#PCDATA)><!-- Displayable full name of indiciated ship method -->
+<!ELEMENT COST (#PCDATA)><!-- decimal cost (x.xx) of predicted shipment. Currency is not indicated, provided as USD. -->
+<!ELEMENT ERROR (#PCDATA)><!-- free text error message with reason why a rate could not be obtained for a given ship method -->
+<!ELEMENT ITEM (#PCDATA)><!-- container element for list of items in order -->
+<!ELEMENT ITEMS (ITEM)+>
+        
+<!ATTLIST ITEM
+   qty CDATA #REQUIRED  <!-- QTY is an integer value of the number of units in the shipment. Must be greater than zero. -->
+   sku CDATA #REQUIRED> <!-- SKU value must exactly match (case-insensitive) OWD inventory values. Each ITEM element should present a unique SKU in the current request. -->
+                
+<!ELEMENT SHIPMETHODS (CODE)+><!-- container element for list of ship methods to rate. -->
+
+<!ELEMENT OWD_SHIPPING_RATE_REQUEST (SHIPPING_ADDRESS,ITEMS,SHIPMETHODS)><!-- main element of rate request call -->
+
+<!ATTLIST OWD_SHIPPING_RATE_REQUEST
+   packaging_lbs CDATA #IMPLIED> <!-- if provided as a positive decimal >=0.01, this exact amount will be added to the known item weights to determine
+                                      the rated weight of the shipment. If omitted or invalid, the packaging weight will be estimated at 20% of the known item weights -->
+
+<!ELEMENT SHIPPING_ADDRESS (ADDRESS_1,ADDRESS_2,CITY,REGION,POSTCODE,COUNTRYCODE)><!-- container element for shipping address values -->
+
+<!ELEMENT RATES (RATE)+><!-- container element for list of returned RATE elements for requested ship methods -->
+<!ELEMENT RATE (CODE,NAME,(COST|ERROR))><!-- container element for response details for each requested ship method. -->
+       
+<!ELEMENT OWD_SHIPPING_RATE_RESPONSE (ADDRESS,RATES)><!-- main element of rate response data -->
+<!ELEMENT ADDRESS (RESULTS,ADDRESS_1,ADDRESS_2,CITY,REGION,POSTCODE,COUNTRYCODE)><!-- container element for corrected address values. See RESULTS element for details. -->
+
+<!-- EXAMPLE of full API request
+
+<OWD_API_REQUEST	api_version="1.9"
+          		client_id="1234"
+          		client_authorization="12938462"
+          		>
+	<OWD_SHIPPING_RATE_REQUEST>
+	<SHIPPING_ADDRESS>
+		<ADDRESS_1>10 1st ave e</ADDRESS_1>
+		<ADDRESS_2></ADDRESS_2>
+		<CITY>Mobridgee</CITY>
+		<REGION>South Dakota</REGION>
+		<POSTCODE>57601</POSTCODE>
+		<COUNTRYCODE>US</COUNTRYCODE>
+	</SHIPPING_ADDRESS>
+	<ITEMS>
+		<ITEM sku="ABC" qty="1" />
+		<ITEM sku="DEF" qty="2" />
+	</ITEMS>
+	<SHIPMETHODS>
+		<CODE>OWD.1ST.PRIORITY</CODE>
+		<CODE>UPS.GND</CODE>
+		<CODE>UPS.2DAY</CODE>
+	</SHIPMETHODS>
+</OWD_SHIPPING_RATE_REQUEST>
+</OWD_API_REQUEST>
+
+-->
+
+
+<!-- EXAMPLE of response for corrected address and 1 successful ship method rate of 2 requested
+
+<OWD_API_RESPONSE results="SUCCESS">
+<OWD_SHIPPING_RATE_RESPONSE>
+	<ADDRESS>
+		<RESULTS>CORRECTED</RESULTS>
+		<ADDRESS_1>10 1ST AVE E</ADDRESS_1>
+		<ADDRESS_2></ADDRESS_2>
+		<CITY>Mobridge</CITY>
+		<REGION>SD</REGION>
+		<POSTCODE>57601-1638</POSTCODE>
+		<COUNTRYCODE>US</COUNTRYCODE>
+	</ADDRESS>
+	<RATES>
+		<RATE>
+			<CODE>UPS.GND</CODE>
+			<NAME>UPS Ground</NAME>
+			<COST>5.92</COST>
+		</RATE>
+		<RATE>
+			<CODE>UPS.2DAY</CODE>
+			<NAME>UPS 2nd Day Air</NAME>
+			<ERROR>Destination not served</ERROR>
+		</RATE>
+	</RATES>
+</OWD_SHIPPING_RATE_RESPONSE>
+</OWD_API_RESPONSE>
+
+
+-->

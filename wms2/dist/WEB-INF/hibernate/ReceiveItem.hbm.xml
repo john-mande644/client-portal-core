@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.owd.hibernate.ReceiveItem"
+    table="receive_item"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+        <generator class="identity" />
+    </id>
+
+    <property
+        name="qtyReceive"
+        type="java.lang.Integer"
+        column="qty_receive"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="qtyDamage"
+        type="java.lang.Integer"
+        column="qty_damage"
+        not-null="true"
+        length="10"
+    />
+    
+    <property
+        name="qtyPackslip"
+        type="java.lang.Integer"
+        column="qty_packslip"
+        not-null="true"
+        length="10"
+    />
+      <property
+            name="countMethod"
+            type="java.lang.String"
+            column="count_method"
+            not-null="false"
+            length="50"
+            />
+    <property
+        name="notes"
+        type="java.lang.String"
+        column="notes"
+        not-null="true"
+        length="2147483647"
+    />
+    <property
+        name="toLocation"
+        type="java.lang.String"
+        column="to_location"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="inventoryFkey"
+        type="java.lang.Integer"
+        column="inventory_fkey"
+        not-null="true"
+        length="10"
+    />
+
+    <!-- associations -->
+         <set name="serials" table="receive_serial" lazy="true">
+            <key column="receive_item_fkey"/>
+            <many-to-many class="com.owd.hibernate.OwdInventorySerial" column="serial_fkey" />
+        </set>
+    <!-- bi-directional many-to-one association to Receive -->
+    <many-to-one
+        name="receive"
+        class="com.owd.hibernate.Receive"
+        not-null="true"
+    >
+        <column name="receive_fkey" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to AsnItem -->
+    <many-to-one
+        name="asnItem"
+        class="com.owd.hibernate.AsnItem"
+        not-null="true">
+        <column name="asn_item_fkey" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

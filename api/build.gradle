@@ -1,0 +1,115 @@
+
+
+//apply plugin: 'java'
+org.gradle.util.SingleMessageLogger.whileDisabled {
+    apply plugin: 'groovy'
+}
+apply plugin: 'war'
+
+
+compileJava.doFirst {
+    println "source compatibility api: " + sourceCompatibility
+    println "target compatibility api: " + targetCompatibility
+}
+
+
+compileGroovy.doFirst {
+    println "source compatibility api: " + sourceCompatibility
+    println "target compatibility api: " + targetCompatibility
+}
+
+
+
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
+}
+
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
+}
+
+repositories {
+   // jcenter()
+    mavenCentral()
+    ivy {
+        artifactPattern "http://internal.owd.com/ivyrepo/[organisation]/[module]/[artifact].[ext]"
+
+    }
+
+}
+
+
+dependencies {
+
+    compile project(':owd_core')
+
+    compile 'com.squareup.okhttp:okhttp:2.5.0'
+
+}
+
+sourceSets {
+    main {
+        groovy {
+            srcDirs = ['src']
+        }
+    }
+}
+/*    configurations.compile.each {
+        println "compile: $it"
+    }*/
+
+    war {
+        from 'web' // adds a file-set to the root of the archive
+       // webInf { from 'src/additionalWebInf' } // adds a file-set to the WEB-INF dir.
+       // classpath fileTree('additionalLibs') // adds a file-set to the WEB-INF/lib dir.
+       // classpath configurations.moreLibs // adds a configuration to the WEB-INF/lib dir.
+       // webXml = file('src/someWeb.xml') // copies a file to WEB-INF/web.xml
+    }
+
+
+// We define a new configuration with the name 'sshAntTask'.
+// This configuration is used to define our dependencies.
+    configurations {
+        sshAntTask
+    }
+
+// Assign dependencies to the sshAntTask configuration.
+    dependencies {
+        sshAntTask 'ant:ant-jsch:1.6.5', 'com.jcraft:jsch:0.1.51'
+    }
+
+
+task deployToStagingServer << {
+        description = 'Update files on remote server.'
+
+        ant.taskdef(name: 'scpme', classname: 'org.apache.tools.ant.taskdefs.optional.ssh.Scp',
+                classpath: configurations.sshAntTask.asPath)
+
+        // Invoke the scp Ant task. (Use gradle -i update to see the output of the Ant task.)
+        ant.scpme(todir: 'owd@service2.owd.com:/home/owd/',
+                keyfile: '${user.home}/.ssh/id_dsa',
+             //   passphrase: passphrase as String, // Use phassphrase entered by the user.
+                passphrase:'' ,
+                verbose: true,
+        file: war.archivePath)
+
+
+    }
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+    distributionPath = '../owd_core/wrapper/dists'
+    jarFile = '../owd_core/wrapper/gradle-wrapper.jar'
+}
+test {
+    testLogging.showStandardStreams = true
+}
+
+
+
+
+

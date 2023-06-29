@@ -1,0 +1,77 @@
+
+
+div.data{
+    width:auto!important;
+    width:100%;
+    background-color: #FFFAF0;
+    border:1px solid #730;
+    margin-bottom:1em ;
+    position: relative;
+    padding:.5em .8em .8em .8em;
+  }
+
+  .clearfxix {
+    display:block;
+    position:relative
+  }
+
+
+h3  {
+  font:  normal .9em ;
+  font-size: 12px;
+  height:1em;
+  padding:2px .5em 1px .5em;
+  clear: right;
+  color: #9B7355;
+  background:#FFFFFF;
+  margin:0;
+  position:absolute;
+  left:1px;
+  top:-.8em;
+  border:0 none;
+}
+  table.wwFormTable {
+    margin:1em;
+      width:90%;
+  }
+
+  table.wwFormTable tr td label {
+    font-size: 10px;
+  }
+  table.wwFormTable tr td input {
+    width:100%;
+      font-size: 10px;
+      margin:0;
+      padding:0;
+  }
+
+/* Form submit button styles. (Save, Delete, Cancel, etc.) */
+#actions
+{
+	margin-top:14px;
+}
+
+input.actions
+{
+	background-color: #D6DFEF;
+	color: #214973;
+	border-top: 1px solid #BDC7CE;
+	border-left: 1px solid #BDC7CE;
+	border-bottom: 1px solid #4A719C;
+	border-right: 1px solid #4A719C;
+	margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+    font: normal 10px/18px Verdana, Arial, Helvetica, sans-serif;
+}
+
+#divActions input
+{
+	background-color: #D6DFEF;
+	color: #214973;
+	border-top: 1px solid #BDC7CE;
+	border-left: 1px solid #BDC7CE;
+	border-bottom: 1px solid #4A719C;
+	border-right: 1px solid #4A719C;
+	margin: 0 10px 0 0;
+	font: normal 10px/18px Verdana, Arial, Helvetica, sans-serif;
+}

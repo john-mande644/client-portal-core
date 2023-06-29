@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.owd.hibernate.OwdClientAcctTransaction" 
+    table="owd_client_acct_transactions"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+        <generator class="identity" />
+    </id>
+
+    <property
+        name="clientFkey"
+        type="java.lang.Integer"
+        column="client_fkey"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="transactionType"
+        type="java.lang.String"
+        column="transaction_type"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="intacctId"
+        type="java.lang.Integer"
+        column="intacct_id"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="intacctRef"
+        type="java.lang.String"
+        column="intacct_ref"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="description"
+        type="java.lang.String"
+        column="description"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="totalAmount"
+        type="java.math.BigDecimal"
+        column="total_amount"
+        not-null="true"
+        length="19"
+    />
+    <property
+        name="appliedAmount"
+        type="java.math.BigDecimal"
+        column="applied_amount"
+        not-null="true"
+        length="19"
+    />
+    <property
+        name="transactionDate"
+        type="java.util.Date"
+        column="transaction_date"
+        not-null="true"
+        length="23"
+    />
+    <property
+        name="notes"
+        type="java.lang.String"
+        column="notes"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="created"
+        type="java.util.Date"
+        column="created"
+        not-null="true"
+        length="23"
+    />
+    <property
+        name="accountType"
+        type="java.lang.String"
+        column="account_type"
+        not-null="true"
+        length="50"
+    />
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

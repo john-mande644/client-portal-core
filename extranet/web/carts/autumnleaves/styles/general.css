@@ -1,0 +1,209 @@
+.companyName {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 48px;
+	font-weight: 400;
+}
+.address {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	line-height: normal;
+}
+.addressBold {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+}
+.addressItalic {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-style: italic;
+	line-height: normal;
+}
+a:link {
+	color: #000066;
+	text-decoration: underline;
+}
+a:visited {
+	color: #000066;
+	text-decoration: underline;
+}
+a:hover {
+	color: #000099;
+}
+a:active {
+	color: #000066;
+	text-decoration: underline;
+}
+.slogan {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #000000;
+	text-decoration: none;
+}
+.sloganBorder {
+	background-color: #F4F4F4;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: none;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-top-color: #000000;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+	border-left-color: #000000;
+}
+.paraHeading {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #000000;
+}
+.bolditalics {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: italic;
+	font-weight: bold;
+}
+.border {
+	border: 1px solid #000000;
+}
+a.nav:link {
+	color: #000000;
+	text-decoration: none;
+	background-color: #FFFFFF;
+	padding: 2px 0px;
+	width: 150px;
+	border: 1px none;
+	font-weight: bold;
+
+
+
+}
+a.nav:visited {
+	color: #000000;
+	text-decoration: none;
+	background-color: #FFFFFF;
+	width: 150px;
+	padding-top: 2px;
+	padding-right: 0px;
+	padding-bottom: 2px;
+	padding-left: 0px;
+	border: 1px none #000000;
+	font-weight: bold;
+
+
+}
+a.nav:hover {
+	color: #FFFFFF;
+	background-color: #000000;
+	width: 150px;
+	padding-top: 2px;
+	padding-right: 0px;
+	padding-bottom: 2px;
+	padding-left: 0px;
+	border: none;
+	font-weight: bold;
+
+
+
+
+}
+a.nav:active {
+	color: #FFFFFF;
+	text-decoration: none;
+	width: 150px;
+	padding-top: 2px;
+	padding-right: 0px;
+	padding-bottom: 2px;
+	padding-left: 0px;
+	border: 1px none #FFFFFF;
+	font-weight: bold;
+
+
+}.couponBorder {
+	border: medium dashed #000000;
+}
+.LeftBorder {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+	border-top: 1px none #000000;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #000000;
+
+}
+
+a.nounderline:link {
+	color: #000066;
+	text-decoration: none;
+}
+a.nounderline:visited {
+	color: #000066;
+	text-decoration: none;
+}
+a.nounderline:hover {
+	color: #000099;
+	text-decoration: underline;
+}
+a.nounderline:active {
+	color: #000066;
+	text-decoration: none;
+}
+
+
+/**********************HORIZONTAL NAVIGATION***********************/
+
+#nav-horizontal {
+        margin: 10px 0 0 0px;
+        padding: 0;
+        height: 20px;
+}
+
+#nav-horizontal ul {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        text-align: center;
+}
+
+#nav-horizontal ul li {
+        display: block;
+        float: left;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+}
+
+#nav-horizontal ul li a {
+        background: #fff;
+        width: 119px;  /*- change width of button -- */
+        height: 18px;
+        border: 1px solid #f5d7b4;
+        padding: 0;
+        margin: 0 0 10px 0;
+        color: #000000; /*- change color of button text -- */
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        font: normal 12px/18px Geneva, Arial, Helvetica, sans-serif;
+}
+
+#nav-horizontal ul li a:hover {
+        color: #930; /*- change color of hover button text -- */
+        background: #f5d7b4; /*- change color of hover button background -- */
+}
+
+#nav-horizontal a:active {
+        background: #c60;
+        color: #fff;
+}

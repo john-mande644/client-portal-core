@@ -1,0 +1,151 @@
+
+
+//apply plugin: 'java'
+org.gradle.util.SingleMessageLogger.whileDisabled {
+    apply plugin: 'groovy'
+}
+apply plugin: 'war'
+
+compileJava.doFirst {
+    println "source compatibility jobs: " + sourceCompatibility
+    println "target compatibility jobs: " + targetCompatibility
+}
+
+
+compileGroovy.doFirst {
+    println "source compatibility jobs: " + sourceCompatibility
+    println "target compatibility jobs: " + targetCompatibility
+}
+
+
+
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+}
+
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+}
+
+repositories {
+    maven { url "https://mvnrepository.com/artifact" }
+    jcenter()
+    mavenCentral()
+    ivy {
+        artifactPattern "http://internal.owd.com/ivyrepo/[organisation]/[module]/[artifact].[ext]"
+    }
+
+}
+
+
+dependencies {
+
+    compile project(':owd_core')
+    compile 'log4j:log4j:1.2.12'
+    compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.1'
+    compile 'commons-codec:commons-codec:1.6'
+    compile ('com.sun.xml.ws:jaxws-rt:2.1.4')
+            {
+                exclude group: 'javax.xml.bind', module: 'jaxb-impl'
+            }
+
+    compile 'javax.xml:namespace:1.0.1'
+    // https://mvnrepository.com/artifact/com.opencsv/opencsv
+    compile group: 'com.opencsv', name: 'opencsv', version: '4.6'
+
+
+    // https://mvnrepository.com/artifact/com.jcraft/jsch
+    compile group: 'com.jcraft', name: 'jsch', version: '0.1.53'
+
+    compile 'owd:quartz-all-1.6.5'
+    compile 'owd:ipworks:'
+    compile 'owd:ipworksssl:'
+    compile 'owd:ipworksssh:'
+    compile 'owd:ebaycalls:'
+    compile 'owd:ebaysdkcore'
+    compile 'owd:MWSMerchantFulfillment_2015-06-01_v2015-06-01'
+    compile 'owd:MWSClientJavaRuntime-1.0'
+    compile 'owd:serialized-php-parser-0.3'
+    compile group: 'org.bouncycastle', name: 'bcpg-jdk15on', version: '1.51'
+    compile group: 'org.apache.poi', name: 'poi', version: '3.9'
+    compile 'org.freemarker:freemarker:2.3.29'
+
+
+    compile group: 'apache-httpclient', name: 'commons-httpclient', version: '3.0.1'
+
+    compile 'com.squareup.okhttp3:okhttp:3.13.1'
+    compile group: 'com.hierynomus', name: 'sshj', version: '0.27.0'
+
+    //compile(group: 'com.ebay', name: 'sdk', version: '883', ext: 'jar')
+    compile fileTree(dir: './lib', include: ['*.jar'])
+
+
+     // providedCompile 'javax.servlet.jsp:javax.servlet-api:2.5'
+  /*  
+  
+    compile 'org.apache.axis:axis:1.4'
+    compile  'org.apache.axis:axis-jaxrpc:1.4'
+    compile 'commons-discovery:commons-discovery:0.5'*/
+   // compile 'commons-logging:commons-logging:1.2'gradle clean build
+
+
+}
+
+tasks.withType(Test).each { task ->
+    task.enabled = false
+}
+
+test {
+    exclude '*'
+}
+
+sourceSets {
+    main {
+        groovy {
+            srcDirs = ['src']
+        }
+    }
+}
+/*    configurations.compile.each {
+        println "compile: $it"
+    }*/
+
+    war {
+        from 'web' // adds a file-set to the root of the archive
+       // webInf { from 'src/additionalWebInf' } // adds a file-set to the WEB-INF dir.
+       // classpath fileTree('additionalLibs') // adds a file-set to the WEB-INF/lib dir.
+       // classpath configurations.moreLibs // adds a configuration to the WEB-INF/lib dir.
+       // webXml = file('src/someWeb.xml') // copies a file to WEB-INF/web.xml
+      // archiveName 'webapps.war'
+    }
+
+/*
+// We define a new configuration with the name 'sshAntTask'.
+// This configuration is used to define our dependencies.
+    configurations {
+        sshAntTask
+    }
+
+// Assign dependencies to the sshAntTask configuration.
+    dependencies {
+        sshAntTask 'ant:ant-jsch:1.6.5', 'com.jcraft:jsch:0.1.51'
+    }
+
+ssh {
+    config(StrictHostKeyChecking: 'no')
+}
+remotes {
+    testserver {
+        host = 'service2.owd.com'
+        user = 'owd'
+        identity = file("${System.properties['user.home']}/.ssh/id_dsa")
+    }
+
+
+}
+*/
+
+

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+<!--
+     This is a minimal Validator form file with a couple of examples.
+-->
+
+    <global>
+
+        <!-- An example global constant
+        <constant>
+            <constant-name>postalCode</constant-name>
+            <constant-value>^\d{5}\d*$</constant-value>
+        </constant>
+        end example-->
+
+    </global>
+   <!-- <action-mappings>
+  <action path="/addItem"
+         type="com.owd.intranet.adjustments.returns.addItemAction"
+         name="returnForm"
+          module="adjust"/>
+   <action path="/addActionItem"
+         type="com.owd.intranet.adjustments.addAdjustItemAction"
+         name="adjustForm"
+           module="adjust"/>
+ </action-mappings>
+    <formset>
+        <form name="genevaPreOrderForm">
+            <field
+               property="firstName"
+               depends="required">
+                 <arg0 key="prompt.firstName" />
+
+            </field>
+            <field
+               property="lastName"
+               depends="required">
+                 <arg0 key="prompt.lastName" />
+
+            </field>
+            <field
+               property="addressLine1"
+               depends="required">
+                 <arg0 key="prompt.addressLine1" />
+            </field>
+            <field
+               property="email"
+               depends="email">
+                 <arg0 key="prompt.email" />
+            </field>
+            <field property="phone"
+              depends="required,mask">
+                <arg0 key="prompt.phone" />
+                    <var>
+                        <var-name>mask</var-name>
+                        <var-value>^\(?(\d{3})\)?[-| ]?(\d{3})[-| ]?(\d{4})$</var-value>
+                    </var>
+            </field>
+     </form>
+        <form name="reprintForm">
+            <field
+                property="orderNum"
+                depends="required,integer">
+                <arg0 key="prompt.orderNum"/>
+            </field>
+        </form>
+         <form name="/addItem">
+            <field
+                property="sku"
+                depends="required">
+                <arg0 key="prompt.sku"/>
+            </field>
+        </form>
+         <form name="/addActionItem">
+            <field
+                property="sku"
+                depends="required">
+                <arg0 key="prompt.sku"/>
+            </field>
+        </form>
+        --><!-- An example form --><!--
+        <form name="logonForm">
+            <field
+                property="username"
+                depends="required">
+                    <arg key="logonForm.username"/>
+            </field>
+            <field
+                property="password"
+                depends="required,mask">
+                    <arg key="logonForm.password"/>
+                    <var>
+                        <var-name>mask</var-name>
+                        <var-value>^[0-9a-zA-Z]*$</var-value>
+                    </var>
+            </field>
+        </form>
+       
+    </formset>-->
+
+    <!-- An example formset for another locale -->
+
+
+</form-validation>

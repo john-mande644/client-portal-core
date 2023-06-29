@@ -1,0 +1,234 @@
+<project name="wms2" default="dist" basedir=".">
+   <description>
+       Builds extranet web application project
+   </description>
+ <!-- set global properties for this build -->
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    <property name="dist" location="dist"/>
+    <property name="web" location="web"/>
+    <property name="conf" location="conf"/>
+    <property name="lib" location="lib"/>
+    <property name="shared" location="../../sharedlibs"/>
+
+    <property name="project" value="${ant.project.name}"/>
+
+    <target name="init" depends="clean">
+        <!-- Create the time stamp -->
+        <tstamp>
+            <format property="build.time" pattern="MM/dd/yyyy hh:mm aa"/>
+        </tstamp>
+
+        <mkdir dir="build"/>
+
+
+
+    </target>
+    <target name="core" depends="init" unless="compilecore" >
+       <!-- Create the build directory structure used by compile -->
+
+    <!--  <ant dir="../../owd_core" inheritall="false" target="dist"/> -->
+
+
+    </target>
+
+    <target name="compile" depends="core"
+        description="compile the source ">
+        <!-- Compile the java code from src into build -->
+        <record name="buildwms2.logg" loglevel="verbose" action="start" />
+        <javac srcdir="src" destdir="build">
+            <classpath>
+                <!--<pathelement path="${classpath}"/>-->
+                <fileset dir="../../sharedlibs">
+                    <include name="**/*.jar"/>
+                    <exclude name="ivyrepo/"/>
+                </fileset>
+                <fileset dir="lib">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+     <target name="dist(nocore)" depends="nocore,dist" description="dist without complie core">
+         
+
+         </target>
+
+    <target name="dist" depends="compile"
+        description="Generate the distribution">
+        <!-- Create the distribution directory -->
+        <mkdir dir="dist/"/>
+        <mkdir dir="dist/WEB-INF"/>
+        <mkdir dir="dist/WEB-INF/classes"/>
+        <mkdir dir="dist/WEB-INF/lib"/>
+        <mkdir dir="dist/WEB-INF/uploads"/>
+        <mkdir dir="dist/WEB-INF/hibernate"/>
+
+
+        <buildnumber/>
+        <copy file="web/WEB-INF/web.xml" tofile="${dist}/WEB-INF/web.xml"/>
+        <copy todir="${dist}/WEB-INF/lib">
+            <fileset dir="${lib}"/>
+        </copy>
+        <copy todir="${dist}/WEB-INF/hibernate">
+            <fileset dir="${shared}/corehibernatemappings"/>
+        </copy>
+              <copy todir="${dist}/WEB-INF/lib">
+               <fileset dir="${shared}/hibernate3">
+                                     <include name="**/*.jar"/>
+                                 </fileset>
+           </copy>
+             <copy todir="${dist}/WEB-INF/lib">
+               <fileset dir="${shared}/hibernate3/lib">
+                                     <include name="**/*.jar"/>
+                                 </fileset>
+           </copy>
+        <!--<copy file="../../sharedlibs/jasperreports-3.0.0.jar" tofile="${dist}/WEB-INF/lib/jasperreports-3.0.0.jar"/>-->
+        <copy file="../../sharedlibs/owd-core.jar" tofile="${dist}/WEB-INF/lib/owd-core.jar"/>
+        <!--<copy file="../../sharedlibs/castor-0.9.4.3-xml.jar" tofile="${dist}/WEB-INF/lib/castor-0.9.4.3-xml.jar"/>-->
+        <!--<copy file="../../sharedlibs/castor-0.9.4.3.jar" tofile="${dist}/WEB-INF/lib/castor-0.9.4.3.jar"/>-->
+        <!--<copy file="../../sharedlibs/JLinkPointTxn.jar" tofile="${dist}/WEB-INF/lib/JLinkPointTxn.jar"/>-->
+        <!--<copy file="../../sharedlibs/breezetk.jar" tofile="${dist}/WEB-INF/lib/breezetk.jar"/>-->
+        <!--<copy file="../../sharedlibs/tbftools.jar" tofile="${dist}/WEB-INF/lib/tbftools.jar"/>-->
+        <!--<copy file="../../sharedlibs/commons-beanutils.jar" tofile="${dist}/WEB-INF/lib/commons-beanutils.jar"/>-->
+        <!--<copy file="../../sharedlibs/commons-digester.jar" tofile="${dist}/WEB-INF/lib/commons-digester.jar"/>-->
+        <!--<copy file="../../sharedlibs/commons-collections-2.1.jar" tofile="${dist}/WEB-INF/lib/commons-collections-2.1.jar"/>-->
+        <!--<copy file="../../sharedlibs/commons-dbcp-1.1.jar" tofile="${dist}/WEB-INF/lib/commons-dbcp-1.1.jar"/>-->
+        <!--<copy file="../../sharedlibs/commons-lang-2.0.jar" tofile="${dist}/WEB-INF/lib/commons-lang-2.0.jar"/>-->
+        <!--<copy file="../../sharedlibs/commons-logging-1.0.3.jar" tofile="${dist}/WEB-INF/lib/commons-logging-1.0.3.jar"/>-->
+        <!--<copy file="../../sharedlibs/commons-pool-1.1.jar" tofile="${dist}/WEB-INF/lib/commons-pool-1.1.jar"/>-->
+        <!--<copy file="../../sharedlibs/dom4j-1.4.jar" tofile="${dist}/WEB-INF/lib/dom4j-1.4.jar"/>-->
+        <!--<copy file="../../sharedlibs/log4j-1.2.8.jar" tofile="${dist}/WEB-INF/lib/log4j-1.2.8.jar"/>-->
+        <!--<copy file="../../sharedlibs/odmg-3.0.jar" tofile="${dist}/WEB-INF/lib/odmg-3.0.jar"/>-->
+        <!--<copy file="../../sharedlibs/castorxml.jar" tofile="${dist}/WEB-INF/lib/castorxml.jar"/>-->
+        <!--<copy file="../../sharedlibs/dom4j-1.4.jar" tofile="${dist}/WEB-INF/lib/dom4j-1.4.jar"/>-->
+        <!--<copy file="../../sharedlibs/xalan-2.4.0.jar" tofile="${dist}/WEB-INF/lib/xalan-2.4.0.jar"/>-->
+        <!--<copy file="../../sharedlibs/xerces-2.4.0.jar" tofile="${dist}/WEB-INF/lib/xerces-2.4.0.jar"/>-->
+        <!--<copy file="../../sharedlibs/connectship.jar" tofile="${dist}/WEB-INF/lib/connectship.jar"/>-->
+        <!--<copy file="../../sharedlibs/jaxb-impl.jar" tofile="${dist}/WEB-INF/lib/jaxb-impl.jar"/>-->
+        <!--<copy file="../../sharedlibs/jaxb-api.jar" tofile="${dist}/WEB-INF/lib/jaxb-api.jar"/>-->
+        <!--<copy file="../../sharedlibs/jsr173_1.0_api.jar" tofile="${dist}/WEB-INF/lib/jsr173_1.0_api.jar"/>-->
+        <!--<copy file="web-inf/c.tld" tofile="${dist}/WEB-INF/c.tld"/>-->
+        <!--<copy file="web-inf/struts-bean-el.tld" tofile="${dist}/WEB-INF/struts-bean-el.tld"/>-->
+        <!--<copy file="web-inf/struts-config.xml" tofile="${dist}/WEB-INF/struts-config.xml"/>-->
+        <!--<copy file="web-inf/struts-html-el.tld" tofile="${dist}/WEB-INF/struts-html-el.tld"/>-->
+        <!--<copy file="web-inf/struts-logic-el.tld" tofile="${dist}/WEB-INF/struts-logic-el.tld"/>-->
+        <!--<copy file="web-inf/struts-tiles.tld" tofile="${dist}/WEB-INF/struts-tiles.tld"/>-->
+        <!--<copy file="src/ApplicationResources.properties" tofile="${dist}/WEB-INF/classes/ApplicationResources.properties"/>-->
+         <copy todir="${dist}/WEB-INF/lib">
+            <fileset dir="../../sharedlibs/struts2.1.6"/>
+        </copy>
+        <copy todir="${dist}">
+            <fileset dir="${web}"/>
+        </copy>
+      <!--  <copy todir="${dist}/WEB-INF/classes/">
+                     <fileset dir="${shared}/jaspertemplates">
+                       <include name="**/*.jasper"/>
+                         <include name="**/*.jrxml"/>
+                      </fileset>
+                      <fileset dir="${shared}/jaspertemplates/images" />
+                 </copy>-->
+
+        <filter token="project" value="${project}"/>
+        <filter token="build" value="${build.number}"/>
+        <filter token="now" value="${build.time}"/>
+
+        <copy todir="${dist}/WEB-INF/classes">
+            <fileset dir="${build}"/>
+        </copy>
+    </target>
+    <target name="nocore">
+        <property name="compilecore" location="yes"/>
+    </target>
+
+
+    <target name="deploy-test no core" depends="nocore,dist" description="Deploy to local test server">
+
+        <copy todir="../../tomcat/webapps/wms2/">
+            <fileset dir="${dist}"/>
+        </copy>
+        <!--<copy file="${conf}/wms2.xml" tofile="../../tomcat/webapps/wms2.xml"/>-->
+
+    </target>
+
+
+    <target name="deploy-testserver (local)" depends="dist" description="Deploy to local test server">
+        <copy todir="../../tomcat/webapps/wms2/">
+            <fileset dir="${dist}"/>
+        </copy>
+        <!--<copy file="${conf}/wms2.xml" tofile="../../tomcat/webapps/wms2.xml"/>-->
+
+    </target>
+
+    <target name="update jsps only (local)" description="Copy jsps to local test server">
+        <copy todir="../../tomcat/webapps/wms2/">
+            <fileset dir="${web}"/>
+        </copy>
+      <!--  <copy file="${conf}/wms2.xml" tofile="../../tomcat/webapps/wms2.xml"/>
+         <copy file="src/ApplicationResources.properties" tofile="${dist}/WEB-INF/classes/ApplicationResources.properties"/>
+-->    </target>
+
+    <!-- Requires setup of ssh rsa keyfiles for auto-authentication
+
+    <target name="deploy-service.owd.com" depends="deploy-testserver (local)" description="Deploy to production server">
+           <exec dir="${dist}" executable="scp" output="dir.txt">
+               <arg line=" -r . admin@service.owd.com:/Library/Tomcat/webapps/handhelds"/>
+           </exec>
+           <exec dir="${conf}" executable="scp" output="dir.txt">
+               <arg line=" webapps.xml admin@service.owd.com:/Library/Tomcat/webapps/handhelds.xml"/>
+           </exec>
+       </target>         -->
+     <target name="update jsps only it" description="Copy jsps to  server">
+        <exec dir="${web}" executable="scp" output="dir.txt">
+            <arg line=" -r . owd@it.owd.com:/home/owd/tomcat/webapps/wms2"/>
+        </exec>
+
+
+    </target>
+    <!-- temp for Tomcat 5 upgrade -->
+
+
+
+      <target name="deploy-it.owd.com" depends="deploy-testserver (local)" description="Deploy to production server">
+            <exec dir="${dist}" executable="scp" output="dir.txt">
+                <arg line=" -r . owd@it.owd.com:/home/owd/tomcat/webapps/wms2"/>
+            </exec>
+           <!-- <exec dir="${conf}" executable="scp" output="dir.txt">
+                <arg line=" wms2.xml owd@it.owd.com:/home/owd/tomcat/webapps/wms2.xml"/>
+            </exec>-->
+        </target>
+
+
+    <target name="clean"
+        description="clean up">
+        <!-- Delete the build and dist directory trees -->
+        <delete dir="build"/>
+        <delete dir="dist"/>
+
+    </target>
+    <target name="Send to It"  description="Only Deploy to production server">
+            <exec dir="${dist}" executable="scp" output="dir.txt">
+                <arg line=" -r . owd@it.owd.com:/home/owd/tomcat/webapps/wms2"/>
+            </exec>
+          <!--  <exec dir="${conf}" executable="scp" output="dir.txt">
+                <arg line=" wms2.xml owd@it.owd.com:/home/owd/tomcat/webapps/wms2.xml"/>
+            </exec>-->
+        </target>
+
+     <target name="Deploy War file(local)"  depends="Make War file" description="Make local test server as war">
+
+         <war basedir="${dist}" compress="9" destfile="${build}/wms2.war" />
+         <copy file="${build}/wms2.war" tofile="../../tomcat/webapps/wms2.war"/>
+
+
+
+     </target>
+     <target name="Make War file"  depends="dist" description="Make local test server as war">
+
+         <war basedir="${dist}" compress="9" destfile="${build}/wms2.war" />
+
+
+
+
+     </target>
+</project>

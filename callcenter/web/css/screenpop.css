@@ -1,0 +1,254 @@
+a:visited {
+    color: blue;
+}
+
+.box {
+    background: url( /callcenter/images/25back.jpg ) repeat;
+    width: 190px;
+    text-align: left;
+
+    position: absolute;
+    left: 5px;
+    top: 10px;
+}
+
+.boxtop div {
+    background: url( /callcenter/images/tl.png ) no-repeat top left;
+}
+
+.boxtop {
+    background: url( /callcenter/images/tr.png ) no-repeat top right;
+}
+
+.boxbottom div {
+    background: url( /callcenter/images/bl.png ) no-repeat bottom left;
+}
+
+.boxbottom {
+    background: url( /callcenter/images/br.png ) no-repeat bottom right;
+}
+
+.boxtop div, .boxtop, .boxbottom div, .boxbottom {
+    width: 100%;
+    height: 25px;
+    font-size: 25px;
+}
+
+.content {
+    width: 190px;
+    height: 405px;
+
+}
+
+.header {
+    margin-left: 0px;
+    margin-right: 0px;
+    background-color: #66CC66;
+    height: 102px;
+}
+
+.navigation {
+    margin: 20px 0px 20px 0px;
+    font-size: 1em;
+}
+
+.navigation a:link {
+    color: #000000;
+    text-decoration: none;
+}
+
+.navigation a:visited {
+    color: #000000;
+    text-decoration: none;
+}
+
+.navigation a:hover {
+    color: #66CC66;
+    text-decoration: none;
+}
+
+.navigation a:active {
+    color: #000000;
+    text-decoration: none;
+}
+
+.logoimg {
+    margin-left: 20px;
+    width: 100px;
+    float: left;
+    display: inline;
+}
+
+.logo {
+    display: inline;
+    font-size: 55px;
+    margin-left: 80px;
+    line-height: 90px;
+}
+
+.sidebar {
+    width: 150px;
+    float: left;
+    margin: 0px 20px 0px 20px;
+    display: inline;
+}
+
+.main {
+    width: 430px;
+    margin-left: 200px;
+    margin-right: 20px;
+    padding-top: 5px;
+    font-size: 1em;
+}
+
+.main h1 {
+    font-size: 1.5em;
+}
+
+body {
+    background: url( /callcenter/images/screenback.png );
+    background-repeat: repeat-x;
+    background-color: #32a048;
+    text-align: center;
+    font-size: 1em;
+    font-family: Tahoma, Verdana, Helvetica, Arial;
+    font-family: arial;
+    letter-spacing: 0pt;
+    font-weight: bold;
+    color: #000000;
+}
+
+.footer {
+    font-size: .8em;
+    text-align: center;
+    width: 690px;
+}
+
+.clear {
+    float: none;
+    clear: both;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+}
+
+/*<!--top  bar-->*/
+.tbox {
+    background: url( /callcenter/images/25back.jpg ) repeat;
+    width: 75%;
+    text-align: left;
+    left: 210px;
+    position: absolute;
+    top: 10px;
+}
+
+.tboxtop div {
+    background: url( /callcenter/images/tl.png ) no-repeat top left;
+}
+
+.tboxtop {
+    background: url( /callcenter/images/tr.png ) no-repeat top right;
+}
+
+.tboxbottom div {
+    background: url( /callcenter/images/tbl.png ) no-repeat bottom left;
+}
+
+.tboxbottom {
+    background: url( /callcenter/images/tbr.png ) no-repeat bottom right;
+}
+
+.tboxtop div, .tboxtop, .tboxbottom div, .tboxbottom {
+    width: 100%;
+    height: 25px;
+    font-size: 25px;
+}
+
+.tcontent {
+    width: 100%;
+    margin: 3px;
+    height: 10px;
+}
+
+.sbox {
+    background: transparent url( /callcenter/images/25back.jpg ) repeat scroll 0%;
+    left: 210px;
+    text-align: left;
+    width: 75%;
+    position: absolute;
+    top: 105px;
+}
+
+.sboxtop div {
+    background: url( /callcenter/images/tl.png ) no-repeat top left;
+}
+
+.sboxtop {
+    background: url( /callcenter/images/tr.png ) no-repeat top right;
+}
+
+.sboxbottom div {
+    background: url( /callcenter/images/bl.png ) no-repeat bottom left;
+}
+
+.sboxbottom {
+    background: url( /callcenter/images/br.png ) no-repeat bottom right;
+}
+
+.sboxtop div, .sboxtop, .sboxbottom div, .sboxbottom {
+    width: 100%;
+    height: 25px;
+    font-size: 25px;
+}
+
+.scontent {
+    width: 100%;
+    margin: 3px;
+  min-height: 405px;
+}
+
+.script {
+    font-size: 22px;
+    font-family: arial;
+    letter-spacing: 0pt;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    width: 85%;
+}
+
+.linkss td {
+    text-align: center;
+    font-family: arial;
+    letter-spacing: 0pt;
+    font-weight: bold;
+    color: #000000;
+}
+
+#extras {
+    position: relative;
+    left: 15px;
+    width: 80%;
+    text-align: left;
+}
+
+.switch {
+    background-color: lightblue;
+    padding: 10px 5px 10px 5px;
+
+    color:#000000;
+font-family:arial;
+font-size:12px;
+font-weight:normal;
+letter-spacing:0pt;
+
+}
+
+#extras a {
+    text-decoration: none;
+
+    cursor: pointer;
+
+}
+
+

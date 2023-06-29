@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+        <!-- DTD for Invoice Data Reporting API   S. Buskirk -->
+        <!-- Copyright (c) 2013 by One World Direct All Rights Reserved. -->
+        <!-- Dates formatted as YYYYMMDD -->
+
+        <!-- OWD_INVOICE_DATA_REQUEST description
+
+            This request returns an OWD_INVOICE_DATA_RESPONSE if successful. See OWD_INVOICE_DATA_RESPONSE for response details.
+
+            Returns types and details for requested billed events. Contact casetracker@owd.com if you wish to be approved to use this API. Unapproved use will return no data.
+
+        -->
+
+        <!ELEMENT OWD_INVOICE_DATA_REQUEST (EMPTY)>
+        <!ATTLIST OWD_INVOICE_DATA_REQUEST
+                type                 CDATA #REQUIRED <!-- The type of invoice data to return. Must be one of ALL, PICKPACK, RECEIVE, RETURN, STORAGE or SHIP -->
+                startDate            CDATA #OPTIONAL <!-- YYYYDDMM format. Report will return events starting with this date. Required for all requests, including ALL. -->
+                endDate              CDATA #OPTIONAL <!-- YYYYDDMM format. Report will return events on or before this date. Must be equal or greater than startDate. Required for all requests, including ALL. -->
+				ids_after			 CDATA #OPTIONAL <!-- numeric integer. If provided, must not use the ALL value for the type attribute. Id value sequences are specific to each billing entity type. -->
+
+
+
+                <!-- OWD_INVOICE_DATA_RESPONSE returns zero or more PICKPACKS, RECEIVING, RETURNS, STORAGE and/or SHIPPING elements containing invoice details.
+
+                    Notes on each subelement of the OWD_INVOICE_DATA_RESPONSE element are below:
+
+                -->
+
+        <!ELEMENT PICKPACKS (PICKPACK+)><!--Container element for PICKPACK elements -->
+        <!ELEMENT RECEIVING (RECEIVE+)><!--Container element for RECEIVE elements-->
+        <!ELEMENT RETURNS (RETURN+)><!--Container element for RETURN elements-->
+        <!ELEMENT STORAGE (SPACE+)><!--Container element for SPACE elements-->
+        <!ELEMENT SHIPPING (SHIPEVENT+)><!--Container element for SHIPEVENT elements-->
+
+        <!ELEMENT PICKPACK (EMPTY)><!-- a record of charges associated with a single shipment. -->
+        <!ATTLIST PICKPACK
+        		id						  CDATA    #REQUIRED <!-- unique numeric integer id value for this record. Only unique among other PICKPACK billing events. Can be used with ids_after attribute from OWD_INVOICE_DATA_REQUEST --> 
+                group                     CDATA    #REQUIRED <!-- order group name -->
+                date                      CDATA    #REQUIRED <!-- ship date of order. YYYYMMDD. -->
+                clientOrderRef            CDATA    #REQUIRED <!-- Text client order reference -->
+                owdOrderRef               CDATA    #REQUIRED <!-- Text OWD order reference. This is guaranteed to be unique for each order. -->
+                orderType                 CDATA    #REQUIRED <!-- Billing type of order -->
+                orderFee                  CDATA    #REQUIRED <!-- Basic order fee, including first pick -->
+                packs                     CDATA    #REQUIRED <!-- Number of packages in shipment -->
+                packagingFee              CDATA    #REQUIRED <!-- Cost of packaging used (box, envelope, etc.) -->
+                picks                     CDATA    #REQUIRED <!-- Number of additional picks beyond the first one -->
+                picksFee                  CDATA    #REQUIRED <!-- Fee for additional picks beyond the first one, if any -->
+                intlFee                   CDATA    #REQUIRED <!-- Fee for customs paperwork and international order management -->
+                colorFee                  CDATA    #REQUIRED <!-- Fee for color printing of packing slip -->
+                >
+
+
+        <!ELEMENT RECEIVE (EMPTY)><!-- a record of charges associated with a single receive event. -->
+        <!ATTLIST RECEIVE
+                id						CDATA    #REQUIRED <!-- unique numeric integer id value for this record. Only unique among other PICKPACK billing events. Can be used with ids_after attribute from OWD_INVOICE_DATA_REQUEST --> 
+                group                   CDATA    #REQUIRED <!-- asn group name -->
+                date                    CDATA    #REQUIRED <!-- date receive completed. YYYYMMDD. -->
+                asnId                   CDATA    #REQUIRED <!-- OWD internal ASN ID -->
+                rcvId                   CDATA    #REQUIRED <!-- OWD internal receive ID -->
+                asnPo                   CDATA    #REQUIRED <!-- Client-provided ASN PO value -->
+                asnRef                  CDATA    #REQUIRED <!-- Client-provided ASN reference -->
+                billedHours             CDATA    #REQUIRED <!-- Number of billed hours for this receive -->
+                receiveFee              CDATA    #REQUIRED <!-- Billed cost of receive event -->
+                >
+
+
+        <!ELEMENT RETURN (EMPTY)><!-- a record of charges associated with a single order return event. -->
+        <!ATTLIST RETURN
+                id						  CDATA    #REQUIRED <!-- unique numeric integer id value for this record. Only unique among other PICKPACK billing events. Can be used with ids_after attribute from OWD_INVOICE_DATA_REQUEST --> 
+                group                     CDATA    #REQUIRED <!-- order group name -->
+                date                      CDATA    #REQUIRED <!-- date return was processed. YYYYMMDD. -->
+                clientOrderRef            CDATA    #REQUIRED <!-- Text client order reference -->
+                owdOrderRef               CDATA    #REQUIRED <!-- Text OWD order reference. This is guaranteed to be unique for each order. -->
+                returnFee                 CDATA    #REQUIRED <!-- Billed cost of return processing -->
+                >
+
+
+        <!ELEMENT SPACE (EMPTY)><!-- a record of charges associated with space allocated to a given SKU. This data is based on the space used at the time the data is returned and may vary day to day. -->
+        <!ATTLIST SPACE
+        		id				 CDATA    #REQUIRED <!-- unique numeric integer id value for this record. Only unique among other PICKPACK billing events. Can be used with ids_after attribute from OWD_INVOICE_DATA_REQUEST --> 
+                recorded_date	 CDATA    #REQUIRED <!-- date storage charges were calculated and assessed -->
+                group            CDATA    #REQUIRED <!-- item group name -->
+                sku              CDATA    #REQUIRED <!-- SKU of item -->
+                title            CDATA    #REQUIRED <!-- title of item-->
+                cubicFeet        CDATA    #REQUIRED <!-- Cubic feet allocated to this item -->
+                cubicFee         CDATA    #REQUIRED <!-- Cost of space used for a single month-->
+                >
+
+
+        <!ELEMENT SHIPEVENT (EMPTY)><!-- a record of shipping (freight, postage) charges incurred or credited and associated with an order -->
+        <!ATTLIST SHIPEVENT
+        		id						CDATA    #REQUIRED <!-- unique numeric integer id value for this record. Only unique among other PICKPACK billing events. Can be used with ids_after attribute from OWD_INVOICE_DATA_REQUEST --> 
+                group                   CDATA    #REQUIRED <!-- order group name -->
+                date                    CDATA    #REQUIRED <!-- date shipping charge/credit recorded. YYYYMMDD. -->
+                clientOrderRef          CDATA    #REQUIRED <!-- Text client order reference -->
+                owdOrderRef             CDATA    #REQUIRED <!-- Text OWD order reference. This is guaranteed to be unique for each order. -->
+                amount                  CDATA    #REQUIRED <!-- Amount of charge/credit. Negative values are credits, positive values are fees. -->
+                type                    CDATA    #REQUIRED <!-- Type of event (Shipping charge, carrier adjustment, etc.) -->
+                >
+
+        <!ELEMENT OWD_INVOICE_DATA_RESPONSE (PICKPACKS*, RECEIVING*, RETURNS*, STORAGE*, SHIPPING*)>
+
+        <!--
+
+        Example search for all events between 2011-1-1 and 2011-7-1 for all billing types
+
+        <?xml version="1.0"?>
+        <OWD_API_REQUEST api_version="1.0" client_authorization="xxx=" client_id="0" >
+            <OWD_INVOICE_DATA_REQUEST type="ALL" startDate="20110101" endDate="20110701" />
+        </OWD_API_REQUEST>
+
+        -->

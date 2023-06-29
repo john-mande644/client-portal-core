@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.ccOutcomeOptions"
+        table="cc_outcome_options"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+
+        <property
+            name="type"
+            type="java.lang.String"
+            column="type"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="campaign"
+            type="java.lang.String"
+            column="campaign"
+            not-null="true"
+            length="50"
+            />
+
+        <property
+            name="info"
+            type="java.lang.String"
+            column="info"
+            not-null="true"
+            length="250"
+            />
+        <property
+            name="typeId"
+            type="java.lang.Integer"
+            column="type_id"
+            not-null="false"
+
+            />
+        <property
+            name="defaultText"
+            type="java.lang.String"
+            column="default_text"
+            not-null="false"
+            length="250"
+            />
+        <property
+            name="doOrder"
+            type="java.lang.Integer"
+            column="do_order"
+            not-null="false"
+
+            />
+
+
+        <!-- associations -->
+        <!-- bi-directional one-to-many association to OrderPickItem -->
+
+
+    </class>
+</hibernate-mapping>

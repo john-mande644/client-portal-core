@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+        version="3.0">
+    <display-name>
+One World Direct Web Applications Home
+    </display-name>
+    <description>
+    </description>
+    <!--
+  - Key of the system property that should specify the root directory of this
+  - web app. Applied by WebAppRootListener or Log4jConfigListener.
+                       -->
+    <context-param>
+        <param-name>webAppRootKey</param-name>                   
+        <param-value>catalina.home</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>action</servlet-name>
+        <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+        <init-param>
+            <param-name>application</param-name>
+            <param-value>ApplicationResources</param-value>
+        </init-param>
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>/WEB-INF/struts-config.xml</param-value>
+        </init-param>
+         <init-param>
+            <param-name>config/carts</param-name>
+            <param-value>/WEB-INF/cart/cart-config.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>config/apps</param-name>
+            <param-value>/WEB-INF/apps/apps-config.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>config/geneva</param-name>
+            <param-value>/WEB-INF/geneva/geneva-config.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>0</param-value>
+        </init-param>
+        <init-param>
+            <param-name>detail</param-name>
+            <param-value>0</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!--
+     - Location of the Log4J config file, for initialization and refresh checks.
+     - Applied by Log4jConfigListener.
+
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>/WEB-INF/classes/log4j.xml</param-value>
+    </context-param>
+ -->
+
+
+
+    <filter>
+        <filter-name>ResponseOverrideFilter</filter-name>
+        <filter-class>org.displaytag.filter.ResponseOverrideFilter</filter-class>
+    </filter>
+
+
+    <filter-mapping>
+        <filter-name>ResponseOverrideFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+
+      <filter>
+        <filter-name>struts-cleanup</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
+    </filter>
+    <filter>
+        <filter-name>struts</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+      <!--  <init-param>
+        	<param-name>actionPackages</param-name>
+        	<param-value>com.owd.web.internal.warehouse.admin.boxcodes</param-value>
+        </init-param>-->
+    </filter>
+    <filter>
+        <filter-name>hibernateFilter</filter-name>
+        <filter-class>com.owd.web.HibernateFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>hibernateFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>struts-cleanup</filter-name>
+        <url-pattern>*.action</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>struts</filter-name>
+        <url-pattern>/struts/*</url-pattern>
+    </filter-mapping>
+   <filter-mapping>
+        <filter-name>struts-cleanup</filter-name>
+        <url-pattern>/struts/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>struts</filter-name>
+        <url-pattern>*.action</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>struts</filter-name>
+        <url-pattern>/v2/*</url-pattern>
+    </filter-mapping>
+    <!-- servlets -->
+
+
+    <servlet>
+        <servlet-name>extranetServletx</servlet-name>
+        <servlet-class>com.owd.extranet.servlet.ExtranetServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+      <servlet-name>ejunkieServlet</servlet-name>
+      <servlet-class>com.owd.web.externalapi.OneWorldEJunkieServlet</servlet-class>
+  </servlet>
+    <servlet>
+      <servlet-name>yahooServlet</servlet-name>
+      <servlet-class>com.owd.web.externalapi.OneWorldYahooServlet</servlet-class>
+  </servlet>
+
+
+    <servlet>
+        <servlet-name>
+            ASNCreateCGIServlet
+        </servlet-name>
+        <servlet-class>
+            com.owd.web.warehouse.asn.ASNCreateCGIServlet
+        </servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>
+            ASNEditServlet
+        </servlet-name>
+        <servlet-class>
+            com.owd.web.warehouse.asn.ASNEditServlet
+        </servlet-class>
+    </servlet>
+
+    <servlet>
+
+        <servlet-name>
+            AutoShipEditServlet
+        </servlet-name>
+        <servlet-class>
+            com.owd.web.autoship.AutoShipEditServlet
+        </servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>
+            adhocAuthServlet
+        </servlet-name>
+        <servlet-class>
+            com.owd.web.auth.servlet.LogiXMLAuthServlet
+        </servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>
+            clientReportServlet
+        </servlet-name>
+        <servlet-class>
+            com.owd.web.reports.servlet.ClientReportsServlet
+        </servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>
+            uploadServlet
+        </servlet-name>
+        <servlet-class>
+            com.owd.web.batchimporters.servlet.OWDUploadOrdersServlet
+        </servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>
+            extranetServlet
+        </servlet-name>
+        <servlet-class>
+            com.owd.web.servlet.ExtranetServlet
+        </servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>
+            phionServlet
+        </servlet-name>
+        <servlet-class>
+            com.owd.web.callcenter.servlet.PhionServlet
+        </servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>
+            orderEntryServlet
+        </servlet-name>
+        <servlet-class>
+            com.owd.web.servlet.OWDOrderEntryServlet
+        </servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>
+            manualShipServlet
+        </servlet-name>
+        <servlet-class>
+            com.owd.web.warehouse.admin.servlet.ManualShipperServlet
+        </servlet-class>
+    </servlet>
+
+
+    <servlet>
+        <servlet-name>
+            SimpleOrderServlet
+        </servlet-name>
+        <servlet-class>
+            com.owd.web.servlet.SimpleOrderServlet
+        </servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>yahooServlet</servlet-name>
+        <url-pattern>/yahoo/*</url-pattern>
+    </servlet-mapping>
+
+     <servlet-mapping>
+        <servlet-name>extranetServletx</servlet-name>
+        <url-pattern>/extranet/extranet.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+            <servlet-name>extranetServletx</servlet-name>
+            <url-pattern>/extranet/extranet.jsp/inventory.csv</url-pattern>
+        </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>
+            ASNCreateCGIServlet
+        </servlet-name>
+        <url-pattern>
+            /public/cgi/addasn
+        </url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>
+            clientReportServlet
+        </servlet-name>
+        <url-pattern>
+            *.csv
+        </url-pattern>
+    </servlet-mapping>
+
+
+
+
+    <servlet-mapping>
+        <servlet-name>
+            clientReportServlet
+        </servlet-name>
+        <url-pattern>
+            /clienttools/reports/reportServlet
+        </url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>
+            SimpleOrderServlet
+        </servlet-name>
+        <url-pattern>
+            /divine/divine.jsp
+        </url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>
+            adhocAuthServlet
+        </servlet-name>
+        <url-pattern>
+            /auth/adhoc
+        </url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>
+            AutoShipEditServlet
+        </servlet-name>
+        <url-pattern>
+            /clienttools/autoship/edit
+        </url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>
+            ASNEditServlet
+        </servlet-name>
+        <url-pattern>
+            /warehouse/asn/edit
+        </url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>
+                ASNEditServlet
+        </servlet-name>
+        <url-pattern>
+                /warehouse/asn/download/*
+        </url-pattern>
+    </servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>
+            uploadServlet
+        </servlet-name>
+        <url-pattern>
+            /clienttools/batchimporters/orderuploadservlet
+        </url-pattern>
+    </servlet-mapping>
+
+
+
+
+
+
+
+    <servlet-mapping>
+        <servlet-name>
+            orderEntryServlet
+        </servlet-name>
+        <url-pattern>
+            /callcenter/orderentry/servlet
+        </url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>
+            manualShipServlet
+        </servlet-name>
+        <url-pattern>
+            /warehouse/admin/shipments/manualship
+        </url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>
+            phionServlet
+        </servlet-name>
+        <url-pattern>
+            /callcenter/phion/phion.jsp
+        </url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>
+            extranetServlet
+        </servlet-name>
+        <url-pattern>
+            /testnet
+        </url-pattern>
+    </servlet-mapping>
+
+     <servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ejunkieServlet</servlet-name>
+        <url-pattern>/ejunkie/*</url-pattern>
+    </servlet-mapping>
+
+
+    <session-config>
+        <session-timeout>1440</session-timeout>
+    </session-config>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+        <jsp-config>
+    <taglib>
+        <taglib-uri>struts/bean-el</taglib-uri>
+        <taglib-location>/WEB-INF/struts-bean-el.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>struts/html-el</taglib-uri>
+        <taglib-location>/WEB-INF/struts-html-el.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>struts/logic-el</taglib-uri>
+        <taglib-location>/WEB-INF/struts-logic-el.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>jstl/c</taglib-uri>
+        <taglib-location>/WEB-INF/c.tld</taglib-location>
+    </taglib>
+    <taglib>
+        <taglib-uri>/WEB-INF/struts-tiles.tld</taglib-uri>
+        <taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+    </taglib>
+    </jsp-config>
+    <!-- Constraints must work up the directory tree from the leaves -->
+    <!-- Ensure security-role config matches role names in constraints -->
+    <!-- Client specific constraints -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                BillingManager
+            </web-resource-name>
+            <url-pattern>
+                /internal/*
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                internal
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <!-- Phion custom app -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                Phion
+            </web-resource-name>
+            <url-pattern>
+                /callcenter/phion/*
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                phion
+            </role-name>
+            <role-name>
+                callcenter
+            </role-name>
+            <role-name>
+                internal
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+    <!-- BGB custom app -->
+
+    <!-- order Entry custom app -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                Order Entry
+            </web-resource-name>
+            <url-pattern>
+                /callcenter/orderentry/*
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                extranet
+            </role-name>
+            <role-name>
+                callcenter
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+    <!-- Call center administration custom app -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                Call Center Admin
+            </web-resource-name>
+            <url-pattern>
+                /callcenter/admin/*
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                internal
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+    <!-- Main directories -->
+    <!-- warehouse constraint -->
+    <!-- clienttools constraint -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                asnmanager
+            </web-resource-name>
+            <url-pattern>
+                /warehouse/asn/*
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                extranet
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                Warehouse
+            </web-resource-name>
+            <url-pattern>
+                /warehouse/*
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                internal
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+    <!-- clienttools constraint -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                clienttools
+            </web-resource-name>
+            <url-pattern>
+                /clienttools/*
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                extranet
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                autoship
+            </web-resource-name>
+            <url-pattern>
+                /autoship/*
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                extranet
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+     <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                billing
+            </web-resource-name>
+            <url-pattern>
+                /billing/*
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                extranet
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+    <!-- call center constraint -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                Call Center
+            </web-resource-name>
+            <url-pattern>
+                /callcenter/*
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                callcenter
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+    <!-- Extranet contraint -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                Extranet
+            </web-resource-name>
+            <url-pattern>
+                /extranet
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                extranet
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                Movements
+            </web-resource-name>
+            <url-pattern>
+                /movements/*
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                extranet
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                Servie apps
+            </web-resource-name>
+            <url-pattern>
+                /apps/*
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                extranet
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                Geneva apps
+            </web-resource-name>
+            <url-pattern>
+                /geneva/*
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                extranet
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+    <!-- internal-only constraint -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                Extranet
+            </web-resource-name>
+            <url-pattern>
+                /protected/*
+            </url-pattern>
+            <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                internal
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>extranet_app</web-resource-name>
+            <url-pattern>/extranet/*</url-pattern>
+             <http-method>
+                GET
+            </http-method>
+            <http-method>
+                POST
+            </http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>extranet</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+
+    <login-config>
+        <auth-method>
+            FORM
+        </auth-method>
+        <form-login-config>
+            <form-login-page>
+                /login-redirect.jsp
+            </form-login-page>
+            <form-error-page>
+                /login-redirect.jsp
+            </form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <role-name>
+            internal
+        </role-name>
+    </security-role>
+    <security-role>
+        <role-name>
+            extranet
+        </role-name>
+    </security-role>
+    <security-role>
+        <role-name>
+            phion
+        </role-name>
+    </security-role>
+    <security-role>
+        <role-name>
+            proalert
+        </role-name>
+    </security-role>
+    <security-role>
+        <role-name>
+            bgbooks
+        </role-name>
+    </security-role>
+    <security-role>
+        <role-name>
+            callcenter
+        </role-name>
+    </security-role>
+</web-app>

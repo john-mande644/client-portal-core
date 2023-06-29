@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.0.0  -->
+<!-- 2017-11-21T12:28:13 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProblemOrderTag" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5a865a4a-6668-4318-bab0-315acb43e9ad">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="ixNode" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select '//'+convert(varchar,ixNode) as barcode, locName from w_location where ixNode =  $P{ixNode}]]>
+	</queryString>
+	<field name="barcode" class="java.lang.String"/>
+	<field name="locName" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="217" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="17" width="750" height="200" uuid="114dcf77-d866-4e6f-afe5-1415ddadaf9e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="120"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{locName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="102">
+			<componentElement>
+				<reportElement x="310" y="10" width="171" height="69" uuid="3570c681-8b3d-4842-a60f-e59da9b37529">
+					<property name="com.jaspersoft.studio.unit.moduleWidth" value="pixel"/>
+				</reportElement>
+				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="1.0">
+					<jr:codeExpression><![CDATA[$F{barcode}]]></jr:codeExpression>
+				</jr:Code128>
+			</componentElement>
+		</band>
+	</pageFooter>
+</jasperReport>

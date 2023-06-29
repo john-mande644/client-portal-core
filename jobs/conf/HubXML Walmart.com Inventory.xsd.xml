@@ -1,0 +1,26 @@
+<advice_file>
+  <advice_file_control_number>string</advice_file_control_number>
+  <vendorMerchID>string</vendorMerchID>
+  <!--1 or more repetitions:-->
+  <product>
+    <vendor_SKU>string</vendor_SKU>
+    <qtyonhand>string</qtyonhand>
+    <available>string</available>
+    <!--Optional:-->
+    <min_days_to_fulfill>string</min_days_to_fulfill>
+    <!--Optional:-->
+    <max_days_to_fulfill>string</max_days_to_fulfill>
+    <UPC>string</UPC>
+    <description>string</description>
+    <!--Optional:-->
+    <availability_start_date>string</availability_start_date>
+    <!--Optional:-->
+    <discontinued_date>string</discontinued_date>
+    <!--Optional:-->
+    <availability_end_date>string</availability_end_date>
+    <!--Optional:-->
+    <unit_cost>string</unit_cost>
+    <merchantSKU>string</merchantSKU>
+  </product>
+  <advice_file_count>string</advice_file_count>
+</advice_file>

@@ -1,0 +1,40 @@
+<OWDPack>
+    <order>
+        <orderfkey>16661601</orderfkey>
+        <packer>1070</packer>
+        <start>10/18/2018 9:03:45 AM</start>
+        <stop>10/18/2018 10:04:03 AM</stop>
+        <barcode>*25348942*</barcode>
+        <facility>DC7</facility>
+        <box>
+            <fkey>407</fkey>
+            <cost>0.0600</cost>
+            <depth>14.0000</depth>
+            <width>11.0000</width>
+            <height>14.0000</height>
+            <number>3</number>
+            <weight>41.880</weight>
+        </box>
+        <items>
+            <line>
+                <fkey>36186565</fkey>
+                <qty>1</qty>
+            </line>
+        </items>
+    </order>
+    <last>True</last>
+    <AdditionalInfo></AdditionalInfo>
+    <LotInfo>
+        <LotInfoItem>
+            <lineFkey>36186565</lineFkey>
+            <values>
+                <lot>
+                    <lotValue>28MAY2018</lotValue>
+                    <qty>1</qty>
+                    <inventoryFkey>306836</inventoryFkey>
+                </lot>
+            </values>
+        </LotInfoItem>
+    </LotInfo>
+    <dunnageFactor>0</dunnageFactor>
+</OWDPack>

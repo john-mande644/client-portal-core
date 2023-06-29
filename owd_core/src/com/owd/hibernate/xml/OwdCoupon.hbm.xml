@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.OwdCoupon"
+        table="owd_coupon"
+        >
+
+        <id
+            name="couponId"
+            type="java.lang.Integer"
+            column="coupon_id"
+            >
+            <generator class="assigned"/>
+        </id>
+
+        <property
+            name="couponName"
+            type="java.lang.String"
+            column="coupon_name"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="couponUser"
+            type="java.lang.String"
+            column="coupon_user"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="couponType"
+            type="java.lang.Integer"
+            column="coupon_type"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="discAmt"
+            type="java.math.BigDecimal"
+            column="disc_amt"
+            not-null="true"
+            length="19"
+            />
+        <property
+            name="discPct"
+            type="java.math.BigDecimal"
+            column="disc_pct"
+            not-null="true"
+            length="19"
+            />
+        <property
+            name="shipAmt"
+            type="java.math.BigDecimal"
+            column="ship_amt"
+            not-null="true"
+            length="19"
+            />
+        <property
+            name="shipPct"
+            type="java.math.BigDecimal"
+            column="ship_pct"
+            not-null="true"
+            length="19"
+            />
+        <property
+            name="usedCount"
+            type="java.lang.Integer"
+            column="used_count"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="useLimit"
+            type="java.lang.Integer"
+            column="use_limit"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="expDate"
+            type="java.util.Date"
+            column="exp_date"
+            not-null="true"
+            length="23"
+            />
+        <property
+            name="createdDate"
+            type="java.util.Date"
+            column="created_date"
+            not-null="true"
+            length="23"
+            />
+        <property
+            name="createdBy"
+            type="java.lang.String"
+            column="created_by"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="modifiedDate"
+            type="java.util.Date"
+            column="modified_date"
+            not-null="true"
+            length="23"
+            />
+        <property
+            name="modifiedBy"
+            type="java.lang.String"
+            column="modified_by"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="couponCode"
+            type="java.lang.String"
+            column="coupon_code"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="codeMatchType"
+            type="java.lang.Integer"
+            column="code_match_type"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="skuMatchFlag"
+            type="java.lang.Integer"
+            column="sku_match_flag"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="skuMatchType"
+            type="java.lang.Integer"
+            column="sku_match_type"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="skuValue"
+            type="java.lang.String"
+            column="sku_value"
+            not-null="true"
+            length="50"
+            />
+
+        <!-- associations -->
+        <!-- bi-directional many-to-one association to OwdClient -->
+        <many-to-one
+            name="owdClient"
+            class="com.owd.hibernate.generated.OwdClient"
+            not-null="true"
+            >
+            <column name="client_fkey"/>
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

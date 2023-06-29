@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.owd.hibernate.OwdFacility" table="owd_facilities" >
+        <id
+                name="id"
+                type="java.lang.Integer"
+                column="id"
+                >
+            <generator class="identity"/>
+        </id>
+        <property name="facilityName" column="loc_name" type="java.lang.String" length="50" not-null="true"/>
+
+        <property name="facilityCode" column="loc_code" type="java.lang.String" length="50" not-null="true"/>
+
+        <property name="intacctCode" column="intacct_code" type="java.lang.String" length="50" not-null="true"/>
+
+        <property name="address" column="address" type="java.lang.String" length="50" not-null="true"/>
+
+        <property name="city" column="city" type="java.lang.String" length="50" not-null="true"/>
+
+        <property name="state" column="state" type="java.lang.String" length="50" not-null="true"/>
+
+        <property name="zip" column="zip" type="java.lang.String" length="50" not-null="true"/>
+
+        <property name="isActive" column="is_active" type="java.lang.Integer" length="19" not-null="true"/>
+
+        <property name="timezoneOffset" column="timezone_offset" type="java.lang.Integer" length="19" not-null="true"/>
+
+        <property name="metroArea" column="metro_area" type="java.lang.String" length="50" not-null="true"/>
+
+        <property name="isPublic" column="is_public" type="java.lang.Integer" length="19" not-null="true"/>
+
+        <property name="wlocNodeFkey" column="wloc_node_fkey" type="java.lang.Integer" length="19" not-null="false"/>
+
+    </class>
+</hibernate-mapping>

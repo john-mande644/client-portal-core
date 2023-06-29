@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- DTD for Order cancellation requests   S. Buskirk	2003.8.1 -->
+<!-- Copyright (c) 2011 by One World Distribution, Inc. All Rights Reserved. -->
+<!-- Dates formatted as YYYYMMDD -->
+
+<-- Updated 10/7/2011 -->
+
+<!-- OWD_ORDER_HOLD_REQUEST element attributes
+	clientOrderId 		= OWD-assigned order identifier. If client does not track OWD order IDs, they can use their
+				  own order reference as supplied with the order, but the request will only succeed if the order reference
+				  is unique among all non-voided orders for the client. OWD-assigned order identifiers are guaranteed to be unique.
+
+	The OWD_ORDER_HOLD_REQUEST request returns an OWD_ORDER_STATUS_RESPONSE if successful. The
+	response will show an order status of "ON HOLD". If this call is made against an order that is already on hold, the response will indicate success.
+	
+	Requests to place orders on hold can only be fulfilled if the order has not yet begun the physical picking process. 
+	Requests to cancel released orders should be directed to the OWD account manager via
+	phone or email. Orders may begin picking within 30 minutes of release to the warehouse.
+
+-->
+
+
+<!ELEMENT OWD_ORDER_HOLD_REQUEST EMPTY>
+<!ATTLIST OWD_ORDER_HOLD_REQUEST
+          clientOrderId       		CDATA   #REQUIRED>
+ 
+
+	           
+<!-- EXAMPLE
+
+<OWD_API_REQUEST api_version="1.0"
+          		client_id="1234"
+          		client_authorization="12938462"
+          		testing="FALSE" >
+	<OWD_ORDER_HOLD_REQUEST clientOrderId="N1WEDrer" />
+</OWD_API_REQUEST>
+
+-->

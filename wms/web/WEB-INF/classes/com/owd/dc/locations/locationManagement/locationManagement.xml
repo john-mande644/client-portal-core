@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE struts PUBLIC
+                "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+                "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+        <struts>
+
+
+    <package name="locationManagement" namespace="/locationManagement" extends="struts-default">
+
+
+        <action name="start" >
+
+            <result >/rfapps/locations/locationManagement/lmindex.jsp</result>
+
+        </action>
+         <action name="pickPriorityStart">
+             <result>/rfapps/locations/locationManagement/pickPriority.jsp</result>
+         </action>
+        <action name="pickPrioritySet" method="pickPrioritySet" class="com.owd.dc.locations.locationManagement.pickPriorityAction">
+            <result name="success">/rfapps/locations/locationManagement/pickPriorityScan.jsp</result>
+        </action>
+        <action name="pickPriorityLocationScan" method="pickPriorityLocationScan" class="com.owd.dc.locations.locationManagement.pickPriorityAction">
+            <result name="success">/rfapps/locations/locationManagement/pickPriorityScan.jsp</result>
+        </action>
+        <action name="loadLocation" class="com.owd.dc.locations.locationManagement.locationManagementAction">
+
+            <result name="success">/rfapps/locations/locationManagement/lmdisplay.jsp</result>
+            <result name="error">/rfapps/locations/locationManagement/lmindex.jsp</result>
+        </action>
+         <action name="setPrimary" method="setPrimary" class="com.owd.dc.locations.locationManagement.locationManagementAction">
+
+            <result name="success">/rfapps/locations/locationManagement/lmdisplay.jsp</result>
+            <result name="error">/rfapps/locations/locationManagement/lmdisplay.jsp</result>
+        </action>
+           <action name="removeInventory" method="removeInventory" class="com.owd.dc.locations.locationManagement.locationManagementAction">
+
+            <result name="success">/rfapps/locations/locationManagement/lmdisplay.jsp</result>
+            <result name="error">/rfapps/locations/locationManagement/lmdisplay.jsp</result>
+        </action>
+           <action name="clearInventory" method="clearInventory" class="com.owd.dc.locations.locationManagement.locationManagementAction">
+
+            <result name="success">/rfapps/locations/locationManagement/lmdisplay.jsp</result>
+            <result name="error">/rfapps/locations/locationManagement/lmdisplay.jsp</result>
+        </action>
+           <action name="moveLocation" method="moveLocation" class="com.owd.dc.locations.locationManagement.locationManagementAction">
+
+            <result name="success">/rfapps/locations/locationManagement/lmmove.jsp</result>
+            <result name="error">/rfapps/locations/locationManagement/lmmove.jsp</result>
+        </action>
+           <action name="moveLocationComplete" method="moveLocationComplete" class="com.owd.dc.locations.locationManagement.locationManagementAction">
+
+            <result name="success">/rfapps/locations/locationManagement/lmdisplay.jsp</result>
+            <result name="error">/rfapps/locations/locationManagement/lmmove.jsp</result>
+        </action>
+
+        <action name="clearOrderFromLocation" method="clearOrderFromLocation" class="com.owd.dc.locations.locationManagement.OrderLocationUtilityAction">
+
+            <result name="success">/rfapps/locations/locationManagement/clearOrder.jsp</result>
+            <result name="error">/rfapps/locations/locationManagement/clearOrder.jsp</result>
+
+        </action>
+        <action name="orderMenu" >
+
+            <result >/rfapps/locations/locationManagement/orderLocationMenu.jsp</result>
+
+        </action>
+    </package>
+
+    </struts>

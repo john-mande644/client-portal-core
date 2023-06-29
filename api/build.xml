@@ -1,0 +1,201 @@
+<project name="api" default="dist" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+    <description>
+        Builds extranet web application project
+    </description>
+    <!-- set global properties for this build -->
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    <property name="dist" location="dist"/>
+    <property name="web" location="web"/>
+    <property name="conf" location="conf"/>
+    <property name="lib" location="lib"/>
+    <property name="shared" location="../../sharedlibs"/>
+
+    <property name="project" value="${ant.project.name}"/>
+
+    <taskdef name="groovyc"
+             classname="org.codehaus.groovy.ant.Groovyc"
+             />
+
+    <target name="init" depends="clean">
+        <!-- Create the time stamp -->
+        <tstamp>
+            <format property="build.time" pattern="MM/dd/yyyy hh:mm aa"/>
+        </tstamp>
+
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="build"/>
+        <ant dir="../../owd_core" inheritall="false" target="dist"/>
+
+
+    </target>
+
+
+<taskdef resource="org/apache/ivy/ant/antlib.xml"
+         uri="antlib:org.apache.ivy.ant" />
+
+
+     <target name="resolve">
+        <ivy:configure file="./conf/ivysettings.xml" />
+
+        <ivy:resolve file="./conf/ivy.xml" conf="default" />
+
+    </target>
+
+    <target name="retrieve-default" depends="resolve">
+         <delete dir="./lib/default"/>
+        <ivy:retrieve pattern="./lib/default/[organization]-[module]-[artifact]-[revision].[ext]" conf="*" type="jar"/>
+    </target>
+
+    <target name="compile" depends="init"
+            description="compile the source ">
+
+
+
+        <!-- Compile the java code from src into build -->
+        <groovyc srcdir="src" destdir="build" >
+            <classpath>
+                <pathelement path="${classpath}"/>
+                <fileset dir="./lib/default">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <fileset dir="../../sharedlibs">
+                    <include name="owd-core.jar"/>
+                </fileset>
+            </classpath>
+            <javac target="1.5"/>
+        </groovyc>
+    </target>
+
+    <target name="dist" depends="compile"
+            description="Generate the distribution">
+        <!-- Create the distribution directory -->
+        <mkdir dir="dist/"/>
+        <mkdir dir="dist/WEB-INF"/>
+        <mkdir dir="dist/WEB-INF/classes"/>
+        <mkdir dir="dist/WEB-INF/lib"/>
+        <mkdir dir="dist/WEB-INF/hibernate"/>
+
+        <buildnumber/>
+        <copy file="/web/test.jsp" tofile="${dist}/test.jsp"/>
+
+        <copy file="/web/WEB-INF/web.xml" tofile="${dist}/WEB-INF/web.xml"/>
+        <copy todir="${dist}/WEB-INF/lib">
+            <fileset dir="${lib}/default"/>
+        </copy>
+
+        <copy file="../../sharedlibs/owd-core.jar" tofile="${dist}/WEB-INF/lib/owd-core.jar"/>
+        <copy todir="${dist}/WEB-INF/hibernate">
+            <fileset dir="${shared}/corehibernatemappings"/>
+        </copy>
+
+       <!-- <copy todir="${dist}/WEB-INF/lib">
+            <fileset dir="${shared}/hibernate3">
+                <include name="**/*.jar"/>
+            </fileset>
+        </copy>
+        <copy todir="${dist}/WEB-INF/lib">
+            <fileset dir="${shared}/hibernate3/lib">
+                <include name="**/*.jar"/>
+            </fileset>
+        </copy>
+
+
+      -->  <!--<copy todir="${dist}">
+            <fileset dir="${web}"/>
+        </copy>-->
+
+        <filter token="project" value="${project}"/>
+        <filter token="build" value="${build.number}"/>
+        <filter token="now" value="${build.time}"/>
+        <copy file="${conf}/version.txt" tofile="${dist}/version.txt" filtering="true"/>
+        <copy todir="${dist}/WEB-INF/classes">
+            <fileset dir="${build}"/>
+        </copy>
+    </target>
+
+    <target name="deploy-testserver (local)" depends="dist" description="Deploy to local test server">
+        <copy todir="../../tomcat6/webapps/api/">
+            <fileset dir="${dist}"/>
+        </copy>
+        <copy file="${conf}/api.xml" tofile="../../tomcat6/webapps/api.xml"/>
+
+    </target>
+
+
+    <!-- Requires setup of ssh rsa keyfiles for auto-authentication -->
+
+    <target name="deploy-service2.owd.com" depends="dist" description="Deploy to service.owd.com server">
+
+        <war basedir="${dist}" compress="9" destfile="${build}/api.war" />
+
+        <exec dir="${build}" executable="scp" output="dir.txt">
+            <arg line=" -r api.war owd@service2.owd.com:/home/owd/api.war"/>
+        </exec>
+
+        <exec dir="../../owd_core/rules-cache/" executable="scp" output="dir.txt">
+            <arg line=" change-set.xml owd@service2.owd.com:/home/owd/tomcat/bin/rules-cache/change-set.xml"/>
+        </exec>
+        <exec dir="../../owd_core/rules-cache/" executable="scp" output="dir.txt">
+            <arg line=" change-set.xml owd@service2.owd.com:/home/owd/tomcat/rules-cache/change-set.xml"/>
+        </exec>
+
+        <exec dir="${build}" executable="ssh" output="dir.txt">
+            <arg line=" owd@service2.owd.com mv -f /home/owd/api.war /home/owd/tomcat/webapps/api.war"/>
+        </exec>
+    </target>
+
+    <target name="deploy-service2-test.owd.com" depends="dist" description="Deploy to testing (port 8081) service.owd.com server">
+
+        <war basedir="${dist}" compress="9" destfile="${build}/api.war" />
+
+        <exec dir="${build}" executable="scp" output="dir.txt">
+            <arg line=" -r api.war owd@service2.owd.com:/home/owd/api.war"/>
+        </exec>
+
+
+        <exec dir="../../owd_core/rules-cache/" executable="scp" output="dir.txt">
+            <arg line=" change-set.xml owd@service2.owd.com:/home/owd/tomcattest/bin/rules-cache/change-set.xml"/>
+        </exec>
+
+        <exec dir="../../owd_core/rules-cache/" executable="scp" output="dir.txt">
+            <arg line=" change-set.xml owd@service2.owd.com:/home/owd/tomcattest/rules-cache/change-set.xml"/>
+        </exec>
+
+        <exec dir="${build}" executable="ssh" output="dir.txt">
+            <arg line=" owd@service2.owd.com mv -f /home/owd/api.war /home/owd/tomcattest/webapps/api.war"/>
+        </exec>
+
+    </target>
+
+
+
+    <target name="deploy-service.owd.com" depends="deploy-testserver (local)"
+            description="Deploy to service.owd.com server">
+        <exec dir="${dist}" executable="scp" output="dir.txt">
+            <arg line=" -r . owd@service.owd.com:/home/owd/tomcat/webapps/"/>
+        </exec>
+        <exec dir="${conf}" executable="scp" output="dir.txt">
+            <arg line=" api.xml owd@service.owd.com:/home/owd/tomcat/webapps/api.xml"/>
+        </exec>
+    </target>
+
+    <target name="deploy-internal.owd.com" depends="deploy-testserver (local)"
+            description="Deploy to internal.owd.com server">
+        <exec dir="${dist}" executable="scp" output="dir.txt">
+            <arg line=" -r . owd@internal2.owd.com:/home/owd/tomcat/webapps/api"/>
+        </exec>
+        <exec dir="${conf}" executable="scp" output="dir.txt">
+            <arg line=" api.xml owd@internal2.owd.com:/home/owd/tomcat/webapps/api.xml"/>
+        </exec>
+    </target>
+
+
+    <target name="clean"
+            description="clean up">
+        <!-- Delete the build and dist directory trees -->
+        <delete dir="build"/>
+        <delete dir="dist"/>
+    </target>
+
+</project>

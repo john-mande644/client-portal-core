@@ -1,0 +1,408 @@
+ <project name="OWD Extranet" default="dist" basedir=".">
+     <description>
+		 Builds extranet web application project
+     </description>
+     <!-- set global properties for this build -->
+     <property name="src" location="src"/>
+     <property name="build" location="build"/>
+     <property name="dist" location="dist"/>
+     <property name="web" location="web"/>
+     <property name="conf" location="conf"/>
+     <property name="lib" location="lib"/>
+     <property name="shared" location="../../sharedlibs"/>
+
+     <property name="project" value="${ant.project.name}"/>
+
+     <target name="init" depends="clean">
+         <!-- Create the time stamp -->
+         <tstamp>
+             <format property="build.time" pattern="MM/dd/yyyy hh:mm aa"/>
+         </tstamp>
+
+         <!-- Create the build directory structure used by compile -->
+         <mkdir dir="build"/>
+         <mkdir dir="dist"/>
+         <mkdir dir="build/classes"/>
+         <mkdir dir="build/jspclasses"/>
+         <mkdir dir="build/jspsrc"/>
+
+
+
+     </target>
+       <target name="core" depends="init" unless="complecore">
+           <ant dir="../../owd_core" inheritall="false" target="dist"/>
+         <copy file="../../sharedlibs/owd-core.jar" tofile="${lib}/owd-core.jar"/>
+       </target>
+
+     <target name="compile" depends="core"
+         description="compile the source ">
+         <!-- Compile the java code from src into build -->
+         <javac srcdir="src" destdir="${build}/classes" target="1.5">
+             <classpath>
+                 <pathelement path="${classpath}"/>
+                  <fileset dir="../../sharedlibs">
+                      <include name="**/servlet.jar"/>
+                  </fileset>
+
+                 <fileset dir="lib">
+                     <include name="**/*.jar"/>
+                 </fileset>
+             </classpath>
+         </javac>
+     </target>
+
+
+     <target name="dist" depends="compile"
+         description="Generate the distribution">
+         <!-- Create the distribution directory -->
+         <mkdir dir="dist/"/>
+         <mkdir dir="dist/WEB-INF/classes"/>
+         <mkdir dir="dist/WEB-INF/lib"/>
+         <mkdir dir="dist/WEB-INF/uploads"/>
+         <mkdir dir="dist/WEB-INF/hibernate"/>
+
+         <buildnumber/>
+         <copy todir="${dist}/WEB-INF/lib">
+             <fileset dir="${lib}"/>
+         </copy>
+         <copy todir="${dist}/WEB-INF/hibernate">
+             <fileset dir="${shared}/corehibernatemappings"/>
+         </copy>
+          <copy todir="${dist}/WEB-INF/classes/">
+             <fileset dir="${shared}/jaspertemplates">
+               <include name="**/*.jasper"/>
+                 <include name="**/*.jrxml"/>
+                 <include name="**/*.jpg"/>
+                 <include name="**/*.gif"/>
+              </fileset>
+              <fileset dir="${shared}/jaspertemplates/images" />
+         </copy>
+         <copy file="../../sharedlibs/owd-core.jar" tofile="${dist}/WEB-INF/lib/owd-core.jar"/>
+
+
+         
+        <!-- <copy file="src/com/owd/web/messageresources.properties" tofile="${dist}/WEB-INF/classes/com/owd/web/messageresources.properties"/>
+       -->
+         <copy todir="${dist}">
+             <fileset dir="${web}"/>
+         </copy>
+
+
+         
+         <filter token="project" value="${project}"/>
+         <filter token="build" value="${build.number}"/>
+         <filter token="now" value="${build.time}"/>
+
+       <copy file="web/version.txt" tofile="${dist}/version.txt" filtering="true"/>
+       <!--  <copy file="web/WEB-INF/web.xml" tofile="${dist}/WEB-INF/web.xml"/>-->
+      <!--   <copy file="web/WEB-INF/displaytag-12.tld" tofile="${dist}/WEB-INF/displaytag-12.tld"/>-->
+     <!--    <copy file="web/WEB-INF/classes/log4j.xml" tofile="${build}/classes/log4j.xml"/>-->
+         <!-- jobs.xml not copied to avoid duplicate jobs running on tomcat. job tests must be managed manually -->
+
+          <copy toDir="${dist}/WEB-INF/classes">
+            <fileset dir="${src}">
+                <include name="**/*.properties"/>
+                <include name="**/*.xml"/>
+            </fileset>
+        </copy>
+
+         <copy todir="${dist}/WEB-INF/classes">
+             <fileset dir="${build}/classes"/>
+         </copy>
+     </target>
+
+ <target name="deploy-tomcat-ROOT local" depends="dist" description="Deploy to production server">
+    <copy todir="../../tomcat6/webapps/ROOT/">
+             <fileset dir="${dist}"/>
+         </copy>
+         <copy todir="../../tomcat6/certs/">
+             <fileset dir="${shared}/certs"/>
+         </copy>
+     </target>
+
+     <target name="deploycopy" description="Deploy test">
+
+         <copy todir="../../tomcat/webapps/webapps/">
+             <fileset dir="${dist}"/>
+         </copy>
+         <copy file="${conf}/webapps.xml" tofile="../../tomcat/webapps/webapps.xml"/>
+         <copy todir="../../tomcat/certs/">
+             <fileset dir="${shared}/certs"/>
+         </copy>
+
+
+     </target>
+     <target name="deploy-tomcat (local)" depends="dist" description="Deploy to local test server">
+
+         <copy todir="../../tomcat6/webapps/webapps/">
+             <fileset dir="${dist}"/>
+         </copy>
+
+         <copy todir="../../tomcat6/certs/">
+             <fileset dir="${shared}/certs"/>
+         </copy>
+
+
+     </target>
+
+     <target name="deploy-tomcat-war (local)" depends="dist" description="Deploy to local test server as war">
+
+         <war basedir="${dist}" compress="9" destfile="${build}/webapps.war" />
+
+         <copy todir="../../tomcat6/webapps/" file="${build}/webapps.war" />
+
+
+         <copy todir="../../tomcat6/certs/">
+             <fileset dir="${shared}/certs"/>
+         </copy>
+
+
+
+     </target>
+
+    
+      <target name="nocore">
+         <property name="compilecore" location="yes"/>
+     </target>
+
+     <target name="deploy-tomcat(nocore)" depends="nocore,dist" description="Deploy to local test server">
+
+         <copy todir="../../tomcat6/webapps/webapps/">
+             <fileset dir="${dist}"/>
+         </copy>
+         <copy todir="../../tomcat6/webapps/certs/">
+             <fileset dir="${shared}/certs"/>
+         </copy>
+         <!--  <copy file="${conf}/webapps.xml" tofile="../../tomcat/webapps/webapps.xml"/> -->
+
+     </target>
+        <target name="update jsps only (local ROOT)" description="Copy jsps to local test server">
+         <copy todir="../../tomcat6/webapps/ROOT/">
+             <fileset dir="${web}"/>
+         </copy>
+         <copy todir="../../tomcat6/certs/">
+             <fileset dir="${shared}/certs"/>
+         </copy>
+     </target>
+
+     <target name="update jsps only (local)" description="Copy jsps to local test server">
+         <copy todir="../../tomcat6/webapps/webapps/">
+             <fileset dir="${web}"/>
+         </copy>
+          <copy toDir="../../tomcat6/webapps/webapps/WEB-INF/classes/">
+            <fileset dir="${src}">
+                <include name="**/*.properties"/>
+                <include name="**/*.xml"/>
+            </fileset>
+        </copy>
+         <copy todir="../../tomcat6/certs/">
+             <fileset dir="${shared}/certs"/>
+         </copy>
+     </target>
+
+     <!-- Requires setup of ssh rsa keyfiles for auto-authentication
+     <target name="deploy-service.owd.com" depends="deploy-tomcat (local)" description="Deploy to production server">-->
+     <!-- copy job config file to production server only
+     <copy file="${conf}/jobs.xml" tofile="${dist}/WEB-INF/classes/jobs.xml"/>
+     <exec dir="${dist}" executable="scp" output="dir.txt">
+         <arg line=" -r . admin@service.owd.com:/Library/tomcat/webapps/webapps"/>
+     </exec>
+     <exec dir="${conf}" executable="scp" output="dir.txt">
+         <arg line=" webapps.xml admin@service.owd.com:/Library/tomcat/webapps/webapps.xml"/>
+     </exec>
+     <exec dir="${shared}/certs" executable="scp" output="dir.txt">
+         <arg line=" -r . admin@service.owd.com:/Library/Tomcat/certs"/>
+     </exec>
+ </target>      -->
+    <target name="deploy-comminvoice.owd.com"  description="copy comminvoice">
+         <!-- copy job config file to production server only -->
+         <!--<copy file="${conf}/jobs.xml" tofile="${dist}/WEB-INF/classes/jobs.xml"/>-->
+         <exec dir="${shared}/jaspertemplates" executable="scp" >
+             <arg line=" -r ./comminvoice.jasper owd@service.owd.com:/home/owd/tomcat/webapps/webapps/WEB-INF/classes/comminvoice.jasper"/>
+         </exec>
+
+     </target>
+     <!-- temp for Tomcat 5 upgrade -->
+     <target name="deploy-service.owd.com" depends="dist" description="Deploy to production server">
+         <!-- copy job config file to production server only -->
+         <!--<copy file="${conf}/jobs.xml" tofile="${dist}/WEB-INF/classes/jobs.xml"/>-->
+
+         <war basedir="${dist}" compress="9" destfile="${build}/webapps.war" />
+
+         <exec dir="${build}" executable="scp" >
+             <arg line=" -r webapps.war owd@172.16.1.101:/home/owd/webapps.war"/>
+         </exec>
+
+
+
+         <exec dir="${shared}/certs" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@172.16.1.101:/home/owd/tomcat/certs"/>
+         </exec>
+
+          <exec dir="${build}" executable="ssh" output="dir.txt">
+             <arg line=" owd@172.16.1.101 chmod -R a+r /home/owd/tomcat/certs"/>
+         </exec>
+
+         <exec dir="${build}" executable="ssh" output="dir.txt">
+             <arg line=" owd@172.16.1.101 mv -f /home/owd/webapps.war /home/owd/tomcat/webapps/webapps.war"/>
+         </exec>
+
+     </target>
+
+
+     <target name="deploy-service2-tomcattest.owd.com" depends="dist"  description="Deploy to production server">
+
+         <war basedir="${dist}" compress="9" destfile="${build}/webapps.war" />
+
+         <exec dir="${build}" executable="scp" >
+             <arg line=" -r webapps.war owd@service2.owd.com:/home/owd/testapps.war"/>
+         </exec>
+
+
+         <exec dir="${shared}/certs" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@service2.owd.com:/home/owd/tomcattest/certs"/>
+         </exec>
+
+         <exec dir="${build}" executable="ssh" output="dir.txt">
+             <arg line=" owd@service2.owd.com chmod -R a+r /home/owd/tomcattest/certs"/>
+         </exec>
+
+         <exec dir="${build}" executable="ssh" output="dir.txt">
+             <arg line=" owd@service2.owd.com mv -f /home/owd/testapps.war /home/owd/tomcattest/webapps/testapps.war"/>
+         </exec>
+
+     </target>
+
+     <target name="deploy-internal-jobs-webapps.owd.com" depends="dist" description="Deploy to beta production server">
+         <!-- copy job config file to production server only -->
+         <!--<copy file="${conf}/jobs.xml" tofile="${dist}/WEB-INF/classes/jobs.xml"/>-->
+
+         <war basedir="${dist}" compress="9" destfile="${build}/webapps.war" />
+
+         <exec dir="${build}" executable="scp" >
+             <arg line=" -r webapps.war owd@internal.owd.com:/home/owd/tomcat-jobs/webapps/webapps.war"/>
+         </exec>
+
+
+         <exec dir="${shared}/certs" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@internal.owd.com:/home/owd/tomcat-jobs/certs"/>
+         </exec>
+
+         <exec dir="${build}" executable="ssh" output="dir.txt">
+             <arg line=" owd@internal.owd.com chmod -R a+r /home/owd/tomcat-jobs/certs"/>
+         </exec>
+     </target>
+
+     <target name="deploy-service-extranet.owd.com" depends="dist" description="Deploy to beta production server">
+         <!-- copy job config file to production server only -->
+         <!--<copy file="${conf}/jobs.xml" tofile="${dist}/WEB-INF/classes/jobs.xml"/>-->
+
+         <war basedir="${dist}" compress="9" destfile="${build}/extranet.war" />
+
+         <exec dir="${build}" executable="scp" >
+             <arg line=" -r extranet.war owd@service.owd.com:/home/owd/tomcat/webapps/extranet.war"/>
+         </exec>
+
+
+         <exec dir="${shared}/certs" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@service.owd.com:/home/owd/tomcat/certs"/>
+         </exec>
+
+         <exec dir="${build}" executable="ssh" output="dir.txt">
+             <arg line=" owd@service.owd.com chmod -R a+r /home/owd/tomcat/certs"/>
+         </exec>
+     </target>
+
+        <target name="deploy-internal.owd.com" depends="dist" description="Deploy to internal test server">
+         <!-- copy job config file to production server only -->
+         <!--<copy file="${conf}/jobs.xml" tofile="${dist}/WEB-INF/classes/jobs.xml"/>-->
+        <war basedir="${dist}" compress="9" destfile="${build}/extranet.war" />
+
+         <exec dir="${build}" executable="scp" output="dir.txt">
+             <arg line=" -r extranet.war owd@internal2.owd.com:/home/owd/tomcat/webapps/extranet.war"/>
+         </exec>
+
+
+         <exec dir="${shared}/certs" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@internal2.owd.com:/home/owd/tomcat/certs"/>
+         </exec>
+
+            <exec dir="${build}" executable="ssh" output="dir.txt">
+             <arg line=" owd@internal2.owd.com chmod -R a+r /home/owd/tomcat/certs"/>
+         </exec>
+         <exec dir="${build}" executable="ssh" output="dir.txt">
+             <arg line=" owd@internal2.owd.com chmod a+r /home/owd/tomcat/webapps/extranet.war"/>
+         </exec>
+
+
+     </target>
+
+      <target name="deploy-service-carts.owd.com"  depends="dist"  description="Deploy to production server ROOT context">
+         <!-- copy job config file to production server only -->
+             <exec dir="${dist}" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@service.owd.com:/home/owd/tomcat/webapps/ROOT"/>
+         </exec>
+
+        <exec dir="${shared}/certs" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@service.owd.com:/home/owd/tomcat/certs"/>
+         </exec>
+
+          <exec dir="${build}" executable="ssh" output="dir.txt">
+             <arg line=" owd@service.owd.com chmod -R a+r /home/owd/tomcat/certs"/>
+         </exec>
+
+     </target>
+       <target name="deploy-service rootx.owd.com" depends="dist" description="Deploy to production server webapps and ROOT contexts">
+         <!-- copy job config file to production server only -->
+     <!--    <exec dir="${dist}" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@service.owd.com:/home/owd/tomcat/webapps/webappsx"/>
+         </exec>
+         <exec dir="${conf}" executable="scp" output="dir.txt">
+             <arg line=" webapps.xml owd@service.owd.com:/home/owd/tomcat/webapps/webappsx.xml"/>
+         </exec>
+-->
+         <exec dir="${shared}/certs" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@service.owd.com:/home/owd/tomcat/certs"/>
+         </exec>
+          <exec dir="${dist}" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@service.owd.com:/home/owd/tomcat/ROOTx"/>
+         </exec>
+     </target>
+      <target name="deploy-service all.owd.com" depends="dist" description="Deploy to production server webapps and ROOT contexts">
+         <!-- copy job config file to production server only -->
+      <!--   <exec dir="${dist}" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@service.owd.com:/home/owd/tomcat/webapps/webapps"/>
+         </exec>
+-->
+
+
+          <exec dir="${dist}" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@service.owd.com:/home/owd/tomcat/webapps/ROOT"/>
+         </exec>
+
+
+        <exec dir="${shared}/certs" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@service.owd.com:/home/owd/tomcat/certs"/>
+         </exec>
+
+          <exec dir="${build}" executable="ssh" output="dir.txt">
+             <arg line=" owd@service.owd.com chmod -R a+r /home/owd/tomcat/certs"/>
+         </exec>
+
+     </target>
+
+     <target name="update jsps only service" description="Copy jsps to  server">
+         <exec dir="${web}" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@service.owd.com:/home/owd/tomcat/webapps/webapps"/>
+         </exec>
+            <exec dir="${web}" executable="scp" output="dir.txt">
+             <arg line=" -r . owd@service.owd.com:/home/owd/tomcat/webapps/ROOT"/>
+         </exec>
+      </target>
+     <target name="clean"
+         description="clean up">
+         <!-- Delete the build and dist directory trees -->
+         <delete dir="build"/>
+         <delete dir="dist"/>
+     </target>
+ </project>

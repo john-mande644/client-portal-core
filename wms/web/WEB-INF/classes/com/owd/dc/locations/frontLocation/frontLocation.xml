@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE struts PUBLIC
+                "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+                "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+        <struts>
+
+
+    <package name="checkFront" namespace="/checkFront" extends="struts-default">
+
+
+        <action name="start" >
+
+            <result >/rfapps/locations/frontLocation/index.jsp</result>
+
+        </action>
+
+        <action name="loadSku" class="com.owd.dc.locations.frontLocation.checkFrontAction">
+
+            <result name="success">/rfapps/locations/frontLocation/front.jsp</result>
+            <result name="error">/rfapps/locations/frontLocation/index.jsp</result>
+        </action>
+         <action name="changeFront" method="saveChange" class="com.owd.dc.locations.frontLocation.checkFrontAction">
+
+            <result name="success">/rfapps/locations/frontLocation/index.jsp</result>
+            <result name="error">/rfapps/locations/frontLocation/front.jsp</result>
+        </action>
+         <action name="removeLocation" method="removeLocation" class="com.owd.dc.locations.frontLocation.checkFrontAction">
+
+            <result name="success">/rfapps/locations/frontLocation/front.jsp</result>
+            <result name="error">/rfapps/locations/frontLocation/front.jsp</result>
+        </action>
+
+</package>
+
+    </struts>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="onestop" default="dist" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+
+    <description>
+        Builds onestop web application project
+    </description>
+    <!-- set global properties for this build -->
+    <property name="src" location="src"/>
+    <property name="build" location="buildx"/>
+    <property name="externalbuild" location="externalbuild"/>
+    <property name="dist" location="dist"/>
+    <property name="web" location="web"/>
+    <property name="conf" location="conf"/>
+    <property name="lib" location="lib"/>
+    <property name="shared" location="../sharedlibs"/>
+    <property name="project" value="${ant.project.name}"/>
+    <taskdef name="groovyc" classname="org.codehaus.groovy.ant.Groovyc"/>
+
+
+        <taskdef resource="org/apache/ivy/ant/antlib.xml"
+         uri="antlib:org.apache.ivy.ant" />
+
+
+     <target name="resolve">
+        <ivy:configure file="./conf/ivysettings.xml" />
+
+        <ivy:resolve file="./conf/ivy.xml" conf="default" />
+
+    </target>
+
+    <target name="retrieve-default" depends="resolve">
+         <delete dir="./lib/default"/>
+        <ivy:retrieve pattern="./lib/default/[organization]-[module]-[artifact]-[revision].[ext]" conf="*" type="jar"/>
+    </target>
+   <target name="init" depends="clean">
+        <!-- Create the time stamp -->
+        <tstamp>
+            <format property="build.time" pattern="MM/dd/yyyy hh:mm aa"/>
+        </tstamp>
+
+
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="buildx"/>
+        <ant dir="../owd_core" inheritall="false" target="dist"/>
+    </target>
+    <target name="compile" depends="init" description="compile the source ">
+        <!-- Compile the java code from src into build -->
+        <copy file="../sharedlibs/owd-core.jar" tofile="./lib/owd-core.jar"/>
+        <!--  <copy file="../../tools/grails-1.2.2/lib/groovy-all-1.6.8.jar" tofile="./lib/groovy-all.jar"/>-->
+        <groovyc srcdir="src" destdir="buildx">
+            <classpath>
+                <pathelement path="${classpath}"/>
+                <fileset dir="lib">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+            <javac/>
+        </groovyc>
+        <copy toDir="${build}">
+            <fileset dir="${src}">
+                <include name="**/*.properties"/>
+                <include name="**/*.xml"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="dist" depends="compile" description="Generate the distribution">
+        <!-- Create the distribution directory -->
+        <mkdir dir="dist/"/>
+        <mkdir dir="dist/WEB-INF"/>
+        <mkdir dir="dist/WEB-INF/classes"/>
+        <mkdir dir="dist/WEB-INF/lib"/>
+        <mkdir dir="dist/WEB-INF/uploads"/>
+        <mkdir dir="dist/WEB-INF/hibernate"/>
+        <buildnumber/>
+        <copy file="${web}/WEB-INF/web.xml" tofile="${dist}/WEB-INF/web.xml"/>
+        <copy todir="${dist}/WEB-INF/lib">
+            <fileset dir="${lib}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </copy>
+        <copy todir="${dist}/WEB-INF/lib">
+            <fileset dir="${lib}/default"/>
+        </copy>
+        <copy todir="${dist}/WEB-INF/hibernate">
+            <fileset dir="${shared}/corehibernatemappings"/>
+        </copy>
+        <copy todir="${dist}">
+            <fileset dir="${web}"/>
+        </copy>
+        <filter token="project" value="${project}"/>
+        <filter token="build" value="${build.number}"/>
+        <filter token="now" value="${build.time}"/>
+        <copy todir="${dist}/WEB-INF/classes">
+            <fileset dir="${build}"/>
+        </copy>
+    </target>
+
+    <target name="deploy-testserver (local-LIVE JOBS)" depends="dist" description="Deploy to local test server">
+        <copy todir="../tomcat6/webapps/onestop/">
+            <fileset dir="${dist}"/>
+        </copy>
+    </target>
+    <!-- Requires setup of ssh rsa keyfiles for auto-authentication -->
+    <target name="deploy-internal.owd.com" depends="dist" description="Deploy to production server">
+        <war basedir="${dist}" compress="9" destfile="${build}/onestop.war"/>
+        <exec dir="${build}" executable="scp" output="dir.txt">
+            <arg line=" -r onestop.war owd@internal.owd.com:/home/owd/tomcat-jobs/webapps/onestop.war"/>
+        </exec>
+        <exec dir="${build}" executable="ssh" output="dir.txt">
+            <arg line=" owd@internal.owd.com chmod a+r /home/owd/tomcat-jobs/webapps/onestop.war"/>
+        </exec>
+
+        <exec dir="${build}" executable="ssh" output="dir.txt">
+            <arg line=" owd@internal.owd.com chmod a+r /home/owd/tomcat-jobs/webapps/onestop.war"/>
+        </exec>
+    </target>
+    <target name="clean" description="clean up">
+        <!-- Delete the build and dist directory trees -->
+        <delete dir="buildx"/>
+        <delete dir="dist"/>
+    </target>
+</project>

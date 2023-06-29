@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/dtd/
+-->
+
+<class 
+    name="com.owd.hibernate.generated.WCycleCount"
+    table="w_cycle_count"
+>
+
+    <id
+        name="id"
+        type="java.lang.Long"
+        column="id"
+    >
+        <generator class="identity" />
+    </id>
+
+    <property
+        name="inventoryId"
+        type="long"
+        column="inventory_id"
+        not-null="true"
+        length="19"
+    />
+    <property
+        name="createdOn"
+        type="java.sql.Timestamp"
+        column="created_on"
+        not-null="false"
+        update="false"
+        insert="false"
+        length="23"
+    />
+    <property
+        name="totalCountQty"
+        type="long"
+        column="total_count_qty"
+        not-null="true"
+        length="19"
+    />
+    <property
+        name="createdBy"
+        type="java.lang.String"
+        column="created_by"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="assignedTo"
+        type="java.lang.String"
+        column="assigned_to"
+        length="255"
+    />
+    <property
+        name="verifyStatus"
+        type="java.lang.String"
+        column="verify_status"
+        not-null="true"
+        length="255"
+    />
+    <property
+        name="verifiedBy"
+        type="java.lang.String"
+        column="verified_by"
+        length="255"
+    />
+    <property
+        name="completedOn"
+        type="java.sql.Timestamp"
+        column="completed_on"
+        length="23"
+    />
+    <property
+        name="verifyStart"
+        type="java.sql.Timestamp"
+        column="verify_start"
+        length="23"
+    />
+    <property
+        name="verifiedOn"
+        type="java.sql.Timestamp"
+        column="verified_on"
+        length="23"
+    />
+    <property
+        name="canceledOn"
+        type="java.sql.Timestamp"
+        column="canceled_on"
+        length="23"
+    />
+    <property
+        name="startOhQty"
+        type="java.lang.Long"
+        column="start_oh_qty"
+        length="19"
+    />
+    <property
+        name="finalOhQty"
+        type="java.lang.Long"
+        column="final_oh_qty"
+        length="19"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional one-to-many association to WCycleCountLocation -->
+    <set
+        name="wCycleCountLocations"
+        lazy="true"
+        inverse="true"
+    >
+        <key>
+            <column name="cycle_count_fkey" />
+        </key>
+        <one-to-many 
+            class="com.owd.hibernate.generated.WCycleCountLocation"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

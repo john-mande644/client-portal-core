@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+            name="com.owd.hibernate.generated.Scandoc"
+            table="scandocs"
+            >
+        <id
+                name="id"
+                type="java.lang.Integer"
+                column="id"
+                >
+            <generator class="identity"/>
+        </id>
+         <discriminator column="type" type="string"/>
+
+        <property
+                name="scanDate"
+                column="scan_date"
+                type="java.util.Date"
+                length="23"
+                />
+        <property
+                name="name"
+                column="name"
+                type="java.lang.String"
+                length="50"
+                />
+
+        <property
+                name="notes"
+                column="notes"
+                type="java.lang.String"
+                length="2048"
+        />
+        <property
+                name="type"
+                column="type"
+                type="java.lang.String"
+                length="50"
+                insert="false"
+                update="false"
+                />
+
+
+
+        <!-- associations -->
+
+    </class>
+
+    <subclass name="com.owd.hibernate.generated.ScanAsn" extends="com.owd.hibernate.generated.Scandoc" discriminator-value="ASN">
+
+        <many-to-one
+                name="asn"
+                class="com.owd.hibernate.generated.Asn"
+        >
+            <column name="scan_id" />
+        </many-to-one>
+    </subclass>
+
+    <subclass name="com.owd.hibernate.generated.ScanReceive" extends="com.owd.hibernate.generated.Scandoc" discriminator-value="RECEIVE">
+ 
+        <many-to-one
+                name="receive"
+                class="com.owd.hibernate.generated.Receive"
+                >
+            <column name="scan_id" />
+        </many-to-one>
+    </subclass>
+
+    <subclass name="com.owd.hibernate.generated.ScanOrder" extends="com.owd.hibernate.generated.Scandoc" discriminator-value="ORDER">
+
+        <many-to-one
+                name="order"
+                class="com.owd.hibernate.generated.OwdOrder"
+        >
+            <column name="scan_id" />
+        </many-to-one>
+    </subclass>
+
+    <subclass name="com.owd.hibernate.generated.ScanImage" extends="com.owd.hibernate.generated.Scandoc" discriminator-value="RECEIVE_PHOTO">
+
+            <property   name="scan_id"
+                        column="scan_id"
+                        type="java.lang.Integer"
+            />
+
+    </subclass>
+    <subclass name="com.owd.hibernate.generated.ScanReturnLabel" extends="com.owd.hibernate.generated.Scandoc" discriminator-value="RETURN_LABEL">
+
+        <property   name="scan_id"
+                    column="scan_id"
+                    type="java.lang.Integer"
+                />
+    </subclass>
+
+</hibernate-mapping>

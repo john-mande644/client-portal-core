@@ -1,0 +1,51 @@
+<ConfirmMessageBatch type="string" batchNumber="string">
+  <partnerID name="string" roleType="string">string</partnerID>
+  <!--Zero or more repetitions:-->
+  <hubConfirm transactionID="string">
+    <!--1 or more repetitions:-->
+    <participatingParty name="string" roleType="merchant" participationCode="To:">string</participatingParty>
+    <partnerTrxID>string</partnerTrxID>
+    <partnerTrxDate>string</partnerTrxDate>
+    <poNumber>string</poNumber>
+    <!--Zero or more repetitions:-->
+    <hubAction transactionItemID="string">
+      <action>string</action>
+      <!--Optional:-->
+      <actionCode>string</actionCode>
+      <merchantLineNumber>string</merchantLineNumber>
+      <trxQty>string</trxQty>
+      <!--Zero or more repetitions:-->
+      <packageDetailLink packageDetailID="string">string</packageDetailLink>
+      <!--Optional:-->
+      <trxItemData>
+        <!--Zero or more repetitions:-->
+        <handlingBreakout handlingType="string" currencyUnit="string">string</handlingBreakout>
+        <!--Zero or more repetitions:-->
+        <creditBreakout creditType="string" paymentMethod="string" paymentName="string" accountNumber="string" currencyUnit="string">string</creditBreakout>
+        <!--Zero or more repetitions:-->
+        <taxBreakout taxType="string" currencyUnit="string">string</taxBreakout>
+        <!--Zero or more repetitions:-->
+        <discountBreakout discTypeCode="string" discDateCode="string" discPercent="string" discDueDate="string" discDaysDue="string" netDueDate="string" netDaysDue="string">string</discountBreakout>
+        <!--Zero or more repetitions:-->
+        <miscChargeBreakout description="string" alwChgIndicator="string" chargeType="string" methodOfHandling="string" currencyUnit="string">string</miscChargeBreakout>
+        <!--Optional:-->
+        <expectedDate>string</expectedDate>
+        <!--Optional:-->
+        <vendorWarehouseId>string</vendorWarehouseId>
+        <!--Optional:-->
+        <lineitemDept>string</lineitemDept>
+        <!--Optional:-->
+        <cancelReasonDescription>string</cancelReasonDescription>
+      </trxItemData>
+    </hubAction>
+    <!--Zero or more repetitions:-->
+    <packageDetail packageDetailID="string">
+      <shipDate>string</shipDate>
+      <!--Optional:-->
+      <containerID>string</containerID>
+      <serviceLevel1>string</serviceLevel1>
+      <trackingNumber>string</trackingNumber>
+    </packageDetail>
+  </hubConfirm>
+  <messageCount>string</messageCount>
+</ConfirmMessageBatch>

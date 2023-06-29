@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OwdReceiveItem"
+        table="owd_receive_item"
+        >
+
+        <id
+            name="receiveItemId"
+            type="java.lang.Integer"
+            column="receive_item_id"
+            >
+            <generator class="identity"/>
+        </id>
+       <property
+        name="isVoid"
+        type="java.lang.Integer"
+        column="is_void"
+        not-null="true"
+        length="10"
+    />
+   
+        <property
+            name="inventoryNum"
+            type="java.lang.String"
+            column="inventory_num"
+            length="255"
+            />
+        <property
+            name="description"
+            type="java.lang.String"
+            column="description"
+            length="255"
+            />
+        <property
+            name="itemStatus"
+            type="java.lang.String"
+            column="item_status"
+            length="100"
+            />
+        <property
+            name="isUnusable"
+            type="boolean"
+            column="is_unusable"
+            not-null="true"
+            length="1"
+            />
+        <property
+            name="quantity"
+            type="java.lang.Integer"
+            column="quantity"
+            length="10"
+            />
+        <property
+            name="location"
+            type="java.lang.String"
+            column="location"
+            length="100"
+            />
+        <property
+            name="createdDate"
+            type="java.util.Date"
+            column="created_date"
+            length="23"
+            />
+        <property
+            name="createdBy"
+            type="java.lang.String"
+            column="created_by"
+            length="30"
+            />
+        <property
+            name="modifiedDate"
+            type="java.util.Date"
+            column="modified_date"
+            length="23"
+            />
+        <property
+            name="modifiedBy"
+            type="java.lang.String"
+            column="modified_by"
+            length="30"
+            />
+        <property
+            name="returnReason"
+            type="java.lang.String"
+            column="return_reason"
+            length="255"
+            />
+        <property
+            name="reported"
+            type="boolean"
+            column="reported"
+            not-null="true"
+            length="1"
+            />
+
+     
+
+        <!-- bi-directional many-to-one association to OwdInventory -->
+        <many-to-one
+            name="owdInventory"
+            class="com.owd.hibernate.OwdInventory"
+            not-null="true"
+            >
+            <column name="inventory_id"/>
+        </many-to-one>
+        <!-- bi-directional many-to-one association to OwdReceive -->
+        <many-to-one
+            name="owdReceive"
+            class="com.owd.hibernate.OwdReceive"
+            not-null="true"
+            >
+            <column name="receive_fkey"/>
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,53 @@
+<!-- BEGIN: main -->
+<div id="section_title">Billables</div>
+
+<div class="section_tabs">
+    <a href="billable_types.php">Types</a> |
+    <a href="billable_units.php">Units</a>
+</div>
+
+<div id="frame">
+
+    <div id="sidebar">
+        &nbsp;
+    </div>
+
+    <div id="content">
+
+        <table class="table_list" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="table_list_trash_header">&nbsp;</td>
+            <td class="table_list_header">Name</td>
+            <td class="table_list_header">Value Type</td>
+        </tr>
+
+        <!-- BEGIN: billable_units -->
+        <tr>
+            <td class="table_list_trash_field">
+                <a href="{DELETE_BILLABLE_UNIT_URL}" onclick="return confirmDelete('billable unit')"><img src="images/trash.gif" border="0"><a>
+            </td>
+
+            <td class="table_list_text_field">
+                <a href="{BILLABLE_UNIT_URL}">{BILLABLE_UNIT_NAME}<a>
+            </td>
+            <td class="table_list_text_field">{BILLABLE_UNIT_VALUE_TYPE}</td>
+        </tr>
+        <!-- END: billable_units -->
+
+        <!-- BEGIN: no_billable_units -->
+        <tr>
+            <td colspan="4" class="list_table_row"><i>No billable units found.</i></td>
+        </tr>
+        <!-- END: no_billable_units -->
+
+        <tr>
+            <td colspan="2" class="form_submit">
+                <input type="button" value="Add Billable Unit" onclick="location.href='{ADD_BILLABLE_UNIT_URL}'">
+            </td>
+        </tr>
+
+        </table>
+    </div>
+
+</div>
+<!-- END: main -->

@@ -1,0 +1,27 @@
+
+Note in this file any needed info about special customizations,
+the server environment, specific access URLs for this deployment,
+ftp access information, etc.
+
+Cart info:
+TYPE - zencart
+OBJECT - zencart.php
+
+API Files:
+LOCATION - /Order/c4u_admin/import/
+
+URL:
+http://www.aerovation.com/import/
+
+FTP details:
+
+to get to the back end
+
+http://aerovation.com/admin
+stewart/owdadmin
+
+FTP Username: stewart@pilotshat.com
+Password: {8Zdu@*66STi
+FTP Server: ftp.pilotshat.com
+FTP Server Port: 21
+Quota: unlimited MB

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.CcScoutsCanada"
+        table="cc_scouts_canada"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+
+        <property
+            name="name"
+            type="java.lang.String"
+            column="name"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="phone"
+            type="java.lang.String"
+            column="phone"
+            not-null="false"
+            length="50"
+            />
+
+        <property
+            name="email"
+            type="java.lang.String"
+            column="email"
+            not-null="false"
+            length="50"
+            />
+        <property
+            name="zip"
+            type="java.lang.String"
+            column="zip"
+            not-null="false"
+
+            />
+        <property
+            name="notes"
+            type="java.lang.String"
+            column="notes"
+            not-null="false"
+            length="8000"
+            />
+        <property
+            name="callid"
+            type="java.lang.String"
+            column="callid"
+            not-null="false"
+
+            />
+
+
+        <!-- associations -->
+        <!-- bi-directional one-to-many association to OrderPickItem -->
+
+
+    </class>
+</hibernate-mapping>

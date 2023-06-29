@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/dtd/
+-->
+
+<class
+    name="com.owd.hibernate.generated.OwdClientBillTypes"
+    table="owd_client_billtypes"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+        <generator class="identity" />
+    </id>
+     <property
+            name="code"
+            type="java.lang.String"
+            column="code"
+            not-null="true"
+            length="2000"
+            />
+    <property
+        name="rate"
+            type="java.math.BigDecimal"
+            column="rate"
+            length="19"
+    />
+     <property
+        name="locationCode"
+        type="java.lang.String"
+            column="loc_code"
+            length="30"
+    />
+
+    <property
+            name="subtype"
+            type="java.lang.String"
+            column="subtype"
+            length="30"
+    />
+    <property
+        name="groupName"
+        type="java.lang.String"
+        column="group_name"
+        length="50"
+        not-null="true"
+    />
+
+       <many-to-one
+            name="owdClient"
+            class="com.owd.hibernate.generated.OwdClient"
+            not-null="true"
+            >
+            <column name="client_fkey"/>
+        </many-to-one>
+
+</class>
+</hibernate-mapping>

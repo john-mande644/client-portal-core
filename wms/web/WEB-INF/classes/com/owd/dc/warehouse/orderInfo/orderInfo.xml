@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE struts PUBLIC
+                "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+                "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+        <struts>
+
+    <package name="callLookup" namespace="/callLookup" extends="struts-default">
+           <action name="lookup" class="com.owd.dc.warehouse.orderInfo.CallLookupAction">
+                             <result name="success">/warehouse/orderInfo/callLookup.jsp</result>
+                         </action>
+       </package>
+    <package name="orderInfo" namespace="/orderInfo" extends="struts-default">
+
+
+        <action name="start" >
+            <result>/warehouse/orderInfo/index.jsp</result>
+           
+        </action>
+
+        <action name="load" class="com.owd.dc.warehouse.orderInfo.loadAction">
+            <result>/warehouse/orderInfo/index.jsp</result>
+
+        </action>
+        <action name="pick" method="pickInfo" class="com.owd.dc.warehouse.orderInfo.loadAction" >
+            <result>/warehouse/orderInfo/pickinfo.jsp</result>
+        </action>
+</package>
+
+    </struts>

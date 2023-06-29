@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+
+    <class
+        name="com.owd.hibernate.generated.OwdOrderTrackEvents"
+        table="owd_order_track_events"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="createdAt"
+            type="java.util.Date"
+            column="created_at"
+            length="23"
+            />
+        <property
+            name="updatedAt"
+            type="java.util.Date"
+            column="updated_at"
+            length="23"
+            />
+        <property
+            name="estDeliveryDate"
+            type="java.util.Date"
+            column="est_delivery_date"
+            length="23"
+            />
+        <property
+                name="message"
+                type="java.lang.String"
+                column="message"
+                length="256"
+        />
+        <property
+                name="status"
+                type="java.lang.String"
+                column="status"
+                length="50"
+        />
+        <property
+                name="eventAt"
+                type="java.util.Date"
+                column="event_at"
+                length="23"
+        />
+        <property
+                name="source"
+                type="java.lang.String"
+                column="source"
+                length="50"
+        />
+        <property
+                name="carrierCode"
+                type="java.lang.String"
+                column="carrier_code"
+                length="50"
+        />
+        <property
+                name="city"
+                type="java.lang.String"
+                column="city"
+                length="100"
+        />
+        <property
+                name="state"
+                type="java.lang.String"
+                column="state"
+                length="100"
+        />
+        <property
+                name="country"
+                type="java.lang.String"
+                column="country"
+                length="100"
+        />
+        <property
+                name="zip"
+                type="java.lang.String"
+                column="zip"
+                length="100"
+        />
+        <property
+                name="trackingId"
+                type="java.lang.String"
+                column="tracking_id"
+                length="150"
+        />
+
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

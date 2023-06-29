@@ -1,0 +1,40 @@
+    <!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN" "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+    <validators>
+	<field name="name">
+		<field-validator type="requiredstring">
+            <message key="clientpayment.name.required"></message>
+		</field-validator>
+	</field>
+    <field name="ft.state">
+		<field-validator type="requiredstring">
+            <message key="clientpayment.state.required"></message>
+		</field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">2</param>
+            <param name="maxLength">2</param>
+            <message key="clientpayment.state.lengthcheck"></message>
+		</field-validator>
+    </field>
+    <field name="ft.address_one">
+	<field-validator type="requiredstring">
+            <message key="clientpayment.address.required"></message>
+		</field-validator>
+	</field>
+    <field name="ft.city">
+	<field-validator type="requiredstring">
+            <message key="clientpayment.city.required"></message>
+		</field-validator>
+	</field>
+    <field name="ft.zip">
+		<field-validator type="requiredstring">
+            <message key="clientpayment.zip.required"></message>
+		</field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">5</param>
+            <param name="maxLength">10</param>
+            <message key="clientpayment.zip.lengthcheck"></message>
+		</field-validator>
+    </field>
+
+</validators>
+

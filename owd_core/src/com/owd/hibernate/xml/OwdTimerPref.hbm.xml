@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.OwdTimerPref"
+        table="owd_timer_prefs"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="assigned"/>
+        </id>
+
+        <property
+            name="userName"
+            type="java.lang.String"
+            column="user_name"
+            not-null="true"
+            unique="true"
+            length="50"
+            />
+        <property
+            name="prefName"
+            type="java.lang.String"
+            column="pref_name"
+            not-null="true"
+            unique="true"
+            length="255"
+            />
+        <property
+            name="prefValue"
+            type="java.lang.String"
+            column="pref_value"
+            not-null="true"
+            length="2147483647"
+            />
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

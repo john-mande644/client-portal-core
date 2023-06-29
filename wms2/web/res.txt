@@ -1,0 +1,11 @@
+{
+  "identifier": "id",
+  "label": "label",
+  "items": [
+    {
+      "hasChildren": true,
+      "id": "1",
+      "label": "ALL OWD"
+    }
+  ]
+}

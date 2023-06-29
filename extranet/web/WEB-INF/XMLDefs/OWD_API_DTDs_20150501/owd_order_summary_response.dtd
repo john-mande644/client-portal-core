@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<!-- DTD for Order status responses   S. Buskirk	2004.7.12 -->
+<!-- Copyright (c) 2004 by One World Distribution, Inc. All Rights Reserved. -->
+<!-- Dates formatted as YYYYMMDD -->
+<!-- OWD API Version 1.3 -->
+
+<-- Updated 9/23/2011 -->
+
+<!-- OWD_ORDER_SUMMARY_RESPONSE element attributes
+	clientOrderId 		= client-provided order identifier - not guaranteed to be unique. May be an empty string.
+	active				= FALSE if there are any pending, unresolved order records or shipment requests for this order. Otherwise, TRUE.
+
+	OWD_ORDER_SUMMARY_RESPONSE also encompasses 1 or more LINE_SUMMARY elements and zero or more SHIPMENT elements.
+	
+	
+		LINE_SUMMARY element attributes	
+		clientSKU		= item SKU (part number) assigned by client
+		requested		= count of items of this SKU requested by this order
+		backordered		= count of items of this SKU that are currently on active backorder 
+		cancelled		= count of items of this SKU that have been cancelled or voided
+		shipped			= count of items of this SKU that have been shipped
+		held			= count of items of this SKU that have been placed on hold
+		
+		The requested value will always equal the sum of the backordered, cancelled, shipped and held values.
+		The LINE_SUMMARY values reflect the current status of the line item at the time the response is generated.
+
+
+		SHIPMENT element attributes	
+		shipDate		= date order was shipped, if applicable 
+		shipVia			= carrier and ship type (example: USPS Priority Mail)
+		shipViaCode 	= code value for the shipment method (shipVia)
+	
+	Each SHIPMENT encompasses 1 or more PACKAGE elements and 1 or more ITEM elements.
+	
+		PACKAGE element attributes	
+		packageNumber		= ID for package - normally 1,2,3,4, etc. 
+		trackingNumber		= tracking number of package, if applicable.
+		ratedCost			= carrier book rate cost of shipment, in decimal US dollars.
+		weightLbs			= weight of package in decimal pounds.
+		
+		
+		ITEM element attributes
+		clientSKU			= item SKU (part number) assigned by client
+		quantity			= units of this SKU that were included in the parent SHIPMENT
+-->
+
+<!ELEMENT OWD_ORDER_SUMMARY_RESPONSE (LINE_SUMMARY+, SHIPMENT?) >
+<!ATTLIST OWD_ORDER_SUMMARY_RESPONSE
+          clientOrderId     CDATA   		#REQUIRED
+          active       		(TRUE|FALSE)   	#REQUIRED>
+ 
+<!ELEMENT SHIPMENT (PACKAGE+,ITEM+)>
+<!ATTLIST SHIPMENT
+	  shipDate			CDATA	#REQUIRED
+	  shipVia			CDATA	#REQUIRED
+	  shipViaCode		CDATA	#REQUIRED>
+	           
+<!ELEMENT PACKAGE EMPTY>
+<!ATTLIST PACKAGE
+	  packageNumber			CDATA	#REQUIRED
+	  trackingNumber		CDATA	#IMPLIED
+	  ratedCost				CDATA	#REQUIRED
+	  weightLbs				CDATA	#REQUIRED>
+
+<!ELEMENT ITEM EMPTY>
+<!ATTLIST ITEM
+	  clientSKU			CDATA	#REQUIRED
+	  quantity			CDATA	#REQUIRED>
+
+<!-- EXAMPLE
+
+<OWD_API_RESPONSE results="SUCCESS">
+	<OWD_ORDER_SUMMARY_RESPONSE clientOrderId="N123AEweg" active="TRUE">
+		<LINE_SUMMARY clientSKU="N123rsdER" requested="23" backordered="0" cancelled="0" shipped="23" held="0" />
+		<LINE_SUMMARY clientSKU="BOR-BS" requested="7" backordered="3" cancelled="0" shipped="4" held="0" />
+		<SHIPMENT shipDate="20000421" shipVia="USPS Priority Mail">
+			<ITEM clientSKU="N123rsdER" quantity="23" />
+			<PACKAGE packageNumber="1" trackingNumber="el100324482" ratedCost="3.23" weightLbs="1.48" />
+			<PACKAGE packageNumber="2" trackingNumber="el100324483" ratedCost="7.22" weightLbs="4.32" />
+		</SHIPMENT>
+		<SHIPMENT shipDate="20000521" shipVia="USPS First-Class Mail">
+			<ITEM clientSKU="BOR-BS" quantity="4" />
+			<PACKAGE packageNumber="1" trackingNumber="" ratedCost="0.92" weightLbs="0.48" />
+		</SHIPMENT>
+	</OWD_ORDER_SUMMARY_RESPONSE>
+</OWD_API_RESPONSE>
+
+-->

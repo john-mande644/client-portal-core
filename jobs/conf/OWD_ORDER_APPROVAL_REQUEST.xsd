@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation>![CDATA[
+            <OWD_ORDER_APPROVAL_REQUEST>
+                <PACK_SLIP_ONLY>1</PACK_SLIP_ONLY>
+                <OWD_ORDER_REF>string</OWD_ORDER_REF>
+                <CLIENT_ORDER_REF>string</CLIENT_ORDER_REF>
+                <ORDER_BARCODE>string</ORDER_BARCODE>
+                <SHIP_METHOD>string</SHIP_METHOD>
+                <DISCOUNT_AMOUNT>1000.00</DISCOUNT_AMOUNT>
+                <TAX_AMOUNT>1000.00</TAX_AMOUNT>
+                <SHIPPING_AMOUNT>1000.00</SHIPPING_AMOUNT>
+                <BILLING_ADDRESS>
+                    <NAME>string</NAME>
+                    <COMPANY>string</COMPANY>
+                    <ADDRESS_1>string</ADDRESS_1>
+                    <ADDRESS_2>string</ADDRESS_2>
+                    <CITY>string</CITY>
+                    <REGION>string</REGION>
+                    <POSTAL_CODE>string</POSTAL_CODE>
+                    <COUNTRY>string</COUNTRY>
+                    <PHONE>string</PHONE>
+                    <EMAIL>string</EMAIL>
+                </BILLING_ADDRESS>
+                <SHIPPING_ADDRESS>
+                    <NAME>string</NAME>
+                    <COMPANY>string</COMPANY>
+                    <ADDRESS_1>string</ADDRESS_1>
+                    <ADDRESS_2>string</ADDRESS_2>
+                    <CITY>string</CITY>
+                    <REGION>string</REGION>
+                    <POSTAL_CODE>string</POSTAL_CODE>
+                    <COUNTRY>string</COUNTRY>
+                    <PHONE>string</PHONE>
+                    <EMAIL>string</EMAIL>
+                </SHIPPING_ADDRESS>
+                <LINE_ITEMS>
+                    <!--1 or more repetitions:-->
+                    <LINE>
+                        <SKU>string</SKU>
+                        <QUANTITY_SHIPPED>100</QUANTITY_SHIPPED>
+                        <QUANTITY_BACKORDERED>100</QUANTITY_BACKORDERED>
+                        <TITLE>string</TITLE>
+                        <UNIT_PRICE>1000.00</UNIT_PRICE>
+                        <COLOR>string</COLOR>
+                        <SIZE>string</SIZE>
+                    </LINE>
+                </LINE_ITEMS>
+            </OWD_ORDER_APPROVAL_REQUEST>
+            ]]
+        </xs:documentation>
+    </xs:annotation>
+    <xs:element name="DISCOUNT_AMOUNT">
+        <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+                <xs:minInclusive value="0.00"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="TAX_AMOUNT">
+        <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+                <xs:minInclusive value="0.00"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="PHONE" type="xs:string"/>
+    <xs:element name="CLIENT_ORDER_REF" type="xs:string"/>
+    <xs:element name="SHIP_METHOD" type="xs:string"/>
+    <xs:element name="BILLING_ADDRESS">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="NAME"/>
+                <xs:element ref="COMPANY"/>
+                <xs:element ref="ADDRESS_1"/>
+                <xs:element ref="ADDRESS_2"/>
+                <xs:element ref="CITY"/>
+                <xs:element ref="REGION"/>
+                <xs:element ref="POSTAL_CODE"/>
+                <xs:element ref="COUNTRY"/>
+                <xs:element ref="PHONE"/>
+                <xs:element ref="EMAIL"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="EMAIL" type="xs:string"/>
+    <xs:element name="COLOR" type="xs:string"/>
+    <xs:element name="LINE">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="SKU" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="QUANTITY_SHIPPED" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="QUANTITY_BACKORDERED" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="TITLE" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="UNIT_PRICE" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="COLOR" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="SIZE" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="REGION" type="xs:string"/>
+    <xs:element name="QUANTITY_SHIPPED">
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:minInclusive value="0"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="QUANTITY_BACKORDERED">
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:minInclusive value="0"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="LINE_ITEMS">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="LINE" maxOccurs="unbounded" minOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="COMPANY" type="xs:string"/>
+    <xs:element name="NAME" type="xs:string"/>
+    <xs:element name="UNIT_PRICE">
+        <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+                <xs:minInclusive value="0.00"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="OWD_ORDER_REF" type="xs:string"/>
+    <xs:element name="SKU" type="xs:string"/>
+    <xs:element name="COUNTRY" type="xs:string"/>
+    <xs:element name="ADDRESS_1" type="xs:string"/>
+    <xs:element name="OWD_ORDER_APPROVAL_REQUEST">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="PACK_SLIP_ONLY"/>
+                <xs:element ref="OWD_ORDER_REF"/>
+                <xs:element ref="CLIENT_ORDER_REF"/>
+                <xs:element ref="ORDER_BARCODE"/>
+                <xs:element ref="SHIP_METHOD"/>
+                <xs:element ref="DISCOUNT_AMOUNT"/>
+                <xs:element ref="TAX_AMOUNT"/>
+                <xs:element ref="SHIPPING_AMOUNT"/>
+                <xs:element ref="BILLING_ADDRESS"/>
+                <xs:element ref="SHIPPING_ADDRESS"/>
+                <xs:element ref="LINE_ITEMS"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ADDRESS_2" type="xs:string"/>
+    <xs:element name="PACK_SLIP_ONLY">
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:minInclusive value="0"/>
+                <xs:maxInclusive value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="SHIPPING_AMOUNT">
+        <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+                <xs:minInclusive value="0.00"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="SHIPPING_ADDRESS">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="NAME"/>
+                <xs:element ref="COMPANY"/>
+                <xs:element ref="ADDRESS_1"/>
+                <xs:element ref="ADDRESS_2"/>
+                <xs:element ref="CITY"/>
+                <xs:element ref="REGION"/>
+                <xs:element ref="POSTAL_CODE"/>
+                <xs:element ref="COUNTRY"/>
+                <xs:element ref="PHONE"/>
+                <xs:element ref="EMAIL"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ORDER_BARCODE" type="xs:string"/>
+    <xs:element name="POSTAL_CODE" type="xs:string"/>
+    <xs:element name="CITY" type="xs:string"/>
+    <xs:element name="SIZE" type="xs:string"/>
+    <xs:element name="TITLE" type="xs:string"/>
+</xs:schema>

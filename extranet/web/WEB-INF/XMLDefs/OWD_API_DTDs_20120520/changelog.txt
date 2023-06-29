@@ -1,0 +1,19 @@
+5/20/2012
+
+Added POSTAGE_DUE and CLIENT_ORDER_REFERENCE elements to RETURN_EVENT element in owd_inventory_report_api.dtd
+Added PO_REFERENCE and OWD_ASN_ID elements to RECEIVE_EVENT element in owd_inventory_report_api.dtd
+
+3/24/2012
+
+Added signature_release attribute to OWD_ORDER_CREATE_REQUEST
+
+9/26/2011
+
+Added OWD_TEST_INVENTORY_SETCOUNT_REQUEST to owd_inventory_api.dtd
+
+9/24/2011
+
+Corrected name of API DTD folder to match current date
+Added "receivedSince" filter type to OWD_ASN_STATUS_REQUST
+Changed scan data to return URLs to scans rather than encoded PDF data in OWD_ASN_STATUS_RESPONSE
+

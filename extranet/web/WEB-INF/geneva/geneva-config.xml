@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+        "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+    <!-- Form Bean Definitions -->
+    <form-beans>
+
+        <form-bean name="genevaForm" type="com.owd.web.remotewarehouse.geneva.forms.genevaForm"/>
+        <form-bean name="returnForm" type="com.owd.web.remotewarehouse.geneva.forms.returnForm"/>
+        <form-bean name="adjustForm"    type="com.owd.web.remotewarehouse.geneva.forms.adjustForm"/>
+        <form-bean name="viewAdjustForm" type="com.owd.web.remotewarehouse.geneva.forms.viewAdjustForm"/>
+    </form-beans>
+
+    <action-mappings>
+
+
+        <action path="/warehouse"
+                type="com.owd.web.remotewarehouse.geneva.warehouseAction"
+                name="genevaForm"
+                scope="session"
+                parameter="submit"
+                validate="false"
+                input="/start.jsp"
+                >
+            <forward
+                    name="success"
+                    path="/start.jsp"/>
+            <forward
+                    name="start"
+                    path="/start.jsp"/>
+            <forward
+                    name="error"
+                    path="/start.jsp"/>
+
+        </action>
+        <action path="/loadOrder"
+                type="com.owd.web.remotewarehouse.geneva.loadOrderAction"
+                name="genevaForm"
+                scope="session"
+                parameter="submit"
+                validate="false"
+                input="/start.jsp"
+                >
+            <forward
+                    name="success"
+                    path="/start.jsp"/>
+            <forward
+                    name="start"
+                    path="/start.jsp"/>
+            <forward
+                    name="error"
+                    path="/start.jsp"/>
+
+        </action>
+        <action path="/printOrder"
+                type="com.owd.web.remotewarehouse.geneva.printOrderAction"
+                name="genevaForm"
+                scope="session"
+                parameter="submit"
+                validate="false"
+                input="/start.jsp"
+                >
+            <forward
+                    name="success"
+                    path="/start.jsp"/>
+            <forward
+                    name="start"
+                    path="/start.jsp"/>
+            <forward
+                    name="error"
+                    path="/start.jsp"/>
+
+        </action>
+        <action path="/viewShipOrder"
+                type="com.owd.web.remotewarehouse.geneva.viewShipOrderAction"
+                name="genevaForm"
+                scope="session"
+                parameter="submit"
+                validate="false"
+                input="/start.jsp"
+                >
+            <forward
+                    name="success"
+                    path="/start.jsp"/>
+            <forward
+                    name="start"
+                    path="/start.jsp"/>
+            <forward
+                    name="error"
+                    path="/start.jsp"/>
+
+        </action>
+        <action path="/shipOrder"
+                type="com.owd.web.remotewarehouse.geneva.shipOrderAction"
+                name="genevaForm"
+                scope="session"
+                parameter="submit"
+                validate="false"
+                input="/start.jsp"
+                >
+            <forward
+                    name="success"
+                    path="/start.jsp"/>
+            <forward
+                    name="start"
+                    path="/start.jsp"/>
+            <forward
+                    name="error"
+                    path="/start.jsp"/>
+
+        </action>
+        <action path="/inventory"
+                type="com.owd.web.remotewarehouse.geneva.inventoryAction"
+                name="genevaForm"
+                scope="session"
+                parameter="submit"
+                validate="false"
+                input="/invstart.jsp"
+                >
+            <forward
+                    name="success"
+                    path="/invstart.jsp"/>
+            <forward
+                    name="start"
+                    path="/invstart.jsp"/>
+            <forward
+                    name="error"
+                    path="/invstart.jsp"/>
+
+        </action>
+
+
+       <action path="/saveReturn"
+                type="com.owd.web.remotewarehouse.geneva.adjustments.returns.saveReturnAction"
+                name="returnForm"
+                scope="session"
+                parameter="submit"
+                validate="false"
+                input="/gadjustments/return/return.jsp"
+                >
+
+            <forward
+                    name="success"
+                    path="/gadjustments/return/returnSaved.jsp"/>
+            <forward
+                    name="error"
+                    path="/gadjustments/return/return.jsp"/>
+
+        </action>
+        <action path="/startReturn"
+                type="com.owd.web.remotewarehouse.geneva.adjustments.returns.beginReturnAction"
+                name="returnForm"
+                scope="session"
+                validate="false"
+                input="/gadjustments/return/return.jsp"
+                >
+        <forward
+                    name="success"
+                    path="/gadjustments/return/return.jsp"/>
+        <forward
+                    name="error"
+                    path="/gadjustments/return/return.jsp"/>
+
+        </action>
+        <action path="/addItem"
+                type="com.owd.web.remotewarehouse.geneva.adjustments.returns.addItemAction"
+                name="returnForm"
+                scope="session"
+                validate="true"
+                input="/gadjustments/return/return.jsp"
+                >
+        <forward
+                    name="success"
+                    path="/gadjustments/return/return.jsp"/>
+        <forward
+                    name="error"
+                    path="/gadjustments/return/return.jsp"/>
+
+        </action>
+        <action path="/removeItem"
+                type="com.owd.web.remotewarehouse.geneva.adjustments.returns.removeItemAction"
+                name="returnForm"
+                scope="session"
+                validate="false"
+                input="/gadjustments/return/return.jsp"
+                >
+        <forward
+                    name="success"
+                    path="/gadjustments/return/return.jsp"/>
+        <forward
+                    name="error"
+                    path="/gadjustments/return/return.jsp"/>
+
+        </action>
+
+        <action path="/saveAdjust"
+                type="com.owd.web.remotewarehouse.geneva.adjustments.adjustments.saveAdjustAction"
+                name="adjustForm"
+                scope="session"
+                parameter="submit"
+                validate="false"
+                input="/gadjustments/adjust/adjust.jsp"
+                >
+
+            <forward
+                    name="success"
+                    path="/gadjustments/adjust/adjustSaved.jsp"/>
+            <forward
+                    name="error"
+                    path="/gadjustments/adjust/adjust.jsp"/>
+
+        </action>
+        <action path="/startAdjust"
+                type="com.owd.web.remotewarehouse.geneva.adjustments.adjustments.beginAdjustAction"
+                name="adjustForm"
+                scope="session"
+                validate="false"
+                input="/gadjustments/adjust/adjust.jsp"
+                >
+        <forward
+                    name="success"
+                    path="/gadjustments/adjust/adjust.jsp"/>
+        <forward
+                    name="error"
+                    path="/gadjustments/adjust/adjust.jsp"/>
+
+        </action>
+        <action path="/addAdjustItem"
+                type="com.owd.web.remotewarehouse.geneva.adjustments.adjustments.addAdjustItemAction"
+                name="adjustForm"
+                scope="session"
+                validate="true"
+                input="/gadjustments/adjust/adjust.jsp"
+                >
+        <forward
+                    name="success"
+                    path="/gadjustments/adjust/adjust.jsp"/>
+        <forward
+                    name="error"
+                    path="/gadjustments/adjust/adjust.jsp"/>
+
+        </action>
+        <action path="/removeAdjustItem"
+                type="com.owd.web.remotewarehouse.geneva.adjustments.adjustments.removeAdjustItemAction"
+                name="adjustForm"
+                scope="session"
+                validate="false"
+                input="/gadjustments/adjust/adjust.jsp"
+                >
+        <forward
+                    name="success"
+                    path="/gadjustments/adjust/adjust.jsp"/>
+        <forward
+                    name="error"
+                    path="/gadjustments/adjust/adjust.jsp"/>
+
+        </action>
+       <action path="/viewAdjust"
+                type="com.owd.web.remotewarehouse.geneva.adjustments.view.viewAdjustAction"
+                name="viewAdjustForm"
+                scope="session"
+                validate="false"
+                input="/gadjustments/view/view.jsp"
+                >
+        <forward
+                    name="success"
+                    path="/gadjustments/view/view.jsp"/>
+        <forward
+                    name="error"
+                    path="/gadjustments/view/view.jsp"/>
+
+        </action>
+        <action path="/searchAdjust"
+                type="com.owd.web.remotewarehouse.geneva.adjustments.view.searchAdjustAction"
+                name="viewAdjustForm"
+                scope="session"
+                validate="false"
+                input="/gadjustments/view/view.jsp"
+                >
+        <forward
+                    name="success"
+                    path="/gadjustments/view/view.jsp"/>
+        <forward
+                    name="error"
+                    path="/gadjustments/view/view.jsp"/>
+
+        </action>
+        <action path="/loadAdjust"
+                type="com.owd.web.remotewarehouse.geneva.adjustments.view.loadAdjustAction"
+                name="viewAdjustForm"
+                scope="session"
+                validate="false"
+                input="/gadjustments/view/view.jsp"
+                >
+        <forward
+                    name="success"
+                    path="/gadjustments/view/view.jsp"/>
+        <forward
+                    name="error"
+                    path="/gadjustments/view/view.jsp"/>
+
+        </action>
+       <action path="/voidAdjust"
+                type="com.owd.web.remotewarehouse.geneva.adjustments.view.voidAdjustAction"
+                name="viewAdjustForm"
+                scope="session"
+                validate="false"
+                input="/gadjustments/view/view.jsp"
+                >
+        <forward
+                    name="success"
+                    path="/gadjustments/view/view.jsp"/>
+        <forward
+                    name="error"
+                    path="/gadjustments/view/view.jsp"/>
+
+        </action>
+        <action path="/loadReturnOrder"
+                type="com.owd.web.remotewarehouse.geneva.adjustments.returns.loadReturnOrderAction"
+                name="returnForm"
+                scope="session"
+                validate="false"
+                input="/gadjustments/return/return.jsp"
+                >
+        <forward
+                    name="success"
+                    path="/gadjustments/return/return.jsp"/>
+        <forward
+                    name="error"
+                    path="/gadjustments/return/return.jsp"/>
+
+        </action>
+
+
+    </action-mappings>
+   <message-resources
+            parameter="com.owd.web.messageresources"
+            null="false"/>
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames" value="/WEB-INF/geneva/genevavalidation.xml"/>
+    </plug-in>
+
+
+</struts-config>

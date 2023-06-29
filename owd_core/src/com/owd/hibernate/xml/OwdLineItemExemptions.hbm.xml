@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+            name="com.owd.hibernate.generated.OwdLineItemExemptions"
+            table="owd_line_item_exemptions"
+            >
+
+        <id
+                name="id"
+                type="java.lang.Integer"
+                column="id"
+                >
+            <generator class="identity"/>
+        </id>
+
+        <property
+                name="orderFkey"
+                type="java.lang.Integer"
+                column="order_fkey"
+                length="10"
+                />
+        <property
+                name="inventoryNum"
+                type="java.lang.String"
+                column="inventory_num"
+                length="120"
+                />
+        <property
+                name="vendorSku"
+                type="java.lang.String"
+                column="vendor_sku"
+                length="120"
+                />
+        <property
+                name="exemptionCode"
+                type="java.lang.String"
+                column="exemptionCode"
+                length="120"
+                />
+        <property
+                name="exemptionValue"
+                type="java.lang.String"
+                column="exemptionValue"
+                length="120"
+                />
+        <property
+                name="qty"
+                type="integer"
+                column="qty"
+                length="50"
+                />
+        <property
+                name="merchantLineNumber"
+                type="java.lang.String"
+                column="merchant_line_number"
+                length="120"
+                />
+
+
+
+
+
+    </class>
+</hibernate-mapping>

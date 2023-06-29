@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OwdSupplier"
+        table="owd_supplier"
+        >
+
+        <id
+            name="supplierId"
+            type="java.lang.Integer"
+            column="supplier_id"
+            >
+            <generator class="assigned"/>
+        </id>
+
+        <property
+            name="clientFkey"
+            type="java.lang.Integer"
+            column="client_fkey"
+            not-null="true"
+            unique="true"
+            length="10"
+            />
+        <property
+            name="createdBy"
+            type="java.lang.String"
+            column="created_by"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="createdDate"
+            type="java.util.Date"
+            column="created_date"
+            not-null="true"
+            length="23"
+            />
+        <property
+            name="modifiedBy"
+            type="java.lang.String"
+            column="modified_by"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="modifiedDate"
+            type="java.util.Date"
+            column="modified_date"
+            not-null="true"
+            length="23"
+            />
+        <property
+            name="suppName"
+            type="java.lang.String"
+            column="supp_name"
+            not-null="true"
+            unique="true"
+            length="50"
+            />
+        <property
+            name="suppContact"
+            type="java.lang.String"
+            column="supp_contact"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="suppEmail"
+            type="java.lang.String"
+            column="supp_email"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="suppPhone"
+            type="java.lang.String"
+            column="supp_phone"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="suppFax"
+            type="java.lang.String"
+            column="supp_fax"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="suppCompany"
+            type="java.lang.String"
+            column="supp_company"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="suppAddrOne"
+            type="java.lang.String"
+            column="supp_addr_one"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="suppAddrTwo"
+            type="java.lang.String"
+            column="supp_addr_two"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="suppCity"
+            type="java.lang.String"
+            column="supp_city"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="suppState"
+            type="java.lang.String"
+            column="supp_state"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="suppZip"
+            type="java.lang.String"
+            column="supp_zip"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="suppSite"
+            type="java.lang.String"
+            column="supp_site"
+            not-null="true"
+            length="50"
+            />
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,1 @@
+//add column subtype to owd_client_billtypes, varchar length 30, default '' not NULLABLE

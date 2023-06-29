@@ -1,0 +1,16 @@
+<SortationTracking>
+    <tracker>
+        <tracking_no>Z1234568289302</tracking_no>
+        <ship_Method>Priority cubic</ship_Method>
+        <lane>1</lane>
+        <weight>1.23</weight>
+        <tracking_fkey>12345678</tracking_fkey>
+    </tracker>
+    <tracker>
+        <tracking_no>Z1234568289302</tracking_no>
+        <ship_Method>Priority cubic</ship_Method>
+        <lane>1</lane>
+        <weight>1.23</weight>
+        <tracking_fkey>12345678</tracking_fkey>
+    </tracker>
+</SortationTracking>

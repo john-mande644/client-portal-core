@@ -1,0 +1,23 @@
+
+Note in this file any needed info about special customizations,
+the server environment, specific access URLs for this deployment,
+ftp access information, etc.
+
+Cart info:
+TYPE - custom
+OBJECT - ycag.php
+LOCATION - /
+
+API Files:
+LOCATION - /import/
+
+FTP details:
+HOST - ftp://yourcrownandglory.com
+USER - ycag
+Password - !sterling!
+
+Shipping Rules:
+
+best way depending on the price.  This is implimented on the api
+end and the php script should pass a ship method of OWD.4TH.PARCEL
+until order rating is added to the api.

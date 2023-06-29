@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.owd.hibernate.OwdBoxtypes"
+    table="owd_boxtypes"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+        <generator class="identity" />
+    </id>
+     <property
+            name="location"
+            type="java.lang.String"
+            column="facility_code"
+            not-null="true"
+            length="50"
+            />
+      <property
+            name="name"
+            type="java.lang.String"
+            column="name"
+            not-null="true"
+            length="50"
+            />
+    <property
+        name="description"
+        type="java.lang.String"
+        column="description"
+        length="2147483647"
+    />  <property
+        name="type"
+        type="java.lang.String"
+        column="cs_pack_type"
+        length="50"
+    />
+    <property
+        name="height"
+            type="java.math.BigDecimal"
+            column="dim_height"
+            length="19"
+    />
+     <property
+        name="width"
+            type="java.math.BigDecimal"
+            column="dim_width"
+            length="19"
+    />
+     <property
+        name="depth"
+            type="java.math.BigDecimal"
+            column="dim_depth"
+            length="19"
+    />
+     <property
+        name="weight"
+            type="java.math.BigDecimal"
+            column="weight_lbs"
+            length="19"
+    />
+       <property
+        name="cost"
+            type="java.math.BigDecimal"
+            column="cost"
+            length="19"
+    />
+    <property
+            name="packagingType"
+            type="java.lang.String"
+            column="packaging_type"
+            length="50"
+            />
+    <property
+            name="barcode"
+            type="java.lang.String"
+            column="barcode"
+            length="50"
+            />
+
+    <!-- associations -->
+    <many-to-one name="owdInventory" class="com.owd.hibernate.OwdInventory" column="inventory_fkey" unique="true" />
+
+
+
+       <many-to-one
+            name="owdClient"
+            class="com.owd.hibernate.OwdClient"
+            not-null="true"
+            >
+            <column name="client_fkey"/>
+        </many-to-one>
+
+        <set
+            name="shipMethods"
+            lazy="false"
+            inverse="true"
+                cascade="all-delete-orphan"
+            >
+            <key>
+                <column name="owd_boxtypes_fkey"/>
+            </key>
+            <one-to-many
+                class="com.owd.hibernate.OwdBoxtypesMethods"
+                />
+        </set>
+
+
+
+
+
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OwdTimer"
+        table="owd_timers"
+        >
+
+        <id
+            name="timerId"
+            type="java.lang.Integer"
+            column="timer_id"
+            >
+            <generator class="assigned"/>
+        </id>
+
+        <property
+            name="activityDesc"
+            type="java.lang.String"
+            column="activity_desc"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="elapsedSeconds"
+            type="java.lang.Integer"
+            column="elapsed_seconds"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="notes"
+            type="java.lang.String"
+            column="notes"
+            not-null="true"
+            length="255"
+            />
+        <property
+            name="rate"
+            type="java.math.BigDecimal"
+            column="rate"
+            not-null="true"
+            length="19"
+            />
+        <property
+            name="noCharge"
+            type="java.lang.Integer"
+            column="no_charge"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="created"
+            type="java.util.Date"
+            column="created"
+            not-null="true"
+            length="23"
+            />
+        <property
+            name="createdBy"
+            type="java.lang.String"
+            column="created_by"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="category"
+            type="java.lang.String"
+            column="category"
+            length="50"
+            />
+
+        <!-- associations -->
+        <!-- bi-directional many-to-one association to OwdClient -->
+        <many-to-one
+            name="owdClient"
+            class="com.owd.hibernate.OwdClient"
+            not-null="true"
+            >
+            <column name="client_fkey"/>
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

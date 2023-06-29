@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OrderEvent"
+        table="order_events"
+        >
+
+        <id
+            name="eventId"
+            type="java.lang.Integer"
+            column="event_id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="orderFkey"
+            type="java.lang.Integer"
+            column="order_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="eventType"
+            type="java.lang.Integer"
+            column="event_type"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="message"
+            type="java.lang.String"
+            column="message"
+            not-null="true"
+            length="2147483647"
+            />
+        <property
+            name="eventStamp"
+            type="java.util.Date"
+            column="event_stamp"
+            not-null="true"
+            length="23"
+            />
+        <property
+            name="creator"
+            type="java.lang.String"
+            column="creator"
+            not-null="true"
+            length="50"
+            />
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

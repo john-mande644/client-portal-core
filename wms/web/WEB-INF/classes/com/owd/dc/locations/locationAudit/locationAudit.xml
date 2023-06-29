@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+    <package name="locationAudit" namespace="/locationAudit" extends="struts-default">
+
+
+        <action name="start"  class="com.owd.dc.locations.locationAudit.locationAuditAction">
+
+            <result name="success" >/rfapps/locations/locationAudit/index.jsp</result>
+
+        </action>
+        <action name="scanItem" method="scanItem" class="com.owd.dc.locations.locationAudit.locationAuditAction">
+
+            <result name="success" >/rfapps/locations/locationAudit/index.jsp</result>
+            <result name="nextItem">/rfapps/locations/locationAudit/nextItem.jsp</result>
+        </action>
+        <action name="numbers" method="numbers" class="com.owd.dc.locations.locationAudit.locationAuditAction">
+            <result name="success">/rfapps/locations/locationAudit/numbers.jsp</result>
+        </action>
+</package>
+    <package name="advancedManagement" namespace="/advancedManagement" extends="struts-default">
+        <action name="start" class="com.owd.dc.locations.locationAudit.advancedManagementAction">
+            <result name="success">/rfapps/locations/locationAudit/advancedIndex.jsp</result>
+            <result name="error">/rfapps/locations/locationAudit/advancedIndex.jsp</result>
+        </action>
+        <action name="loadLocation" method="loadLocation" class="com.owd.dc.locations.locationAudit.advancedManagementAction">
+            <result name="success">/rfapps/locations/locationAudit/advancedIndex.jsp</result>
+            <result name="error">/rfapps/locations/locationAudit/advancedIndex.jsp</result>
+        </action>
+        <action name="clearInventoryOne" method="clearOne" class="com.owd.dc.locations.locationAudit.advancedManagementAction">
+            <result name="success">/rfapps/locations/locationAudit/clearOne.jsp</result>
+        </action>
+        <action name="clearInventoryTwo" method="clearTwo" class="com.owd.dc.locations.locationAudit.advancedManagementAction">
+            <result name="success">/rfapps/locations/locationAudit/advancedIndex.jsp</result>
+        </action>
+        <action name="deleteLocationOne" method="deleteOne" class="com.owd.dc.locations.locationAudit.advancedManagementAction">
+            <result name="success">/rfapps/locations/locationAudit/deleteOne.jsp</result>
+        </action>
+        <action name="deleteLocationTwo" method="deleteTwo" class="com.owd.dc.locations.locationAudit.advancedManagementAction">
+            <result name="success">/rfapps/locations/locationAudit/deleteTwo.jsp</result>
+        </action>
+        <action name="deleteLocationThree" method="deleteThree" class="com.owd.dc.locations.locationAudit.advancedManagementAction">
+            <result name="success">/rfapps/locations/locationAudit/advancedIndex.jsp</result>
+        </action>
+
+
+
+    </package>
+    </struts>

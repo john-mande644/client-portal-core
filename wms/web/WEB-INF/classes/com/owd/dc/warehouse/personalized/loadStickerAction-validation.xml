@@ -1,0 +1,23 @@
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN" "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+        <validators>
+
+    <field name="orderRefNum">
+        <field-validator type="requiredstring">
+            <message>You must enter an Order Barcode</message>
+        </field-validator>
+    </field>
+    <field name="stickerSku">
+        <field-validator type="requiredstring">
+            <message>You must enter a Sticker Sku</message>
+        </field-validator>
+    </field>
+    <field name="forSku">
+        <field-validator type="requiredstring">
+            <message>You must enter aFor Sku</message>
+        </field-validator>
+    </field>
+
+        </validators>
+
+

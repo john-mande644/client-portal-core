@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+    <package name="onDemandPrinting" namespace="/onDemandPrinting" extends="struts-default">
+        <result-types>
+            <result-type name="customJSON" class="com.owd.results.JSONResult"/>
+        </result-types>
+        <action name="start" method="exec" class="com.owd.dc.OnDemandPrinting.BollAndBranch.bollBranchGiftPrintAction">
+
+            <result name="success">/OnDemandPrinting/BollBranch/start.jsp</result>
+
+        </action>
+        <action name="loadOrder" method="loadOrder" class="com.owd.dc.OnDemandPrinting.BollAndBranch.bollBranchGiftPrintAction">
+            <result name="success">/OnDemandPrinting/BollBranch/getPrinter.jsp</result>
+            <result name="error">/OnDemandPrinting/BollBranch/start.jsp</result>
+        </action>
+        <action name="printMessage" method="printMessage" class="com.owd.dc.OnDemandPrinting.BollAndBranch.bollBranchGiftPrintAction">
+            <result name="error">/OnDemandPrinting/BollBranch/getPrinter.jsp</result>
+            <result name="success">/OnDemandPrinting/BollBranch/start.jsp</result>
+        </action>
+
+    </package>
+
+</struts>

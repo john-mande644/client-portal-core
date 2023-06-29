@@ -1,0 +1,353 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- DTD for Inventory API   S. Buskirk -->
+<!-- Copyright (c) 2011 by One World Direct All Rights Reserved. -->
+<!-- Dates formatted as YYYYMMDD -->
+
+
+<!-- OWD_INVENTORY_STATUS_REQUEST description
+
+	This request returns an OWD_INVENTORY_STATUS_RESPONSE if successful, which can contain multiple
+	descriptions of existing inventory (item) records. See OWD_INVENTORY_STATUS_RESPONSE for response details.
+
+	An empty status request returns details for all item records (this list may be very large and slow to return).
+
+	The returned list may be restricted by adding one or more FILTER elements to the status request. Each
+	FILTER element contains two subelements, FILTER_TYPE and FILTER_VALUE.
+
+	The value of the TYPE element must be one of the strings listed in the table below (case-sensitive).
+	The associated VALUE element may be a number, a date or a string value depending on the TYPE value.
+	Multiple FILTER elements can be included in the request - all FILTERs will be combined in a logical
+	AND. All returned results will have satisfied all FILTER requirements provided.
+
+	FILTER_TYPE option                  FILTER_VALUE contents
+	================================================================
+	sku             		String value. Returns the item with the indicated sku value (case insensitive). Will always return one or zero items
+    skuContains             String value. Returns all items whose sku value contains the indicated string (case insensitive)
+    type         			String value. Must be one of KIT, VIRTUAL, SERIALIZED or PHYSICAL. 
+    containsComponent       String value. String value of component SKU. Returns parent KIT type items with the indicated SKU in their component lists
+    isActive            	Integer value. Zero for inactive items, 1 for active items
+    stockLevelBelow        	Integer value. Returns all items with a quantity_available value below the indicated value
+    groupName           	String value. Returns only items with a matching groupname value
+
+-->
+
+<!ELEMENT FILTER_TYPE (#PCDATA)>
+<!ELEMENT FILTER_VALUE (#PCDATA)>
+
+<!ELEMENT FILTER (FILTER_TYPE,FILTER_VALUE)>
+
+<!ELEMENT OWD_INVENTORY_STATUS_REQUEST (FILTER*)>
+
+
+<!-- OWD_INVENTORY_STATUS_RESPONSE returns zero or more OWD_INVENTORY_STATUS elements, one per returned subscription.
+
+   The initial COUNT subelement notes how many OWD_INVENTORY_STATUS elements are being returned in this response. 0 is a valid value
+   if the requested criteria for a OWD_INVENTORY_STATUS_REQUEST matched no records.
+
+   OWD_INVENTORY_STATUS_RESPONSE is the response type for inventory creation, update and search requests
+
+	Notes on each subelement of the OWD_INVENTORY_STATUS element are below:
+	
+-->
+
+<!ELEMENT COUNT (#PCDATA)><!--Number of OWD_INVENTORY_STATUS elements being returned in this response-->
+
+<!ELEMENT SKU (#PCDATA)> <!--String value for item SKU (255 character max). SKUs must be unique (case insensitive). SKU values cannot be modifed after an item is created -->
+<!ELEMENT TYPE (#PCDATA)><!-- One of the following strings:
+				
+							  PHYSICAL - a normal, physical item
+							  SERIALIZED - a PHYSICAL item that requires scanning/entering a unique serial number for each unit received, returned or picked 
+							  VIRTUAL - a non-physical item used as a placeholder. VIRTUAL items are not subject to billing charges and cannot ship alone
+							  KIT - a VIRTUAL item that represents a list of components or a Bill Of Materials (BOM) placeholder item. KIT component skus cannot also be KIT type items
+							  
+							  TYPE values cannot be modifed after an item is created.
+						-->
+
+
+<!ELEMENT SUPPLIER (#PCDATA)> <!--String value for item supplier name (255 character max).-->
+<!ELEMENT SUPPLIER_SKU (#PCDATA)> <!--String value (50 character max) for item supplier's SKU or identifier for this item (255 character max).-->
+<!ELEMENT KEYWORD (#PCDATA)> <!--String value for grouping, searching or reporting on items (255 character max).-->
+<!ELEMENT UNIT_PRICE (#PCDATA)><!--Decimal value for the currency cost of a single unit of this item. Defaults to 0.00. -->
+<!ELEMENT UNIT_COST (#PCDATA)><!--Decimal value for the currency cost from the supplier for a single unit of this item. Used for reporting purposes. Defaults to 0.00. -->
+<!ELEMENT TITLE (#PCDATA)><!--String value (255 character max) for short name of item. This is the primary item description. -->
+<!ELEMENT DESCRIPTION (#PCDATA)><!--String value (unlimited) for generic longer description or notes. Mostly used internally. -->
+<!ELEMENT COLOR (#PCDATA)><!--String value (50 character max) for color or other attribute of item. -->
+<!ELEMENT SIZE (#PCDATA)><!--String value (50 character max) for size or other attribute of item. -->
+<!ELEMENT REORDER_ALERT_QTY (#PCDATA)><!--Integer value. If more than zero, an alert email will be sent when the item stock level drops to or below this value.-->  
+<!ELEMENT WEIGHT (#PCDATA)><!--Decimal value of weight of one unit in US pounds.-->
+<!ELEMENT CUSTOMS_DESC (#PCDATA)><!--String value (30 character max) for customs description for this item. Used on international export paperwork. Defaults to line item description on order record. -->
+<!ELEMENT CUSTOMS_VALUE (#PCDATA)><!--Decimal value for unit value for customs purposes in USD. Used on international export paperwork. Defaults to value on order record. Values less than 0.01 are interpreted as an unset/blank value -->
+<!ELEMENT PACKING_INSTRUCTIONS (#PCDATA)><!--String value for special instructions/reminders to packers about this item. This text will appear whenever this item is packed. -->
+<!ELEMENT NOTES (#PCDATA)><!-- String value for international standard harmonized code. Accurate codes can reduce the time for international order delivery -->
+
+<!ELEMENT IMAGE_URL (#PCDATA)><!-- Complete valid publicly-accessible URL for full-size GIF,JPEG or PNG image of product -->
+<!ELEMENT THUMB_URL (#PCDATA)><!-- Complete valid publicly-accessible URL for thumbnail (appx. 75pxx75px) GIF,JPEG or PNG image of product -->
+<!ELEMENT WEB_URL (#PCDATA)><!-- Complete valid publicly-accessible URL for publicly-accessible HTML page associated with product -->
+<!ELEMENT GROUPNAME (#PCDATA)><!--String reference value for arbitrary grouping of SKUs by identifier. Optional. 50 character maximum.-->
+<!ELEMENT DEFAULT_FACILITY_CODE (#PCDATA)><!--String reference value for the physical facility where this item will be stored by default. Optional. Current valid codes are 'DC1' (SD) and 'DC6' (CA).
+									  If not present during item creation, the default facility for the client account will be used automatically. -->
+<!ELEMENT CASE_QTY (#PCDATA)><!--Integer value greater than 1. Used only by contractual arrangement for billing case picks. -->
+
+<!--If an item is of type KIT, it must have a list of kit components as individual COMPONENT elements of a parent COMPONENTS element -->
+<!ELEMENT COMPONENT_SKU (#PCDATA)>
+<!ELEMENT COMPONENT_QTY (#PCDATA)>
+<!ELEMENT COMPONENT (COMPONENT_SKU,COMPONENT_QTY)>
+<!ELEMENT COMPONENTS (COMPONENT)+>
+
+
+<!ELEMENT OWD_INVENTORY_STATUS (SUPPLIER,SUPPLIER_SKU,KEYWORD,UNIT_PRICE,UNIT_COST,TITLE,DESCRIPTION,COLOR,SIZE,
+								REORDER_ALERT_QTY,WEIGHT,CUSTOMS_DESC,CUSTOMS_VALUE,PACKING_INSTRUCTIONS,NOTES,IMAGE_URL,THUMB_URL,WEB_URL,GROUPNAME,CASE_QTY*,COMPONENTS*)>
+
+<!--  OWD_INVENTORY_STATUS attributes are not editable through the API. However, sku, defaultFacilityCode and type values may be specified when creating items via the API. -->
+<!ATTLIST OWD_INVENTORY_STATUS
+        id       				CDATA   	#REQUIRED  <!-- internal OWD item ID -->
+        created               	CDATA       #REQUIRED  <!-- YYYYMMDD format. Date item record was created.-->
+        createdBy       		CDATA   	#REQUIRED  <!-- Text identifier of person or process creating the record.  -->
+        defaultFacilityCode     CDATA   	#REQUIRED  <!-- Code for physical facility where item is stored.  -->
+        sku						CDATA   	#REQUIRED  <!-- Unique string identifer for this item -->
+        quantity_available		CDATA   	#REQUIRED  <!-- Integer value of shippable item units not allocated to orders -->
+        type					(PHYSICAL|SERIALIZED|VIRTUAL|KIT) #REQUIRED  <!-- See the TYPE element definition above -->
+
+
+<!ELEMENT OWD_INVENTORY_STATUS_RESPONSE (COUNT,OWD_INVENTORY_STATUS*)>
+
+<!-- OWD_INVENTORY_UPDATE_REQUEST description
+
+	This request updates an item record and returns an OWD_INVENTORY_STATUS_RESPONSE if successful. See OWD_INVENTORY_STATUS_RESPONSE for response details.
+
+	The returned records reflect the state of the system after the requested updates have been applied.
+
+	This call allows updating all available fields of the item record, including the component records for KIT items. This call does respect the
+	TESTING flag and will roll back any database changes after sending a response if TESTING is set to TRUE.
+
+	Each OWD_INVENTORY_UPDATE_REQUEST sent represents a request to update one item record. The sku attribute value of OWD_INVENTORY_UPDATE provides
+	the unique identifier for the item to update.
+
+	The rest of the OWD_INVENTORY_UPDATE subelements are the fields to update. You may include any number of the available fields to update. Please see
+	the examples for clarity (below).
+
+	The COMPONENT elements are special in that if you provide a COMPONENT to update or add, all existing components in the kit
+	will be deleted and only the list provided in your update request will exist after the update is complete. Including COMPONENT elements
+	in an update request will return an error if the type value of the parent item is not "KIT". In addition, component
+	lists for a KIT item may only be modified if no unshipped orders containing the current parent sku exist.
+
+	For example, if an item has 2 components in it now and you want to add a new component to it, your update request must include
+	both the old and new component information in your update request. Examples are provided below.
+	
+	Items of type KIT must have at least one COMPONENT in a COMPONENTS element.
+	
+-->
+
+<!ELEMENT OWD_INVENTORY_UPDATE_REQUEST (SUPPLIER?,SUPPLIER_SKU?,KEYWORD?,UNIT_PRICE?,UNIT_COST?,TITLE?,DESCRIPTION?,COLOR?,SIZE?,
+								REORDER_ALERT_QTY?,WEIGHT?,CUSTOMS_DESC?,CUSTOMS_VALUE?,PACKING_INSTRUCTIONS?,NOTES?,IMAGE_URL?,THUMB_URL?,WEB_URL?,GROUPNAME?, CASE_QTY?, DEFAULT_FACILITY_CODE?, COMPONENTS*)>
+
+<!ATTLIST OWD_INVENTORY_UPDATE
+        sku       		CDATA   	#REQUIRED  <!-- String, max 255 characters -->
+
+
+<!-- OWD_INVENTORY_CREATE_REQUEST description
+
+	This request creates a new item record and returns an OWD_INVENTORY_STATUS_RESPONSE if successful. See OWD_INVENTORY_STATUS_RESPONSE for response details.
+
+	SKU and TYPE are the only required elements to create most items. Items of type KIT also must have at least one COMPONENT in a COMPONENTS element.
+	
+	TYPE and SKU values cannot be modified once an item record is created.
+	
+	Requests made with the "testing" OWD_API_REQUEST attribute set to "TRUE" will not permanently alter the OWD system.
+-->
+
+<!ELEMENT OWD_INVENTORY_CREATE_REQUEST  (SKU,TYPE,SUPPLIER?,SUPPLIER_SKU?,KEYWORD?,UNIT_PRICE?,UNIT_COST?,TITLE?,DESCRIPTION?,COLOR?,SIZE?,
+								REORDER_ALERT_QTY?,WEIGHT?,CUSTOMS_DESC?,CUSTOMS_VALUE?,PACKING_INSTRUCTIONS?,NOTES?,IMAGE_URL?,THUMB_URL?,WEB_URL?,GROUPNAME?,CASE_QTY?, DEFAULT_FACILITY_CODE?, COMPONENTS*)>
+
+
+
+
+<!-- EXAMPLE of minimum request to create an inventory item
+
+<OWD_API_REQUEST	api_version="1.9"
+        		client_id="1234"
+        		client_authorization="12938462"
+        		testing="FALSE" >
+	<OWD_INVENTORY_CREATE_REQUEST>
+	    <SKU>ABC123</SKU>
+	    <TYPE>PHYSICAL</TYPE>
+	</OWD_INVENTORY_CREATE_REQUEST>
+</OWD_API_REQUEST>
+
+-->
+
+<!-- EXAMPLE of minimum request to create a KIT type inventory item
+
+<OWD_API_REQUEST	api_version="1.9"
+        		client_id="1234"
+        		client_authorization="12938462"
+        		testing="FALSE" >
+	<OWD_INVENTORY_CREATE_REQUEST>
+	    <SKU>ABC123</SKU>
+	    <TYPE>KIT</TYPE>
+	    <COMPONENTS>
+	        <COMPONENT>
+	            <COMPONENT_SKU>DDD661</COMPONENT_SKU>
+	            <COMPONENT_QTY>3</COMPONENT_QTY>
+	        </COMPONENT>
+	    </COMPONENTS>
+	</OWD_INVENTORY_CREATE_REQUEST>
+</OWD_API_REQUEST>
+
+-->
+
+<!-- EXAMPLE of request for all item records
+
+<OWD_API_REQUEST	api_version="1.9"
+        		client_id="1234"
+        		client_authorization="12938462"
+        		testing="FALSE" >
+	<OWD_INVENTORY_STATUS_REQUEST />
+</OWD_API_REQUEST>
+
+-->
+
+
+<!-- EXAMPLE of request for the item with SKU "3456A"
+
+<OWD_API_REQUEST	api_version="1.9"
+        		client_id="1234"
+        		client_authorization="12938462"
+        		testing="FALSE" >
+	<OWD_INVENTORY_STATUS_REQUEST >
+	<FILTER>
+	    <FILTER_TYPE>sku</FILTER_TYPE>
+	    <FILTER_VALUE>3456A</FILTER_VALUE>
+	</FILTER>
+  </OWD_INVENTORY_STATUS_REQUEST>
+</OWD_API_REQUEST>
+
+-->
+
+<!-- EXAMPLE of request for all virtual items whose skus contain the string "EE"
+
+<OWD_API_REQUEST	api_version="1.9"
+        		client_id="1234"
+        		client_authorization="12938462"
+        		testing="FALSE" >
+	<OWD_INVENTORY_STATUS_REQUEST >
+	<FILTER>
+	    <FILTER_TYPE>skuContains</FILTER_TYPE>
+	    <FILTER_VALUE>EE</FILTER_VALUE>
+	</FILTER>
+	<FILTER>
+	    <FILTER_TYPE>type</FILTER_TYPE>
+	    <FILTER_VALUE>VIRTUAL</FILTER_VALUE>
+	</FILTER>
+  </OWD_INVENTORY_STATUS_REQUEST>
+</OWD_API_REQUEST>
+
+-->
+
+<!-- EXAMPLE of 1-record response (as provided by any item API call)
+   A Multiple-record response would have multiple OWD_INVENTORY_STATUS elements
+   and a correct COUNT value.
+
+<OWD_INVENTORY_STATUS_RESPONSE>
+	<COUNT>
+		1
+	</COUNT>
+	<OWD_INVENTORY_STATUS       id="8828837" created="20110402" createdBy="bgentle"
+								sku="1234A"  quantity_available="3" quantity_unshipped="2"
+								quantity_backordered="0" quantity_onhold="0" type="PHYSICAL" >
+    <SUPPLIER>Wackenhut</SUPPLIER >
+    <SUPPLIER_SKU>XT-KKAIS</SUPPLIER_SKU >
+    <KEYWORD></KEYWORD >
+    <UNIT_PRICE>47.99</UNIT_PRICE >
+    <UNIT_COST>24.00</UNIT_COST >
+    <TITLE>Rock, Paper, Scissors, Lizard, Spock - A Strategy Guide</TITLE >
+    <DESCRIPTION>Blue jacketed hardcover book with gold lettering</DESCRIPTION >
+    <COLOR>Maroon</COLOR >
+    <SIZE>XL</SIZE >
+    <REORDER_ALERT_QTY>20</REORDER_ALERT_QTY >
+    <WEIGHT>1.24</WEIGHT >
+    <CUSTOMS_DESC></CUSTOMS_DESC >
+    <CUSTOMS_VALUE></CUSTOMS_VALUE >
+    <NOTES></NOTES >
+    <PACKING_INSTRUCTIONS></PACKING_INSTRUCTIONS >
+    <HARMONIZED_CODE></HARMONIZED_CODE >
+	</OWD_INVENTORY_STATUS>
+</OWD_INVENTORY_STATUS_RESPONSE>
+
+-->
+
+	           
+<!-- Example of a request to update just the title of an item:
+
+<?xml version=1.0 encoding=UTF-8?>
+<OWD_API_REQUEST api_version="1.9" client_authorization="dsfsdf" client_id="320" testing="TRUE">
+	<OWD_INVENTORY_UPDATE_REQUEST sku="ABCD123">
+			<TITLE>
+				Gentleman's Guide to Fooposity
+			</TITLE>
+	</OWD_INVENTORY_UPDATE_REQUEST>
+</OWD_API_REQUEST>
+
+
+-->
+
+<!-- Example of a request to update the color and size values:
+
+<?xml version=1.0 encoding=UTF-8?>
+<OWD_API_REQUEST api_version="1.9" client_authorization="dsfsdf" client_id="320" testing="TRUE">
+	<OWD_INVENTORY_UPDATE_REQUEST sku="ABCD123">
+			<COLOR>
+				Maroon
+			</COLOR>
+			<SIZE>
+				XL
+			</SIZE>
+		</OWD_INVENTORY_UPDATE_REQUEST>
+</OWD_API_REQUEST>
+
+
+-->
+
+<!-- Example of a request to update the unit price and change the component item list to 2 units of NN42 (any existing items will be deleted and item type must be KIT):
+
+<?xml version=1.0 encoding=UTF-8?>
+<OWD_API_REQUEST api_version="1.9" client_authorization="dsfsdf" client_id="320" testing="TRUE">
+	<OWD_INVENTORY_UPDATE_REQUEST sku="ABCD123">
+			<UNIT_PRICE>
+				47.99
+			</UNIT_PRICE>
+		<COMPONENTS>
+			<COMPONENT>
+				<COMPONENT_SKU>NN42</COMPONENT_SKU>
+				<COMPONENT_QTY>2</COMPONENT_QTY>
+			<COMPONENT>
+		<COMPONENTS>
+	</OWD_INVENTORY_UPDATE_REQUEST>
+</OWD_API_REQUEST>
+
+
+-->
+
+<!-- Example of a request to set the unit price and change the component item list to 2 units of NN42 and 1 unit of NN41 (any existing items will be deleted and item type must be KIT):
+
+<?xml version=1.0 encoding=UTF-8?>
+<OWD_API_REQUEST api_version="1.9" client_authorization="dsfsdf" client_id="320" testing="TRUE">
+	<OWD_INVENTORY_UPDATE_REQUEST sku="ABCD123">
+			<UNIT_PRICE>
+				47.99
+			</UNIT_PRICE>
+		<COMPONENTS>
+			<COMPONENT>
+				<COMPONENT_SKU>NN42</COMPONENT_SKU>
+				<COMPONENT_QTY>2</COMPONENT_QTY>
+			<COMPONENT>
+			<COMPONENT>
+				<COMPONENT_SKU>NN41</COMPONENT_SKU>
+				<COMPONENT_QTY>1</COMPONENT_QTY>
+			<COMPONENT>
+		<COMPONENTS>
+	</OWD_INVENTORY_UPDATE_REQUEST>
+</OWD_API_REQUEST>
+
+
+-->

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.owd.hibernate.OwdOrderAutoItem" 
+    table="owd_order_auto_items"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+        <generator class="identity" />
+    </id>
+
+    <property
+        name="sku"
+        type="java.lang.String"
+        column="sku"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="quantity"
+        type="java.lang.Integer"
+        column="quantity"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="unitPrice"
+        type="java.math.BigDecimal"
+        column="unit_price"
+        not-null="true"
+        length="19"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to OwdOrderAuto -->
+    <many-to-one
+        name="owdOrderAuto"
+        class="com.owd.hibernate.OwdOrderAuto"
+        not-null="true"
+    >
+        <column name="autoship_fkey" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

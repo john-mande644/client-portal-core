@@ -1,0 +1,9 @@
+rootProject.name = 'core-buildall'
+include('owd_core')
+include('api')
+include('callcenter')
+include('internal')
+include('extranet')
+include('wms')
+include('jobs')
+

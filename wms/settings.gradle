@@ -1,0 +1,2 @@
+rootProject.name = 'wms'
+includeFlat('owd_core')

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.InventoryAdditionalInfo"
+        table="owd_client_inv"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="client_inv_id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="clientId"
+            type="java.lang.Integer"
+            column="client_fkey"
+            length="10"
+            />
+        <property
+            name="forceShipment"
+            type="boolean"
+            column="force_shipment"
+             length="1"
+            />
+          <property
+            name="documentsOnly"
+            type="boolean"
+            column="is_documents"
+             length="1"
+            />
+        <property
+            name="originCountry"
+            type="java.lang.String"
+            column="origin_country"
+            length="50"
+            />
+         <property
+            name="usForcedMethod"
+            type="java.lang.String"
+            column="force_method_us"
+            length="50"
+            />
+         <property
+            name="poForcedMethod"
+            type="java.lang.String"
+            column="force_method_po"
+            length="50"
+            />
+         <property
+            name="canForcedMethod"
+            type="java.lang.String"
+            column="force_method_can"
+            length="50"
+            />
+         <property
+            name="intlForcedMethod"
+            type="java.lang.String"
+            column="force_method_int"
+            length="50"
+            />
+
+        <!-- associations -->
+        <!-- bi-directional many-to-one association to OwdInventory -->
+        <many-to-one name="owdInventory" class="com.owd.hibernate.generated.OwdInventory" column="inventory_fkey" unique="true" />
+
+
+
+    </class>
+</hibernate-mapping>

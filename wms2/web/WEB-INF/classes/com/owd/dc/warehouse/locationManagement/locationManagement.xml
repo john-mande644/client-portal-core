@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE struts PUBLIC
+                "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+                "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+        <struts>
+
+
+    <package name="locationManagement" namespace="/locationManagement" extends="struts-default">
+        <action name="start">
+                     <result>/WEB-INF/classes/com/owd/dc/warehouse/locationManagement/index.jsp</result>
+        </action>
+      <action name="byId" class="com.owd.dc.warehouse.locationManagement.loadLocationAction">
+                     <result>/WEB-INF/classes/com/owd/dc/warehouse/locationManagement/mainLocationInterface.jsp</result>
+        </action>
+
+      </package>
+   <package name="locationAdd" namespace="/locationAdd" extends="struts-default">
+       <result-types>
+           <result-type name="customJSON" class="com.owd.results.JSONResult"/>
+       </result-types>
+       <action name="addNewLocation" class="com.owd.dc.warehouse.locationManagement.addNewLocationAction">
+            <result type="customJSON"/>
+       </action>
+       <action name="addMobile" method="addMobile" class="com.owd.dc.warehouse.locationManagement.addNewLocationAction">
+              <result type="customJSON"/>
+       </action>
+   </package>
+   <package name="locationLookup" namespace="/locationLookup" >
+       <result-types>
+          <result-type name="customJSON" class="com.owd.results.JSONResult"/>
+    </result-types>
+
+        <action name="treeLookup" class="com.owd.dc.warehouse.locationManagement.locationTreeLookupAction">
+          <result type="customJSON">options</result>
+        </action>
+
+
+    </package>
+     <package name="locationWizard" namespace="/locationWizard" extends="struts-default">
+         <action name="wizardstart" class="com.owd.dc.warehouse.locationManagement.locationWizardAction">
+             <result>/WEB-INF/classes/com/owd/dc/warehouse/locationManagement/locationWizardIndex.jsp</result>
+         </action>
+         <action name="locationWizardAddToBean" class="com.owd.dc.warehouse.locationManagement.locationWizardAction" method="addToBean">
+             <result>/WEB-INF/classes/com/owd/dc/warehouse/locationManagement/locationWizardIndex.jsp</result>
+         </action>
+         <action name="locationWizardRemoveFromBean" class="com.owd.dc.warehouse.locationManagement.locationWizardAction" method="removeFromBean">
+             <result>/WEB-INF/classes/com/owd/dc/warehouse/locationManagement/locationWizardIndex.jsp</result>
+         </action>
+         <action name="locationWizardCreateLocations" class="com.owd.dc.warehouse.locationManagement.locationWizardAction" method="createLocations">
+             <result name="error">/WEB-INF/classes/com/owd/dc/warehouse/locationManagement/locationWizardIndex.jsp</result>
+             <result name="success">/WEB-INF/classes/com/owd/dc/warehouse/locationManagement/locationWizardDone.jsp</result>
+         </action>
+     </package>
+    
+    </struts>

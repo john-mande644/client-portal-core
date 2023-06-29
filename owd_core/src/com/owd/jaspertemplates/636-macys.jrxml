@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2e77af26-3429-49ce-802c-bf39f4363cf4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OWD"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="Detail" fontName="Arial" fontSize="12">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="light gray background" backcolor="#E6E6E6" fill="Solid">
+		<pen lineColor="#E6E6E6"/>
+		<box rightPadding="3">
+			<pen lineWidth="1.0" lineColor="#E6E6E6"/>
+			<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#E6E6E6"/>
+			<leftPen lineWidth="1.0" lineColor="#E6E6E6"/>
+			<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#E6E6E6"/>
+			<rightPen lineWidth="1.0" lineColor="#E6E6E6"/>
+		</box>
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="right padding" backcolor="#FFFFFF" fill="Solid">
+		<box rightPadding="3">
+			<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+			<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#CCCCCC"/>
+			<leftPen lineWidth="0.0" lineColor="#CCCCCC"/>
+			<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#CCCCCC"/>
+			<rightPen lineWidth="0.0" lineColor="#CCCCCC"/>
+		</box>
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<parameter name="order_id" class="java.lang.String"/>
+	<parameter name="imageDir" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SET QUOTED_IDENTIFIER ON;
+		SELECT
+    *,
+    dbo.udf_getsladate(order_id) AS sladate,(select convert(varchar(100),ISNULL(value,'')) from owd_tags where external_id=order_id and name='RECEIPTID') as receiptId ,
+    (select convert(varchar(5000),ISNULL(value,'')) from owd_tags where external_id=order_id and name='RETURNDATA') as returnData,
+    (select convert(varchar(2),ISNULL(value,'')) from owd_tags where external_id=order_id and name='RETURNBARCODE') as returnBarcode
+FROM
+    owd_order
+JOIN
+    (
+        SELECT
+            external_id,
+            XMLDocument.value('(/hubOrder/poNumber)[1]', 'varchar(50)')                    AS PO,
+            CONVERT(VARCHAR,XMLDocument.value('(/hubOrder/orderDate)[1]', 'datetime'),101) AS
+            order_date,
+            XMLDocument.value('(/hubOrder/custOrderNumber)[1]', 'varchar(50)') AS
+            customer_order_number,
+            replace(LTRIM(RTRIM(ISNULL(XMLDocument.value('(/hubOrder/poHdrData/packListData/packslipMessage)[1]','varchar(150)'),''))),'[.]',char(13)) as edi_packSlipMessage,
+            ISNULL(XMLDocument.value('(/hubOrder/poHdrData/giftMessage)[1]','varchar(350)'),'') as edi_giftMessage,
+            XMLDocument.value('(/hubOrder/poHdrData/merchDivision)[1]','varchar(150)') as edi_merchDivision,
+            replace( ISNULL(XMLDocument.value('(/hubOrder/poHdrData/customerPaymentType)[1]','varchar(150)'),''),'#',char(13)) as edi_paymentType,
+            XMLDocument.value('(/hubOrder/vendorShipInfo/partnerLocationId)[1]', 'varchar(50)') AS returnCode,
+            XMLDocument.value('(/hubOrder/salesDivision)[1]', 'varchar(50)') AS salesDivision
+            
+        FROM
+            owd_tags tag
+        JOIN
+            vw_chub_po_tags x
+        ON
+            x.id=tag.id
+        WHERE
+            type='ORDER'
+        AND name='COMMERCEHUB_PO_XML' ) AS edi
+ON
+    edi.external_id=order_id
+JOIN
+    owd_order_ship_info s
+ON
+    s.order_fkey=order_id
+JOIN
+    (
+        SELECT
+            external_id,
+            LTRIM(RTRIM(ISNULL(l.orderline.value('(./orderLineNumber)[1]', 'varchar(50)')
+            ,''))) AS edi_orderLineNumber,
+            LTRIM(RTRIM(ISNULL(l.orderline.value('(./merchantLineNumber)[1]',
+            'varchar(50)'),'')))                                          AS edi_merchantLineNumber,
+            LTRIM(RTRIM(ISNULL(l.orderline.value('(./UPC)[1]', 'varchar(50)'),''))) AS
+            edi_item_upc,
+            LTRIM(RTRIM(ISNULL(CONVERT(bigint,l.orderline.value('(./qtyOrdered)[1]',
+            'varchar(50)')),''))) AS edi_item_qty,
+            LTRIM(RTRIM(ISNULL(l.orderline.value('(./unitOfMeasure)[1]', 'varchar(50)'),
+            ''))) AS edi_item_qty_uom,
+            LTRIM(RTRIM(ISNULL(CONVERT(MONEY,l.orderline.value('(./unitCost)[1]',
+            'varchar(50)')),''))) AS edi_unit_price,
+            LTRIM(RTRIM(ISNULL(l.orderline.value('(./description)[1]', 'varchar(50)'),'')
+            )) AS edi_item_title,
+             LTRIM(RTRIM(ISNULL(l.orderline.value('(./merchantSKU)[1]', 'varchar(50)'),'')
+            )) AS merchantSKU,
+             LTRIM(RTRIM(ISNULL(l.orderline.value('(./vendorSKU)[1]', 'varchar(50)'),'')
+            )) AS vendorSKU,
+             LTRIM(RTRIM(ISNULL(l.orderline.value('(./shoppingCartSKU)[1]', 'varchar(50)'),'')
+            )) AS shoppingCartSKU,
+             LTRIM(RTRIM(ISNULL(l.orderline.value('(./poLineData/prodColor)[1]', 'varchar(50)'),'')
+            )) AS edi_item_color,
+             LTRIM(RTRIM(ISNULL(l.orderline.value('(./poLineData/prodSize)[1]', 'varchar(50)'),'')
+            )) AS edi_item_size,
+              LTRIM(RTRIM(ISNULL(l.orderline.value('(./poLineData/giftRegistry)[1]', 'varchar(50)'),'')
+            )) AS edi_giftRegistry,
+              replace(LTRIM(RTRIM(ISNULL(l.orderline.value('(./poLineData/lineNote1)[1]', 'varchar(150)'),'')
+            )),'[.]',char(13)) AS edi_line_note
+        FROM
+            owd_tags tag
+        JOIN
+            vw_chub_po_tags x CROSS apply x.XMLDocument.nodes('/hubOrder/lineItem') AS l(orderline)
+        ON
+            x.id=tag.id
+        WHERE
+            type='ORDER'
+        AND name='COMMERCEHUB_PO_XML') AS line_data
+ON
+    line_data.external_id=order_id
+     left join owd_line_item
+    on owd_order.order_id = owd_line_item.order_fkey and cust_refnum = line_data.edi_merchantLineNumber
+   
+WHERE
+  quantity_actual > 0 and   order_num=$P{order_id}]]>
+	</queryString>
+	<field name="order_id" class="java.lang.Integer"/>
+	<field name="receiptId" class="java.lang.String"/>
+	<field name="returnData" class="java.lang.String"/>
+	<field name="edi_giftMessage" class="java.lang.String"/>
+	<field name="edi_giftRegistry" class="java.lang.String"/>
+	<field name="edi_packSlipMessage" class="java.lang.String"/>
+	<field name="salesDivision" class="java.lang.String"/>
+	<field name="customer_order_number" class="java.lang.String"/>
+	<field name="po_num" class="java.lang.String"/>
+	<field name="actual_order_date" class="java.sql.Timestamp"/>
+	<field name="bill_last_name" class="java.lang.String"/>
+	<field name="bill_first_name" class="java.lang.String"/>
+	<field name="bill_address_one" class="java.lang.String"/>
+	<field name="bill_address_two" class="java.lang.String"/>
+	<field name="bill_city" class="java.lang.String"/>
+	<field name="bill_state" class="java.lang.String"/>
+	<field name="bill_zip" class="java.lang.String"/>
+	<field name="bill_country" class="java.lang.String"/>
+	<field name="bill_company_name" class="java.lang.String"/>
+	<field name="ship_last_name" class="java.lang.String"/>
+	<field name="ship_first_name" class="java.lang.String"/>
+	<field name="ship_address_one" class="java.lang.String"/>
+	<field name="ship_address_two" class="java.lang.String"/>
+	<field name="ship_city" class="java.lang.String"/>
+	<field name="ship_state" class="java.lang.String"/>
+	<field name="ship_zip" class="java.lang.String"/>
+	<field name="ship_country" class="java.lang.String"/>
+	<field name="ship_company_name" class="java.lang.String"/>
+	<field name="edi_item_title" class="java.lang.String"/>
+	<field name="edi_item_upc" class="java.lang.String"/>
+	<field name="quantity_actual" class="java.lang.Integer"/>
+	<field name="cust_refnum" class="java.lang.String"/>
+	<field name="order_num_barcode" class="java.lang.String"/>
+	<field name="edi_item_qty" class="java.lang.String"/>
+	<variable name="GiftRegistry" class="java.lang.Boolean" resetType="Group" resetGroup="order">
+		<variableExpression><![CDATA[$F{edi_giftRegistry}.length() > 0]]></variableExpression>
+		<initialValueExpression><![CDATA[false]]></initialValueExpression>
+	</variable>
+	<group name="order">
+		<groupExpression><![CDATA[$F{order_id}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</background>
+	<title>
+		<band height="250" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+				<reportElement x="0" y="-1" width="230" height="73" uuid="df577757-87b5-4bf3-ab7e-ab006954df81"/>
+				<graphicElement fill="Solid"/>
+				<imageExpression><![CDATA[$F{salesDivision}.startsWith("1") ? $P{imageDir}+"images/macys-logo.jpg" : $P{imageDir}+"images/bloomingdales-logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="380" y="115" width="91" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="49bea630-a459-4ee0-b3ab-4fe12a1a1e7e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Order Number: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="485" y="114" width="183" height="19" uuid="e19d3388-f18d-4a08-a664-a8f0536ea2a4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_order_number}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="380" y="95" width="91" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="be5e4ca7-7e7e-43e8-a756-f73c77b73e71"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Order Date: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="380" y="155" width="91" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="b8f9f145-62ee-4c54-9a8c-3a321021b814">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PO Number: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="485" y="155" width="183" height="19" uuid="2f7ceeeb-3104-4362-9964-ecb6dff7e0a9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{po_num}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="485" y="95" width="82" height="18" uuid="b140c8a5-d643-49e4-9914-ec3f6ace9ef8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{actual_order_date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="79" width="251" height="15" backcolor="#FFFFFF" uuid="2ab05548-8db9-4540-ae38-068f4a90cf74">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[BILLING ADDRESS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="169" y="79" width="251" height="15" backcolor="#FFFFFF" uuid="39c5248f-c0cd-456b-b702-b8bdb8061ff4">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[SHIPPING ADDRESS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="96" width="244" height="100" uuid="71a05aa2-f524-44a5-8a11-1ab7e95b1731">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bill_first_name}+" "+$F{bill_last_name}+"\n"+
+($F{bill_company_name}.equals("")?"":$F{bill_company_name}+"\n")+
+$F{bill_address_one}+"\n"+
+($F{bill_address_two}.equals("")?"":$F{bill_address_two}+"\n")+
+$F{bill_city}+", "+$F{bill_state}+"  "+$F{bill_zip}+"\n"+
+$F{bill_country}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="94" width="242" height="100" uuid="bdde6229-4cd9-48b9-b58d-fdca363283a4">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ship_first_name}+" "+$F{ship_last_name}+"\n"+
+($F{ship_company_name}.equals("")?"":$F{ship_company_name}+"\n")+
+$F{ship_address_one}+"\n"+
+($F{ship_address_two}.equals("")?"":$F{ship_address_two}+"\n")+
+$F{ship_city}+", "+$F{ship_state}+"  "+$F{ship_zip}+"\n"+
+$F{ship_country}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="58" width="168" height="19" uuid="58d875df-8eab-4ab3-a114-094981c3c0d2"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SHIPPING DETAILS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="-1" width="100" height="15" uuid="c6fef37e-6ef0-47e6-93bd-e09dbcb7877e">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[CONTACT US]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="20" width="188" height="38" uuid="78389012-9143-4a32-8856-6bea009e3341">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<printWhenExpression><![CDATA[$F{salesDivision}.startsWith("1")]]></printWhenExpression>
+				</reportElement>
+				<text><![CDATA[www.macys.com/contactus
+1-800-289-6229, available 24/7
+customerservice@macys.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="20" width="188" height="38" uuid="66688e82-d2bb-4a9a-93f1-1793a1420d53">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<printWhenExpression><![CDATA[$F{salesDivision}.startsWith("2")]]></printWhenExpression>
+				</reportElement>
+				<text><![CDATA[http://www.bloomingdales.com/contactus
+1-800-777-0000, available 24/7
+customerservice@bloomingdales.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="380" y="135" width="130" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="8957a6cd-9562-4d41-8305-77dd59535bb8">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Reservation Number:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="485" y="135" width="183" height="19" uuid="84b7c38e-4d52-4af8-be15-f0108de520db"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{receiptId}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="220" y="0" width="180" height="15" backcolor="#C9C9C9" uuid="aa88bb4f-412b-4311-b7e1-631d050c46d6">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Item Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="0" y="0" width="95" height="15" backcolor="#C9C9C9" uuid="d0bbe60b-3d17-4d0d-8176-3656189549da">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[LINE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="95" y="0" width="125" height="15" backcolor="#C9C9C9" uuid="683dc1db-e623-4f64-841a-a89ae47dc170">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[UPC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="485" y="0" width="85" height="15" backcolor="#C9C9C9" uuid="918959c2-20af-4a84-b384-7113e2abb696">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box leftPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[QTY ORDERED]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="400" y="0" width="85" height="15" backcolor="#C9C9C9" uuid="3fe7354f-cf04-45b6-9a01-64eb876c5b3b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QTY SHIPPED]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement style="light gray background" stretchType="RelativeToBandHeight" mode="Transparent" x="220" y="0" width="180" height="19" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFCFC" uuid="338cfc6e-2cb7-42a7-b5bf-1de5b2ff788e">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edi_item_title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="SubTitle" stretchType="RelativeToBandHeight" x="1" y="0" width="89" height="19" forecolor="#000000" uuid="2af755af-076f-47ae-90c2-11b62122a13b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cust_refnum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="light gray background" stretchType="RelativeToBandHeight" mode="Transparent" x="95" y="0" width="125" height="19" forecolor="#000000" backcolor="#FFFAFA" uuid="0cc61477-eaa8-4252-8680-c30f15a82a48">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edi_item_upc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="light gray background" stretchType="RelativeToBandHeight" mode="Transparent" x="400" y="0" width="85" height="19" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFCFC" uuid="c5085281-9c9e-46c9-a289-ef9105e4a886">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantity_actual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="light gray background" stretchType="RelativeToBandHeight" mode="Transparent" x="485" y="0" width="85" height="19" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFCFC" uuid="ccc07759-7abb-4ede-a720-aa6f5312c820">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edi_item_qty}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Prevent"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="435" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<rectangle>
+				<reportElement x="0" y="39" width="510" height="100" backcolor="#BFBBBB" uuid="184bb378-389e-425d-b05b-1b6943c57d0a"/>
+			</rectangle>
+			<textField>
+				<reportElement x="2" y="40" width="508" height="98" uuid="08c4c86c-b322-4872-8e98-082f52a42b62">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edi_giftMessage}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="0" width="529" height="39" uuid="9a6171dd-c393-4b5e-8981-87dbf772d704"/>
+				<textFieldExpression><![CDATA[$F{edi_packSlipMessage}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="144" width="566" height="226" uuid="e8d2debf-93f7-4d69-b878-9b487928162d"/>
+				<textFieldExpression><![CDATA[$F{returnData}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="354" y="248" width="204" height="20" uuid="76c6b24f-37ca-4319-8c06-2b118d5c9504"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[For returns please scan barcode]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="354" y="265" width="204" height="48" uuid="271ebda7-8818-4739-b122-bfb4085902f6"/>
+				<jr:EAN128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:codeExpression><![CDATA[$F{receiptId}]]></jr:codeExpression>
+				</jr:EAN128>
+			</componentElement>
+			<textField>
+				<reportElement style="SubTitle" stretchType="RelativeToBandHeight" x="354" y="308" width="204" height="19" forecolor="#000000" uuid="ad94a09b-70af-45fd-a5a7-9fc85ccb9779"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{salesDivision}.startsWith("1") ? "Macy's Reservation Number" : "Bloomingdale's reservation number"]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="0" y="397" width="276" height="38" uuid="162f8a3e-116f-482c-9361-17b24110cb92"/>
+				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="1.5" textPosition="bottom">
+					<jr:codeExpression><![CDATA[$F{order_num_barcode}]]></jr:codeExpression>
+				</jr:Code39>
+			</componentElement>
+			<textField>
+				<reportElement style="Column header" x="437" y="407" width="80" height="13" forecolor="#000000" uuid="f8c5b52c-3c99-4543-8570-5befb6ae36f8"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="7" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="518" y="407" width="40" height="13" forecolor="#000000" uuid="489387bf-33d0-4e0b-852a-1d24e57fee8d"/>
+				<textElement>
+					<font fontName="SansSerif" size="7" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

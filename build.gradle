@@ -1,0 +1,14 @@
+task xbuild(type: GradleBuild) {
+    buildFile = 'api/build.gradle'
+    tasks = ['build']
+    dir = 'api'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+    distributionPath = 'owd_core/wrapper/dists'
+    jarFile = 'owd_core/wrapper/gradle-wrapper.jar'
+}
+
+
+

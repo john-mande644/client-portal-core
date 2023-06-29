@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.owd.hibernate.OwdPrintQueue" 
+    table="owd_print_queue"
+>
+
+    <id
+        name="printQueueId"
+        type="java.lang.Integer"
+        column="print_queue_id"
+        unsaved-value="0"
+    >
+        <generator class="identity" />
+    </id>
+
+    <property
+        name="orderId"
+        type="java.lang.Integer"
+        column="order_id"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="clientId"
+        type="java.lang.Integer"
+        column="client_id"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="created"
+        type="java.util.Date"
+        column="created"
+        not-null="true"
+            insert="false"
+        length="23"
+    />
+
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

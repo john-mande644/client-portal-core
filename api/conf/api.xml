@@ -1,0 +1,14 @@
+<Context path="/api" docBase="../webapps/api"
+        debug="9" privileged="true">
+
+  <!-- Uncomment this Valve to limit access to the Admin app to localhost
+   for obvious security reasons. Allow may be a comma-separated list of
+   hosts (or even regular expressions).
+  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+    allow="172.16.*.*"/>    -->
+
+  <Logger className="org.apache.catalina.logger.FileLogger"
+             prefix="api_log." suffix=".txt"
+          timestamp="true"/>
+
+</Context>

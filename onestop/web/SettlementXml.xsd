@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SettlementXml" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="OrderDetails" msdata:IsDataSet="false" msdata:UseCurrentLocale="false">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="OrderInfo">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OrderID" type="xs:string" minOccurs="1" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="OrderItem">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ProductID" type="xs:string" minOccurs="0" />
+              <xs:element name="ColorID" type="xs:string" minOccurs="0" />
+              <xs:element name="SizeID" type="xs:string" minOccurs="0" />
+              <xs:element name="MFGSKU" type="xs:string" minOccurs="0" />
+              <xs:element name="UPC" type="xs:string" minOccurs="1" />
+              <xs:element name="QuantityShipped" type="xs:string" minOccurs="1" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+		<xs:element name="OrderShippingInfo">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TrackingNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="ShipName" type="xs:string" minOccurs="0" />
+              <xs:element name="ShipType" type="xs:string" minOccurs="1" />
+              <xs:element name="ShipDateTime" type="xs:string" minOccurs="1" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+	  </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

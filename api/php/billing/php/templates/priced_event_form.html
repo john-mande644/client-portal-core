@@ -1,0 +1,117 @@
+<!-- BEGIN: main -->
+
+<div id="sidebar">
+    <div class="sidebar_button_line">
+
+    </div>
+</div>
+
+<div id="section_title">{SECTION_TITLE}</div>
+
+<div class="section_tabs">
+    <a href="{CLIENT_CONTRACTS_URL}">Contracts</a> |
+    <a href="{CLIENT_INVOICES_URL}">Invoices</a> |
+    <a href="{CLIENT_BILLABLE_EVENTS_URL}">Billable Events</a> |
+    <a href="{PRICED_EVENTS_URL}">Priced Events</a>
+</div>
+
+<div id="frame">
+
+    <div id="content">
+        <div id="page_title">{PAGE_TITLE}</div>
+
+        <form id="post_form" name="post_form" method="post" action="priced_event_form.php">
+            <input type="hidden" name="clientID" value="{CLIENT_ID}">
+            <input type="hidden" name="pricedEventID" value="{PRICED_EVENT_ID}">
+
+            <table class="form_table" border="0" cellpadding="0" cellspacing="0">
+
+            <!-- BEGIN: error_message -->
+            <tr>
+                <td colspan="2" class="form_error_message">
+                    {ERROR_MESSAGE}
+                </td>
+            </tr>
+            <!-- END: error_message -->
+
+            <tr>
+                <td class="form_field_label_required">Name:</td>
+                <td class="form_field_required">
+                    <input type="text" name="name" value="{NAME}" size="30">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Units:</td>
+                <td class="form_field_required">
+                    <input type="text" name="units" value="{UNITS}" size="10">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Unit Price:</td>
+                <td class="form_field_required">
+                    <input type="text" name="unitPrice" value="{UNIT_PRICE}" size="10">
+                    <span>To apply a credit just enter a negative number.</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Event Date:</td>
+                <td class="form_field_required">
+                    <input type="text" name="eventDate" value="{EVENT_DATE}" size="10">
+                    <span>(m/d/yyyy)</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">GL Account:</td>
+                <td class="form_field_required">
+                    <select name="glAccountID">
+                        <option value="0">-</option>
+                        <!-- BEGIN: glAccounts -->
+                        <option value="{LIST_GL_ACCOUNT_ID}" {LIST_GL_ACCOUNT_SELECTED}>{LIST_GL_ACCOUNT_NAME}</option>
+                        <!-- END: glAccounts -->
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Department:</td>
+                <td class="form_field_required">
+                    <select name="departmentID">
+                        <option value="0">-</option>
+                        <!-- BEGIN: departments -->
+                        <option value="{LIST_DEPARTMENT_ID}" {LIST_DEPARTMENT_SELECTED}>{LIST_DEPARTMENT_NAME}</option>
+                        <!-- END: departments -->
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Location:</td>
+                <td class="form_field_required">
+                    <select name="locationID">
+                        <option value="0">-</option>
+                        <!-- BEGIN: locations -->
+                        <option value="{LIST_LOCATION_ID}" {LIST_LOCATION_SELECTED}>{LIST_LOCATION_NAME}</option>
+                        <!-- END: locations -->
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="form_submit">
+                    <input name="save" type="submit" value="Save">
+                    <input name="saveAndAddAnother" type="submit" value="Save and Add Another">
+                    or
+                    <a href="{CANCEL_URL}" class="cancel_link">Cancel</a>
+                </td>
+            </tr>
+
+            </table>
+
+        </form>
+    </div>
+</div>
+<!-- END: main -->

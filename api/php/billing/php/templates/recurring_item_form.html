@@ -1,0 +1,104 @@
+<!-- BEGIN: main -->
+<div id="sidebar">
+</div>
+
+<div id="section_title">{SECTION_TITLE}</div>
+
+<div class="section_tabs">
+    <a href="{CLIENT_CONTRACTS_URL}">Contracts</a> |
+    <a href="{CLIENT_INVOICES_URL}">Invoices</a> |
+    <a href="{CLIENT_BILLABLE_EVENTS_URL}">Billable Events</a> |
+    <a href="{CLIENT_PRICED_EVENTS_URL}">Priced Events</a>
+</div>
+
+<div id="frame">
+
+    <div id="content">
+
+        <div class="section_sub_tabs">
+            <a href="{CONTRACT_GENERAL_URL}">General</a> |
+            <a href="{CONTRACT_RECURRING_ITEMS_URL}">Recurring Items</a> |
+            <a href="{CONTRACT_PRICING_RULES_URL}">Pricing Rules</a>
+        </div>
+
+        <div id="page_title">{PAGE_TITLE}</div>
+
+        <form id="post_form" name="post_form" method="post" action="recurring_item_form.php">
+            <input type="hidden" name="clientID" value="{CLIENT_ID}">
+            <input type="hidden" name="contractID" value="{CONTRACT_ID}">
+            <input type="hidden" name="recurringItemID" value="{RECURRING_ITEM_ID}">
+
+            <table class="form_table" border="0" cellpadding="0" cellspacing="0">
+
+            <!-- BEGIN: error_message -->
+            <tr>
+                <td colspan="2" class="form_error_message">
+                    {ERROR_MESSAGE}
+                </td>
+            </tr>
+            <!-- END: error_message -->
+            <tr>
+                <td class="form_field_label_required">Display Name:</td>
+                <td class="form_field_required">
+                    <input type="text" name="displayName" value="{DISPLAY_NAME}" size="50">
+                </td>
+            </tr>
+            <tr>
+                <td class="form_field_label_required">Money Value:</td>
+                <td class="form_field_required">
+                    <input type="text" name="moneyValue" value="{MONEY_VALUE}" size="10">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">GL Account:</td>
+                <td class="form_field_required">
+                    <select name="glAccountID">
+                        <option value="0">-</option>
+                        <!-- BEGIN: glAccounts -->
+                        <option value="{LIST_GL_ACCOUNT_ID}" {LIST_GL_ACCOUNT_SELECTED}>{LIST_GL_ACCOUNT_CODE}</option>
+                        <!-- END: glAccounts -->
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Department:</td>
+                <td class="form_field_required">
+                    <select name="departmentID">
+                        <option value="0">-</option>
+                        <!-- BEGIN: departments -->
+                        <option value="{LIST_DEPARTMENT_ID}" {LIST_DEPARTMENT_SELECTED}>{LIST_DEPARTMENT_CODE}</option>
+                        <!-- END: departments -->
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Location:</td>
+                <td class="form_field_required">
+                    <select name="locationID">
+                        <option value="0">-</option>
+                        <!-- BEGIN: locations -->
+                        <option value="{LIST_LOCATION_ID}" {LIST_LOCATION_SELECTED}>{LIST_LOCATION_CODE}</option>
+                        <!-- END: locations -->
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="form_submit">
+                    <input name="save" type="submit" value="Save">
+                    <!-- BEGIN: addAnotherButton -->
+                    <input name="saveAndAddAnother" type="submit" value="Save and Add Another">
+                    <!-- END: addAnotherButton -->
+                    or
+                    <a href="{CONTRACT_RECURRING_ITEMS_URL}" class="cancel_link">Cancel</a>
+                </td>
+            </tr>
+
+            </table>
+        </form>
+    </div>
+</div>
+<!-- END: main -->

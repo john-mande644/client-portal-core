@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE struts PUBLIC
+                "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+                "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+        <struts>
+
+
+    <package name="supplies" namespace="/supplies" extends="struts-default">
+        <result-types>
+                 <result-type name="customJSON" class="com.owd.results.JSONResult"/>
+             </result-types>
+
+        <action name="start" class="com.owd.dc.warehouse.supplyTracking.supplyTrackingAction" >
+            <result name="success">/warehouse/supplyTracking/index.jsp</result>
+
+        </action>
+
+        <action name="checkId" method="checkId" class="com.owd.dc.warehouse.supplyTracking.supplyTrackingAction">
+            <result type="customJSON"/>
+
+        </action>
+        <action name="update" method="update" class="com.owd.dc.warehouse.supplyTracking.supplyTrackingAction">
+                   <result type="customJSON"/>
+
+               </action>
+        <action name="save" method="save" class="com.owd.dc.warehouse.supplyTracking.supplyTrackingAction" >
+            <result name="success">/warehouse/supplyTracking/index.jsp</result>
+        </action>
+        <action name="getItems" method="getItems" class="com.owd.dc.warehouse.supplyTracking.supplyTrackingAction">
+            <result type="customJSON"/>
+        </action>
+        <action name="startRecord" method="startRecord" class="com.owd.dc.warehouse.supplyTracking.supplyTrackingAction">
+            <result name="success">/warehouse/supplyTracking/record.jsp</result>
+        </action>
+        <action name="selectGroup" method="selectGroup" class="com.owd.dc.warehouse.supplyTracking.supplyTrackingAction">
+                   <result name="success">/warehouse/supplyTracking/record.jsp</result>
+               </action>
+        <action name="selectItem" method="selectItem" class="com.owd.dc.warehouse.supplyTracking.supplyTrackingAction">
+                           <result name="success">/warehouse/supplyTracking/record.jsp</result>
+                       </action>
+        <action name="endRecord" method="endRecord" class="com.owd.dc.warehouse.supplyTracking.supplyTrackingAction">
+                    <result name="success">/warehouse/supplyTracking/record.jsp</result>
+                </action>
+        <action name="handheldRecord">
+            <result>/warehouse/supplyTracking/getSku.jsp</result>
+
+        </action>
+        <action name="getSku" method="getSku" class="com.owd.dc.warehouse.supplyTracking.supplyTrackingAction">
+            <result name="success">/warehouse/supplyTracking/getQty.jsp</result>
+            <result name="error">/warehouse/supplyTracking/getSku.jsp</result>
+        </action>
+        <action name="getQtyHH" method="getQtyHH" class="com.owd.dc.warehouse.supplyTracking.supplyTrackingAction">
+                  <result name="success">/warehouse/supplyTracking/getSku.jsp</result>
+                  <result name="error">/warehouse/supplyTracking/getQty.jsp</result>
+              </action>
+</package>
+
+    </struts>

@@ -1,0 +1,283 @@
+body, p, td {
+    font-family: Arial;
+    font-size: 13px;
+}
+
+body {
+    background-color: white;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: blue;
+}
+
+a.small_link {
+    font-size: 9px;
+}
+
+div#header {
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin-top: 5px;
+}
+
+span#header_title {
+    margin-right: 20px;
+    font-size: 24px;
+    color: rgb(222, 146, 8);
+}
+
+div#frame {
+    padding: 3px;
+    background-color: rgb(247, 247, 247);
+    border: 1px solid rgb(206, 207, 206);
+}
+
+div#content {
+    margin-right: 260px;
+    margin-top: 0px;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-bottom: 30px;
+    background-color: white;
+    border: 1px solid rgb(206, 206, 206);
+}
+
+div#sidebar {
+    position: absolute;
+    right: 20px;
+    top: 140px;
+    width: 220px;
+    padding-left: 0px;
+    padding-top: 10px;
+}
+
+#section_title {
+    padding-left: 10px;
+    padding: 10px;
+    border: 1px solid rgb(207, 207, 207);
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+}
+
+div.section_tabs {
+    padding-top: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 8px;
+    border-left: 1px solid rgb(207, 207, 207);
+    border-right: 1px solid rgb(207, 207, 207);
+    border-bottom: 1px solid rgb(207, 207, 207);
+    margin-bottom: 5px;
+    background-color: white;
+}
+
+div.section_tabs a {
+    margin-right: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+span.tab {
+    margin-left: 10px;
+}
+
+div.section_sub_tabs {
+    margin-left: 15px;
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-top: 8px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    text-align: right;
+}
+
+div.section_sub_tabs a {
+    color: black;
+}
+
+div#page_title {
+    margin-top: 20px;
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(128, 128, 128);
+}
+
+table.table_list {
+    margin-top: 20px;
+}
+
+td.table_list_header {
+    font-weight: bold;
+    padding-top: 3px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+}
+
+td.table_list_trash_header {
+    width: 12px;
+}
+
+td.table_list_edit_header {
+    width: 35px;
+}
+
+td.table_list_buffer_header {
+    width: 15px;
+}
+
+td.table_list_text_field {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 25px;
+    border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+td.table_list_button_row_field {
+    padding-top: 3px;
+    padding-bottom: 6px;
+    padding-right: 6px;
+    border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+td.table_list_trash_field {
+    width: 18px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+td.table_list_edit_field {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+td.new_row_form_input_cell {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+img.trash_icon {
+    cursor: pointer;
+}
+
+span.inline_action_link {
+    margin-left: 3px;
+    color: red;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+span.disabled_action_link {
+    margin-left: 3px;
+    color: rgb(128, 128, 128);
+    text-decoration: underline;
+    cursor: default;
+}
+
+table.form_table {
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+td.form_field_label {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 20px;
+    text-align: right;
+}
+
+td.form_field_label_required {
+    font-weight: bold;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 20px;
+    text-align: right;
+}
+
+td.form_field_required {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+td.form_field_required {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+td.form_error_message {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: #FFFFCE;
+    color: red;
+    font-weight: bold;
+}
+
+td.form_submit {
+    padding-top: 20px;
+}
+
+div.list_form {
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+div.recurring_item {
+    margin-top: 5px;
+
+    padding-left: 8px;
+    padding-top: 0px;
+    padding-right: 8px;
+    padding-bottom: 10px;
+
+    border: 1px solid #DEDEDE;
+}
+
+div.recurring_item_line {
+    margin-top: 10px;
+}
+
+td.inline_form_input_cell {
+    padding-top: 8px;
+    padding-bottom: 5px;
+    padding-right: 3px;
+}
+
+td.inline_form_button_cell {
+    padding-top: 5px;
+    padding-bottom: 8px;
+}
+
+.inline_input_control {
+    margin-right: 3px;
+}
+
+div.button_bar {
+    margin-top: 15px;
+}
+
+div.sidebar_button_line {
+    margin-bottom: 10px;
+}
+
+a.cancel_link {
+    color: red;
+}
+

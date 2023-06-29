@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReturnXml"  xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="OrderDetails" msdata:IsDataSet="false" msdata:UseCurrentLocale="false">
+    <xs:complexType>
+      <xs:choice minOccurs="1" maxOccurs="unbounded">
+        <xs:element name="OrderInfo">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OrderID" type="xs:integer" minOccurs="1"></xs:element>
+              <xs:element name="ReturnDetails"  minOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Restockable" minOccurs="0">
+                      <xs:complexType>
+                        <xs:choice minOccurs="0" maxOccurs="unbounded">
+                          <xs:element name="ReturnItem">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="UPC" type="xs:string" minOccurs="1" />
+                                <xs:element name="MFGSKU" type="xs:string" minOccurs="0" />
+                                <xs:element name="RMANumber" type="xs:string" minOccurs="0" />
+                                <xs:element name="ReasonCode" type="xs:string" minOccurs="0" />
+                                <xs:element name="ReasonDesc" type="xs:string" minOccurs="0" />
+                                <xs:element name="CreateDate" type="xs:dateTime" minOccurs="0" />
+                                <xs:element name="Quantity" type="xs:integer" minOccurs="1" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:choice>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="NotRestockable" minOccurs="0">
+                      <xs:complexType>
+                        <xs:choice minOccurs="0" maxOccurs="unbounded">
+                          <xs:element name="ReturnItem">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="UPC" type="xs:string" minOccurs="1" />
+                                <xs:element name="MFGSKU" type="xs:string" minOccurs="0" />
+                                <xs:element name="RMANumber" type="xs:string" minOccurs="0" />
+                                <xs:element name="ReasonCode" type="xs:string" minOccurs="0" />
+                                <xs:element name="ReasonDesc" type="xs:string" minOccurs="0" />
+                                <xs:element name="CreateDate" type="xs:dateTime" minOccurs="0" />
+                                <xs:element name="Quantity" type="xs:integer" minOccurs="1" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:choice>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.OwdShipServiceFlatrateMap"
+        table="owd_ship_service_flatrate_map"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="serviceLevelId"
+            type="int"
+            column="service_level_id"
+            length="50"
+            />
+        <property
+                name="zone"
+                type="java.lang.Integer"
+                column="zone"
+                length="10"
+                />
+        <property
+                name="startWeight"
+                type="java.lang.Integer"
+                column="start_weight"
+                length="10"
+                />
+        <property
+                name="endWeight"
+                type="java.lang.Integer"
+                column="end_weight"
+                length="10"
+                />
+        <property
+                name="shipMethodId"
+                type="java.lang.Integer"
+                column="ship_method_id"
+                length="10"
+                />
+        <property
+                name="clientId"
+                type="java.lang.Integer"
+                column="client_id"
+                length="10"
+                />
+        <property
+            name="groupName"
+            type="java.lang.String"
+            column="group_name"
+            length="120"
+            />
+        <property
+            name="facility"
+            type="java.lang.String"
+            column="facility"
+            length="10"
+            />
+
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

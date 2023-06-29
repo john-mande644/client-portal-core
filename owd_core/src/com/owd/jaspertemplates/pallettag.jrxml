@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-05-16T16:01:47 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pallettag" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5b0cbce9-85fb-4737-9ae5-3adb371643b6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="56"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="palletTagSample.xml"/>
+	<queryString language="xPath">
+		<![CDATA[/pallettag]]>
+	</queryString>
+	<field name="client" class="java.lang.String">
+		<fieldDescription><![CDATA[client]]></fieldDescription>
+	</field>
+	<field name="inventoryId" class="java.lang.String">
+		<fieldDescription><![CDATA[inventoryId]]></fieldDescription>
+	</field>
+	<field name="inventoryNum" class="java.lang.String">
+		<fieldDescription><![CDATA[inventoryNum]]></fieldDescription>
+	</field>
+	<field name="qty" class="java.lang.String">
+		<fieldDescription><![CDATA[qty]]></fieldDescription>
+	</field>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[description]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="550" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="-15" width="752" height="65" uuid="f6e62c72-43d3-4c0b-a734-c388b1c84eff"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="28"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="271" y="380" width="211" height="63" uuid="423fa4bc-4fa2-48b7-880d-35e892b4d787"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false" barHeight="30">
+					<jr:codeExpression><![CDATA[$F{inventoryId}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="50" width="752" height="133" uuid="01192cb3-eb7b-47e3-94c7-e67e72d3f540"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="60" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inventoryNum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="230" width="752" height="119" uuid="fe347342-6571-48c6-9103-38f2829985d7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="36"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="430" width="752" height="112" uuid="1264108e-6ae2-4982-8124-42133bf184fb"/>
+				<textElement textAlignment="Center">
+					<font size="72"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inventoryId}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

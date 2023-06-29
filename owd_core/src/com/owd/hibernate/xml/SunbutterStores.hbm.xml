@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.SunbutterStores"
+        table="sunbutterStores"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="Country"
+            type="java.lang.String"
+            column="Country"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="State"
+            type="java.lang.String"
+            column="State"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="City"
+            type="java.lang.String"
+            column="City"
+            not-null="true"
+            length="50"
+            />
+
+        <property
+            name="Stores"
+            type="java.lang.String"
+            column="Stores"
+            not-null="false"
+            length="250"
+            />
+         <property
+            name="Address"
+            type="java.lang.String"
+            column="Address"
+            not-null="false"
+            length="250"
+            />
+         <property
+            name="zip"
+            type="java.lang.String"
+            column="zip"
+            not-null="false"
+            length="50"
+            />
+         <property
+            name="phone"
+            type="java.lang.String"
+            column="phone"
+            not-null="false"
+            length="50"
+            />
+         <property
+            name="fax"
+            type="java.lang.String"
+            column="fax"
+            not-null="false"
+            length="50"
+            />
+           
+
+
+        <!-- associations -->
+        <!-- bi-directional one-to-many association to OrderPickItem -->
+
+
+    </class>
+</hibernate-mapping>

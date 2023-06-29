@@ -1,0 +1,139 @@
+body{
+    font-family:arial , sans-serif;
+    font-size:.8em;
+}
+td{
+    font-family:arial, sans-serif;
+    font-size:.8em;
+
+}
+table.order td{
+   font-style:italic;
+    font-weight:bolder; 
+}
+#throb {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+#container {
+	position:relative;
+	width:781px;
+	left:50%;
+	margin-left:-390px;
+	background:#fff ;
+	overflow:auto;
+	z-index:100;
+	}
+#header {
+    position: relative;
+
+   
+   padding-bottom:14px;
+	height:auto !important;
+	height:1%;
+}
+#hcenter{
+    margin:0px auto;
+    width:700px;
+    
+}
+#bottom {
+    position: relative;
+
+    
+    width:760px;
+    padding-bottom:26px !important;
+	padding-bottom:0;
+
+   
+}
+.top{
+    margin:0px auto;
+    width:90%;
+    background:transparent;
+    font-weight:bold;
+}
+.ref{
+    float:left;
+    background:transparent;
+   width:35%;
+}
+.shipvia{
+    float:left;
+    background:transparent;
+    width:40%
+}
+.weight{
+    float:left;
+    background:transparent;
+}
+.links{
+    float:right;
+    background:transparent;
+}
+.country{
+    float:left;
+    background:transparent;
+}
+.item{
+   background-color:#CCCCFF;
+    margin: 5px auto;
+   width:700px; 
+   padding:3px
+}
+.space{
+    position:relative;
+    height:5px;
+    width:100%;
+
+}
+#ship{
+    padding:10px;
+}
+#middle{
+    padding:10px;
+
+}
+td.right{
+    text-align:right;
+    
+}
+td.info{
+
+    color:blue;
+     font-weight:bold;
+}
+td.q{
+  font-size:1.8em;
+  width:10%;
+}
+td.itemnum{
+
+    font-style:normal;
+    font-weight:bold;
+    width:30%;
+    }
+td.desc{
+   width:50%; 
+}
+td.weight{
+    width:10%;
+}
+table.items{
+    
+    width:650px;
+}
+tr.items{
+    background-color:white;
+}
+img{
+    border:0;
+}
+a:visited{
+    color:#0000ff;
+}
+table.date, table.date td{
+    font-weight:normal;
+    
+}

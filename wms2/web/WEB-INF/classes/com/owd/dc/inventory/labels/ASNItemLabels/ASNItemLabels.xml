@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+    <package name="ASNItemLabels" namespace="/ASNItemLabels" extends="struts-default">
+        <action name="start">
+            <result>/WEB-INF/classes/com/owd/dc/inventory/labels/ASNItemLabels/start.jsp</result>
+        </action>
+        <action name="viewItems" method="viewItems" class="com.owd.dc.inventory.labels.ASNItemLabels.ASNItemLabelsAction">
+            <result name="success">/WEB-INF/classes/com/owd/dc/inventory/labels/ASNItemLabels/view.jsp</result>
+        </action>
+        <action name="printItems" method="printItems" class="com.owd.dc.inventory.labels.ASNItemLabels.ASNItemLabelsAction">
+        <result name="success">/WEB-INF/classes/com/owd/dc/inventory/labels/ASNItemLabels/start.jsp</result>
+        </action>
+    </package>
+</struts>

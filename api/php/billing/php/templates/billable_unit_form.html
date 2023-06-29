@@ -1,0 +1,51 @@
+<!-- BEGIN: main -->
+<div id="section_title">Billables</div>
+
+<div class="section_tabs">
+    <a href="billable_types.php">Types</a> |
+    <a href="billable_units.php">Units</a>
+</div>
+
+<div id="frame">
+    <div id="sidebar"></div>
+
+    <div id="content">
+
+        <form id="post_form" name="post_form" method="post" action="billable_unit_form.php">
+            <input type="hidden" name="billableUnitID" value="{BILLABLE_UNIT_ID}">
+
+            <table class="form_table" border="0" cellpadding="0" cellspacing="0">
+
+            <!-- BEGIN: error_message -->
+            <tr>
+                <td colspan="2" class="form_error_message">
+                    {ERROR_MESSAGE}
+                </td>
+            </tr>
+            <!-- END: error_message -->
+
+            <tr>
+                <td class="form_field_label_required">Name:</td>
+                <td class="form_field_required">
+                    <input type="text" name="name" value="{NAME}" size="50">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Value Type:</td>
+                <td class="form_field_required">
+                    <input type="radio" name="valueType" value="0" {INTEGER_VALUE_TYPE}>Integer
+                    <input type="radio" name="valueType" value="1" {DECIMAL_VALUE_TYPE}>Decimal
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="form_submit">
+                    <input type="submit" name="submit" value="Save"> or
+                    <a href="billable_units.php" class="cancel_link">Cancel</a>
+                </td>
+            </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<!-- END: main -->

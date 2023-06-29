@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/dtd/
+-->
+
+<class 
+    name="com.owd.hibernate.generated.WCycleCountLocation"
+    table="w_cycle_count_location"
+>
+
+    <id
+        name="id"
+        type="java.lang.Long"
+        column="id"
+    >
+        <generator class="identity" />
+    </id>
+
+    <property
+        name="locationScan"
+        type="java.lang.String"
+        column="location_scan"
+        not-null="true"
+        length="2000"
+    />
+    <property
+        name="locationDisplay"
+        type="java.lang.String"
+        column="location_display"
+        not-null="true"
+        length="2000"
+    />
+    <property
+        name="scannedOn"
+        type="java.sql.Timestamp"
+        column="scanned_on"
+        length="23"
+    />
+    <property
+        name="countQuantity"
+        type="java.lang.Long"
+        column="count_quantity"
+        length="19"
+    />
+    <property
+        name="verifyCountQuantity"
+        type="java.lang.Long"
+        column="verify_count_quantity"
+        length="19"
+    />
+    <property
+        name="verifiedOn"
+        type="java.sql.Timestamp"
+        column="verified_on"
+        length="23"
+    />
+
+    <!-- associations -->
+    <!-- bi-directional many-to-one association to WCycleCount -->
+    <many-to-one
+        name="wCycleCount"
+        class="com.owd.hibernate.generated.WCycleCount"
+        not-null="true"
+    >
+        <column name="cycle_count_fkey" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

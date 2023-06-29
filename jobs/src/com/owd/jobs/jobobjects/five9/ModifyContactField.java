@@ -1,0 +1,63 @@
+
+package com.owd.jobs.jobobjects.five9;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Java class for modifyContactField complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType name="modifyContactField">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+private final static Logger log =  LogManager.getLogger();
+ *       &lt;sequence>
+ *         &lt;element name="arg0" type="{http://service.admin.ws.five9.com/v2/}contactField" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "modifyContactField", propOrder = {
+    "arg0"
+})
+public class ModifyContactField {
+
+    protected ContactField arg0;
+
+    /**
+     * Gets the value of the arg0 property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ContactField }
+     *     
+     */
+    public ContactField getArg0() {
+        return arg0;
+    }
+
+    /**
+     * Sets the value of the arg0 property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ContactField }
+     *     
+     */
+    public void setArg0(ContactField value) {
+        this.arg0 = value;
+    }
+
+}

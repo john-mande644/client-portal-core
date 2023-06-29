@@ -1,0 +1,25 @@
+<advice_file>
+  <advice_file_control_number>string</advice_file_control_number>
+  <vendorMerchID>jcpenney</vendorMerchID>
+  <!--1 or more repetitions:-->
+  <product>
+    <vendor_SKU>string</vendor_SKU>
+    <qtyonhand>100</qtyonhand>
+    <available>No</available>
+    <description>string</description>
+    <!--Optional:-->
+    <discontinued_date>100</discontinued_date>
+    <!--Optional:-->
+    <merchantSKU>string</merchantSKU>
+    <!--Optional:-->
+    <warehouseBreakout>
+      <!--1 or more repetitions:-->
+      <warehouse warehouse-id="string">
+        <qtyonhand>string</qtyonhand>
+        <!--Optional:-->
+        <next_available date="string" quantity="string"/>
+      </warehouse>
+    </warehouseBreakout>
+  </product>
+  <advice_file_count>100</advice_file_count>
+</advice_file>

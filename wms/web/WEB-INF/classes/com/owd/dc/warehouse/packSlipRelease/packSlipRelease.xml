@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE struts PUBLIC
+                "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+                "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+        <struts>
+
+
+    <package name="packSlipRelease" namespace="/packSlipRelease" extends="struts-default">
+        <result-types>
+           <result-type name="customJSON" class="com.owd.results.JSONResult"/>
+       </result-types>
+        <action name="location" method="setLocation" class="com.owd.dc.warehouse.packSlipRelease.startAction">
+
+            <result name="success">/warehouse/packSlipRelease/index.jsp</result>
+            <result name="error">/warehouse/packSlipRelease/index.jsp</result>
+        </action>
+        <action name="start" class="com.owd.dc.warehouse.packSlipRelease.startAction">
+
+            <result name="success">/warehouse/packSlipRelease/index.jsp</result>
+            <result name="error">/warehouse/packSlipRelease/index.jsp</result>
+        </action>
+        <action name="release" method="releaseSlips" class="com.owd.dc.warehouse.packSlipRelease.startAction">
+           
+            <result name="success">/warehouse/packSlipRelease/index.jsp</result>
+            <result name="error">/warehouse/packSlipRelease/index.jsp</result>
+        </action>
+         <action name="singleOrder" method="singleOrderRelease" class="com.owd.dc.warehouse.packSlipRelease.startAction">
+
+            <result name="success">/warehouse/packSlipRelease/index.jsp</result>
+            <result name="error">/warehouse/packSlipRelease/index.jsp</result>
+        </action>
+        <action name="reprintOrder" method="reprintOrder" class="com.owd.dc.warehouse.packSlipRelease.startAction">
+            <result name="success">/warehouse/packSlipRelease/index.jsp</result>
+            <result name="error">/warehouse/packSlipRelease/index.jsp</result>
+        </action>
+          <action name="clientDetails" method="getClientDetails" class="com.owd.dc.warehouse.packSlipRelease.startAction">
+
+            <result name="success">/warehouse/packSlipRelease/details.jsp</result>
+            <result name="error">/warehouse/packSlipRelease/details.jsp</result>
+        </action>
+        <action name="detailsPrint" method="detailsPrint" class="com.owd.dc.warehouse.packSlipRelease.startAction">
+            <result type="customJSON"/>
+        </action>
+         <action name="groupPrint" method="groupPrint" class="com.owd.dc.warehouse.packSlipRelease.startAction">
+            <result type="customJSON"/>
+        </action>
+        <action name="groupReprint" method="groupReprint" class="com.owd.dc.warehouse.packSlipRelease.AdvancedAction">
+            <result name="success">/warehouse/packSlipRelease/groupReprint.jsp</result>
+            <result name="error">/warehouse/packSlipRelease/groupReprint.jsp</result>
+        </action>
+        <action name="doGroupReprint" method="doGroupReprint" class="com.owd.dc.warehouse.packSlipRelease.AdvancedAction">
+            <result name="success">/warehouse/packSlipRelease/groupReprint.jsp</result>
+            <result name="error">/warehouse/packSlipRelease/groupReprint.jsp</result>
+        </action>
+        <action name="groupDetailPrint" method="groupDetailPrint" class="com.owd.dc.warehouse.packSlipRelease.AdvancedAction">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+          </action>
+        <action name="doAdvancedPrint" method="doAdvancedPrint" class="com.owd.dc.warehouse.packSlipRelease.AdvancedAction">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="advancedPrint" method="advancedPrint" class="com.owd.dc.warehouse.packSlipRelease.AdvancedAction">
+            <result name="success">/warehouse/packSlipRelease/advancedPrint.jsp</result>
+        </action>
+
+        <action name="startBatchPrint" method="startBatchPrint" class="com.owd.dc.warehouse.packSlipRelease.BatchPrintAction">
+            <result name="success">/warehouse/packSlipRelease/batchPrint.jsp</result>
+        </action>
+        <action name="loadData" method="loadData" class="com.owd.dc.warehouse.packSlipRelease.BatchPrintAction">
+            <result name="success">/warehouse/packSlipRelease/batchPrint.jsp</result>
+            <result name="error">/warehouse/packSlipRelease/batchPrint.jsp</result>
+        </action>
+        <action name="printFingerprint" method="printFingerprint" class="com.owd.dc.warehouse.packSlipRelease.BatchPrintAction">
+            <result name="success">/warehouse/packSlipRelease/batchPrint.jsp</result>
+
+        </action>
+       <action name="printInfoCheck" class="com.owd.dc.warehouse.packSlipRelease.printInfoCheckAction">
+            <result name="success">/warehouse/packSlipRelease/printInfoCheck.jsp</result>
+        </action>
+</package>
+
+    </struts>

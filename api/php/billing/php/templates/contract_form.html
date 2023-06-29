@@ -1,0 +1,117 @@
+<!-- BEGIN: main -->
+<div id="section_title">{SECTION_TITLE}</div>
+
+<div class="section_tabs">
+    <a href="{CLIENT_CONTRACTS_URL}">Contracts</a> |
+    <a href="{CLIENT_INVOICES_URL}">Invoices</a> |
+    <a href="{CLIENT_BILLABLE_EVENTS_URL}">Billable Events</a> |
+    <a href="{CLIENT_PRICED_EVENTS_URL}">Priced Events</a>
+</div>
+
+<div id="frame">
+
+    <div id="sidebar">
+    </div>
+
+    <div id="content">
+
+        <!-- BEGIN: section_sub_tabs -->
+        <div class="section_sub_tabs">
+            <a href="{CONTRACT_GENERAL_URL}">General</a> |
+            <a href="{CONTRACT_RECURRING_ITEMS_URL}">Recurring Items</a> |
+            <a href="{CONTRACT_PRICING_RULES_URL}">Pricing Rules</a>
+        </div>
+        <!-- END: section_sub_tabs -->
+
+        <div id="page_title">{PAGE_TITLE}</div>
+
+        <form id="post_form" name="post_form" method="post" action="contract_form.php">
+            <input type="hidden" name="clientID" value="{CLIENT_ID}">
+            <input type="hidden" name="contractID" value="{CONTRACT_ID}">
+
+            <table class="form_table" border="0" cellpadding="0" cellspacing="0">
+
+            <!-- BEGIN: error_message -->
+            <tr>
+                <td colspan="2" class="form_error_message">
+                    {ERROR_MESSAGE}
+                </td>
+            </tr>
+            <!-- END: error_message -->
+
+            <tr>
+                <td class="form_field_label_required">Name:</td>
+                <td class="form_field_required">
+                    <input type="text" name="name" value="{NAME}" size="50">
+                </td>
+            </tr>
+            <tr>
+                <td class="form_field_label_required">Invoice Interval:</td>
+                <td class="form_field_required">
+                    <input type="radio" name="invoiceInterval" value="0" {WEEKLY_INVOICE_INTERVAL}>Weekly
+                    <input type="radio" name="invoiceInterval" value="1" {MONTHLY_INVOICE_INTERVAL}>Monthly
+                </td>
+            </tr>
+            <tr>
+                <td class="form_field_label_required">Start Date:</td>
+                <td class="form_field_required">
+                    <input type="text" name="startDate" value="{START_DATE}" size="10"> (m/d/yyyy)
+                </td>
+            </tr>
+            <tr>
+                <td class="form_field_label">End Date:</td>
+                <td class="form_field_required">
+                    <input type="text" name="endDate" value="{END_DATE}" size="10"> (m/d/yyyy)
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required" style="padding-top: 15px">Active:</td>
+                <td class="form_field_required" style="padding-top: 15px">
+                    <input type="checkbox" name="active" {ACTIVE}>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required" style="padding-top: 15px">Monthly Minimums:</td>
+                <td>&nbsp;</td>
+            </tr>
+
+
+            <!-- BEGIN: department_minimums -->
+            <tr>
+                <td class="form_field_label">{DEPARTMENT_NAME}:</td>
+                <td class="form_field_required">
+                    <input type="text" name="departmentID_{DEPARTMENT_ID_AND_DEPARTMENT_MINIMUM_ID}" value="{DEPARTMENT_MINIMUM_AMOUNT}" size="10">
+                </td>
+            </tr>
+            <!-- END: department_minimums -->
+
+            <!-- BEGIN: clone_contract -->
+            <tr>
+                <td class="form_field_label_required">Clone Contract:</td>
+                <td class="form_field_required">
+                    <select name="clonedContractID">
+                        <option value="0">-</option>
+                        <!-- BEGIN: existing_contracts -->
+                        <option value="{LIST_EXISTING_CONTRACT_ID}">{LIST_EXISTING_CONTRACT_NAME}</option>
+                        <!-- END: existing_contracts -->
+                    </select>
+
+                    <span style="margin-left:10px">Clones the selected contract's recurring items and pricing rules.</span>
+                </td>
+            </tr>
+            <!-- END: clone_contract -->
+
+            <tr>
+                <td class="form_field_label_required">&nbsp;</td>
+                <td class="form_submit">
+                    <input type="submit" name="submit" value="Save"> or
+                    <a href="{CANCEL_URL}" class="cancel_link">Cancel</a>
+                </td>
+            </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<!-- END: main -->

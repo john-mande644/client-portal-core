@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE struts PUBLIC
+                "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+                "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+        <struts>
+
+
+    <package name="wInventory" namespace="/wInventory" extends="struts-default">
+
+
+        <action name="addtoclosed" class="com.owd.dc.inventorycount.wInventoryAction">
+
+            <result name="success">/rfapps/inventory/winventory/addtoclosed.jsp</result>
+
+        </action>
+
+        <action name="loadlocation" class="com.owd.dc.inventorycount.wInventoryAction" method="verify">
+
+            <result name="success">/rfapps/inventory/winventory/verify.jsp</result>
+            <result name="error">/rfapps/inventory/winventory/addtoclosed.jsp</result>
+        </action>
+         <action name="insertInfo" class="com.owd.dc.inventorycount.wInventoryAction" method="add">
+                <result name="success">/rfapps/inventory/winventory/addtoclosed.jsp</result>
+            <result name="error">/rfapps/inventory/winventory/verify.jsp</result>
+         </action>
+
+</package>
+
+    </struts>

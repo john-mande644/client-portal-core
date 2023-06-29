@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.OwdInventoryOh"
+        table="owd_inventory_oh"
+        >
+
+        <id
+            name="inventoryOhId"
+            type="java.lang.Integer"
+            column="inventory_oh_id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="qtyOnHand"
+            type="java.lang.Integer"
+            column="qty_on_hand"
+            length="10"
+            />
+        <property
+            name="qtyCommitted"
+            type="java.lang.Integer"
+            column="qty_committed"
+            length="10"
+            />
+        <property
+            name="modifiedDate"
+            type="java.util.Date"
+            column="modified_date"
+            length="23"
+            />
+        <property
+            name="modifiedBy"
+            type="java.util.Date"
+            column="modified_by"
+            length="23"
+            />
+
+        <!-- associations -->
+        <!-- bi-directional many-to-one association to OwdInventory -->
+        <many-to-one name="owdInventory" class="com.owd.hibernate.generated.OwdInventory" column="inventory_fkey" unique="true" />
+
+
+
+    </class>
+</hibernate-mapping>

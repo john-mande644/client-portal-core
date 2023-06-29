@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+            name="com.owd.hibernate.generated.OWDPackage"
+            table="package"
+            >
+
+        <id
+                name="id"
+                type="java.lang.Integer"
+                column="id"
+                >
+            <generator class="identity"/>
+        </id>
+
+        <property
+                name="owdBoxTypesFkey"
+                type="java.lang.Integer"
+                column="owd_boxtypes_fkey"
+                not-null="true"
+                length="10"
+                />
+        <property
+                name="packageOrderFkey"
+                type="java.lang.Integer"
+                column="package_order_fkey"
+                not-null="true"
+                length="10"
+                />
+        <property
+                name="packBarcode"
+                type="java.lang.String"
+                column="pack_barcode"
+
+                length="50"
+                />
+        <property
+                name="weightLbs"
+                type="java.math.BigDecimal"
+                column="weight_lbs"
+                not-null="true"
+                length="18"
+                />
+        <property
+                name="currCost"
+                type="java.math.BigDecimal"
+                column="curr_cost"
+                not-null="true"
+                length="18"
+                />
+        <property
+                name="depth"
+                type="java.math.BigDecimal"
+                column="depth"
+                not-null="true"
+                length="18"
+                />
+        <property
+                name="width"
+                type="java.math.BigDecimal"
+                column="width"
+                not-null="true"
+                length="18"
+                />
+        <property
+                name="height"
+                type="java.math.BigDecimal"
+                column="height"
+                not-null="true"
+                length="18"
+                />
+        <property
+                name="shipTime"
+                type="java.util.Date"
+                column="ship_time"
+                length="23"
+                />
+        <property
+                name="orderTrackFkey"
+                type="java.lang.Integer"
+                column="order_track_fkey"
+                not-null="true"
+                length="10"
+                />
+
+
+        <property
+                name="SSCC"
+                type="java.lang.String"
+                column="SSCC"
+
+                length="20"
+                />
+        <property
+                name="dunnageFactor"
+                type="java.lang.Integer"
+                column="dunnage_factor"
+
+                length="10"
+        />
+        <property
+                name="dimWeightLbs"
+                type="java.math.BigDecimal"
+                column="dim_weight_lbs"
+
+                length="18"
+        />
+
+        <set
+                name="packageLines"
+                inverse="true"
+                lazy="true"
+                cascade="all"
+                order-by="owd_line_item_fkey"
+                >
+            <key>
+                <column name="package_fkey"/>
+            </key>
+            <one-to-many
+                    class="com.owd.hibernate.generated.PackageLine"
+                    />
+        </set>
+
+
+
+
+
+
+
+
+
+
+
+    </class>
+</hibernate-mapping>

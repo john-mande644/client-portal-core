@@ -1,0 +1,41 @@
+<ivy-module version="2.0">
+    <info organisation="com.owd" module="jobs"/>
+    <dependencies>
+        <dependency org="org.codehaus.groovy" name="groovy-all" rev="2.1.8" transitive="true" conf="default" />
+<dependency org="org.hibernate" name="hibernate-core" rev="3.6.5.Final" transitive="true"  conf="default" >
+    <exclude org="org.slf4j" module="slf4j-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+    <exclude org="org.jboss.javaee" module="jboss-jacc-api_JDK4" name="*" type="*" ext="*" conf="" matcher="exact"/>
+
+        </dependency>
+        <dependency org="org.hibernate" name="hibernate-c3p0" rev="3.6.5.Final" conf="default" >
+            <exclude org="org.slf4j" module="slf4j-api" name="*" type="*" ext="*" conf="" matcher="exact"/>
+        </dependency>
+        <dependency org="quartz" name="quartz" rev="1.5.2"/>
+        <dependency org="org.hibernate" name="hibernate-validator" rev="4.1.0.Final" conf="default" />
+        <dependency org="org.hibernate" name="hibernate-tools" rev="3.2.4.GA" conf="default" />
+        <dependency org="net.sourceforge.jtds" name="jtds" rev="1.2.4" conf="default" />
+        <dependency org="javax.mail" name="mail" rev="1.4.1" conf="default" />
+        <dependency org="javax.servlet" name="servlet-api" rev="2.5" conf="default" />
+        <dependency org="junit" name="junit" rev="4.8.2" conf="default" />
+        <dependency org="commons-lang" name="commons-lang" rev="2.6" conf="default" />
+        <dependency org="org.apache.struts" name="struts2-core" rev="2.2.3" conf="default" />
+        <dependency org="xerces" name="xercesImpl" rev="2.8.0" conf="default" />
+        <dependency org="mysql" name="mysql-connector-java" rev="5.1.16" conf="default" />
+        <dependency org="owd" name="breezetk" rev="*" conf="default" />
+        <dependency org="owd" name="connectship"  rev="*" conf="default" />
+        <dependency org="owd" name="shipdeploy" rev="*"  conf="default" />
+        <dependency org="owd" name="ipworks"  rev="*" conf="default" />
+        <dependency org="owd" name="ipworksssl" rev="*"  conf="default" />
+        <dependency org="owd" name="JLinkPointTxn"  rev="*" conf="default" />
+        <dependency org="owd" name="payflow"  rev="*" conf="default" />
+        <dependency org="owd" name="tbftools"  rev="*" conf="default" />
+       <!-- <dependency org="owd" name="upsxml"  rev="*" conf="default" />
+        <dependency org="owd" name="jaxp" rev="*" conf="default" />-->
+        <dependency org="owd" name="log4j" rev="*" conf="default" />
+        <dependency org="com.amazonaws" name="aws-java-sdk" rev="1.3.30"/>
+        <dependency org="commons-logging" name="commons-logging" rev="1.1.1" conf="default"/>
+        <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.6.1" conf="default"/>
+        <dependency org="org.hibernate" name="hibernate-validator-annotation-processor" rev="4.2.0.Final" conf="default"/>
+         <dependency org="org.hibernate" name="hibernate-validator-parent" rev="4.2.0.Final" conf="default"/>
+    </dependencies>
+</ivy-module>

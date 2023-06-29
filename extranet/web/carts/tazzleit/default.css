@@ -1,0 +1,194 @@
+.bottom_menu {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	text-transform: uppercase;
+	color: #666666;
+	text-decoration: none;
+	font-weight: bold;
+}
+.bottom_menu a:link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	text-transform: uppercase;
+	color: #666666;
+	text-decoration: none;
+	font-weight: bold;
+}
+.bottom_menu a:hover{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	text-transform: uppercase;
+	color: #f49c0f;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a:link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	text-transform: none;
+	color: #F19C0B;
+	text-decoration: none;
+	font-weight: bold;
+}
+a:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	text-transform: none;
+	color: #000000;
+	text-decoration: none;
+	font-weight: bold;
+}
+a:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	color: #666666;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+link_text{
+	font-size: 12px;
+	color: #F19C0B;
+}
+.link_text a:link{
+	font-size: 12px;
+	color: #F19C0B;
+}
+.link_text a:hover{
+	font-size: 12px;
+	color: #000000;
+}
+.link_text a:visited{
+	font-size: 12px;
+	color: #000000;
+}
+
+#link_text2{
+	font-size: 12px;
+	color: blue;
+}
+a#link_text2:link{
+	font-size: 12px;
+	color: blue;
+}
+a#link_text2:hover {
+	font-size: 12px;
+	color: #f49c0f;
+}
+
+
+.text {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #553E15;
+	text-decoration: none;
+}
+
+.form {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #F19C0B;
+	text-decoration: none;
+	background-color: #666666;
+	border: 1px solid #FFFFFF;
+	width: 300px;
+	margin:3px 0px 7px 0px;
+}
+
+.search_form {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #F19C0B;
+	text-decoration: none;
+	background-color: #666666;
+	border: 1px solid #FFFFFF;
+	width: 120px;
+	margin:3px 0px 7px 0px;
+}
+
+#head1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #000000;
+	text-decoration: none;
+	font-weight: bolder;
+	padding:0px 0px 15px 0px;
+}
+.head1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #000000;
+	text-decoration: none;
+	font-weight: bolder;
+	padding:0px 0px 15px 0px;
+}
+.head2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+	font-weight: bolder;
+	padding:0px 0px 10px 0px;
+}
+.head3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #FFFFFF;
+	text-decoration: none;
+	font-weight: bolder;
+	padding:0px 5px 0px 5px;
+	margin:0px 0px 10px 0px;
+	background:#999999;
+}
+.small {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #666666;
+	text-decoration: none;
+}
+.orange {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FF9900;
+	text-decoration: none;
+}
+.price {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 30px;
+	color: #F49C0F;
+	text-decoration: none;
+	font-weight: bolder;
+}
+.cc {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #9B9B9B;
+}
+.cc2 , a.cc2:link , a.cc2:hover, a.cc2:visited , a.active  {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #a4762d;
+}
+.td_cc {
+	padding-top: 5px;
+	padding-right: 15px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+}
+.style5 {color: #989B9C}
+.td_bg_mainpage_left {
+	background-image: url(images/bg_tazzlie_it_11.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	height: 420px;
+	width: 611px;
+	padding-top: 15px;
+	padding-left: 30px;
+}

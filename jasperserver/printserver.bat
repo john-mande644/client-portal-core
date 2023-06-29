@@ -1,0 +1,1 @@
+"C:\Program Files\Java\jdk1.6.0_18\bin\java.exe" -Xmx1G -Xms1G -cp "lib/jaspertemplates;lib/*.jar;lib/*.zip;lib/*;owdprintserver.jar" PrintServer

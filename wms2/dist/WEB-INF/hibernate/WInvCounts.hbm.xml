@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.WInvCounts"
+        table="w_inv_counts"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="quanity"
+            type="java.lang.Integer"
+            column="quanity"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="inventoryId"
+            type="java.lang.Integer"
+            column="inventory_id"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="invLocFkey"
+            type="java.lang.Integer"
+            column="inv_loc_fkey"
+            not-null="true"
+            length="10"
+            />
+
+        <property
+            name="location"
+            type="java.lang.String"
+            column="location"
+            not-null="true"
+            length="255"
+            />
+        <property
+            name="byWho"
+            type="java.lang.String"
+            column="by_who"
+            not-null="true"
+            length="255"
+            />
+        <property
+            name="UPC"
+            type="java.lang.String"
+            column="UPC"
+            not-null="false"
+            length="255"
+            />
+        <property
+            name="ISBN"
+            type="java.lang.String"
+            column="ISBN"
+            not-null="false"
+            length="255"
+            />
+
+        <!-- associations -->
+        <!-- bi-directional many-to-one association to OrderPickStatu -->
+
+
+    </class>
+</hibernate-mapping>

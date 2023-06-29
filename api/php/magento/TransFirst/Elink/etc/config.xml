@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+ 
+<config>
+	<modules>
+		<TransFirst_Elink>
+			<version>0.2.0</version>
+			<depends>
+				<Mage_payment />
+			</depends>
+		</TransFirst_Elink>
+	</modules>
+	<global>
+		<models>
+			<Elink>
+				<class>TransFirst_Elink_Model</class>
+			</Elink>
+		</models>
+		<blocks>
+			<Elink>
+				<class>TransFirst_Elink_Block</class>
+			</Elink>
+		</blocks>
+		<helpers>
+			<Elink>
+				<class>TransFirst_Elink_Helper</class>
+			</Elink>
+		</helpers>
+		<resources>
+			<elink_setup>
+				<setup>
+					<module>TransFirst_Elink</module>
+				</setup>
+				<connection>
+					<use>default_setup</use>
+				</connection>
+			</elink_setup>
+			<elink_write>
+				<connection>
+					<use>default_write</use>
+				</connection>
+			</elink_write>
+			<elink_read>
+				<connection>
+					<use>default_read</use>
+				</connection>
+			</elink_read>
+		</resources>
+		<payment>
+			<cc>
+				<types>
+					<DN>
+						<code>DN</code>
+						<name>Diners</name>
+						<order>100</order>
+					</DN>
+				</types>
+			</cc>
+		</payment>	
+	</global>
+	<default>
+		<payment>
+			<Elink>
+				<active>1</active>
+				<model>Elink/Elink</model> 
+				<username>Change me</username>
+				<password>Change me</password>
+				<title>Credit Card (TransFirst)</title>
+				<allowspecific>0</allowspecific>
+				<debug>1</debug>
+				<test>1</test>
+				<usecvv>1</usecvv>
+				<!--<cctypes>AE,VI,MC,DN</cctypes>-->
+				<payment_action>authorize</payment_action>
+			</Elink>
+		</payment>
+	</default>
+</config>

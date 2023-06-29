@@ -1,0 +1,67 @@
+.groupButtons{
+    font-size: 24px;
+    height: 100px;
+    padding: 15px;
+    width: 300px;
+}
+.groupTable{
+
+}
+.groupTable td{
+    padding-bottom: 15px;
+    padding-right: 15px;
+}
+.itemTable td{
+    padding-bottom: 15px;
+      padding-right: 15px;
+    text-align:center;
+}
+.itemButtons{
+    font-size: 24px;
+     height: 100px;
+     padding: 15px;
+     width: 350px;
+}
+ .wrapper{
+     font-size:24px;
+ }
+ .padButton{
+     font-size: 24px;
+     padding: 10px;
+     width: 75px;
+ }
+ #numberpad td{
+     padding:5px;
+ }
+ .quickButton{
+     font-size: 24px;
+     padding: 10px;
+     width: 75px;
+ }
+ .optionbutton{
+   font-size:24px;
+     width:75px;
+     padding:10px;
+ }
+ .quick{
+
+   float:left;
+     width:300px;
+ }
+ .type{
+    float:left;
+ }
+ .bold{
+     font-weight: bold;
+ }
+ .backbutton{
+     font-size:24px;
+     padding: 10px;
+ }
+ #addto{
+   font-size:16px;
+ }
+ #addto br{
+     margin:7px;
+
+ }

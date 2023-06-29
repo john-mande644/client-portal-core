@@ -1,0 +1,91 @@
+How to call the barcode image servlet:
+
+
+The Barbecue servlet is configured to be available from the following URL by default:
+
+http://host:port/bbq
+
+Any requests with this prefix will be routed to the Barbecue servlet.
+
+
+
+Usage:
+------
+
+The recommended way to use Barbecue as a servlet is to reference it as the src for an
+img tag. For example...
+
+<img src="http://localhost:8080/bbq?data=123545&height=50"/>
+
+
+
+Notes:
+------
+
+If you are running the servlet on a headless server (i.e. one with no monitor or graphics
+environment) then you must ensure that you use the servlet headless parameter, and also
+set the following JVM property:
+
+-Djava.awt.headless=true
+
+
+Required parameters:
+--------------------
+
+data 				the data to encode
+
+
+Optional parameters:
+--------------------
+
+type				the barcode type - see below
+width				the width of the smallest bar in the barcode in pixels
+height				the height of the barcode in pixels
+resolution			the output resolution in DPI
+checksum			true to include a calculated checksum, false to omit (only used by Code39 and derivatives)
+headless			true for headless mode (default value), false to force non-headless mode
+drawText			(only takes effect if headless = false) true to draw text of barcode, false to omit
+
+
+Types:
+------
+
+Valid barcode types are (case insensitive):
+
+Code128
+Code128A
+Code128B
+Code128C
+EAN128
+USPS
+ShipmentIdentificationNumber
+SSCC18
+SCCC14ShippingCode
+GlobalTradeItemNumber
+UCC128						Note: UCC128 requires an additional parameter: appid
+PDF417
+Code39
+3of9
+USD3
+Codabar
+USD4
+NW7
+Monarch
+2of7
+
+Note that if the type is omitted then the type will default to Code128 (optimal).
+
+
+
+Examples:
+---------
+
+BarcodeServlet?data=12345
+BarcodeServlet?data=12345&width=3&height=100&resolution=100
+BarcodeServlet?data=12345&drawtext=yes
+BarcodeServlet?data=12345&type=Code128B
+BarcodeServlet?data=12345&type=UCC128&appid=402
+BarcodeServlet?data=12345&type=PDF417
+BarcodeServlet?data=12345&headless=false&drawText=true
+
+

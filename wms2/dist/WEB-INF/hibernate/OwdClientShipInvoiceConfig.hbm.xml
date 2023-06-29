@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.owd.hibernate.OwdClientShipInvoiceConfig" 
+    table="owd_client_ship_invoice_config"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+        <generator class="identity" />
+    </id>
+
+
+    <property
+        name="notifyFlag"
+        type="java.lang.Integer"
+        column="notify_flag"
+        length="10"
+    />
+    <property
+        name="notifyEmails"
+        type="java.lang.String"
+        column="notify_emails"
+        length="1000"
+    />
+    <property
+        name="invoiceFlag"
+        type="java.lang.Integer"
+        column="invoice_flag"
+        length="10"
+    />
+    <property
+        name="invoiceEmails"
+        type="java.lang.String"
+        column="invoice_emails"
+        length="1000"
+    />
+    <property
+        name="invoiceTriggerType"
+        type="java.lang.String"
+        column="invoice_trigger_type"
+        length="50"
+    />
+    <property
+        name="invoiceTriggerLevel"
+        type="java.math.BigDecimal"
+        column="invoice_trigger_level"
+        length="19"
+    />
+    <property
+        name="invoiceAmountType"
+        type="java.lang.String"
+        column="invoice_amount_type"
+        length="50"
+    />
+    <property
+        name="invoiceAmount"
+        type="java.math.BigDecimal"
+        column="invoice_amount"
+        length="19"
+    />
+    <property
+        name="invoiceToAddress"
+        type="java.lang.String"
+        column="invoice_to_address"
+        length="2000"
+    />
+     <property
+        name="creditLimit"
+        type="java.math.BigDecimal"
+        column="credit_limit"
+        length="19"
+    />
+      <property
+        name="lastCutoffNotification"
+        type="java.util.Date"
+        column="last_cutoff_notify"
+        length="23"
+    />
+      <property
+        name="lastWarningNotification"
+        type="java.util.Date"
+        column="last_warning_notify"
+        length="23"
+    />
+    <!-- associations -->
+
+     <many-to-one name="client" class="com.owd.hibernate.OwdClient" column="client_fkey" unique="true"/>
+</class>
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+
+    <class name="com.owd.hibernate.generated.ShipLocation" table="ship_locations">
+        <id
+                name="num"
+                type="java.lang.Integer"
+                column="num"
+        >
+            <generator class="identity"/>
+        </id>
+
+        <property name="Address1" column="address1"
+                  type="java.lang.String"
+                  length="255" not-null="true">
+        </property>
+
+        <property name="Address2" column="address2"
+                  type="java.lang.String"
+                  length="255" not-null="true">
+        </property>
+
+        <property name="City" column="city"
+                  type="java.lang.String"
+                  length="255" not-null="true">
+        </property>
+        <property name="State" column="state"
+                  type="java.lang.String"
+                  length="255" not-null="true">
+        </property>
+        <property name="ShipTo" column="ship_to"
+                  type="java.lang.String"
+                  length="255" not-null="true">
+        </property>
+    </class>
+</hibernate-mapping>

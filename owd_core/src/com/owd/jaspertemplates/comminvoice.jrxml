@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2018-12-14T14:10:52 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="comminvoice" pageWidth="612" pageHeight="792" columnWidth="552" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="f1b94642-5eb8-4b1e-8557-9af8dc7e1e32">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="ORDER_NUM" class="java.lang.String">
+		<parameterDescription><![CDATA[OWD Order Reference]]></parameterDescription>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT owd_order.*,owd_order_ship_info.*,l.*,CASE WHEN origin_country IS NULL then '' ELSE 'Origin: '+ISNULL(origin_country,'USA')+' / ' END as origin_country,
+convert(varchar,owd_order_ship_info.customs_desc,2048) as 'ordercustomsdesc',
+
+convert(varchar(2048),(CASE WHEN l.customs_desc is null or l.customs_desc like '' or l.customs_desc like ':%' THEN CASE WHEN
+i.customs_desc IS NULL or i.customs_desc like ''
+THEN convert(varchar(2048),l.description) ELSE convert(varchar(2048),i.customs_desc) END
+ELSE convert(varchar(2048),l.customs_desc) END)) as 'itemdesc',
+
+convert(money,CASE WHEN l.dec_item_value is null or l.dec_item_value < 0.01  THEN CASE WHEN
+i.customs_value IS NULL or i.customs_value<0.01 THEN
+CASE WHEN l.price <0.01 THEN 0.01 ELSE l.price END  ELSE i.customs_value END
+ELSE l.dec_item_value END) as 'itemvalue',
+
+ISNULL(ff.loc_code,'DC1') as loc_code,ISNULL(ff.address,'1915 10th Ave W') as 'shipper_address',
+ISNULL(ff.city,'Mobridge') as 'shipper_city',ISNULL(ff.state,'SD') as 'shipper_state',ISNULL(ff.zip,'57601') as 'shipper_zip'
+from owd_order join owd_order_ship_info on order_id=owd_order_ship_info.order_fkey
+join owd_line_item l
+join owd_inventory i
+ left outer join owd_client_inv ci on ci.inventory_fkey=i.inventory_id on i.inventory_id=
+l.inventory_id and (documents_only+l.is_insert+i.is_insert+is_auto_inventory)=0 on order_id=l.order_fkey
+left outer join (select top 1 order_fkey,f.* from owd_order_track t join owd_facilities f on f.loc_code=t.created_by order by t.order_track_id desc) as ff on
+ff.order_fkey=order_id
+where order_num=$P{ORDER_NUM} and is_parent = 0]]>
+	</queryString>
+	<field name="order_id" class="java.lang.Integer"/>
+	<field name="client_fkey" class="java.lang.Integer"/>
+	<field name="customer_fkey" class="java.lang.Integer"/>
+	<field name="order_num" class="java.lang.String"/>
+	<field name="order_refnum" class="java.lang.String"/>
+	<field name="order_num_barcode" class="java.lang.String"/>
+	<field name="po_num" class="java.lang.String"/>
+	<field name="order_type" class="java.lang.String"/>
+	<field name="salesperson" class="java.lang.String"/>
+	<field name="actual_order_date" class="java.sql.Timestamp"/>
+	<field name="order_sub_total" class="java.math.BigDecimal"/>
+	<field name="discount" class="java.math.BigDecimal"/>
+	<field name="tax_pct" class="java.math.BigDecimal"/>
+	<field name="tax_amount" class="java.math.BigDecimal"/>
+	<field name="ship_handling_fee" class="java.math.BigDecimal"/>
+	<field name="order_total" class="java.math.BigDecimal"/>
+	<field name="paid_amount" class="java.math.BigDecimal"/>
+	<field name="paid_date" class="java.sql.Timestamp"/>
+	<field name="order_balance" class="java.math.BigDecimal"/>
+	<field name="customer_num" class="java.lang.String"/>
+	<field name="customer_vendor_no" class="java.lang.String"/>
+	<field name="bill_last_name" class="java.lang.String"/>
+	<field name="bill_first_name" class="java.lang.String"/>
+	<field name="bill_address_one" class="java.lang.String"/>
+	<field name="bill_address_two" class="java.lang.String"/>
+	<field name="bill_city" class="java.lang.String"/>
+	<field name="bill_state" class="java.lang.String"/>
+	<field name="bill_zip" class="java.lang.String"/>
+	<field name="bill_country" class="java.lang.String"/>
+	<field name="bill_company_name" class="java.lang.String"/>
+	<field name="bill_title" class="java.lang.String"/>
+	<field name="bill_phone_num" class="java.lang.String"/>
+	<field name="bill_fax_num" class="java.lang.String"/>
+	<field name="bill_email_address" class="java.lang.String"/>
+	<field name="prt_pick_reqd" class="java.lang.Boolean"/>
+	<field name="prt_invoice_reqd" class="java.lang.Boolean"/>
+	<field name="prt_pack_reqd" class="java.lang.Boolean"/>
+	<field name="prt_priceonslip_reqd" class="java.lang.Boolean"/>
+	<field name="is_backorder" class="java.lang.Boolean"/>
+	<field name="backorder_order_num" class="java.lang.String"/>
+	<field name="original_order_num" class="java.lang.String"/>
+	<field name="is_future_ship" class="java.lang.Integer"/>
+	<field name="is_void" class="java.lang.Integer"/>
+	<field name="post_date" class="java.sql.Timestamp"/>
+	<field name="created_date" class="java.sql.Timestamp"/>
+	<field name="created_by" class="java.lang.String"/>
+	<field name="modified_date" class="java.sql.Timestamp"/>
+	<field name="modified_by" class="java.lang.String"/>
+	<field name="row_is_locked" class="java.lang.Boolean"/>
+	<field name="cc_type" class="java.lang.String"/>
+	<field name="is_gift" class="java.lang.Integer"/>
+	<field name="gift_message" class="java.lang.String"/>
+	<field name="gift_wrap_fee" class="java.math.BigDecimal"/>
+	<field name="reported" class="java.lang.Boolean"/>
+	<field name="cc_num" class="java.lang.String"/>
+	<field name="cc_exp_mon" class="java.lang.Integer"/>
+	<field name="cc_exp_year" class="java.lang.Integer"/>
+	<field name="pick_status" class="java.lang.Integer"/>
+	<field name="payment_status" class="java.lang.String"/>
+	<field name="pick_by" class="java.lang.String"/>
+	<field name="coupon" class="java.lang.String"/>
+	<field name="backorder_level" class="java.lang.Integer"/>
+	<field name="discount_pct" class="java.math.BigDecimal"/>
+	<field name="order_status" class="java.lang.String"/>
+	<field name="shipped_on" class="java.sql.Timestamp"/>
+	<field name="ship_packs" class="java.lang.Integer"/>
+	<field name="tracking_nums" class="java.lang.String"/>
+	<field name="shipped_cost" class="java.math.BigDecimal"/>
+	<field name="shipped_weight" class="java.math.BigDecimal"/>
+	<field name="shipped_lines" class="java.lang.Integer"/>
+	<field name="shipped_units" class="java.lang.Long"/>
+	<field name="ship_sub_total" class="java.math.BigDecimal"/>
+	<field name="ship_tax" class="java.math.BigDecimal"/>
+	<field name="ship_total" class="java.math.BigDecimal"/>
+	<field name="facility_code" class="java.lang.String"/>
+	<field name="group_name" class="java.lang.String"/>
+	<field name="order_ship_info_id" class="java.lang.Integer"/>
+	<field name="order_fkey" class="java.lang.Integer"/>
+	<field name="scheduled_ship_date" class="java.sql.Timestamp"/>
+	<field name="ship_last_name" class="java.lang.String"/>
+	<field name="ship_first_name" class="java.lang.String"/>
+	<field name="ship_address_one" class="java.lang.String"/>
+	<field name="ship_address_two" class="java.lang.String"/>
+	<field name="ship_city" class="java.lang.String"/>
+	<field name="ship_state" class="java.lang.String"/>
+	<field name="ship_zip" class="java.lang.String"/>
+	<field name="ship_country" class="java.lang.String"/>
+	<field name="ship_country_ref_num" class="java.lang.String"/>
+	<field name="ship_company_name" class="java.lang.String"/>
+	<field name="ship_title" class="java.lang.String"/>
+	<field name="ship_phone_num" class="java.lang.String"/>
+	<field name="ship_fax_num" class="java.lang.String"/>
+	<field name="ship_email_address" class="java.lang.String"/>
+	<field name="carr_service" class="java.lang.String"/>
+	<field name="carr_service_ref_num" class="java.lang.String"/>
+	<field name="carr_freight_terms" class="java.lang.String"/>
+	<field name="carr_freight_terms_ref_num" class="java.lang.String"/>
+	<field name="third_party_refnum" class="java.lang.String"/>
+	<field name="ss_addl_hand" class="java.lang.Boolean"/>
+	<field name="ss_declared_value" class="java.lang.Boolean"/>
+	<field name="declared_value" class="java.math.BigDecimal"/>
+	<field name="ss_proof_delivery" class="java.lang.Boolean"/>
+	<field name="ss_call_tag" class="java.lang.Boolean"/>
+	<field name="call_tag" class="java.lang.String"/>
+	<field name="ss_cod" class="java.lang.Boolean"/>
+	<field name="cod_charge" class="java.math.BigDecimal"/>
+	<field name="ss_saturday" class="java.lang.Boolean"/>
+	<field name="ss_tracking" class="java.lang.Boolean"/>
+	<field name="ss_oversize" class="java.lang.Boolean"/>
+	<field name="ss_hazardous" class="java.lang.Boolean"/>
+	<field name="ss_residential" class="java.lang.Boolean"/>
+	<field name="comments" class="java.lang.String"/>
+	<field name="whse_notes" class="java.lang.String"/>
+	<field name="customs_value" class="java.math.BigDecimal"/>
+	<field name="customs_desc" class="java.sql.Clob"/>
+	<field name="status" class="java.lang.Integer"/>
+	<field name="print_date" class="java.sql.Timestamp"/>
+	<field name="line_item_id" class="java.lang.Integer"/>
+	<field name="inventory_id" class="java.lang.Integer"/>
+	<field name="inventory_num" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="cust_refnum" class="java.lang.String"/>
+	<field name="quantity_request" class="java.lang.Integer"/>
+	<field name="quantity_actual" class="java.lang.Integer"/>
+	<field name="quantity_back" class="java.lang.Integer"/>
+	<field name="price" class="java.math.BigDecimal"/>
+	<field name="total_price" class="java.math.BigDecimal"/>
+	<field name="item_color" class="java.lang.String"/>
+	<field name="item_size" class="java.lang.String"/>
+	<field name="line_item_disc" class="java.lang.Double"/>
+	<field name="long_desc" class="java.sql.Clob"/>
+	<field name="dec_item_value" class="java.math.BigDecimal"/>
+	<field name="parent_line" class="java.lang.Integer"/>
+	<field name="is_parent" class="java.lang.Integer"/>
+	<field name="is_insert" class="java.lang.Integer"/>
+	<field name="origin_country" class="java.lang.String"/>
+	<field name="ordercustomsdesc" class="java.lang.String"/>
+	<field name="itemdesc" class="java.lang.String"/>
+	<field name="itemvalue" class="java.math.BigDecimal"/>
+	<field name="loc_code" class="java.lang.String"/>
+	<field name="shipper_address" class="java.lang.String"/>
+	<field name="shipper_city" class="java.lang.String"/>
+	<field name="shipper_state" class="java.lang.String"/>
+	<field name="shipper_zip" class="java.lang.String"/>
+	<variable name="lineTotal" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double(  ($F{itemvalue}.doubleValue()) *($F{quantity_actual}.intValue()) )]]></variableExpression>
+	</variable>
+	<variable name="invoiceTotal" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{lineTotal}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.00)]]></initialValueExpression>
+	</variable>
+	<variable name="sig" class="java.lang.String">
+		<variableExpression><![CDATA["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"]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<group name="order_num" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{order_num}]]></groupExpression>
+		<groupHeader>
+			<band height="154" splitType="Stretch">
+				<staticText>
+					<reportElement key="staticText-12" x="0" y="0" width="221" height="15" uuid="eca13e5b-2d05-47a9-9364-fbd7fb822a6c">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Shipper Name/Address]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-13" x="360" y="0" width="222" height="15" uuid="4f61b089-9137-4a34-86ba-f7a93e776ec3">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Consignee Name and Address]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement key="rectangle-1" x="3" y="36" width="0" height="0" uuid="3d5c6d8e-0c8c-4f06-a1f5-998057834614"/>
+				</rectangle>
+				<staticText>
+					<reportElement key="staticText-8" positionType="FixRelativeToBottom" x="0" y="139" width="33" height="14" uuid="5ffc8563-960d-4a9b-8487-1e0928380bb7"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Units]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-9" positionType="FixRelativeToBottom" x="77" y="140" width="253" height="13" uuid="967ce685-8ef5-455c-b1e2-952027b6a595"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[ Complete Description of Goods]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-10" positionType="FixRelativeToBottom" x="330" y="140" width="102" height="13" uuid="40d8a91d-a043-44de-9214-20fb5e5b37a1"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Unit Value]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText-11" positionType="FixRelativeToBottom" x="435" y="139" width="98" height="13" uuid="652afe2e-b01f-4950-9ec7-295d3cef9a6a"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField-2" stretchType="RelativeToBandHeight" x="360" y="15" width="176" height="102" uuid="ee663fa0-265b-446b-b000-73d80b2018d5"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font fontName="SansSerif" size="10"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ship_first_name}+" "+$F{ship_last_name}+"\n"
++(($F{ship_company_name}).length()>1?$F{ship_company_name}+"\n":"")
++$F{ship_address_one}
++(($F{ship_address_two}).length()>1?"\n"+$F{ship_address_two}:"")
++"\n"+$F{ship_city}+", "+$F{ship_state}+" "+$F{ship_zip}+"\n"
++$F{ship_country}+"\nPhone: "+$F{ship_phone_num}+"\n\n"
++$F{ship_email_address}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement key="line-2" positionType="FixRelativeToBottom" x="1" y="153" width="535" height="1" forecolor="#000000" uuid="c474e648-065a-495e-8707-066514a76c8d"/>
+					<graphicElement>
+						<pen lineWidth="2.0" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField-3" x="0" y="15" width="180" height="102" uuid="01b89581-fb06-43e1-b464-9b495b102d6a"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font fontName="SansSerif" size="10"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA["TAX ID: 46-0458580\n"
++"One World Direct\n"
++$F{shipper_address}+"\n"
++$F{shipper_city}+", "
++$F{shipper_state}+" "
++$F{shipper_zip}+"\nUSA"
++"\n\nPhone: 605-845-7172\nReason for export: Sale"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText-13" x="174" y="0" width="313" height="15" uuid="92f66ceb-18de-4ce3-aa0c-1bf0aa6d848b">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Buyer Name and Address]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField-2" stretchType="RelativeToBandHeight" x="174" y="15" width="182" height="102" uuid="b4dc2053-a928-4c83-a474-6cf85edcaba9"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font fontName="SansSerif" size="10"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{bill_first_name}+" "+$F{bill_last_name}+"\n"
++(($F{bill_company_name}).length()>1?$F{bill_company_name}+"\n":"")
++$F{bill_address_one}
++(($F{bill_address_two}).length()>1?"\n"+$F{bill_address_two}:"")
++"\n"+$F{bill_city}+", "+$F{bill_state}+" "+$F{bill_zip}+"\n"
++$F{bill_country}+"\nPhone: "+$F{bill_phone_num}+"\n\n"
++"Billing Ref: "+$F{order_refnum}+"\n\n"
++"BOL/Waybill: "+$F{tracking_nums}+"\n\n"
++$F{bill_email_address}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band splitType="Stretch"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText" x="61" y="4" width="412" height="32" uuid="2ff0352f-7080-4392-9aee-5ac0d9404aca"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Commercial Invoice]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line" positionType="FixRelativeToBottom" x="0" y="37" width="534" height="1" forecolor="#000000" uuid="7c94b436-e6eb-4690-9f67-ef326cc9df9c"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement key="line" x="0" y="3" width="534" height="1" forecolor="#000000" uuid="e40ddc40-794d-49da-aa3f-066d35fed312"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="22" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="340" y="-2" width="193" height="22" uuid="fd609d1a-7df7-442f-98e2-236e3f73bcb7">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{order_num}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-1" x="0" y="-2" width="117" height="22" uuid="cb93e993-f666-45a6-b7c0-95a9d5878a5c">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Date Shipped:]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd" isBlankWhenNull="false">
+				<reportElement key="textField" x="117" y="-2" width="128" height="22" uuid="0a4ee370-6fa9-4801-8407-0c64e5bd3960">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shipped_on}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-7" x="254" y="-1" width="83" height="22" uuid="92fb28d9-079c-4c1e-95a6-4fa8f039614c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Invoice:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="7" splitType="Stretch">
+			<rectangle radius="0">
+				<reportElement key="element-22" mode="Opaque" x="1" y="0" width="534" height="6" forecolor="#000000" backcolor="#999999" uuid="771d4aa8-fe97-45f2-94f8-1f876da0d454"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement key="textField" positionType="Float" stretchType="RelativeToTallestObject" x="77" y="2" width="253" height="13" uuid="54358ab7-6b61-4fb7-9924-1cfca281a3a8"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{origin_country}+$F{itemdesc}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="$#,##0.00" isBlankWhenNull="false">
+				<reportElement key="textField" positionType="Float" stretchType="RelativeToTallestObject" x="435" y="2" width="100" height="13" uuid="abc67584-98f6-433a-8b53-d7419875597c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{lineTotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$#,##0.00" isBlankWhenNull="false">
+				<reportElement key="textField-1" positionType="Float" stretchType="RelativeToTallestObject" x="330" y="2" width="102" height="13" uuid="2e8d4e5a-7483-4898-9b94-27673a39f49e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{itemvalue}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="2" width="77" height="13" uuid="13170ab6-458d-4a21-9185-6d36c43614b0"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantity_actual}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line" positionType="FixRelativeToBottom" x="0" y="16" width="535" height="1" forecolor="#000000" uuid="1bee81d5-9b4d-4bfc-aa64-955200111fc6"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="109" splitType="Stretch">
+			<image>
+				<reportElement x="117" y="24" width="200" height="66" uuid="defc2fec-e9bc-401e-bdaa-0a9c7645f8ec"/>
+				<imageExpression><![CDATA[new java.io.StringBufferInputStream( new org.w3c.tools.codec.Base64Decoder($V{sig}).processString() )]]></imageExpression>
+			</image>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="221" y="96" width="326" height="13" uuid="95aac0db-09ba-42b8-8918-6ce6d7f35dac"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" pdfEncoding="Cp1252"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-2" x="3" y="12" width="327" height="40" uuid="73ff8d9d-c8e4-4859-a2de-4cce2120d308"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[These commodities, technology or software were exported from the United States of America in accordance with the Export Administration Regulations. Diversion contrary to U.S. law prohibited.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-3" x="360" y="4" width="97" height="13" uuid="4e324b6e-dec4-46df-a021-941c68cb4659"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ Subtotal Value (USD):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-4" x="360" y="50" width="97" height="13" uuid="762e10d3-6825-42e1-bb44-34583b9e8e8c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Total Weight (Lbs):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-5" x="360" y="68" width="97" height="13" uuid="9ada6eb4-f319-4478-8d21-d36b607e56f7"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Total Packages:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-6" x="0" y="67" width="40" height="13" uuid="493c809c-cd80-4f58-9271-a39706a9faa3"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="457" y="68" width="78" height="13" uuid="2fe96265-9f3c-49d1-806a-9be18d0cb33e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ship_packs}]]></textFieldExpression>
+			</textField>
+			<textField pattern="##0.00" isBlankWhenNull="false">
+				<reportElement key="textField" x="457" y="50" width="78" height="13" uuid="17336442-8e53-4159-abbe-b1067fb4a8e7"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shipped_weight}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
+				<reportElement key="textField" x="457" y="4" width="78" height="13" uuid="b3af78c5-cb48-4acf-8e9e-3fd856d82a24"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="true" pdfFontName="Helvetica-Bold"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{invoiceTotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-14" x="3" y="90" width="54" height="13" uuid="452817ed-7117-484a-8077-671a7d49a12a"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd" isBlankWhenNull="false">
+				<reportElement key="textField-4" x="61" y="91" width="128" height="12" uuid="dc6e4b94-5289-4ba8-80e1-86b872eb29f8"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false" pdfFontName="Helvetica"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shipped_on}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-1" x="43" y="81" width="314" height="1" uuid="6e8ca2f8-3170-4781-859a-609c96523240"/>
+			</line>
+			<staticText>
+				<reportElement x="360" y="17" width="96" height="13" uuid="99bd9e4f-ee25-48d5-bf94-024c8d65aca1">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Discount]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="456" y="17" width="78" height="13" uuid="ebc78e2a-37e9-4f45-9f42-ad64a14ec66d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{discount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="459" y="31" width="76" height="13" uuid="a1d5f252-93a3-49cf-8e02-d32f0c4ba40d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{invoiceTotal}+$F{discount}.doubleValue()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="362" y="31" width="94" height="13" uuid="ab4f0440-dd9b-4dfe-b2c7-803c62e5b757">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Value]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

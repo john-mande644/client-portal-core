@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OwdList"
+        table="owd_lists"
+        >
+
+        <id
+            name="listsId"
+            type="java.lang.Integer"
+            column="lists_id"
+            >
+            <generator class="assigned"/>
+        </id>
+
+        <property
+            name="listName"
+            type="java.lang.String"
+            column="list_name"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="listValue"
+            type="java.lang.String"
+            column="list_value"
+            not-null="true"
+            length="100"
+            />
+        <property
+            name="listSeq"
+            type="byte"
+            column="list_seq"
+            not-null="true"
+            length="3"
+            />
+        <property
+            name="referenceNum"
+            type="java.lang.String"
+            column="reference_num"
+            length="50"
+            />
+        <property
+            name="isDefault"
+            type="boolean"
+            column="is_default"
+            not-null="true"
+            length="1"
+            />
+        <property
+            name="tdReference"
+            type="java.lang.String"
+            column="td_reference"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="isInactive"
+            type="boolean"
+            column="is_inactive"
+            not-null="true"
+            length="1"
+            />
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

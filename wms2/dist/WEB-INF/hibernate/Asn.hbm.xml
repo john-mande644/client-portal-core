@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.Asn"
+        table="asn"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="clientRef"
+            type="java.lang.String"
+            column="client_ref"
+            not-null="true"
+            length="255"
+            />
+        <property
+            name="clientPo"
+            type="java.lang.String"
+            column="client_po"
+            not-null="true"
+            length="255"
+            />
+        <property
+            name="clientFkey"
+            type="java.lang.Integer"
+            column="client_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="shipperName"
+            type="java.lang.String"
+            column="shipper_name"
+            not-null="true"
+            length="255"
+            />
+        <property
+            name="expectDate"
+            type="java.util.Date"
+            column="expect_date"
+            not-null="true"
+            length="23"
+            />
+        <property
+            name="notes"
+            type="java.lang.String"
+            column="notes"
+            not-null="true"
+            length="2147483647"
+            />
+        <property
+            name="carrier"
+            type="java.lang.String"
+            column="carrier"
+            not-null="true"
+            length="255"
+            />
+        <property
+            name="cartonCount"
+            type="java.lang.Integer"
+            column="carton_count"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="palletCount"
+            type="java.lang.Integer"
+            column="pallet_count"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="isAutorelease"
+            type="java.lang.Integer"
+            column="is_autorelease"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="status"
+            type="java.lang.Integer"
+            column="status"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="createdDate"
+            type="java.util.Date"
+            column="created_date"
+            not-null="true"
+            length="23"
+            />
+        <property
+            name="createdBy"
+            type="java.lang.String"
+            column="created_by"
+            not-null="true"
+            length="255"
+            />
+        <property
+            name="lastReceiveDate"
+            type="java.util.Date"
+            column="last_receive_date"
+            length="23"
+            />
+        <property
+            name="receiveCount"
+            type="java.lang.Integer"
+            column="receive_count"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="hasBlind"
+            type="java.lang.Integer"
+            column="has_blind"
+            not-null="true"
+            length="10"
+            />
+        <property
+                name="facilityCode"
+                type="java.lang.String"
+                column="facility_code"
+                not-null="false"
+                length="10"
+                />
+        <property
+                name="groupName"
+                type="java.lang.String"
+                column="group_name"
+                not-null="false"
+                length="50"
+                />
+        <!-- associations -->
+        <!-- bi-directional one-to-many association to AsnItem -->
+        <bag
+            name="asnItems"
+            lazy="true"
+            inverse="true"
+            cascade="all-delete-orphan"
+            order-by="inventory_num asc"
+            >
+            <key>
+                <column name="asn_fkey"/>
+            </key>
+            <one-to-many
+                class="com.owd.hibernate.AsnItem"
+                />
+        </bag>
+
+        <!-- bi-directional one-to-many association to ReceiveItem -->
+        <set
+            name="receives"
+            lazy="true"
+            inverse="true"
+            order-by="start_timestamp asc"
+            >
+            <key>
+                <column name="asn_fkey"/>
+            </key>
+            <one-to-many
+                class="com.owd.hibernate.Receive"
+                />
+        </set>
+
+    </class>
+</hibernate-mapping>

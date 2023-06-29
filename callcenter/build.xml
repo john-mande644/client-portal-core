@@ -1,0 +1,205 @@
+ <project name="callcenter" default="dist" basedir=".">
+    <description>
+        Builds extranet web application project
+    </description>
+  <!-- set global properties for this build -->
+     <property name="src" location="src"/>
+     <property name="build" location="build"/>
+     <property name="dist" location="dist"/>
+     <property name="web" location="web"/>
+     <property name="conf" location="conf"/>
+     <property name="lib" location="lib"/>
+     <property name="shared" location="../../sharedlibs"/>
+
+     <property name="project" value="${ant.project.name}"/>
+
+     <target name="init" depends="clean">
+         <!-- Create the time stamp -->
+         <tstamp>
+             <format property="build.time" pattern="MM/dd/yyyy hh:mm aa"/>
+         </tstamp>
+
+         <!-- Create the build directory structure used by compile -->
+         <mkdir dir="build"/>
+
+
+
+     </target>
+
+     <target name="core" depends="init" unless="compilecore" >
+        <!-- Create the build directory structure used by compile -->
+
+       <ant dir="../../owd_core" inheritall="false" target="dist"/>
+
+
+     </target>
+     <target name="compile" depends="core"
+         description="compile the source ">
+         <!-- Compile the java code from src into build -->
+         <javac srcdir="src" destdir="build">
+             <classpath>
+                 <pathelement path="${classpath}"/>
+                 <fileset dir="../../sharedlibs">
+                     <include name="**/*.jar"/>
+                 </fileset>
+                 <fileset dir="lib">
+                     <include name="**/*.jar"/>
+                 </fileset>
+             </classpath>
+         </javac>
+     </target>
+
+     <target name="dist" depends="compile"
+         description="Generate the distribution">
+         <!-- Create the distribution directory -->
+         <mkdir dir="dist/"/>
+         <mkdir dir="dist/WEB-INF"/>
+         <mkdir dir="dist/WEB-INF/classes"/>
+         <mkdir dir="dist/WEB-INF/lib"/>
+         <mkdir dir="dist/WEB-INF/uploads"/>
+         <mkdir dir="dist/WEB-INF/hibernate"/>
+
+
+         <buildnumber/>
+         <copy file="${conf}/web.xml" tofile="${dist}/WEB-INF/web.xml"/>
+         <copy todir="${dist}/WEB-INF/lib">
+             <fileset dir="${lib}"/>
+         </copy>
+         <copy todir="${dist}/WEB-INF/hibernate">
+             <fileset dir="${shared}/corehibernatemappings"/>
+         </copy>
+
+
+         <copy file="../../sharedlibs/owd-core.jar" tofile="${dist}/WEB-INF/lib/owd-core.jar"/>
+         <copy file="../../sharedlibs/castor-0.9.4.3-xml.jar" tofile="${dist}/WEB-INF/lib/castor-0.9.4.3-xml.jar"/>
+         <copy file="../../sharedlibs/castor-0.9.4.3.jar" tofile="${dist}/WEB-INF/lib/castor-0.9.4.3.jar"/>
+         <copy file="../../sharedlibs/commons-dbcp-1.1.jar" tofile="${dist}/WEB-INF/lib/commons-dbcp-1.1.jar"/>
+         <copy file="../../sharedlibs/commons-pool-1.1.jar" tofile="${dist}/WEB-INF/lib/commons-pool-1.1.jar"/>
+         <copy file="../../sharedlibs/odmg-3.0.jar" tofile="${dist}/WEB-INF/lib/odmg-3.0.jar"/>
+         <copy file="../../sharedlibs/castorxml.jar" tofile="${dist}/WEB-INF/lib/castorxml.jar"/>
+         <copy file="web/WEB-INF/c.tld" tofile="${dist}/WEB-INF/c.tld"/>
+         <copy file="web/WEB-INF/struts-bean-el.tld" tofile="${dist}/WEB-INF/struts-bean-el.tld"/>
+         <copy file="web/WEB-INF/callcenter-struts-config.xml" tofile="${dist}/WEB-INF/callcenter-struts-config.xml"/>
+         <copy file="web/WEB-INF/struts-html-el.tld" tofile="${dist}/WEB-INF/struts-html-el.tld"/>
+         <copy file="web/WEB-INF/struts-logic-el.tld" tofile="${dist}/WEB-INF/struts-logic-el.tld"/>
+         <copy file="web/WEB-INF/struts-tiles.tld" tofile="${dist}/WEB-INF/struts-tiles.tld"/>
+         <copy file="web/WEB-INF/validation.xml" tofile="${dist}/WEB-INF/validation.xml"/>
+          <copy file="web/WEB-INF/callcenter/validation.xml" tofile="${dist}/WEB-INF/callcenter/validation.xml"/>
+         <copy file="web/WEB-INF/cc/validation.xml" tofile="${dist}/WEB-INF/cc/validation.xml"/>
+         <copy file="web/WEB-INF/validator-rules.xml" tofile="${dist}/WEB-INF/validator-rules.xml"/>
+         <copy file="src/ApplicationResources.properties" tofile="${dist}/WEB-INF/classes/ApplicationResources.properties"/>
+                <copy todir="${dist}">
+             <fileset dir="${web}"/>
+         </copy>
+
+         <filter token="project" value="${project}"/>
+         <filter token="build" value="${build.number}"/>
+         <filter token="now" value="${build.time}"/>
+         
+         <copy todir="${dist}/WEB-INF/classes">
+             <fileset dir="${build}"/>
+         </copy>
+     </target>
+     <target name="nocore">
+         <property name="compilecore" location="yes"/>
+     </target>
+     <target name="deploy-testserver no core" depends="nocore,dist" description="Deploy to local test server">
+         <copy todir="../../tomcat/webapps/callcenter/">
+             <fileset dir="${dist}"/>
+         </copy>
+         <copy file="${conf}/callcenter.xml" tofile="../../tomcat/webapps/callcenter.xml"/>
+
+     </target>
+     <target name="deploy-testserver (local)" depends="dist" description="Deploy to local test server">
+         <copy todir="../../tomcat6/webapps/callcenter/">
+             <fileset dir="${dist}"/>
+         </copy>
+         <copy file="${conf}/callcenter.xml" tofile="../../tomcat6/webapps/callcenter.xml"/>
+
+     </target>
+     <target name="deploy-tomcat (local)" depends="dist" description="Deploy to local test server">
+         <copy todir="../../tomcat6/webapps/callcenter/">
+             <fileset dir="${dist}"/>
+         </copy>
+         <copy file="${conf}/callcenter.xml" tofile="../../tomcat6/webapps/callcenter.xml"/>
+
+     </target>
+
+     <target name="update jsps only (local)" description="Copy jsps to local test server">
+         <copy todir="../../tomcat/webapps/callcenter/">
+             <fileset dir="${web}"/>
+         </copy>
+         <copy file="${conf}/callcenter.xml" tofile="../../testserver/webapps/callcenter.xml"/>
+          <copy file="src/ApplicationResources.properties" tofile="${dist}/WEB-INF/classes/ApplicationResources.properties"/>
+              </target>
+
+     <!-- Requires setup of ssh rsa keyfiles for auto-authentication
+
+     <target name="deploy-internal.owd.com" depends="deploy-testserver (local)" description="Deploy to production server">
+            <exec dir="${dist}" executable="scp" output="dir.txt">
+                <arg line=" -r . admin@internal.owd.com:/Library/Tomcat/webapps/handhelds"/>
+            </exec>
+            <exec dir="${conf}" executable="scp" output="dir.txt">
+                <arg line=" webapps.xml admin@internal.owd.com:/Library/Tomcat/webapps/handhelds.xml"/>
+            </exec>
+        </target>         -->
+      <target name="update jsps only internal" description="Copy jsps to  server">
+         <exec dir="${web}" executable="scp" output="dir.txt">
+             <arg line=" -r . admin@internal.owd.com:~/tomcat/webapps/callcenter"/>
+         </exec>
+
+
+     </target>
+     <!-- temp for Tomcat 5 upgrade -->
+     <target name="deploy-internal.owd.com" depends="dist" description="Deploy to production server">
+
+         <war basedir="${dist}" compress="9" destfile="${build}/callcenter.war" />
+
+             <exec dir="${build}" executable="scp" output="dir.txt">
+                 <arg line=" -r callcenter.war owd@internal.owd.com:/home/owd/tomcat/webapps/callcenter.war"/>
+             </exec>
+         <exec dir="${build}" executable="ssh" output="dir.txt">
+                   <arg line=" owd@internal.owd.com chmod a+r /home/owd/tomcat/webapps/callcenter.war"/>
+               </exec>
+
+         </target>
+        <target name="deploy-internal-callcenter2-war.owd.com" depends="dist" description="Deploy to production server">
+
+         <war basedir="${dist}" compress="9" destfile="${build}/callcenter2.war" />
+
+             <exec dir="${build}" executable="scp" output="dir.txt">
+                 <arg line=" -r callcenter.war owd@internal.owd.com:/home/owd/tomcat/webapps/callcenter2.war"/>
+             </exec>
+         <exec dir="${build}" executable="ssh" output="dir.txt">
+                   <arg line=" owd@internal.owd.com chmod a+r /home/owd/tomcat/webapps/callcenter2.war"/>
+               </exec>
+
+         </target>
+
+     <target name="deploy-callcenterx-internal.owd.com" depends="dist" description="Deploy to production server in x directory">
+              <exec dir="${dist}" executable="scp" output="dir.txt">
+                  <arg line=" -r . admin@internal.owd.com:~/tomcat/webapps/callcenterx"/>
+              </exec>
+              <exec dir="${conf}" executable="scp" output="dir.txt">
+                  <arg line=" callcenter.xml admin@internal.owd.com:~/tomcat/webapps/callcenterx.xml"/>
+              </exec>
+          </target>
+
+
+
+    <target name="deploy-it-test" depends="deploy-testserver (local)" description="Deploy to production server">
+             <exec dir="${dist}" executable="scp" output="dir.txt">
+                 <arg line=" -r . admin@172.16.5.100:/usr/local/tomcat/webapps/callcenter"/>
+             </exec>
+             <exec dir="${conf}" executable="scp" output="dir.txt">
+                 <arg line=" callcenter.xml admin@172.16.5.100:/usr/local/tomcat/webapps/callcenter.xml"/>
+             </exec>
+         </target>
+
+     <target name="clean"
+         description="clean up">
+         <!-- Delete the build and dist directory trees -->
+         <delete dir="build"/>
+         <delete dir="dist"/>
+     </target>
+ </project>

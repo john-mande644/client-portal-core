@@ -1,0 +1,269 @@
+//apply plugin: 'java'
+org.gradle.util.SingleMessageLogger.whileDisabled {
+    apply plugin: 'groovy'
+}
+
+apply plugin: 'war'
+
+repositories {
+    maven { url "https://mvnrepository.com/artifact" }
+    mavenCentral()
+    ivy {
+        artifactPattern "http://internal.owd.com/ivyrepo/[organisation]/[module]/[artifact].[ext]"
+    }
+}
+
+
+compileGroovy.doFirst {
+    println "source compatibility owd_core: " + sourceCompatibility
+    println "target compatibility owd_core: " + targetCompatibility
+
+
+}
+
+
+
+compileJava.doFirst {
+    println "source compatibility owd_core: " + sourceCompatibility
+    println "target compatibility owd_core: " + targetCompatibility
+
+}
+
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
+}
+
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
+}
+
+
+configurations.all {
+    resolutionStrategy {
+        // fail eagerly on version conflict (includes transitive dependencies)
+        // e.g. multiple different versions of the same dependency (group and name are equal)
+       // failOnVersionConflict()
+
+        // force certain versions of dependencies (including transitive)
+        //  *append new forced modules:
+        force 'c3p0:c3p0:0.9.1.2'
+    }
+    exclude group: 'javassist'
+
+}
+
+dependencies {
+    compile 'c3p0:c3p0:0.9.1.2'
+    compile 'org.apache.httpcomponents:httpmime:4.2.1'
+
+    compile 'org.codehaus.groovy:groovy-all:2.3.9'
+    compile('org.hibernate:hibernate-core:4.3+')
+            {
+                exclude group: 'org.slf4j', module: 'slf4j-api'
+                exclude group: 'org.jboss.javaee', module: 'jboss-jacc-api_JDK4'
+
+            }
+    compile('org.hibernate:hibernate-c3p0:4.1.12.Final') {
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+    }
+    compile 'org.hibernate:hibernate-validator:4.1.0.Final'
+
+    compile 'org.hibernate:hibernate-tools:4.0.0-CR1'
+    compile 'owd:jtds:'
+    compile('javax.mail:mail:1.5.0-b01')
+            {
+                exclude group: 'javax.activation', module: 'activation'
+
+            }
+    compile 'log4j:log4j:1.2.12'
+    compile 'javax.servlet:servlet-api:2.5'
+    compile 'junit:junit:4.8.2'
+    compile 'commons-lang:commons-lang:2.6'
+    compile 'commons-net:commons-net:3.1'
+    compile 'org.apache.struts:struts2-core:2.3.34'
+   // compile 'xerces:xercesImpl:2.9.0'
+    compile 'xalan:xalan:2.7.2'
+    compile 'mysql:mysql-connector-java:5.1.16'
+    compile 'owd:breezetk:'
+    compile 'owd:connectship:'
+    compile 'owd:shipdeploy:'
+    compile 'owd:ipworks:'
+    compile 'owd:ipworksssl:'
+    compile 'owd:JLinkPointTxn:'
+    compile 'owd:payflow:'
+    compile 'owd:tbftools:'
+    compile 'joda-time:joda-time:2.9.2'
+    compile 'com.amazonaws:aws-java-sdk:1.8.10.1'
+    compile 'commons-logging:commons-logging:1.1.1'
+    compile 'org.hibernate:hibernate-validator-annotation-processor:4.1.0.Final'
+    compile 'org.hibernate:hibernate-validator-parent:4.+'
+    compile('javax.xml.bind:jaxb-api:2.1')
+            {
+                exclude group: 'javax.xml.bind', module: 'jaxb-impl'
+            }
+  //  compile 'javax.xml:jaxb-impl:2.1'
+    compile 'com.sun.xml.bind:jaxb-impl:2.1.7'
+    compile 'org.drools:drools-core:5.6.0.Final'
+    compile 'org.drools:drools-compiler:5.6.0.Final'
+
+    compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.1'
+    compile ( 'net.sf.jasperreports:jasperreports:6.0.3')    {
+        exclude group:'org.olap4j' , module:'olap4j'
+    }
+    // https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox
+    compile group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.12'
+
+    compile 'net.sf.barcode4j:barcode4j:2.1'
+    compile 'batik:batik-bridge:1.6-1'
+
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.4'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.4'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: '2.4'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.4'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-jul', version: '2.4'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-web', version: '2.4'
+    compile group: 'com.easypost', name: 'easypost-api-client', version: '3.3.4'
+    // https://mvnrepository.com/artifact/javax.xml.rpc/javax.xml.rpc-api
+    compile group: 'javax.xml.rpc', name: 'javax.xml.rpc-api', version: '1.1.2'
+    // https://mvnrepository.com/artifact/org.apache.axis/axis
+    compile group: 'org.apache.axis', name: 'axis', version: '1.4'
+    // https://mvnrepository.com/artifact/commons-discovery/commons-discovery
+    compile group: 'commons-discovery', name: 'commons-discovery', version: '0.5'
+    // https://mvnrepository.com/artifact/wsdl4j/wsdl4j
+    compile group: 'wsdl4j', name: 'wsdl4j', version: '1.6.3'
+    
+    // Sean added on 2/20/2019 for Excel r/w utility
+    // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
+    compile 'com.squareup.okhttp3:okhttp:3.12.6'
+    compile 'com.google.guava:guava:28.1-jre'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+
+
+
+
+
+
+}
+
+test {
+    exclude '**/*LotTracking*'
+    exclude '*'
+}
+
+sourceSets {
+    main {
+        groovy {
+            srcDirs = ['src']
+            output.resourcesDir = "out/production/resources/"
+        }
+    }
+
+
+}
+
+
+
+configurations {
+    hbmtools
+}
+
+dependencies {
+    hbmtools 'commons-logging:commons-logging:1.1.1'
+    hbmtools('org.hibernate:hibernate-core:3.6.5.Final')
+            {
+                exclude group: 'org.slf4j', module: 'slf4j-api'
+                exclude group: 'org.jboss.javaee', module: 'jboss-jacc-api_JDK4'//by both name and group
+            }
+    hbmtools 'org.hibernate:hibernate-tools:3.2.4.GA'
+    hbmtools 'org.slf4j:slf4j-log4j12:1.6.1'
+}
+
+
+
+
+task buildHibernateClasses << {
+    println "starting hbmtools"
+
+    ant.taskdef(name: 'hibernatetool', classname: 'org.hibernate.tool.ant.HibernateToolTask', classpath: configurations.hbmtools.asPath)
+    println "starting hbmtools - taskdef"
+
+
+                println "starting hbmtools - ant"
+
+    ant.delete(quiet:"true") {
+
+        fileset(dir: 'src/com/owd/hibernate/generated')
+        }
+
+        ant.hibernatetool(destdir: "src") {
+                    configuration {
+                        fileset(dir: 'src/com/owd/hibernate/xml', includes: '*.hbm.xml')
+                        fileset(dir: 'src/com/owd/hibernate/clientreports/xml', includes: '*.hbm.xml')
+                    }
+                    println "starting hbm2java"
+                    hbm2java(jdk5: true)
+                }
+
+}
+
+compileJava.dependsOn buildHibernateClasses
+
+
+
+processResources{
+    from fileTree(dir: 'src', includes: ['**/*.jrxml','**/*.xml', '**/*.properties', '**/*.0', '**/*.pem', '**/*.p12', '**/*.jpg','**/*.png','**/*.gif'])
+}
+
+jar {
+  exclude('**/client-config.wsdd')
+}
+
+task droolsOrderInsertJar(type: Jar, dependsOn: compileJava) {
+    from sourceSets.main.output.classesDir
+    include '**/BaseRuleAdapter.class'
+    include '**/OrderRuleAdapter.class'
+    include '**/SubscriptionRuleAdapter.class'
+    include '**/DroolsDescriptor.class'
+    archiveName 'ruleadapter-orderinsertmodels.jar'
+    includeEmptyDirs = false
+}
+
+task droolsOrderInsertJarNew(type: Jar, dependsOn: compileJava) {
+    from "build/classes/groovy/main/"
+
+    include '**/BaseRuleAdapter.class'
+    include '**/OrderRuleAdapter.class'
+    include '**/SubscriptionRuleAdapter.class'
+    include '**/DroolsDescriptor.class'
+    archiveName 'ruleadapter-orderinsertmodels.jar'
+    includeEmptyDirs = false
+}
+
+task droolsPostOrderCreateJar(type: Jar, dependsOn: compileJava) {
+//    from sourceSets.main.output.classesDir
+    from "build/classes/groovy/main/"
+
+    include '**/BaseRuleAdapter.class'
+    include '**/OrderPostCreateRuleAdapter.class'
+    include '**/DroolsDescriptor.class'
+    archiveName 'ruleadapter-postordercreatemodels.jar'
+    includeEmptyDirs = false
+}
+
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+    distributionPath = 'wrapper/dists'
+    jarFile = 'wrapper/gradle-wrapper.jar'
+}
+
+
+
+

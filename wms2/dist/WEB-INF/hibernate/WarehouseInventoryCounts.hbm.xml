@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.WarehouseInventoryCounts"
+        table="warehouse_inventory_counts"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="warehouseInventoryFkey"
+            type="java.lang.Integer"
+            column="warehouse_inventory_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="inventoryId"
+            type="java.lang.Integer"
+            column="inventory_id"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="inventoryNum"
+            type="java.lang.String"
+            column="inventory_num"
+            not-null="false"
+            length="10"
+            />
+        <property
+            name="name"
+            type="java.lang.String"
+            column="name"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="quanity"
+            type="java.lang.Integer"
+            column="quanity"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="countDate"
+            type="java.util.Date"
+            column="count_date"
+            not-null="false"
+            length="16"
+            />
+        <property
+            name="clientFkey"
+            type="java.lang.Integer"
+            column="client_fkey"
+            not-null="false"
+            length="10"
+            />
+
+
+        <!-- associations -->
+        <!-- bi-directional one-to-many association to OrderPickItem -->
+
+
+    </class>
+</hibernate-mapping>

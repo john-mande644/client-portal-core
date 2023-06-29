@@ -1,0 +1,46 @@
+<OrderDetails>
+  <!--You have a CHOICE of the next 3 items at this level-->
+  <OrderInfo>
+    <OrderID>string</OrderID>
+  </OrderInfo>
+  <OrderItem>
+    <!--Optional:-->
+    <ProductID>string</ProductID>
+    <!--Optional:-->
+    <ColorID>string</ColorID>
+    <!--Optional:-->
+    <SizeID>string</SizeID>
+    <!--Optional:-->
+    <MFGSKU>string</MFGSKU>
+    <UPC>string</UPC>
+    <QuantityShipped>string</QuantityShipped>
+  </OrderItem>
+      <OrderItem>
+    <!--Optional:-->
+    <ProductID>string</ProductID>
+    <!--Optional:-->
+    <ColorID>string</ColorID>
+    <!--Optional:-->
+    <SizeID>string</SizeID>
+    <!--Optional:-->
+    <MFGSKU>string</MFGSKU>
+    <UPC>string</UPC>
+    <QuantityShipped>string</QuantityShipped>
+  </OrderItem>
+  <OrderShippingInfo>
+    <!--Optional:-->
+    <TrackingNumber>string</TrackingNumber>
+    <!--Optional:-->
+    <ShipName>string</ShipName>
+    <ShipType>string</ShipType>
+    <ShipDateTime>string</ShipDateTime>
+  </OrderShippingInfo>
+      <OrderShippingInfo>
+    <!--Optional:-->
+    <TrackingNumber>string</TrackingNumber>
+    <!--Optional:-->
+    <ShipName>string</ShipName>
+    <ShipType>string</ShipType>
+    <ShipDateTime>string</ShipDateTime>
+  </OrderShippingInfo>
+</OrderDetails>

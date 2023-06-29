@@ -1,0 +1,165 @@
+package com.owd.jobs.jobobjects.paypal;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Java class for ShippingInfoType complex type.
+ * <p/>
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p/>
+ * <pre>
+ * &lt;complexType name="ShippingInfoType">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+private final static Logger log =  LogManager.getLogger();
+ *       &lt;sequence>
+ *         &lt;element name="ShippingMethod" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="ShippingCarrier" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="ShippingAmount" type="{urn:ebay:apis:CoreComponentTypes}BasicAmountType"/>
+ *         &lt;element name="HandlingAmount" type="{urn:ebay:apis:CoreComponentTypes}BasicAmountType"/>
+ *         &lt;element name="InsuranceAmount" type="{urn:ebay:apis:CoreComponentTypes}BasicAmountType"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "ShippingInfoType", namespace = "urn:ebay:apis:eBLBaseComponents", propOrder = {
+        "shippingMethod",
+        "shippingCarrier",
+        "shippingAmount",
+        "handlingAmount",
+        "insuranceAmount"
+})
+public class ShippingInfoType
+{
+
+    @XmlElement(name = "ShippingMethod", namespace = "urn:ebay:apis:eBLBaseComponents", required = true)
+    protected String shippingMethod;
+    @XmlElement(name = "ShippingCarrier", namespace = "urn:ebay:apis:eBLBaseComponents", required = true)
+    protected String shippingCarrier;
+    @XmlElement(name = "ShippingAmount", namespace = "urn:ebay:apis:eBLBaseComponents", required = true)
+    protected BasicAmountType shippingAmount;
+    @XmlElement(name = "HandlingAmount", namespace = "urn:ebay:apis:eBLBaseComponents", required = true)
+    protected BasicAmountType handlingAmount;
+    @XmlElement(name = "InsuranceAmount", namespace = "urn:ebay:apis:eBLBaseComponents", required = true)
+    protected BasicAmountType insuranceAmount;
+
+    /**
+     * Gets the value of the shippingMethod property.
+     *
+     * @return possible object is
+     *         {@link String }
+     */
+    public String getShippingMethod()
+    {
+        return shippingMethod;
+    }
+
+    /**
+     * Sets the value of the shippingMethod property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
+    public void setShippingMethod(String value)
+    {
+        this.shippingMethod = value;
+    }
+
+    /**
+     * Gets the value of the shippingCarrier property.
+     *
+     * @return possible object is
+     *         {@link String }
+     */
+    public String getShippingCarrier()
+    {
+        return shippingCarrier;
+    }
+
+    /**
+     * Sets the value of the shippingCarrier property.
+     *
+     * @param value allowed object is
+     *              {@link String }
+     */
+    public void setShippingCarrier(String value)
+    {
+        this.shippingCarrier = value;
+    }
+
+    /**
+     * Gets the value of the shippingAmount property.
+     *
+     * @return possible object is
+     *         {@link BasicAmountType }
+     */
+    public BasicAmountType getShippingAmount()
+    {
+        return shippingAmount;
+    }
+
+    /**
+     * Sets the value of the shippingAmount property.
+     *
+     * @param value allowed object is
+     *              {@link BasicAmountType }
+     */
+    public void setShippingAmount(BasicAmountType value)
+    {
+        this.shippingAmount = value;
+    }
+
+    /**
+     * Gets the value of the handlingAmount property.
+     *
+     * @return possible object is
+     *         {@link BasicAmountType }
+     */
+    public BasicAmountType getHandlingAmount()
+    {
+        return handlingAmount;
+    }
+
+    /**
+     * Sets the value of the handlingAmount property.
+     *
+     * @param value allowed object is
+     *              {@link BasicAmountType }
+     */
+    public void setHandlingAmount(BasicAmountType value)
+    {
+        this.handlingAmount = value;
+    }
+
+    /**
+     * Gets the value of the insuranceAmount property.
+     *
+     * @return possible object is
+     *         {@link BasicAmountType }
+     */
+    public BasicAmountType getInsuranceAmount()
+    {
+        return insuranceAmount;
+    }
+
+    /**
+     * Sets the value of the insuranceAmount property.
+     *
+     * @param value allowed object is
+     *              {@link BasicAmountType }
+     */
+    public void setInsuranceAmount(BasicAmountType value)
+    {
+        this.insuranceAmount = value;
+    }
+
+}

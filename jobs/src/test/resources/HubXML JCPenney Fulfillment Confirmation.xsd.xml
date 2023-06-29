@@ -1,0 +1,48 @@
+<ConfirmMessageBatch type="string" batchNumber="string">
+  <partnerID name="string" roleType="vendor">string</partnerID>
+  <!--1 or more repetitions:-->
+  <hubConfirm transactionID="string">
+    <participatingParty name="JC Penney" roleType="merchant" participationCode="To:">string</participatingParty>
+    <partnerTrxID>string</partnerTrxID>
+    <partnerTrxDate>100</partnerTrxDate>
+    <poNumber>string</poNumber>
+    <!--Optional:-->
+    <trxShipping>1000.00</trxShipping>
+    <!--Optional:-->
+    <trxBalanceDue>1000.00</trxBalanceDue>
+    <!--Optional:-->
+    <trxData>
+      <vendorsInvoiceNumber>string</vendorsInvoiceNumber>
+      <FLSAcompliance>Y</FLSAcompliance>
+    </trxData>
+    <!--1 or more repetitions:-->
+    <hubAction transactionItemID="string">
+      <action>v_ship</action>
+      <!--Optional:-->
+      <actionCode>string</actionCode>
+      <merchantLineNumber>100</merchantLineNumber>
+      <trxQty>100</trxQty>
+      <!--Optional:-->
+      <CARBcertifierId>string</CARBcertifierId>
+      <!--Optional:-->
+      <CARBformaldehydeComplianceCode>4</CARBformaldehydeComplianceCode>
+      <!--Optional:-->
+      <complianceAssertion>string</complianceAssertion>
+      <!--Zero or more repetitions:-->
+      <packageDetailLink packageDetailID="string">string</packageDetailLink>
+      <!--Optional:-->
+      <trxItemData>
+        <!--Optional:-->
+        <vendorWarehouseId>string</vendorWarehouseId>
+      </trxItemData>
+    </hubAction>
+    <!--Zero or more repetitions:-->
+    <packageDetail packageDetailID="string">
+      <shipDate>100</shipDate>
+      <serviceLevel1>string</serviceLevel1>
+      <trackingNumber>anyType</trackingNumber>
+      <shippingWeight weightUnit="OZ">string</shippingWeight>
+    </packageDetail>
+  </hubConfirm>
+  <messageCount>100</messageCount>
+</ConfirmMessageBatch>

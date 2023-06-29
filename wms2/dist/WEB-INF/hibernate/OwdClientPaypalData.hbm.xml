@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.owd.hibernate.OwdClientPaypalData" 
+    table="owd_client_paypal_data"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+        <generator class="identity" />
+    </id>
+    <property
+        name="usePaypal"
+        type="java.lang.Integer"
+        column="use_paypal"
+        not-null="true"
+        length="10"
+    />
+ 
+    <property
+        name="paypalApiUsername"
+        type="java.lang.String"
+        column="paypal_api_username"
+        length="50"
+    />
+    <property
+        name="paypalApiPassword"
+        type="java.lang.String"
+        column="paypal_api_password"
+        length="50"
+    />
+    <property
+        name="paypalSignature"
+        type="java.lang.String"
+        column="paypal_signature"
+        length="50"
+    />
+
+    <!-- associations -->
+    <many-to-one name="client" class="com.owd.hibernate.OwdClient" column="client_fkey" unique="true"/>
+
+</class>
+</hibernate-mapping>

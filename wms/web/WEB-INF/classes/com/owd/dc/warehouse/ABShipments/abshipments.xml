@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+    <package name="abShipment" namespace="/abShipment" extends="struts-default">
+
+
+        <action name="packPreShipPackagePerUnit" method="packPreShipPackagePerUnit" class="com.owd.dc.warehouse.ABShipments.ABShipmentsAction">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="packShip" method="packShip" class="com.owd.dc.warehouse.ABShipments.ABShipmentsAction">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="packShipWithBoxAndWeight" method="packShipWithBoxAndWeight" class="com.owd.dc.warehouse.ABShipments.ABShipmentsAction">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="voidShip" method="voidShip" class="com.owd.dc.warehouse.ABShipments.ABShipmentsAction">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="processPrintedLabels" method="processPrintedLabels" class="com.owd.dc.warehouse.ABShipments.ABShipmentsAction">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="materialHandlingShip" method="materialHandlingShip" class="com.owd.dc.warehouse.ABShipments.ABShipmentsAction">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+
+    </package>
+
+</struts>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE struts PUBLIC
+                "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+                "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+        <struts>
+
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.action.extension" value="action" />
+          <include file="com/owd/dc/warehouse/personalized/personalized.xml" />
+
+
+      <include file="com/owd/dc/warehouse/packSlipRelease/packSlipRelease.xml" />
+      <include file="com/owd/dc/locations/frontLocation/frontLocation.xml" />
+    <include file="com/owd/dc/inventorycount/winventorycount.xml"/>
+    <include file="com/owd/dc/warehouse/orderInfo/orderInfo.xml"/>
+    <include file="com/owd/dc/warehouse/gssReports/gssReports.xml"/>
+    <include file="com/owd/dc/inventorycount/cycleCount.xml"/>
+     <include file="com/owd/dc/locations/locationManagement/locationManagement.xml" />
+    <include file="com/owd/dc/warehouse/supplyTracking/supplyTracking.xml"/>
+    <include file="com/owd/dc/misc/misc.xml"/>
+    <include file="com/owd/dc/packing/printserver/printserver.xml"/>
+        <include file="com/owd/dc/warehouse/statusScroller/statusScroller.xml"/>
+    <include file="com/owd/dc/OnDemandPrinting/demand.xml"/>
+    <include file="com/owd/dc/locations/locationAudit/locationAudit.xml"/>
+    <include file="com/owd/dc/receive/receive.xml"/>
+        <include file="com/owd/dc/warehouse/ABShipments/abshipments.xml"/>
+    <include file="com/owd/dc/warehouse/vendorCompliance/vendorCompliance.xml"/>
+        </struts>

@@ -1,0 +1,17 @@
+<Context path="/wms" docBase="../webapps/wms"
+        debug="9" privileged="true">
+
+  <!-- Uncomment this Valve to limit access to the Admin app to localhost
+   for obvious security reasons. Allow may be a comma-separated list of
+   hosts (or even regular expressions).
+  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+    allow="127.0.0.1"/>
+  -->
+
+  <Logger className="org.apache.catalina.logger.FileLogger"
+             prefix="handhelds_log." suffix=".txt"
+          timestamp="true"/>
+
+
+</Context>
+

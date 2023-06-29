@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+            name="com.owd.hibernate.generated.PackageOrder"
+            table="package_order"
+            >
+
+        <id
+                name="id"
+                type="java.lang.Integer"
+                column="id"
+                >
+            <generator class="identity"/>
+        </id>
+
+        <property
+                name="owdOrderFkey"
+                type="java.lang.Integer"
+                column="owd_order_fkey"
+                not-null="true"
+                length="10"
+                />
+        <property
+                name="packerRef"
+                type="java.lang.String"
+                column="packer_ref"
+                not-null="true"
+                length="50"
+                />
+        <property
+                name="packStart"
+                type="java.util.Date"
+                column="pack_start"
+                length="23"
+                />
+        <property
+                name="packEnd"
+                type="java.util.Date"
+                column="pack_end"
+                length="23"
+                />
+        <property
+                name="isVoid"
+                type="java.lang.Integer"
+                column="is_void"
+                not-null="true"
+                length="10"
+                />
+        <property
+                name="voidTime"
+                type="java.util.Date"
+                column="void_time"
+                length="23"
+                />
+        <property
+                name="voidBy"
+                type="java.lang.String"
+                column="void_by"
+
+                length="50"
+                />
+        <property
+                name="numPacks"
+                type="java.lang.Integer"
+                column="num_packs"
+                not-null="true"
+                length="10"
+                />
+        <property
+                name="packsShipped"
+                type="java.lang.Integer"
+                column="packs_shipped"
+                not-null="true"
+                length="10"
+                />
+        <property
+                name="facility"
+                type="java.lang.String"
+                column="facility"
+
+                length="50"
+                />
+        <property
+                name="packType"
+                type="java.lang.Integer"
+                column="packType"
+                not-null="true"
+                length="10"
+                />
+
+        <set
+                name="packages"
+                inverse="true"
+                lazy="true"
+                cascade="all"
+                order-by="pack_barcode"
+                >
+            <key>
+                <column name="package_order_fkey"/>
+            </key>
+            <one-to-many
+                    class="com.owd.hibernate.generated.OWDPackage"
+                    />
+        </set>
+
+
+
+
+
+
+
+
+
+    </class>
+</hibernate-mapping>

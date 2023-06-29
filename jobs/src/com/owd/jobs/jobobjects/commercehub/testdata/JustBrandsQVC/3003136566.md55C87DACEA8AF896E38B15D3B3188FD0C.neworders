@@ -1,0 +1,629 @@
+<?xml version="1.0"?>
+<OrderMessageBatch batchNumber="3003136566">
+<partnerID name="JustBrand Limited" roleType="vendor">justbrand</partnerID>
+<hubOrder transactionID="120883804">
+  <participatingParty name="QVC Online" roleType="merchant" participationCode="From:">iqvc</participatingParty>
+  <sendersIdForReceiver>FC08</sendersIdForReceiver>
+  <orderId>120883804</orderId>
+  <lineCount>1</lineCount>
+  <poNumber>000000135330003</poNumber>
+  <orderDate>20190614</orderDate>
+  <paymentMethod>MASTERCARD</paymentMethod>
+  <merchandise>179.97</merchandise>
+  <tax>15.67</tax>
+  <credits>5.00</credits>
+  <shipping>10.00</shipping>
+  <total>200.64</total>
+  <shipTo personPlaceID="PP3007782060" />
+  <billTo personPlaceID="PP3007782061" />
+  <customer personPlaceID="PP3007782062" />
+  <shipFrom vendorShipID="VS54127388_120883804" />
+  <memberNumber>XXXXXX7890</memberNumber>
+  <shippingCode>UPSN_CG</shippingCode>
+  <salesDivision>iQVC</salesDivision>
+  <custOrderNumber>0135330004</custOrderNumber>
+  <custOrderDate>20190614</custOrderDate>
+  <poHdrData>
+    
+	<packListData>
+      
+		<rmPhone1>1-800-345-1515</rmPhone1>
+      
+		<rmPhone2>1-800-345-1212</rmPhone2>
+      
+		<rmPhone3>1-800-367-9444</rmPhone3>
+      
+		<packslipMessage>Character@ .°¢™èé€-á&lt;"'Test</packslipMessage>
+      
+	
+    </packListData>
+    
+	<custOrderNumber>0135330004</custOrderNumber>
+    
+	<custOrderDate>20190614</custOrderDate>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>120993821</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>1</merchantLineNumber>
+    <qtyOrdered>3</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990101</UPC>
+    <description>Sample item description for line 1</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990101</merchantSKU>
+    <vendorSKU>0670101</vendorSKU>
+    <unitPrice>59.9900</unitPrice>
+    <unitCost>25.0000</unitCost>
+    <lineShipping>10.00</lineShipping>
+    <lineTax>15.67</lineTax>
+    <shippingCode>UPSN_CG</shippingCode>
+    <lineCredits>5.00</lineCredits>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865001">
+      <shippingLabelIndicia>PS LIGHTWEIGHT[.]US POSTAGE PAID[.]UPS MI[.]eVS</shippingLabelIndicia>
+      <shippingCode description="UPS MAIL INNOVATIONS">UPSN_FC</shippingCode>
+      <boxNumber>01</boxNumber>
+      <packageQty>1</packageQty>
+      <grossWeight weightUnit="OZ">16.00</grossWeight>
+      <heightDimension dimensionUnit="IN">6.516</heightDimension>
+      <widthDimension dimensionUnit="IN">3.00</widthDimension>
+      <depthDimension dimensionUnit="IN">6.516</depthDimension>
+      <returnShipMethod permit-number="77000">N1</returnShipMethod>
+      <returnTrackingNumber>7250073096013000010709950721</returnTrackingNumber>
+      <returnRoutingNumber>V304</returnRoutingNumber>
+      <returnServicePostalCode>56901</returnServicePostalCode>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+      <returnDeliveryConfirmationNumber>92023901007013001036711048</returnDeliveryConfirmationNumber>
+      <returnShipping description="RETURN SHIPPING AMOUNT">6.95</returnShipping>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865002">
+      <shippingLabelIndicia>PS LIGHTWEIGHT[.]US POSTAGE PAID[.]UPS MI[.]eVS</shippingLabelIndicia>
+      <shippingCode description="UPS MAIL INNOVATIONS">UPSN_FC</shippingCode>
+      <boxNumber>02</boxNumber>
+      <packageQty>2</packageQty>
+      <grossWeight weightUnit="OZ">16.00</grossWeight>
+      <heightDimension dimensionUnit="IN">6.516</heightDimension>
+      <widthDimension dimensionUnit="IN">3.00</widthDimension>
+      <depthDimension dimensionUnit="IN">6.516</depthDimension>
+      <returnShipMethod permit-number="77000">N1</returnShipMethod>
+      <returnTrackingNumber>7250073096013000010709950722</returnTrackingNumber>
+      <returnRoutingNumber>V304</returnRoutingNumber>
+      <returnServicePostalCode>56901</returnServicePostalCode>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+      <returnDeliveryConfirmationNumber>92023901007013001036711048</returnDeliveryConfirmationNumber>
+      <returnShipping description="RETURN SHIPPING AMOUNT">6.95</returnShipping>
+    </shippingLabel>
+    <poLineData>
+      <prodColor>123</prodColor>
+      <prodSize>321</prodSize>
+      <prodCSdesc>Color and Size Description</prodCSdesc>
+      <creditAmount>5.0</creditAmount>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <permitNumber>017196</permitNumber>
+      <permitIssuingCity>Fairfield</permitIssuingCity>
+      <permitIssuingState>OH</permitIssuingState>
+      <boxNumber1>01</boxNumber1>
+      <boxNumber2>02</boxNumber2>
+    </poLineData>
+  </lineItem>
+  <personPlace personPlaceID="PP3007782062">
+    <name1>Mary Smith</name1>
+    <address1>1 Stewart St.</address1>
+    <city>Itahca</city>
+    <state>NY</state>
+    <country>US</country>
+    <postalCode>14850-1234</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782060">
+    <name1>John Doe</name1>
+    <address1>1 Fuller Rd</address1>
+    <city>Weatherford</city>
+    <state>OK</state>
+    <country>US</country>
+    <postalCode>73096-7502</postalCode>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782061">
+    <name1>Mary Smith</name1>
+    <address1>1 Stewart St.</address1>
+    <city>Itahca</city>
+    <state>NY</state>
+    <country>US</country>
+    <postalCode>14850-1234</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS54127388_120883804">
+    <name1>RETURN PROCESSING CENTER (QVC)</name1>
+    <address1>100 QVC BOULEVARD</address1>
+    <city>ROCKY MOUNT</city>
+    <state>NC</state>
+    <country>USA</country>
+    <postalCode>27801</postalCode>
+  </vendorShipInfo>
+</hubOrder><hubOrder transactionID="120883805">
+  <participatingParty name="QVC Online" roleType="merchant" participationCode="From:">iqvc</participatingParty>
+  <sendersIdForReceiver>FC08</sendersIdForReceiver>
+  <orderId>120883805</orderId>
+  <lineCount>1</lineCount>
+  <poNumber>000000135330007</poNumber>
+  <orderDate>20190614</orderDate>
+  <paymentMethod>MASTERCARD</paymentMethod>
+  <merchandise>35.98</merchandise>
+  <total>35.98</total>
+  <shipTo personPlaceID="PP3007782063" />
+  <billTo personPlaceID="PP3007782064" />
+  <customer personPlaceID="PP3007782065" />
+  <shipFrom vendorShipID="VS54127388_120883805" />
+  <memberNumber>XXXXXX7890</memberNumber>
+  <shippingCode>UPSN_CG</shippingCode>
+  <salesDivision>iQVC</salesDivision>
+  <custOrderNumber>0135330008</custOrderNumber>
+  <custOrderDate>20190614</custOrderDate>
+  <poHdrData>
+    
+	<packListData>
+      
+		<rmPhone1>1-800-345-1515</rmPhone1>
+      
+		<rmPhone2>1-800-345-1212</rmPhone2>
+      
+		<rmPhone3>1-800-367-9444</rmPhone3>
+      
+	
+    </packListData>
+    
+	<custOrderNumber>0135330008</custOrderNumber>
+    
+	<custOrderDate>20190614</custOrderDate>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>120993822</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>6</merchantLineNumber>
+    <qtyOrdered>2</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990201</UPC>
+    <description>Sample item description for line 1</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990201</merchantSKU>
+    <vendorSKU>0670201</vendorSKU>
+    <unitPrice>17.9900</unitPrice>
+    <unitCost>9.0000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <vendorWarehouseId>1005</vendorWarehouseId>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865003">
+      <shippingCode description="UPS SUREPOST">UPSN_ST_MW</shippingCode>
+      <boxNumber>01</boxNumber>
+      <carrierRoutingCode>VA 222 9-11</carrierRoutingCode>
+      <packageQty>2</packageQty>
+      <grossWeight weightUnit="OZ">17.00</grossWeight>
+      <heightDimension dimensionUnit="IN">8.2097</heightDimension>
+      <widthDimension dimensionUnit="IN">4.00</widthDimension>
+      <depthDimension dimensionUnit="IN">8.2097</depthDimension>
+      <returnShipMethod permit-number="77000">N1</returnShipMethod>
+      <returnTrackingNumber>7250022202013000010709955396</returnTrackingNumber>
+      <returnRoutingNumber>V304</returnRoutingNumber>
+      <returnServicePostalCode>56901</returnServicePostalCode>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+      <returnDeliveryConfirmationNumber>92023901007013001036715718</returnDeliveryConfirmationNumber>
+      <returnShipping description="RETURN SHIPPING AMOUNT">6.95</returnShipping>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <vendorWarehouseId>1005</vendorWarehouseId>
+      <permitNumber>015461</permitNumber>
+      <permitIssuingCity>Fairfield</permitIssuingCity>
+      <permitIssuingState>OH</permitIssuingState>
+      <boxNumber1>01</boxNumber1>
+    </poLineData>
+  </lineItem>
+  <personPlace personPlaceID="PP3007782064">
+    <name1>Jane Smith</name1>
+    <address1>2 Woodbridge Ave</address1>
+    <city>Edison</city>
+    <state>NJ</state>
+    <country>US</country>
+    <postalCode>08837-1234</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782063">
+    <name1>Jane Smith</name1>
+    <address1>2 Woodbridge Ave</address1>
+    <city>Edison</city>
+    <state>NY</state>
+    <country>US</country>
+    <postalCode>08837-1234</postalCode>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782065">
+    <name1>Jane Smith</name1>
+    <address1>2 Woodbridge Ave</address1>
+    <city>Edison</city>
+    <state>NJ</state>
+    <country>US</country>
+    <postalCode>08837-1234</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS54127388_120883805">
+    <name1>RETURN PROCESSING CENTER (QVC)</name1>
+    <address1>100 QVC BOULEVARD</address1>
+    <city>ROCKY MOUNT</city>
+    <state>NC</state>
+    <country>USA</country>
+    <postalCode>27801</postalCode>
+  </vendorShipInfo>
+</hubOrder><hubOrder transactionID="120883806">
+  <participatingParty name="QVC Online" roleType="merchant" participationCode="From:">iqvc</participatingParty>
+  <sendersIdForReceiver>FC08</sendersIdForReceiver>
+  <orderId>120883806</orderId>
+  <lineCount>2</lineCount>
+  <poNumber>000000135330011</poNumber>
+  <orderDate>20190614</orderDate>
+  <paymentMethod>MASTERCARD</paymentMethod>
+  <merchandise>29.98</merchandise>
+  <credits>15.00</credits>
+  <shipping>5.00</shipping>
+  <total>26.64</total>
+  <shipTo personPlaceID="PP3007782066" />
+  <billTo personPlaceID="PP3007782067" />
+  <customer personPlaceID="PP3007782068" />
+  <shipFrom vendorShipID="VS54127388_120883806" />
+  <memberNumber>XXXXXX7890</memberNumber>
+  <shippingCode>UPSN_CG</shippingCode>
+  <salesDivision>iQVC</salesDivision>
+  <custOrderNumber>0135330012</custOrderNumber>
+  <custOrderDate>20190614</custOrderDate>
+  <poHdrData>
+    
+	<packListData>
+      
+		<rmPhone1>1-800-345-1515</rmPhone1>
+      
+		<rmPhone2>1-800-345-1212</rmPhone2>
+      
+		<rmPhone3>1-800-367-9444</rmPhone3>
+      
+	
+    </packListData>
+    
+	<custOrderNumber>0135330012</custOrderNumber>
+    
+	<custOrderDate>20190614</custOrderDate>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>120993823</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>3</merchantLineNumber>
+    <qtyOrdered>2</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990301</UPC>
+    <description>Sample item description for line 1</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990301</merchantSKU>
+    <vendorSKU>0670301</vendorSKU>
+    <unitPrice>14.9900</unitPrice>
+    <unitCost>8.0000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865004">
+      <shippingCode description="UPS MAIL INNOVATIONS">UPSN_FC</shippingCode>
+      <boxNumber>01</boxNumber>
+      <packageQty>1</packageQty>
+      <grossWeight weightUnit="OZ">16.00</grossWeight>
+      <heightDimension dimensionUnit="IN">6.516</heightDimension>
+      <widthDimension dimensionUnit="IN">3.00</widthDimension>
+      <depthDimension dimensionUnit="IN">6.516</depthDimension>
+      <returnShipMethod permit-number="77000">N1</returnShipMethod>
+      <returnTrackingNumber>7250085207013000010709972935</returnTrackingNumber>
+      <returnRoutingNumber>V304</returnRoutingNumber>
+      <returnServicePostalCode>56901</returnServicePostalCode>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+      <returnDeliveryConfirmationNumber>92023901007013001036733255</returnDeliveryConfirmationNumber>
+      <returnShipping description="RETURN SHIPPING AMOUNT">6.95</returnShipping>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865005">
+      <shippingLabelIndicia>PS LIGHTWEIGHT[.]US POSTAGE PAID[.]UPS MI[.]eVS</shippingLabelIndicia>
+      <shippingCode description="UPS MAIL INNOVATIONS">UPSN_FC</shippingCode>
+      <boxNumber>02</boxNumber>
+      <packageQty>1</packageQty>
+      <grossWeight weightUnit="OZ">16.00</grossWeight>
+      <heightDimension dimensionUnit="IN">6.516</heightDimension>
+      <widthDimension dimensionUnit="IN">3.00</widthDimension>
+      <depthDimension dimensionUnit="IN">6.516</depthDimension>
+      <returnShipMethod permit-number="77000">N1</returnShipMethod>
+      <returnTrackingNumber>7250085207013000010709972936</returnTrackingNumber>
+      <returnRoutingNumber>V304</returnRoutingNumber>
+      <returnServicePostalCode>56901</returnServicePostalCode>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+      <returnDeliveryConfirmationNumber>92023901007013001036733255</returnDeliveryConfirmationNumber>
+      <returnShipping description="RETURN SHIPPING AMOUNT">6.95</returnShipping>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <permitNumber>017196</permitNumber>
+      <permitIssuingCity>Fairfield</permitIssuingCity>
+      <permitIssuingState>OH</permitIssuingState>
+      <boxNumber1>01</boxNumber1>
+      <boxNumber2>02</boxNumber2>
+    </poLineData>
+  </lineItem>
+  <lineItem>
+    <lineItemId>120993824</lineItemId>
+    <orderLineNumber>2</orderLineNumber>
+    <merchantLineNumber>5</merchantLineNumber>
+    <qtyOrdered>1</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990302</UPC>
+    <description>Sample item description for line 2</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990302</merchantSKU>
+    <vendorSKU>0670302</vendorSKU>
+    <unitPrice>6.6600</unitPrice>
+    <unitCost>3.0000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <vendorWarehouseId>2005</vendorWarehouseId>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865006">
+      <shippingCode description="UPS MAIL INNOVATIONS">UPSN_FC</shippingCode>
+      <boxNumber>01</boxNumber>
+      <packageQty>1</packageQty>
+      <grossWeight weightUnit="OZ">16.00</grossWeight>
+      <heightDimension dimensionUnit="IN">6.516</heightDimension>
+      <widthDimension dimensionUnit="IN">3.00</widthDimension>
+      <depthDimension dimensionUnit="IN">6.516</depthDimension>
+      <returnShipMethod permit-number="77000">N1</returnShipMethod>
+      <returnTrackingNumber>7250085207013000010709972942</returnTrackingNumber>
+      <returnRoutingNumber>V304</returnRoutingNumber>
+      <returnServicePostalCode>56901</returnServicePostalCode>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+      <returnDeliveryConfirmationNumber>92023901007013001036733262</returnDeliveryConfirmationNumber>
+      <returnShipping description="RETURN SHIPPING AMOUNT">6.95</returnShipping>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <vendorWarehouseId>2005</vendorWarehouseId>
+      <permitNumber>017196</permitNumber>
+      <permitIssuingCity>Fairfield</permitIssuingCity>
+      <permitIssuingState>OH</permitIssuingState>
+      <boxNumber1>01</boxNumber1>
+    </poLineData>
+  </lineItem>
+  <personPlace personPlaceID="PP3007782067">
+    <name1>Bill Johnson</name1>
+    <address1>Apartment 3B</address1>
+    <address2>3 Falke Plaza</address2>
+    <city>Sterling</city>
+    <state>VA</state>
+    <country>US</country>
+    <postalCode>20166-1234</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782068">
+    <name1>Bill Johnson</name1>
+    <address1>Apartment 3B</address1>
+    <address2>3 Falke Plaza</address2>
+    <city>Sterling</city>
+    <state>VA</state>
+    <country>US</country>
+    <postalCode>20166-1234</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782066">
+    <name1>Tom Smith</name1>
+    <address1>3 Westerre Parkway</address1>
+    <city>Mesa</city>
+    <state>AZ</state>
+    <country>US</country>
+    <postalCode>85207-8116</postalCode>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS54127388_120883806">
+    <name1>RETURN PROCESSING CENTER (QVC)</name1>
+    <address1>100 QVC BOULEVARD</address1>
+    <city>ROCKY MOUNT</city>
+    <state>NC</state>
+    <country>USA</country>
+    <postalCode>27801</postalCode>
+  </vendorShipInfo>
+</hubOrder><hubOrder transactionID="120883807">
+  <participatingParty name="QVC Online" roleType="merchant" participationCode="From:">iqvc</participatingParty>
+  <sendersIdForReceiver>FC08</sendersIdForReceiver>
+  <orderId>120883807</orderId>
+  <lineCount>2</lineCount>
+  <poNumber>000000135330015</poNumber>
+  <orderDate>20190614</orderDate>
+  <paymentMethod>MASTERCARD</paymentMethod>
+  <merchandise>59.97</merchandise>
+  <tax>7.42</tax>
+  <shipping>20.00</shipping>
+  <total>97.38</total>
+  <shipTo personPlaceID="PP3007782069" />
+  <billTo personPlaceID="PP3007782070" />
+  <customer personPlaceID="PP3007782071" />
+  <shipFrom vendorShipID="VS54127388_120883807" />
+  <memberNumber>XXXXXX7890</memberNumber>
+  <shippingCode>UPSN_CG</shippingCode>
+  <salesDivision>iQVC</salesDivision>
+  <custOrderNumber>0135330016</custOrderNumber>
+  <custOrderDate>20190614</custOrderDate>
+  <poHdrData>
+    
+	<packListData>
+      
+		<rmPhone1>1-800-345-1515</rmPhone1>
+      
+		<rmPhone2>1-800-345-1212</rmPhone2>
+      
+		<rmPhone3>1-800-367-9444</rmPhone3>
+      
+		<packslipMessage>This is a sample order message to illustrate how QVC Drop Ship will deliver text messages with their order message. Note there can be up to two hundred and sixty four characters in each note. These notes are printed on each of the customer packing slips produced.</packslipMessage>
+      
+	
+    </packListData>
+    
+	<custOrderNumber>0135330016</custOrderNumber>
+    
+	<custOrderDate>20190614</custOrderDate>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>120993825</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>1</merchantLineNumber>
+    <qtyOrdered>3</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990401</UPC>
+    <description>Sample item description for line 1</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990401</merchantSKU>
+    <vendorSKU>0670401</vendorSKU>
+    <unitPrice>19.9900</unitPrice>
+    <unitCost>10.0000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865007">
+      <shippingLabelIndicia>PS LIGHTWEIGHT[.]US POSTAGE PAID[.]UPS MI[.]eVS</shippingLabelIndicia>
+      <trackingNumberBanner>USPS TRACKING # eVS</trackingNumberBanner>
+      <trackingNumber>1Z000000000135330019</trackingNumber>
+      <shippingCode description="UPS MAIL INNOVATIONS">UPSN_FC</shippingCode>
+      <boxNumber>01</boxNumber>
+      <packageQty>1</packageQty>
+      <grossWeight weightUnit="OZ">4.00</grossWeight>
+      <heightDimension dimensionUnit="IN">2.00</heightDimension>
+      <widthDimension dimensionUnit="IN">2.00</widthDimension>
+      <depthDimension dimensionUnit="IN">2.00</depthDimension>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865008">
+      <shippingLabelIndicia>PS LIGHTWEIGHT[.]US POSTAGE PAID[.]UPS MI[.]eVS</shippingLabelIndicia>
+      <trackingNumberBanner>USPS TRACKING # eVS</trackingNumberBanner>
+      <trackingNumber>1Z000000000135330021</trackingNumber>
+      <shippingCode description="UPS MAIL INNOVATIONS">UPSN_FC</shippingCode>
+      <boxNumber>02</boxNumber>
+      <packageQty>1</packageQty>
+      <grossWeight weightUnit="OZ">4.00</grossWeight>
+      <heightDimension dimensionUnit="IN">2.00</heightDimension>
+      <widthDimension dimensionUnit="IN">2.00</widthDimension>
+      <depthDimension dimensionUnit="IN">2.00</depthDimension>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865009">
+      <shippingLabelIndicia>PS LIGHTWEIGHT[.]US POSTAGE PAID[.]UPS MI[.]eVS</shippingLabelIndicia>
+      <trackingNumberBanner>USPS TRACKING # eVS</trackingNumberBanner>
+      <trackingNumber>1Z000000000135330023</trackingNumber>
+      <shippingCode description="UPS MAIL INNOVATIONS">UPSN_FC</shippingCode>
+      <boxNumber>03</boxNumber>
+      <packageQty>1</packageQty>
+      <grossWeight weightUnit="OZ">4.00</grossWeight>
+      <heightDimension dimensionUnit="IN">2.00</heightDimension>
+      <widthDimension dimensionUnit="IN">2.00</widthDimension>
+      <depthDimension dimensionUnit="IN">2.00</depthDimension>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <permitNumber>100946</permitNumber>
+      <permitIssuingCity>KANSAS CITY</permitIssuingCity>
+      <permitIssuingState>ks</permitIssuingState>
+      <UPSTrackingNumber1>1Z000000000135330019</UPSTrackingNumber1>
+      <boxNumber1>01</boxNumber1>
+      <UPSTrackingNumber2>1Z000000000135330021</UPSTrackingNumber2>
+      <boxNumber2>02</boxNumber2>
+      <UPSTrackingNumber3>1Z000000000135330023</UPSTrackingNumber3>
+      <boxNumber3>03</boxNumber3>
+    </poLineData>
+  </lineItem>
+  <lineItem>
+    <lineItemId>120993826</lineItemId>
+    <orderLineNumber>2</orderLineNumber>
+    <merchantLineNumber>2</merchantLineNumber>
+    <qtyOrdered>1</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990402</UPC>
+    <description>Sample item description for line 2</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990402</merchantSKU>
+    <vendorSKU>0670402</vendorSKU>
+    <unitPrice>9.9900</unitPrice>
+    <unitCost>5.0000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865010">
+      <shippingLabelIndicia>PS LIGHTWEIGHT[.]US POSTAGE PAID[.]UPS MI[.]eVS</shippingLabelIndicia>
+      <trackingNumberBanner>USPS TRACKING # eVS</trackingNumberBanner>
+      <trackingNumber>1Z000000000135330025</trackingNumber>
+      <shippingCode description="UPS MAIL INNOVATIONS">UPSN_FC</shippingCode>
+      <boxNumber>01</boxNumber>
+      <packageQty>1</packageQty>
+      <grossWeight weightUnit="OZ">4.00</grossWeight>
+      <heightDimension dimensionUnit="IN">2.00</heightDimension>
+      <widthDimension dimensionUnit="IN">2.00</widthDimension>
+      <depthDimension dimensionUnit="IN">2.00</depthDimension>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <permitNumber>100946</permitNumber>
+      <permitIssuingCity>KANSAS CITY</permitIssuingCity>
+      <permitIssuingState>ks</permitIssuingState>
+      <UPSTrackingNumber1>1Z000000000135330025</UPSTrackingNumber1>
+      <boxNumber1>01</boxNumber1>
+    </poLineData>
+  </lineItem>
+  <personPlace personPlaceID="PP3007782071">
+    <name1>Mike Jones</name1>
+    <address1>4 La Jolla Village Dr</address1>
+    <city>San Diego</city>
+    <state>CA</state>
+    <country>US</country>
+    <postalCode>92122-1234</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782069">
+    <name1>Joe Sample</name1>
+    <address1>Care of: Jane Sample</address1>
+    <address2>4 Jamboree Road</address2>
+    <city>Newport Beach</city>
+    <state>CA</state>
+    <country>US</country>
+    <postalCode>92660-1234</postalCode>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782070">
+    <name1>Mike Jones</name1>
+    <address1>4 La Jolla Village Dr</address1>
+    <city>San Diego</city>
+    <state>CA</state>
+    <country>US</country>
+    <postalCode>92122-1234</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS54127388_120883807">
+    <name1>RETURN PROCESSING CENTER (QVC)</name1>
+    <address1>100 QVC BOULEVARD</address1>
+    <city>ROCKY MOUNT</city>
+    <state>NC</state>
+    <country>USA</country>
+    <postalCode>27801</postalCode>
+  </vendorShipInfo>
+</hubOrder>
+<messageCount>4</messageCount>
+</OrderMessageBatch>

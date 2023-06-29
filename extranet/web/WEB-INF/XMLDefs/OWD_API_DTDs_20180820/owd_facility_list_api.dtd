@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+        <!-- DTD for Facility Information API   S. Buskirk -->
+        <!-- Copyright (c) 2014 by One World Direct All Rights Reserved. -->
+        <!-- Dates formatted as YYYYMMDD -->
+
+        <!-- OWD_FACILITY_REQUEST description
+
+            This request returns an OWD_FACILITY_LIST_RESPONSE if successful. See OWD_FACILITY_LIST_RESPONSE for response details.
+
+			Returns reference data on all OWD shipping locations
+        -->
+
+        <!ELEMENT OWD_FACILITY_LIST_REQUEST(EMPTY)>
+                <!-- OWD_FACILITY_LIST_RESPONSE returns zero or more FACILITY elements
+                    Notes on each subelement of the OWD_FACILITY_LIST_RESPONSE element are below:
+
+                -->
+
+        <!ELEMENT FACILITY (CODE,METRO,STREET,CITY,STATE,POSTAL_CODE)><!--Container element for PICKPACK elements -->
+        <!ELEMENT CODE (EMPTY)><!--Container element for RECEIVE elements-->
+        <!ELEMENT METRO (EMPTY)><!--Container element for RETURN elements-->
+        <!ELEMENT STREET (EMPTY)><!--Container element for SPACE elements-->
+        <!ELEMENT CITY (EMPTY)><!--Container element for SHIPEVENT elements-->
+        <!ELEMENT STATE (EMPTY)><!--Container element for SPACE elements-->
+        <!ELEMENT POSTAL_CODE (EMPTY)><!--Container element for SHIPEVENT elements-->
+
+
+        <!ELEMENT OWD_FACILITY_LIST_RESPONSE (FACILITY*)>
+
+        <!--
+
+        Example search for all events between 2011-1-1 and 2011-7-1 for all billing types
+
+        <?xml version="1.0"?>
+        <OWD_API_REQUEST api_version="1.0" client_authorization="xxx=" client_id="0" >
+            <OWD_FACILITY_LIST_REQUEST />
+        </OWD_API_REQUEST>
+
+        -->

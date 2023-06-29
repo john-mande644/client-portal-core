@@ -1,0 +1,44 @@
+
+Note in this file any needed info about special customizations,
+the server environment, specific access URLs for this deployment,
+ftp access information, etc.
+
+These files are the master files for a php website to create api
+requests.  The files consist of two directories and one main
+interface file.  The two folders consist of objects and carts.
+The files contained in objects consists of classes used to build
+and transmit api requests.  The files contained in carts are php
+objects designed to interface between the data in the shopping
+cart and the api request bulders.  The index page in the root
+folder is used to select the cart file and execute any custom
+code to impose shipping rules or any other rules necassary for
+the orders to be complete by the time they are submitted to the
+api.
+
+
+Example include file layout for a zencart installation
+./index.php -+
+             |
+             +-./cart/zencart.php-+
+                                  |
+                                  +-./object/billing.php
+                                  |
+                                  +-./object/lineitem.php
+                                  |
+                                  +-./object/order.php
+                                  |
+                                  +-./object/owd_api.php
+                                  |
+                                  +-./object/shipping.php
+                                  |
+                                  +../configuration.php
+
+If you are creating a new cart class for an established ecommerce
+cart make the cart class as generic as possible and put all of
+your site specific cart code in the custom_code method defined in
+index.php.  This allows you to redeploy your solution to the next
+com.owd.api.client that uses that cart very easily.  Look for a configuration
+file to either contain the database details and possibly connection
+code. If it exists include this file in your cart file. However
+if this file is not available you should hard code the database
+variables and connection code into index.php.

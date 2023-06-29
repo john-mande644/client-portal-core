@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/dtd/
+-->
+
+<class 
+    name="com.owd.hibernate.generated.OwdAutoTransfer"
+    table="owd_auto_transfer"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+        <generator class="identity" />
+    </id>
+  <!--  <discriminator column="qty_move_type" type="java.lang.Integer" length="10"/>
+    <property
+        name="qtyTriggerType"
+        type="java.lang.Integer"
+        column="qty_trigger_type"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="qtyTriggerValue"
+        type="java.lang.Integer"
+        column="qty_trigger_value"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="qtyTriggerState"
+        type="java.lang.Integer"
+        column="qty_trigger_state"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="qtyDestType"
+        type="java.lang.Integer"
+        column="qty_dest_type"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="qtyDestValue"
+        type="java.lang.Integer"
+        column="qty_dest_value"
+        not-null="true"
+        length="10"
+    />
+
+
+
+
+    <property
+        name="qtySrcReserveType"
+        type="java.lang.Integer"
+        column="qty_src_reserve_type"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="qtySrcReserveValue"
+        type="java.lang.Integer"
+        column="qty_src_reserve_value"
+        not-null="true"
+        length="10"
+    />
+       <property
+        name="qtySrcUnits"
+        type="java.lang.Integer"
+        column="qty_src_units"
+        not-null="true"
+        length="10"
+    />
+     <property
+        name="qtySrcMinimum"
+        type="java.lang.Integer"
+        column="qty_src_min"
+        not-null="true"
+        length="10"
+    />-->
+
+    <property
+          name="addlNotes"
+          type="java.lang.String"
+          column="addl_notes"
+          not-null="true"
+          length="2000"
+      />
+      <property
+          name="notifyEmail"
+          type="java.lang.String"
+          column="notify_email"
+          not-null="true"
+          length="2000"
+      />
+
+
+    <!-- associations -->
+  <!--   <many-to-one
+            name="owdInventorySingle"
+            class="com.owd.hibernate.generated.OwdInventory"
+            not-null="true"
+            >
+            <column name="inventory_fkey_src"/>
+        </many-to-one>
+
+     <many-to-one
+            name="owdInventoryTrigger"
+            class="com.owd.hibernate.generated.OwdInventory"
+            not-null="true"
+            >
+            <column name="inventory_fkey_trigger"/>
+        </many-to-one>
+    -->
+
+     <!--  <many-to-one
+            name="owdClient"
+            class="com.owd.hibernate.generated.OwdClient"
+            not-null="true"
+            >
+            <column name="client_fkey"/>
+        </many-to-one>
+
+        <set
+            name="sourceItems"
+            lazy="true"
+            inverse="true"
+            >
+            <key>
+                <column name="transfer_fkey"/>
+            </key>
+            <one-to-many
+                class="com.owd.hibernate.OwdAutoTransferSourceItem"
+                />
+        </set>
+         <set
+            name="triggerItems"
+            lazy="true"
+            inverse="true"
+            >
+            <key>
+                <column name="transfer_fkey"/>
+            </key>
+            <one-to-many
+                class="com.owd.hibernate.OwdAutoTransferTriggerItem"
+                />
+        </set>
+     <set
+            name="destinationItems"
+            lazy="true"
+            inverse="true"
+            >
+            <key>
+                <column name="transfer_fkey"/>
+            </key>
+            <one-to-many
+                class="com.owd.hibernate.OwdAutoTransferDestinationItem"
+                />
+        </set>
+-->
+
+  <!--
+    <subclass name="com.owd.hibernate.ItemTransferTriggerRule" extends="com.owd.hibernate.generated.OwdAutoTransfer" discriminator-value="1">
+
+
+       </subclass>
+    <subclass name="com.owd.hibernate.ItemKittingTriggerRule" extends="com.owd.hibernate.generated.OwdAutoTransfer" discriminator-value="2">
+
+
+           </subclass>
+    <subclass name="com.owd.hibernate.ItemBreakdownTriggerRule" extends="com.owd.hibernate.generated.OwdAutoTransfer" discriminator-value="3">
+
+
+           </subclass>
+-->
+
+</class>
+</hibernate-mapping>

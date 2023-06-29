@@ -1,0 +1,34 @@
+#problemSelection {
+    background: #fff;
+    position: fixed;
+    top:  0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+    display:flex;
+        flex-direction:column;
+        justify-content: space-around;
+}
+
+.problemForm{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-around;
+}
+.problemItem {
+    flex-direction:row;
+    justify-content: space-between;
+	display: flex;
+	align-item: flex-start;
+	width:100%;
+	padding-left:10px;
+	padding-right:10px;
+}
+.problemLabel {
+    align-self: flex-start;
+}
+
+.problemInput{
+    align-self: flex-end;
+}

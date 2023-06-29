@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app
+        PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4">
+    <display-name>
+        One World Intranet Web Applications
+    </display-name>
+
+   
+    <!-- required for all access-restricted webapps -->
+    <servlet>
+        <servlet-name>action</servlet-name>
+        <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+        <init-param>
+            <param-name>application</param-name>
+            <param-value>ApplicationResources</param-value>
+        </init-param>
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>/WEB-INF/callcenter-struts-config.xml</param-value>
+        </init-param>
+    <!--    <init-param>
+            <param-name>config/cc</param-name>
+            <param-value>/WEB-INF/intranet-cc.xml</param-value>
+        </init-param>
+            <init-param>
+            <param-name>config/callcenter</param-name>
+            <param-value>/WEB-INF/intranet-callcenter.xml</param-value>
+        </init-param>-->
+
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>3</param-value>
+        </init-param>
+        <init-param>
+            <param-name>detail</param-name>
+            <param-value>3</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!-- Action Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <!-- Default to 5 minute session timeouts -->
+        <session-timeout>1440</session-timeout>
+    </session-config>
+
+
+
+    <filter>
+        <filter-name>HibernateFilter</filter-name>
+        <filter-class>com.owd.web.HibernateFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>HibernateFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- The Welcome File List -->
+
+    <!-- tag libs -->
+    <jsp-config>
+    <taglib>
+        <taglib-uri>struts/bean-el</taglib-uri>
+        <taglib-location>/WEB-INF/struts-bean-el.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>struts/html-el</taglib-uri>
+        <taglib-location>/WEB-INF/struts-html-el.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>struts/logic-el</taglib-uri>
+        <taglib-location>/WEB-INF/struts-logic-el.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>jstl/c</taglib-uri>
+        <taglib-location>/WEB-INF/c.tld</taglib-location>
+    </taglib>
+    <taglib>
+        <taglib-uri>/WEB-INF/struts-tiles.tld</taglib-uri>
+        <taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+    </taglib>
+    </jsp-config>
+  <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>problemforms</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+            <http-method>HEAD</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                internal
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+     <login-config>
+        <auth-method>
+            FORM
+        </auth-method>
+        <form-login-config>
+            <form-login-page>
+                /login-redirect.jsp
+            </form-login-page>
+            <form-error-page>
+                /login-redirect.jsp
+            </form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <role-name>
+            internal
+        </role-name>
+    </security-role>
+
+
+
+
+</web-app>

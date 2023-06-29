@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="privacyRequest" namespace="/privacyRequest" extends="struts-default">
+        <action name="start" >
+            <result>/warehouse/orderChanges/privacyRequest/privacyIndex.jsp</result>
+        </action>
+        <action name="processRequest" method="processRequest" class="com.owd.web.internal.warehouse.orderChanges.privacyRequest.privacyRequestAction">
+        <result name="error">/warehouse/orderChanges/privacyRequest/privacyIndex.jsp</result>
+
+        <result name="success">/warehouse/orderChanges/privacyRequest/privacyIndex.jsp</result>
+    </action>
+       <!-- <action name="loadOrder" method="loadOrder" class="com.owd.web.internal.warehouse.orderChanges.shortShipAction">
+            <result name="error">/warehouse/orderChanges/shortShip/privacyIndex.jsp</result>
+
+            <result name="success">/warehouse/orderChanges/shortShip/order.jsp</result>
+        </action>
+        <action name="submitShortShip" method="submitShortShip" class="com.owd.web.internal.warehouse.orderChanges.shortShipAction">
+            <result name="error">/warehouse/orderChanges/shortShip/confirm.jsp</result>
+
+            <result name="success">/warehouse/orderChanges/shortShip/privacyIndex.jsp</result>
+        </action>
+        <action name="confirmShortShip" method="confirmShortShip" class="com.owd.web.internal.warehouse.orderChanges.shortShipAction">
+            <result name="error">/warehouse/orderChanges/shortShip/order.jsp</result>
+
+            <result name="success">/warehouse/orderChanges/shortShip/confirm.jsp</result>
+        </action>
+        <action name="viewQueue" method="viewQueue" class="com.owd.web.internal.warehouse.orderChanges.shortShipAction">
+            <result name="error">/warehouse/orderChanges/shortShip/queue.jsp</result>
+
+            <result name="success">/warehouse/orderChanges/shortShip/queue.jsp</result>
+        </action>
+        <action name="download" method="download" class="com.owd.web.internal.warehouse.orderChanges.shortShipAction">
+            <result name="success" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action> -->
+
+
+    </package>
+
+
+
+</struts>

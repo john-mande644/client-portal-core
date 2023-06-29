@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OwdClientInv"
+        table="owd_client_inv"
+        >
+
+        <id
+            name="clientInvId"
+            type="java.lang.Integer"
+            column="client_inv_id"
+            >
+            <generator class="assigned"/>
+        </id>
+
+        <property
+            name="clientFkey"
+            type="java.lang.Integer"
+            column="client_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="inventoryFkey"
+            type="java.lang.Integer"
+            column="inventory_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="forceShipment"
+            type="boolean"
+            column="force_shipment"
+            not-null="true"
+            length="1"
+            />
+        <property
+            name="forceMethodUs"
+            type="java.lang.String"
+            column="force_method_us"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="forceMethodPo"
+            type="java.lang.String"
+            column="force_method_po"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="forceMethodCan"
+            type="java.lang.String"
+            column="force_method_can"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="forceMethodInt"
+            type="java.lang.String"
+            column="force_method_int"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="isDocuments"
+            type="boolean"
+            column="is_documents"
+            not-null="true"
+            length="1"
+            />
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

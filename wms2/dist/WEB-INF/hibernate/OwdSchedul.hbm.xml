@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OwdSchedul"
+        table="owd_schedules"
+        >
+
+        <id
+            name="scheduleId"
+            type="java.lang.Integer"
+            column="schedule_id"
+            >
+            <generator class="assigned"/>
+        </id>
+
+        <property
+            name="scheduleName"
+            type="java.lang.String"
+            column="schedule_name"
+            not-null="true"
+            length="255"
+            />
+        <property
+            name="queueName"
+            type="java.lang.String"
+            column="queue_name"
+            not-null="true"
+            length="255"
+            />
+        <property
+            name="className"
+            type="java.lang.String"
+            column="class_name"
+            not-null="true"
+            length="255"
+            />
+        <property
+            name="isActive"
+            type="java.lang.Integer"
+            column="isActive"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="isInQueue"
+            type="java.lang.Integer"
+            column="isInQueue"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="lastRun"
+            type="long"
+            column="last_run"
+            not-null="true"
+            length="18"
+            />
+        <property
+            name="nextRun"
+            type="long"
+            column="next_run"
+            not-null="true"
+            length="18"
+            />
+        <property
+            name="clientFkey"
+            type="java.lang.Integer"
+            column="client_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="minute"
+            type="java.lang.Integer"
+            column="minute"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="hour"
+            type="java.lang.Integer"
+            column="hour"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="weekday"
+            type="java.lang.Integer"
+            column="weekday"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="monthday"
+            type="java.lang.Integer"
+            column="monthday"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="scheduleType"
+            type="java.lang.Integer"
+            column="schedule_type"
+            not-null="true"
+            length="10"
+            />
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

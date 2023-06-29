@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation>
+            ![CDATA[
+            <OWD_ORDER_APPROVAL_RESPONSE>
+                <OK_TO_SHIP>1</OK_TO_SHIP>
+                <PACKING_SLIP FORMAT="PDF" ORIENTATION="VERTICAL">base-64 encoded binary byte array</PACKING_SLIP>
+            </OWD_ORDER_APPROVAL_RESPONSE>
+            ]]
+        </xs:documentation>
+    </xs:annotation>
+    <xs:element name="OWD_ORDER_APPROVAL_RESPONSE">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="OK_TO_SHIP"/>
+                <xs:element ref="PACKING_SLIP"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="OK_TO_SHIP">
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:minInclusive value="0"/>
+                <xs:maxInclusive value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="PACKING_SLIP">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="FORMAT">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="PDF"/>
+                                <xs:enumeration value="JPEG"/>
+                                <xs:enumeration value="GIF"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="ORIENTATION">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="VERTICAL"/>
+                                <xs:enumeration value="HORIZONTAL"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

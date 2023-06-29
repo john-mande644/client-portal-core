@@ -1,0 +1,28 @@
+<FAMessageBatch type="string" batchNumber="string">
+  <partnerID>string</partnerID>
+  <!--Zero or more repetitions:-->
+  <hubFA>
+    <messageBatchLink>
+      <!--Optional:-->
+      <trxSetID>string</trxSetID>
+    </messageBatchLink>
+    <!--Zero or more repetitions:-->
+    <messageAck type="order">
+      <trxID>string</trxID>
+      <!--Zero or more repetitions:-->
+      <detailException>
+        <detailID>string</detailID>
+        <!--Zero or more repetitions:-->
+        <exceptionDesc>string</exceptionDesc>
+      </detailException>
+      <messageDisposition status="R"/>
+    </messageAck>
+    <messageBatchDisposition status="R">
+      <trxReceivedCount>string</trxReceivedCount>
+      <trxAcceptedCount>string</trxAcceptedCount>
+      <!--Zero or more repetitions:-->
+      <exceptionDesc>string</exceptionDesc>
+    </messageBatchDisposition>
+  </hubFA>
+  <messageCount>string</messageCount>
+</FAMessageBatch>

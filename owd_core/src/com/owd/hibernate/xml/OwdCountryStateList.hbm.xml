@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.OwdCountryStateList"
+        table="owd_country_state_list"
+        >
+
+        <id
+            name="owdCountryStateListId"
+            type="java.lang.Integer"
+            column="owd_country_state_list_id"
+            >
+            <generator class="assigned"/>
+        </id>
+
+        <property
+            name="countryName"
+            type="java.lang.String"
+            column="country_name"
+            length="50"
+            />
+        <property
+            name="ianaCode"
+            type="java.lang.String"
+            column="iana_code"
+            length="10"
+            />
+        <property
+            name="stateprovince"
+            type="java.lang.String"
+            column="state/province"
+            length="50"
+            />
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

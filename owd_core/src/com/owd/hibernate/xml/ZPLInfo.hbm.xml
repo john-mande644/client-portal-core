@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+
+    <class name="com.owd.hibernate.generated.ZPLInfo" table="zpl_info">
+        <id
+                name="SSCC"
+                type="java.lang.String"
+                column="sscc"
+        >
+            <generator class="identity"/>
+        </id>
+
+        <property name="orderNum" column="order_num"
+                  type="java.lang.String"
+                  length="255" not-null="true">
+        </property>
+
+        <property name="numCartons" column="num_cartons"
+                  type="java.lang.Integer" not-null="true">
+        </property>
+        <property name="PONum" column="PO_num"
+                  type="java.lang.String" length="255" not-null="true">
+        </property>
+        <property name="fullCartonQty" column="full_carton_qty"
+                  type="java.lang.Integer"  not-null="true">
+        </property>
+        <property name="partialCartonQty" column="partial_carton_qty"
+                  type="java.lang.Integer" not-null="true">
+        </property>
+        <property name="itemNum" column="item_num"
+                  type="java.lang.String"
+                  length="255" not-null="true">
+        </property>
+        <property name="shipLocation" column="ship_location"
+                  type="java.lang.String"
+                  length="255" not-null="true">
+        </property>
+    </class>
+</hibernate-mapping>

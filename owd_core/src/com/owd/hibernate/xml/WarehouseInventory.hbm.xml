@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.WarehouseInventory"
+        table="warehouse_inventory"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="clientFkey"
+            type="java.lang.Integer"
+            column="client_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="whosRequest"
+            type="java.lang.String"
+            column="whos_request"
+            not-null="true"
+            length="10"
+            />
+
+        <property
+            name="reference"
+            type="java.lang.String"
+            column="reference"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="done"
+            type="java.lang.Integer"
+            column="done"
+            not-null="false"
+            length="10"
+            />
+        <property
+            name="dateCreated"
+            type="java.util.Date"
+            column="date_created"
+            not-null="false"
+            length="16"
+            />
+        <property
+            name="dateToStart"
+            type="java.util.Date"
+            column="date_to_start"
+            not-null="false"
+            length="16"
+            />
+        <property
+            name="locationToAssign"
+            type="java.lang.String"
+            column="location_to_assign"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="oldLocation"
+            type="java.lang.String"
+            column="old_location"
+            not-null="false"
+            length="50"
+            />
+        <property
+            name="asnId"
+            type="java.lang.Integer"
+            column="asn_fkey"
+            not-null="false"
+            length="10"
+            />
+        <!-- associations -->
+        <!-- bi-directional one-to-many association to OrderPickItem -->
+
+
+    </class>
+</hibernate-mapping>

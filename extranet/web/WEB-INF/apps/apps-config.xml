@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+        "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+    <!-- Form Bean Definitions -->
+    <form-beans>
+
+        <form-bean name="downloadCallForm" type="com.owd.web.callcenter.downloadCallForm"/>
+        <form-bean name="santaCallForm" type="com.owd.web.callcenter.santaCallForm"/>
+
+    </form-beans>
+
+    <action-mappings>
+
+            <action path="/downloadCall"
+                type="com.owd.web.callcenter.downloadCallAction"
+                scope="session"
+                name="downloadCallForm"
+                validate="false"
+
+                >
+            <forward
+                    name="success"
+                    path="/download.jsp"/>
+            <forward
+                    name="redirect"
+                    path="/redirect.jsp"/>
+
+            <forward
+                    name="error"
+                    path="/download.jsp"/>
+
+        </action>
+        <action path="/downloadCall2"
+                type="com.owd.web.callcenter.downloadCallAction"
+                scope="session"
+                name="downloadCallForm"
+                validate="false"
+
+                >
+            <forward
+                    name="success"
+                    path="/download.jsp"/>
+            <forward
+                    name="redirect"
+                    path="/redirect.jsp"/>
+
+            <forward
+                    name="error"
+                    path="/download.jsp"/>
+
+        </action>
+        <action path="/santa"
+                type="com.owd.web.callcenter.santaCallAction"
+                scope="session"
+                name="santaCallForm"
+                validate="false"
+                 parameter="submit"
+                >
+            <forward
+                    name="success"
+                    path="/santa.jsp"/>
+
+
+            <forward
+                    name="error"
+                    path="/santa.jsp"/>
+
+        </action>
+
+
+
+    </action-mappings>
+     <message-resources
+            parameter="com.owd.web.messageresources"
+            null="false"/>
+
+
+</struts-config>

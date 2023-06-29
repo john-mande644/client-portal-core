@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+    <struts>
+            <package name="flatRateDims" namespace="/flatRateDims" extends="struts-default">
+                <action name="loadClient" method="loadClient" class="com.owd.web.internal.warehouse.client.flatRateDimsAction">
+                    <result name="error">/warehouse/client/dimIndex.jsp</result>
+
+                    <result name="success">/warehouse/client/dimIndex.jsp</result>
+                </action>
+
+                <action name="saveDims" method="saveDims" class="com.owd.web.internal.warehouse.client.flatRateDimsAction">
+                    <result name="error">/warehouse/client/dimIndex.jsp</result>
+
+                    <result name="success">/warehouse/client/dimIndex.jsp</result>
+                </action>
+
+                <action name="loadClientMethod" method="loadClientMethod" class="com.owd.web.internal.warehouse.client.flatRateDimsAction">
+                    <result name="error">/warehouse/client/dimIndexMethod.jsp</result>
+
+                    <result name="success">/warehouse/client/dimIndexMethod.jsp</result>
+                </action>
+
+                <action name="saveNewMethodDims" method="saveNewMethodDims" class="com.owd.web.internal.warehouse.client.flatRateDimsAction">
+                    <result name="error">/warehouse/client/dimIndexMethod.jsp</result>
+
+                    <result name="success">/warehouse/client/dimIndexMethod.jsp</result>
+                </action>
+                <action name="updateMethodDims" method="updateMethodDims" class="com.owd.web.internal.warehouse.client.flatRateDimsAction">
+                    <result name="error">/warehouse/client/dimIndexMethod.jsp</result>
+
+                    <result name="success">/warehouse/client/dimIndexMethod.jsp</result>
+                </action>
+                <action name="removeMethodDims" method="removeMethodDims" class="com.owd.web.internal.warehouse.client.flatRateDimsAction">
+                    <result name="error">/warehouse/client/dimIndexMethod.jsp</result>
+
+                    <result name="success">/warehouse/client/dimIndexMethod.jsp</result>
+                </action>
+
+
+
+
+
+            </package>
+
+
+
+    </struts>

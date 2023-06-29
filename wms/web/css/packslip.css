@@ -1,0 +1,117 @@
+
+table.printlist td {
+
+    padding:0px 10px 0px 10px;
+}
+table.printlist th {
+
+    padding:0px 10px;
+}
+td.orders {
+    text-align:center;
+
+}
+.center {
+    text-align: center;
+}
+.printerlist{
+    height:80%;           
+    
+}
+.label{
+    font-weight:bold;
+
+}
+.avlink{
+    padding:5px;
+    font-size:larger;
+}
+#advancedLinks{
+    background-color:lightgrey;
+    padding:10px;
+}
+.packTopText{
+    font-size:large;
+    padding:3px;
+    color:yellow;
+}
+.reprint {
+    background: #E0E5EE none repeat scroll 0 0;
+    border-top: 2px solid green;
+    margin: 0;
+    padding: 10px;
+    height:150px;
+
+}
+.currentprinting {
+    background: #E0E5EE none repeat scroll 0 0;
+    border-top: 2px solid green;
+    margin: 0;
+    padding: 10px;
+    height:150px;
+    
+}
+.settings {
+    background: #E0E5aa none repeat scroll 0 0;
+    border-top: 2px solid red;
+    margin: 0;
+    padding: 10px;
+    height:100px;
+
+}
+.singleOrder {
+    background: #aaE5ff none repeat scroll 0 0;
+    border-top: 2px solid blue;
+    margin: 0;
+    padding: 10px;
+    height:100px;
+
+}
+.bottom{
+    height:30px;
+    
+}
+.top{
+    height:80%;
+    
+}
+.container{
+    margin: 0 auto;
+    
+
+    width: 950px;
+}
+
+#large {
+    float:left;
+    margin:0;
+    padding:0;
+    width:670px;
+
+}
+#small{
+    float:left;
+    width:242px;
+    padding-left:37px;
+    
+}
+#packtitle{
+    background-image: url('/wms/images/packsliplogo.png');
+    height: 50px;
+    font-size: 24px;
+    margin: 0px 0px 10px;
+    background-repeat: no-repeat;
+    
+    
+}
+#data{
+   display:block;
+    width:950px;
+}
+.printerscontainer{
+    
+    border:5px solid #E5E5E5;
+}
+.printbutton{
+    padding:10px;
+}

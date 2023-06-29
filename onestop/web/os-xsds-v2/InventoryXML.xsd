@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="InventoryXML"  xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="InventoryInfo" msdata:IsDataSet="false" msdata:UseCurrentLocale="false">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="InventoryItems ">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UPC" type="xs:string" minOccurs="1" />
+              <xs:element name="Quantity" type="xs:integer" minOccurs="1" />
+              <xs:element name="UpdateDate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- DTD for Inventory Movement Report API   S. Buskirk -->
+<!-- Copyright (c) 2011 by One World Direct All Rights Reserved. -->
+<!-- Dates formatted as YYYYMMDD -->
+
+<-- Updated 9/23/2011 -->
+
+<!-- OWD_INVENTORY_REPORT_REQUEST description
+
+	This request returns an OWD_INVENTORY_REPORT_RESPONSE if successful. See OWD_INVENTORY_REPORT_RESPONSE for response details.
+
+	An empty status request returns details for all movement records (this list may be very large and slow to return). Because of the potential
+	for very large record sets to be returned, all requests are limited to the first 2000 matching events.
+
+	The returned list may be restricted by adding one or more FILTER elements to the status request. Each
+	FILTER element contains two subelements, FILTER_TYPE and FILTER_VALUE.
+
+	The value of the TYPE element must be one of the strings listed in the table below (case-sensitive).
+	The associated VALUE element may be a number, a date or a string value depending on the TYPE value.
+	Multiple FILTER elements can be included in the request - all FILTERs will be combined in a logical
+	AND. All returned results will have satisfied all FILTER requirements provided.
+
+	FILTER_TYPE option                  FILTER_VALUE contents
+	================================================================
+	type             	String value. Must be one of RETURN, RECEIVE, ADJUSTMENT or ALL. If omitted, defaults to ALL.
+    containsSku             String value. Returns all relevant movement records containing the indicated SKU
+    startDate         			String value. Matches records after or on the indicated date. Value should be in YYYYMMDD format.
+    endDate              String value. Matches records before or on the indicated date. Value should be in YYYYMMDD format.
+
+-->
+
+<!ELEMENT FILTER_TYPE (#PCDATA)>
+<!ELEMENT FILTER_VALUE (#PCDATA)>
+
+<!ELEMENT FILTER (FILTER_TYPE,FILTER_VALUE)>
+
+<!ELEMENT OWD_INVENTORY_REPORT_REQUEST (FILTER*)>
+
+
+<!-- OWD_INVENTORY_REPORT_RESPONSE returns zero or more RETURN, RECEIVE and/or ADJUSTMENT elements, one per returned event.
+
+   OWD_INVENTORY_REPORT_RESPONSE is the response type for all inventory movement report search requests
+
+	Notes on each subelement of the OWD_INVENTORY_REPORT_RESPONSE element are below:
+
+-->
+
+<!ELEMENT ASN_REFERENCE (#PCDATA)><!--Your reference value for the connected ASN record. Only appears in RECEIVE_EVENT elements.-->
+<!ELEMENT SHIPPER (#PCDATA)><!--Name of supplier that will be sending the shipment. Only appears in RECEIVE_EVENT elements.-->
+<!ELEMENT OWD_ORDER_REF (#PCDATA)><!--The guaranteed unique OWD order reference for this return. Only appears in RETURN_EVENT elements.-->
+<!ELEMENT NOTES (#PCDATA)><!--Any length of alphanumeric text with comments. All *_EVENT types have a NOTES element.-->
+<!ELEMENT ITEM_MOVEMENT (EMPTY)><!-- a record of an inventory level change for a single SKU. -->
+<!ATTLIST ITEM_MOVEMENT
+	      sku			        CDATA	#REQUIRED <!-- The SKU of the item -->
+	      title			        CDATA	#REQUIRED <!-- The SKU of the item -->
+	      quantity_change		CDATA	#REQUIRED <!-- Integer whole number. Positive values are additions to the stock level of the given SKU - negative values are subtractions -->
+	      notes			        CDATA	#REQUIRED <!-- notes for the event on this specific item. Currently used for primarily for returns -->
+	      >
+
+<!ELEMENT ADJUSTMENT_EVENT (NOTES,ITEM_MOVEMENT+)> <!-- One ADJUSTMENT_EVENT exists for each Adjustment event recorded.  It may contain multiple ITEM_MOVEMENT elements. -->
+<!ATTLIST ADJUSTMENT_EVENT
+	      created			        CDATA	#REQUIRED <!-- The date the adjustment was posted -->
+	      >
+
+<!ELEMENT RETURN_EVENT (OWD_ORDER_REF, NOTES, ITEM_MOVEMENT+)> <!-- One RETURN_EVENT exists for each return package for a particular order. It may contain multiple ITEM_MOVEMENT elements. -->
+<!ATTLIST RETURN_EVENT
+	      created			        CDATA	#REQUIRED <!-- The date the return was processed -->
+	      >
+
+<!ELEMENT RECEIVE_EVENT (NOTES, ITEM_MOVEMENT+)> <!-- One RECEIVE_EVENT exists for each completed and released receive performed.  It may contain multiple ITEM_MOVEMENT elements. -->
+<!ATTLIST RECEIVE_EVENT
+	      created			        CDATA	#REQUIRED <!-- The date the receive was released -->
+	      >
+
+
+<!ELEMENT OWD_INVENTORY_REPORT_RESPONSE (RETURN_EVENT*, ADJUSTMENT_EVENT*, RECEIVE_EVENT*)>
+
+<!--
+
+Example search for all events between 2011-1-1 and 2011-7-1 involving the sku "my-sku"
+
+<?xml version="1.0"?>
+<OWD_API_REQUEST api_version="1.0" client_authorization="xxx=" client_id="0" testing="FALSE">
+	<OWD_INVENTORY_REPORT_REQUEST>
+		<FILTER>
+			<TYPE>startDate</TYPE>
+			<VALUE>20110101</VALUE>
+		</FILTER>
+		<FILTER>
+			<TYPE>endDate</TYPE>
+			<VALUE>20110707</VALUE>
+		</FILTER>
+		<FILTER>
+			<TYPE>containsSku</TYPE>
+			<VALUE>my-sku</VALUE>
+		</FILTER>
+	</OWD_INVENTORY_REPORT_REQUEST>
+</OWD_API_REQUEST>
+
+..and the response
+
+<?xml version="1.0" encoding="UTF-8"?>
+<OWD_API_RESPONSE results="SUCCESS">
+  <OWD_INVENTORY_REPORT_RESPONSE>
+    <RECEIVE_EVENT created="20110124" id="147605">
+      <ASN_REFERENCE>ASN 123</ASN_REFERENCE>
+      <SHIPPER>Sears</SHIPPER>
+      <NOTES/>
+      <ITEM_MOVEMENTS>
+        <ITEM_MOVEMENT notes="" quantity_change="100" sku="my-sku" title="Replacement froozer"/>
+      </ITEM_MOVEMENTS>
+    </RECEIVE_EVENT>
+    <RETURN_EVENT created="20110208" id="148263">
+      <OWD_ORDER_REF>8765432</OWD_ORDER_REF>
+      <NOTES>Wrong size</NOTES>
+      <ITEM_MOVEMENTS>
+        <ITEM_MOVEMENT notes="Not needed" quantity_change="1" sku="my-other-sku" title="Spadging Tool"/>
+        <ITEM_MOVEMENT notes="Not what was wanted" quantity_change="2" sku="my-sku" title="Replacement froozer"/>
+      </ITEM_MOVEMENTS>
+    </RETURN_EVENT>
+    <ADJUSTMENT_EVENT created="20110301" id="148929">
+      <NOTES>Per work order #23455</NOTES>
+      <ITEM_MOVEMENTS>
+        <ITEM_MOVEMENT notes="Pulled samples for call center" quantity_change="-2" sku="my-sku" title="Replacement froozer"/>
+      </ITEM_MOVEMENTS>
+    </ADJUSTMENT_EVENT>
+  </OWD_INVENTORY_REPORT_RESPONSE>
+</OWD_API_RESPONSE>
+
+-->

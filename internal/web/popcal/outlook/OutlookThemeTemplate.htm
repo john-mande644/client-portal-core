@@ -1,0 +1,47 @@
+<HTML>
+<HEAD><TITLE>Outlook Theme</TITLE>
+    <script language="JavaScript">
+        if (document.layers) {
+            origWidth = innerWidth;
+            origHeight = innerHeight;
+            onresize = function() {
+                if (innerWidth != origWidth || innerHeight != origHeight)location.reload()
+            }
+        }
+        // The above script shows you an example how to work around with the NN4 resize bug. It's not part of this product and you may use your own instead.
+    </script>
+</HEAD>
+
+<BODY>
+
+<style type="text/css">
+    .calbtn {
+        position: relative;
+        left: expression( document . all ? "-19px": "0px" );
+        top: 1px;
+    }
+</style>
+
+
+<FORM name="demoform">
+    &nbsp;Date Field: <a name="dcdummy:27"><input name="dc" value="" size="12"></a><a href="javascript:void(0)"
+                                                                                      onclick="gfPop.fPopCalendar(document.demoform.dc);return false;"><IMG
+        name='popcal' class='calbtn' src='arrowd.gif' width=16 height=16 border=0 alt=''></a>
+</FORM>
+
+
+<font size=-1>
+    <BR><BR><BR>NOTE: Engine files need to be copied over before anything seen above.
+    <BR>NOTE: Set the gAgendaMask options to -1 to enable all agenda effects.
+    <hr size="1">
+    <em>Copyright &copy; 2001-2003 CalendarXP.net, Liming Weng</em></font>
+
+
+<!--  PopCalendar(tag name and id must match) Tags should sit at the page bottom -->
+<iframe width=152 height=163 name="gToday:outlook:agenda.js" id="gToday:outlook:agenda.js" src="ipopeng.htm"
+        scrolling="no" frameborder="0"
+        style="visibility:visible; z-index:999; position:absolute; left:-500px; top:0px;">
+    <LAYER name="gToday:outlook:agenda.js" src="npopeng.htm"></LAYER>
+</iframe>
+</BODY>
+</HTML>

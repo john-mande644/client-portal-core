@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OwdClientContact"
+        table="owd_client_contact"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="assigned"/>
+        </id>
+
+        <property
+            name="clientFkey"
+            type="java.lang.Integer"
+            column="client_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="name"
+            type="java.lang.String"
+            column="name"
+            length="50"
+            />
+        <property
+            name="company"
+            type="java.lang.String"
+            column="company"
+            length="50"
+            />
+        <property
+            name="addressOne"
+            type="java.lang.String"
+            column="address_one"
+            length="50"
+            />
+        <property
+            name="addressTwo"
+            type="java.lang.String"
+            column="address_two"
+            length="50"
+            />
+        <property
+            name="city"
+            type="java.lang.String"
+            column="city"
+            length="50"
+            />
+        <property
+            name="state"
+            type="java.lang.String"
+            column="state"
+            length="50"
+            />
+        <property
+            name="zip"
+            type="java.lang.String"
+            column="zip"
+            length="50"
+            />
+        <property
+            name="country"
+            type="java.lang.String"
+            column="country"
+            length="50"
+            />
+        <property
+            name="phoneNum"
+            type="java.lang.String"
+            column="phone_num"
+            length="50"
+            />
+        <property
+            name="faxNum"
+            type="java.lang.String"
+            column="fax_num"
+            length="50"
+            />
+        <property
+            name="emailAddress"
+            type="java.lang.String"
+            column="email_address"
+            length="50"
+            />
+        <property
+            name="type"
+            type="java.lang.Integer"
+            column="type"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="login"
+            type="java.lang.String"
+            column="login"
+            length="50"
+            />
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

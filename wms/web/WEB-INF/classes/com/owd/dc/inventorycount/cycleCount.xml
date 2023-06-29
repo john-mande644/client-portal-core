@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE struts PUBLIC
+                "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+                "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+        <struts>
+
+
+    <package name="cycleCount" namespace="/cycleCount" extends="struts-default">
+
+
+        <action name="start" class="com.owd.dc.cyclecount.cycleCountAction">
+
+            <result name="success">/rfapps/inventory/cycleCount/startCycle.jsp</result>
+            <result name="assignedCount">/rfapps/inventory/cycleCount/selectLocation.jsp</result>
+
+        </action>
+
+        <action name="countThisSku" class="com.owd.dc.cyclecount.cycleCountAction" method="countThisSku">
+
+            <result name="success">/rfapps/inventory/cycleCount/selectLocation.jsp</result>
+            <result name="error">/rfapps/inventory/cycleCount/startCycle.jsp</result>
+        </action>
+        <action name="countThisLocation" class="com.owd.dc.cyclecount.cycleCountAction" method="countThisLocation">
+
+            <result name="success">/rfapps/inventory/cycleCount/enterQty.jsp</result>
+            <result name="error">/rfapps/inventory/cycleCount/startLocation.jsp</result>
+        </action>
+
+</package>
+
+    </struts>

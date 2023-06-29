@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OrderPickHistory"
+        table="order_pick_history"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="orderId"
+            type="java.lang.Integer"
+            column="order_id"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="pickBy"
+            type="java.lang.String"
+            column="pick_by"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="numberPicks"
+            type="java.lang.Integer"
+            column="number_picks"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="startPickTime"
+            type="java.util.Date"
+            column="start_pick_time"
+            not-null="true"
+            length="16"
+            />
+        <property
+            name="endPickTime"
+            type="java.util.Date"
+            column="end_pick_time"
+            not-null="true"
+            length="16"
+            />
+        <property
+            name="orderReplenishTime"
+            type="java.lang.Integer"
+            column="order_replenish_time"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="dcHold"
+            type="java.lang.Integer"
+            column="dchold"
+            not-null="true"
+            length="10"
+            />
+        <!-- associations -->
+        <!-- bi-directional one-to-many association to OrderPickItem -->
+        <set
+            name="orderPickItemHist"
+            lazy="true"
+            inverse="true"
+            order-by="id"
+            >
+            <key>
+                <column name="pick_history_id"/>
+            </key>
+            <one-to-many
+                class="com.owd.hibernate.OrderPickItemHistory"
+                />
+        </set>
+
+    </class>
+</hibernate-mapping>

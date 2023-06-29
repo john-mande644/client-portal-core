@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+            name="com.owd.hibernate.WLocInventory"
+            table="w_location_inventory"
+            >
+
+        <id
+                name="id"
+                type="java.lang.Integer"
+                column="id"
+                >
+            <generator class="identity"/>
+        </id>
+
+        <property
+                name="quantity"
+                type="java.lang.Integer"
+                column="qty"
+                not-null="true"
+                length="10"
+                />
+
+        <property
+                name="lot"
+                type="java.lang.String"
+                column="lotCode"
+                not-null="false"
+                length="50"
+                />
+
+        <property
+                name="expires"
+                type="java.util.Date"
+                column="Expiration"
+                not-null="false"
+                length="23"
+                />
+
+
+        <!-- associations -->
+        <!-- bi-directional many-to-one association to OwdInventory -->
+        <many-to-one name="inventory" class="com.owd.hibernate.OwdInventory" column="ixInventory" />
+        <!-- bi-directional many-to-one association to WLocation -->
+        <many-to-one name="location" class="com.owd.hibernate.WLocation" column="ixNode" />
+
+
+    </class>
+</hibernate-mapping>

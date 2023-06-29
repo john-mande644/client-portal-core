@@ -1,0 +1,35 @@
+
+Note in this file any needed info about special customizations,
+the server environment, specific access URLs for this deployment,
+ftp access information, etc.
+
+Cart info:
+TYPE - zencart
+OBJECT - zencart.php
+
+API Files:
+LOCATION - /Order/c4u_admin/import/
+
+URL:
+http://www.cures4you.net/Order/c4u_admin/import/index.php
+
+FTP details:
+HOST - ftp://www.cures4you.net
+USER - u42831639
+Password - b1979159b
+
+Shipping Rules:
+
+Any order over $500 should set hold for release to yes
+
+US orders
+
+One bottle should be sent OWD.1ST.LETTER
+Two-Five bottles should be sent OWD.1ST.PRIORITY
+Six or more bottles should be sent UPS.GND
+any order going to Alaska or Hawaii should be sent OWD.1ST.PRIORITY
+
+International Orders
+All international orders should set hold for release to yes
+One to Seven bottles should be sent OWD_USPS_I_FIRST
+Eight or more orders should be sent using OWD_USPS_I_PRIORITY

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+
+    <class name="com.owd.hibernate.generated.EdiDocs" table="edi_docs" >
+        <id
+                name="id"
+                type="java.lang.Integer"
+                column="id"
+                >
+            <generator class="identity"/>
+        </id>
+
+        <property name="created" column="created"
+                  type="java.util.Date"
+
+                  length="23"
+                />
+        <property name="docData" column="docData"
+                  type="java.lang.String"
+                  length="2147483647"
+
+                />
+        <property name="sourceFile" column="sourceFile"
+                  type="java.lang.String"
+
+                  length="254"
+                />
+        <property name="docStatus" column="docStatus"
+                  type="java.lang.Integer"
+                />
+        <property name="account" column="account"
+                  type="java.lang.String"
+                  length="50"
+                  />
+    </class>
+</hibernate-mapping>

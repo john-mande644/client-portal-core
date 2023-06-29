@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+            name="com.owd.hibernate.generated.OwdLotPackageLine"
+            table="owd_lot_packageline"
+            >
+        <id
+                name="id"
+                type="java.lang.Integer"
+                column="id"
+                >
+            <generator class="identity"/>
+        </id>
+
+        <property
+                name="qty"
+                column="qty"
+                type="java.lang.Integer"
+                />
+
+        <!-- associations   -->
+        <many-to-one name="packageLine" class="com.owd.hibernate.generated.PackageLine" column="package_line_fkey" unique="false" />
+        <many-to-one name="lotValue" class="com.owd.hibernate.generated.OwdLotValue" column="lot_fkey" unique="false" />
+
+
+    </class>
+
+
+
+
+</hibernate-mapping>

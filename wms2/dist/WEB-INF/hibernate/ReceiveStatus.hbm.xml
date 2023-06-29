@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.ReceiveStatus"
+        table="receivestatus"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="asnFkey"
+            type="java.lang.Integer"
+            column="asn_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="agent"
+            type="java.lang.String"
+            column="agent"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="startTime"
+            type="java.util.Date"
+            column="starttime"
+            not-null="true"
+            length="23"
+            />
+        <property
+            name="clientFkey"
+            type="java.lang.Integer"
+            column="client_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="currentRcvItem"
+            type="java.lang.Integer"
+            column="current_rcv_item"
+            not-null="true"
+            length="10"
+            />
+
+
+
+        <!-- associations -->
+        <!-- bi-directional one-to-many association to ReceiveItem -->
+        <bag
+            name="receiveStatusItems"
+            lazy="true"
+            inverse="true"
+            >
+            <key>
+                <column name="receivestatus_fkey"/>
+            </key>
+            <one-to-many
+                class="com.owd.hibernate.ReceiveStatusItems"
+                />
+        </bag>
+        <!-- bi-directional many-to-one association to Asn -->
+
+    </class>
+</hibernate-mapping>

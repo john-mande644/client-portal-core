@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+        version="3.0">
+    <display-name>
+		One World Warehouse Management Server Applications
+    </display-name>
+
+    <!-- required for all access-restricted webapps -->
+    <servlet>
+        <servlet-name>action</servlet-name>
+        <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+        <init-param>
+          <param-name>application</param-name>
+          <param-value>ApplicationResources</param-value>
+        </init-param>
+        <init-param>
+          <param-name>config</param-name>
+          <param-value>/WEB-INF/struts-config.xml</param-value>
+        </init-param>
+        <init-param>
+          <param-name>debug</param-name>
+          <param-value>3</param-value>
+        </init-param>
+        <init-param>
+          <param-name>detail</param-name>
+          <param-value>3</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+      </servlet>
+
+      <servlet>
+            <servlet-name>
+                ShipperServletNew
+            </servlet-name>
+            <servlet-class>
+                com.owd.dc.manifest.ShippingApplicationServlet
+            </servlet-class>
+        </servlet>
+
+           <servlet>
+            <servlet-name>
+                ShippingAPIServlet
+            </servlet-name>
+            <servlet-class>
+                com.owd.dc.manifest.ShipServerServlet
+            </servlet-class>
+        </servlet>
+      <servlet>
+
+        <servlet-name>
+           packapp
+        </servlet-name>
+        <servlet-class>
+            com.owd.dc.packing.packapp
+        </servlet-class>
+    </servlet>
+      <servlet-mapping>
+        <servlet-name>packapp</servlet-name>
+        <url-pattern>/packapp</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>
+			ShipperServletNew
+        </servlet-name>
+        <url-pattern>
+			/manifesting/ship
+        </url-pattern>
+    </servlet-mapping>
+
+     <servlet-mapping>
+        <servlet-name>
+			ShippingAPIServlet
+        </servlet-name>
+        <url-pattern>
+			/manifesting/api
+        </url-pattern>
+    </servlet-mapping>
+
+      <!-- Action Servlet Mapping -->
+      <servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <url-pattern>/do/*</url-pattern>
+      </servlet-mapping>
+
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+          <init-param>
+              <param-name>actionPackages</param-name>
+              <param-value>com.owd</param-value>
+          </init-param>
+    </filter>
+        <filter>
+    <filter-name>hibernateFilter</filter-name>
+   <!-- <filter-class>com.owd.dc.filters.hibernateFilter</filter-class>-->
+            <filter-class>com.owd.web.HibernateFilter</filter-class>
+    </filter>
+       <filter-mapping>
+    <filter-name>hibernateFilter</filter-name>
+   <url-pattern>*.action</url-pattern>
+
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>*.action</url-pattern>
+    </filter-mapping>
+
+
+    <filter-mapping>
+        <filter-name>hibernateFilter</filter-name>
+        <url-pattern>/do/*</url-pattern>
+    </filter-mapping>
+     <filter-mapping>
+        <filter-name>hibernateFilter</filter-name>
+        <url-pattern>/packapp/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>hibernateFilter</filter-name>
+        <url-pattern>/manifesting/*</url-pattern>
+    </filter-mapping>
+
+      <!-- The Welcome File List -->
+      <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+      </welcome-file-list>
+        <error-page>
+			<error-code>500</error-code>
+			<location>/500.jsp</location>
+		</error-page>
+    <error-page>
+			<error-code>404</error-code>
+			<location>/404.jsp</location>
+		</error-page>
+    <error-page>
+			<error-code>503</error-code>
+			<location>/500.jsp</location>
+		</error-page>
+
+   <!-- <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Handhelds-struts</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>
+                internal
+            </role-name>
+        </auth-constraint>
+    </security-constraint>
+    -->
+    <login-config>
+        <auth-method>
+			FORM
+        </auth-method>
+        <form-login-config>
+            <form-login-page>
+				/login.jsp
+            </form-login-page>
+            <form-error-page>
+				/error.jsp
+            </form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <role-name>
+			internal
+        </role-name>
+    </security-role>
+</web-app>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <constant name="struts.devMode" value="false"/>
+
+
+    <package name="owd" extends="struts-default">
+
+
+        <interceptors>
+            <interceptor name="owdauth" class="com.owd.core.web.interceptor.OWDWebAuthenticationInterceptor"/>
+
+            <interceptor-stack name="owdAuthParamsPrepareParamsStack">
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="owdauth"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="modelDriven"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="staticParams"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="validation">
+                    <param name="excludeMethods">input,back,cancel</param>
+                </interceptor-ref>
+                <interceptor-ref name="workflow">
+                    <param name="excludeMethods">input,back,cancel</param>
+                </interceptor-ref>
+            </interceptor-stack>
+
+            <!-- A complete stack with all the common interceptors in place.
+            Generally, this stack should be the one you use, though it
+            may do more than you need. Also, the ordering can be
+            switched around (ex: if you wish to have your servlet-related
+            objects applied before prepare() is called, you'd need to move
+            servlet-config interceptor up.
+
+            This stack also excludes from the normal validation and workflow
+            the method names input, back, and cancel. These typically are
+            associated with requests that should not be validated.
+            -->
+            <interceptor-stack name="owdAuthDefaultStack">
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="owdauth"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="debugging"/>
+                <interceptor-ref name="profiling"/>
+                <interceptor-ref name="scopedModelDriven"/>
+                <interceptor-ref name="modelDriven"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="staticParams"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="params">
+                    <param name="excludeParams">dojo\..*</param>
+                </interceptor-ref>
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="validation">
+                    <param name="excludeMethods">input,back,cancel,browse,show</param>
+                </interceptor-ref>
+                <interceptor-ref name="workflow">
+                    <param name="excludeMethods">input,back,cancel,browse,show</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+
+
+        <global-results>
+            <result name="owd.global.login" type="redirect">
+                <param name="location">http://service.owd.com/josso/signon/logout.do</param>
+            </result>
+        </global-results>
+
+        <action name="logout" class="com.owd.web.LogoutAction">
+            <result name="success" type="redirect">
+                <param name="parse">false</param>
+                <param name="location">http://service.owd.com/josso/signon/logout.do</param>
+            </result>
+        </action>
+
+    </package>
+
+    <package name="billing" extends="owd">
+        <action name="accountStatus" class="com.owd.web.billing.PayAction" method="input">
+            <interceptor-ref name="createSession"/>
+            <interceptor-ref name="owdAuthDefaultStack"/>
+            <result name="success">/billing/pay.jsp</result>
+            <result name="input">/billing/pay.jsp</result>
+            <result name="paid" type="redirectAction">
+                <param name="actionName">accountStatus</param>
+                <param name="namespace">/billing</param>
+                <param name="successMessage">Your payment has been received! Check the summary on the left to view your new balance.</param>
+            </result>
+        </action>
+        <!-- Add your actions here -->
+    </package>
+
+    <package name="internal" extends="owd">
+        <action name="changeClient" class="com.owd.web.internal.ChangeClientAction">
+            <interceptor-ref name="createSession"/>
+            <interceptor-ref name="owdAuthDefaultStack"/>
+            <result name="return" type="redirectAction">
+                <param name="actionName">${redirectAction}</param>
+                <param name="namespace">${redirectNamespace}</param>
+            </result>
+        </action>
+        <!-- Add your actions here -->
+    </package>
+
+
+     <package name="autoship" extends="owd">
+         <action name="edit" class="com.owd.web.autoship.AutoshipAction" method="input">
+            <interceptor-ref name="createSession"/>
+            <interceptor-ref name="owdAuthParamsPrepareParamsStack"/>
+            <result name="success">/clienttools/autoship/autoship.jsp</result>
+            <result name="input">/clienttools/autoship/autoship.jsp</result>
+        </action>
+        <action name="save" class="com.owd.web.autoship.AutoshipAction" method="save">
+            <interceptor-ref name="createSession"/>
+            <interceptor-ref name="owdAuthParamsPrepareParamsStack"/>
+            <result name="success">/clienttools/autoship/autoship.jsp</result>
+            <result name="input">/clienttools/autoship/autoship.jsp</result>
+        </action>
+         <action name="delete" class="com.owd.web.autoship.AutoshipAction" method="delete">
+            <interceptor-ref name="createSession"/>
+            <interceptor-ref name="owdAuthParamsPrepareParamsStack"/>
+            <result name="success">/clienttools/autoship/autoship.jsp</result>
+            <result name="input">/clienttools/autoship/autoship.jsp</result>
+        </action>
+         <action name="additem" class="com.owd.web.autoship.AutoshipAction" method="addItem">
+            <interceptor-ref name="createSession"/>
+            <interceptor-ref name="owdAuthParamsPrepareParamsStack"/>
+            <result name="success">/clienttools/autoship/autoship.jsp</result>
+            <result name="input">/clienttools/autoship/autoship.jsp</result>
+        </action>
+         <action name="copy" class="com.owd.web.autoship.AutoshipAction" method="copy">
+            <interceptor-ref name="createSession"/>
+            <interceptor-ref name="owdAuthParamsPrepareParamsStack"/>
+            <result name="success">/clienttools/autoship/autoship.jsp</result>
+            <result name="input">/clienttools/autoship/autoship.jsp</result>
+        </action>
+        <!-- Add your actions here -->
+    </package>
+
+    <package name="asn" extends="owd">
+        <action name="display" method="display" class="com.owd.web.warehouse.struts2.AsnAction">
+            <interceptor-ref name="createSession"/>
+            <interceptor-ref name="owdAuthParamsPrepareParamsStack"/>
+            <result name="success">/warehouse/asn/asnitemdetails.jsp</result>
+            <result name="error">/warehouse/asn/asnitemdetails.jsp</result>
+        </action>
+    </package>
+    <package name="returnLabel" extends="struts-default">
+        <action name="create" method="create" class="com.owd.web.returns.ReturnLabelAction">
+            <result name="success">/returnLabel/index.jsp</result>
+            <result name="error">/returnLabel/index.jsp</result>
+        </action>
+        <action name="view" method="view" class="com.owd.web.returns.ReturnLabelAction">
+            <result name="success">/returnLabel/index.jsp</result>
+            <result name="error">/returnLabel/index.jsp</result>
+        </action>
+    </package>
+
+
+</struts>

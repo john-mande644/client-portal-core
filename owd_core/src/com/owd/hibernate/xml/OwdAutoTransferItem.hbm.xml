@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/dtd/
+-->
+
+<class 
+    name="com.owd.hibernate.generated.OwdAutoTransferItem"
+    table="owd_auto_transfer_items"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+        <generator class="identity" />
+    </id>
+    <!--<discriminator column="item_type" type="java.lang.Integer" length="10"/>
+
+    <property
+        name="incrementQty"
+        type="java.lang.Integer"
+        column="increment_qty"
+        not-null="true"
+        length="10"
+    />
+ 
+    <property
+        name="reserveType"
+        type="java.lang.Integer"
+        column="reserve_type"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="reserveValue"
+        type="java.lang.Integer"
+        column="reserve_value"
+        not-null="true"
+        length="10"
+    />
+
+     <property
+        name="maxType"
+        type="java.lang.Integer"
+        column="max_type"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="maxValue"
+        type="java.lang.Integer"
+        column="max_value"
+        not-null="true"
+        length="10"
+    />
+
+     <property
+        name="minType"
+        type="java.lang.Integer"
+        column="min_type"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="minValue"
+        type="java.lang.Integer"
+        column="min_value"
+        not-null="true"
+        length="10"
+    />
+
+    --><!-- associations --><!--
+     <many-to-one
+            name="owdInventory"
+            class="com.owd.hibernate.generated.OwdInventory"
+            not-null="true"
+            >
+            <column name="inventory_fkey"/>
+        </many-to-one>
+
+        <many-to-one
+            name="transferRule"
+            class="com.owd.hibernate.generated.OwdAutoTransfer"
+            not-null="true"
+            >
+            <column name="transfer_fkey"/>
+        </many-to-one>
+
+
+     <subclass name="com.owd.hibernate.OwdAutoTransferTriggerItem" extends="com.owd.hibernate.generated.OwdAutoTransferItem" discriminator-value="1">
+
+
+       </subclass>
+    <subclass name="com.owd.hibernate.OwdAutoTransferSourceItem" extends="com.owd.hibernate.generated.OwdAutoTransferItem" discriminator-value="2">
+
+
+           </subclass>
+    <subclass name="com.owd.hibernate.OwdAutoTransferDestinationItem" extends="com.owd.hibernate.generated.OwdAutoTransferItem" discriminator-value="3">
+
+
+           </subclass>
+-->
+</class>
+</hibernate-mapping>

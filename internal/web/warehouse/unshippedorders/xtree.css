@@ -1,0 +1,1611 @@
+.webfx-tree-container {
+    margin: 0px;
+    padding: 0px;
+    font: 10px Verdana, Arial, Helvetica, sans-serif;
+    white-space: nowrap;
+}
+
+.webfx-tree-item {
+    padding: 0px;
+    margin: 0px;
+    font: bold 9px Verdana, Arial, Helvetica, sans-serif;
+    color: WindowText;
+    white-space: nowrap;
+    height: 16px;
+
+}
+
+.webfx-tree-item a, .webfx-tree-item a:active, .webfx-tree-item a:hover {
+    margin-left: 3px;
+    padding: 0px 2px 1px 2px;
+}
+
+.webfx-tree-item a {
+    color: black;
+    text-decoration: none;
+}
+
+.webfx-tree-item a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.webfx-tree-item a:active {
+    background: highlight;
+    color: highlighttext;
+    text-decoration: none;
+}
+
+.webfx-tree-item img {
+    vertical-align: middle;
+    border: 0px;
+}
+
+.webfx-tree-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* -- Main listing area -- */
+
+#mainArea {
+    font: 12px "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    color: #000;
+    margin-left: 1em;
+    margin-top: 1em;
+    margin-right: 1em;
+}
+
+#mainArea a:link {
+    color: rgb( 0, 0, 180 );
+}
+
+#mainArea a:visited {
+    color: purple;
+}
+
+#mainArea h2 {
+    font-size: 15px;
+    font-family: Georgia, serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #003C59;
+    margin: 1em 0 0.5em 0;
+}
+
+#mainArea h2 span {
+    text-transform: none;
+}
+
+#mainArea ul {
+    font-size: 13px;
+    margin: 0 2px;
+    padding: 0;
+}
+
+#mainArea li {
+    list-style: none;
+}
+
+/* -- Main area header -- */
+#mainArea .head {
+    color: #919382;
+}
+
+#mainArea h1 {
+    font-size: 18px;
+    font-weight: normal;
+    color: #003C59;
+    margin: 0;
+}
+
+#mainArea .head p {
+    margin: 0;
+}
+
+/* -- Main area central area -- */
+#mainArea #centerArea {
+    margin-right: 237px;
+    border-right: solid 1px #D6E8EE;
+    padding-bottom: 22px;
+}
+
+/* -- Main area right sidebar -- */
+#mainArea #rightSide {
+    width: 160px;
+    font-size: 11px;
+    background: #fff;
+    padding: 0 5px 0 15px;
+}
+
+#mainArea #rightSide .userNotice {
+    color: #919382;
+    line-height: 1.6;
+    margin-top: 0;
+}
+
+#mainArea #rightSide .userNotice span {
+    font-weight: bold;
+    color: #343530;
+    display: block;
+}
+
+#mainArea #rightSide ul {
+    font-size: 11px;
+    margin: 4px 0;
+}
+
+#mainArea #rightSide ul.highlight {
+    background: #E0EDF1;
+    border: solid 1px #96C2CF;
+    border-width: 1px 0;
+    margin: 8px 0;
+    padding: 4px 0 8px 0;
+}
+
+#mainArea #rightSide li {
+    list-style: none;
+    margin: 2px 0;
+    padding-left: 10px;
+    list-style-image: none;
+    background: url( /internal/images/test/li-bg.gif ) 4px 6px no-repeat;
+}
+
+#mainArea #rightSide li.highlight {
+    list-style-image: none;
+    list-style: none;
+    background: url( /internal/images/test/li-highlight-bg.gif ) 0 3px no-repeat;
+}
+
+/* -- Main area footer -- */
+#pageFooter {
+    border-top: solid 1px #D6E8EE;
+    padding: 22px 0 5px 0;
+}
+
+/* -- Bug Styling -- */
+/* -- Bug Header -- */
+div.bugHead {
+    border-bottom: solid 1px #A1CCD0;
+    padding: 15px 0px;
+    font-size: 13px;
+}
+
+#mainArea .bugHead a:link, #mainArea .bugHead a:visited {
+    color: black;
+}
+
+/* -- Bug Listing -- */
+html>body .bugList .bugs {
+    width: 100%;
+    padding: 0;
+    border-bottom: solid 1px #D6E8EE;
+}
+
+.bugList .bugs td, .biglist td {
+    font-size: 11px;
+}
+
+.bugList .bugs th, .biglist th {
+    padding: 0 4px;
+    font-size: 11px;
+    height: 22px;
+    color: #fff;
+    font-weight: normal;
+    text-align: left;
+    background: #0F4962 url( /internal/images/test/sidebar-h-bg.gif ) left bottom repeat-x;
+}
+
+#mainArea .bugs th a:link, #mainArea .bugs th a:visited {
+    color: #fff;
+}
+
+#mainArea .bugs th a:hover {
+    color: #2E86A0;
+}
+
+/* -- Sidebar panels -- */
+#fbsidebar, #fbsidebar th, #fbsidebar td {
+    font: 11px "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    color: #000;
+}
+
+.miniReport a:link, .miniReport a:visited {
+    color: #2E86A0;
+}
+
+.miniReport a:hover {
+    color: #023953;
+}
+
+#fbsidebar {
+    padding: 0;
+    margin-bottom: 10px;
+    border-bottom: solid 1px #D6E8EE;
+}
+
+#fbsidebar table, .miniReport {
+    width: 204px;
+}
+
+/* -- Sidebar panel header -- */
+#fbsidebar .header, #fbsidebar .header th, #fbsidebar .caption th {
+    height: 20px;
+    color: #fff;
+    font-weight: normal;
+    text-align: left;
+    background: #0F4962 url( /internal/images/test/sidebar-h-bg.gif ) left bottom repeat-x;
+}
+
+#fbsidebar th.caption, #fbsidebar td.picture {
+    text-align: center;
+}
+
+#fbsidebar th.label {
+    padding: 0 0 0 2px;
+}
+
+#fbsidebar th.bug, #fbsidebar th.feature, #fbsidebar th.inquiry {
+    margin: 1px 0 0 0;
+    text-align: right;
+}
+
+a.collapse:link, a.collapse:visited, a.expand:link, a.expand:visited {
+    width: 14px;
+    height: 13px;
+    display: block;
+    float: left;
+    text-indent: -9000px;
+    text-decoration: none;
+    background: url( /internal/images/test/sidebar-ico-collapse.gif ) no-repeat;
+}
+
+a.expand:link, a.expand:visited {
+    background: url( /internal/images/test/sidebar-ico-expand.gif ) no-repeat;
+}
+
+a.collapse:hover, a.expand:hover {
+    background-position: 0 -13px;
+    text-decoration: none;
+}
+
+/* -- Sidebar panel rows -- */
+.odd td, .even td {
+    padding: 2px 4px;
+}
+
+.even td {
+    background: #D6E8EE;
+}
+
+body {
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0; /* needed for Opera */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+td.navBar1 {
+    font: 12px "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    height: 28px;
+    background: #074A68 url( navbar1-bg.gif ) left bottom repeat-x;
+    padding: 0;
+    text-decoration: none;
+}
+
+td.navBar1 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+td.navBar1 a:hover {
+    text-decoration: underline;
+}
+
+td.navBar2 {
+    height: 25px;
+    font: 12px "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    color: #fff;
+    background: #000 url( navbar2-bg.gif ) left bottom repeat-x;
+}
+
+td.navBar2 a {
+    text-decoration: none;
+    color: #fff;
+    padding: 1px 2px;
+}
+
+td.navBar2 a:hover {
+    background-color: rgb( 255, 255, 255 );
+    color: rgb( 0, 0, 0 );
+    padding: 1px 2px;
+}
+
+td.navBar3 {
+    font: 12px "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    background: #919382 url( navbar3-bg.gif ) left top repeat-x;
+    border-bottom: solid 2px #A1A395;
+    color: #383934;
+    height: 25px;
+}
+
+td.navBar3 a {
+    text-decoration: none;
+    color: #fff;
+    padding: 1px 2px;
+}
+
+td.navBar3 a:hover {
+    background-color: rgb( 255, 255, 255 );
+    color: rgb( 0, 0, 0 );
+    padding: 1px 2px;
+}
+
+.popupMenu {
+    position: absolute;
+    z-index: 2; /* this is required by IE6 */
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    font: 12px "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+}
+
+.popupMenu div {
+    padding: 7px 0;
+    margin: 0;
+}
+
+body .popupMenu a:link, body .popupMenu a:visited {
+    display: block;
+    margin: 0;
+    text-decoration: none;
+    padding: 0px 5px 0px 15px;
+    width: 100%;
+}
+
+* > body .popupMenu a:link, * > body .popupMenu a:visited {
+    width: auto;
+}
+
+body .popupMenu a:hover {
+    text-decoration: none;
+    padding: 0px 5px 0px 15px;
+    color: #094A66;
+    background: #fff url( /internal/images/test/popup-li-bg.gif ) 5px 5px no-repeat;
+}
+
+body span.filterPopup, body span.discussPopup {
+    background: #000;
+    border: solid 1px #000;
+}
+
+body span.helpPopup {
+    background: #598FA9;
+    border: solid 1px #477C98;
+}
+
+body span.filterPopup div.highlight, body span.discussPopup div.highlight {
+    background: #0D0D0D url( /internal/images/test/popup-highlight-bg-black.gif );
+    border-bottom: solid 1px #161616;
+    border-top: solid 1px #060606;
+}
+
+body span.helpPopup div.highlight {
+    background: #6D9CB3 url( /internal/images/test/popup-highlight-bg-teal.gif );
+    border-bottom: solid 1px #7AA5BA;
+    border-top: solid 1px #477C98;
+}
+
+.hr {
+    border-style: dotted;
+    width: 100%;
+    padding: 0;
+    line-height: 0;
+    height: 0;
+    border-width: 1px 0;
+    border-top-color: #606963;
+    border-bottom-color: #d9dcd9;
+
+    position: absolute; /* IE6-Win requires this approach, for no good reason */
+    margin: 0;
+}
+
+* > .hr /* for other browsers */
+{
+    position: static;
+    margin: 4px 0;
+}
+
+.hrContainer {
+    display: block;
+    width: 100%;
+    position: relative;
+    margin: 5px 0;
+}
+
+* > .hrContainer {
+    margin: 0;
+}
+
+.nonCssBrowsers {
+    display: none;
+}
+
+tr.messageBar {
+    height: 22px;
+}
+
+td.messageBar {
+    padding-right: 1ex;
+    padding-left: 1ex;
+}
+
+a.messageBar {
+    font-size: 11px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    padding: 0px 2px;
+    color: rgb( 255, 255, 255 )
+}
+
+a.messageBar:hover {
+    border-left: 1px solid #F1E9D6;
+    border-top: 1px solid #F1E9D6;
+    border-bottom: 1px solid #7E8276;
+    border-right: 1px solid #7E8276;
+    padding: 0px 2px;
+    background-color: rgb( 255, 255, 255 );
+}
+
+span.messageBar {
+    font-size: 11px;
+    color: black;
+    text-decoration: none;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+
+input.navbarEdit {
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    border: 1px solid black;
+    width: 3.25em;
+}
+
+.headline {
+    font-size: 18px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb( 89, 143, 169 );
+}
+
+#mainArea a.headline, #mainArea a.headline:visited {
+    font-size: 18px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb( 89, 143, 169 );
+    text-decoration: none;
+}
+
+#mainArea a.headline:hover {
+    font-size: 18px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb( 89, 143, 169 );
+    text-decoration: underline;
+}
+
+.version {
+    font-size: 11px;
+}
+
+.copyright {
+    font-size: 11px;
+    color: #999999;
+}
+
+ul.menu {
+    list-style-image: url( arrow.gif );
+    line-height: 1.35em;
+}
+
+ul.menu li {
+    margin: 1em;
+    line-height: 1em;
+}
+
+.errorLabel {
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #FF0000;
+    vertical-align: top;
+}
+
+.errorMessage {
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #FF0000;
+    vertical-align: top;
+    text-align: center;
+}
+
+.dlgButton {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    border-top: 1px solid #EEEEEE;
+    border-left: 1px solid #EEEEEE;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    background-color: #CCCCCC;
+    padding: 2px 16px;
+    width: 90px;
+}
+
+.editInstructions {
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    color: #666666;
+}
+
+th.dlg, span.dlg {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    padding-right: 1.5em;
+    text-align: left;
+    vertical-align: top;
+    padding-bottom: 2ex;
+}
+
+td.dlg {
+    padding-bottom: .5ex;
+}
+
+p.dlg {
+    font-size: 18px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb( 89, 143, 169 );
+    width: 100%;
+}
+
+input.dlg {
+    font-size: 11px;
+    font-family: Monaco, 'Courier New', Courier, monospace;
+}
+
+textarea.dlg {
+    font-size: 11px;
+    font-family: Monaco, 'Courier New', Courier, monospace;
+}
+
+input.dlgError, textarea.dlgError {
+    font-size: 11px;
+    font-family: Monaco, 'Courier New', Courier, monospace;
+    border: 2px solid #FF0000;
+}
+
+select {
+    font-size: 11px;
+    font-family: Monaco, 'Courier New', Courier, monospace;
+    margin: 1px 0;
+}
+
+* > select {
+    margin: 0;
+}
+
+caption.biglist {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.bugTitle {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.bugOccurrences {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: rgb( 128, 128, 128 );
+}
+
+.bugSmallPrint {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    margin-left: 22px;
+    margin-bottom: 2.5ex;
+    color: #666666;
+}
+
+.bugEventSmallPrint {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    margin-left: 22px;
+    margin-bottom: 2.5ex;
+    color: #666666;
+}
+
+.bugEstimate {
+    font-weight: bold;
+}
+
+.bugNoEstimate {
+    font-weight: bold;
+    color: rgb( 255, 0, 0 );
+}
+
+.bugFixFor {
+    font-style: italic;
+}
+
+.bug {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.bugGroup {
+    font-size: 18px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: 1.5em;
+    color: rgb( 89, 143, 169 );
+    width: 100%;
+}
+
+caption.miniReport {
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: #CCCCCC;
+}
+
+.bugTeaser {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #999999;
+}
+
+.bugEventHeader {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    clear: left; /* clears the float in dropShadow class */
+}
+
+.bugEventDate {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #555555;
+}
+
+.bugEvent {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 700px;
+    position: relative;
+}
+
+/* \ need backslash so Mac IE ignores the following overflow: hidden style att.  see http://www.macedition.com/cb/ie5macbugs/ */
+.bugEvent {
+    overflow: hidden;
+}
+
+.dropShadow {
+    float: left;
+    background: url( dropshadowTrans.png ) no-repeat bottom right !important;
+    background: url( dropshadow.gif ) no-repeat bottom right;
+    margin: 10px 0 0 10px !important;
+    margin: 10px 0 0 5px;
+}
+
+.dropShadow img {
+    display: block;
+    position: relative;
+    background-color: #fff;
+    margin: -5px 5px 5px -5px;
+    border: 1px solid #b3b6b9;
+    padding: 2px;
+}
+
+.bugWeeComment {
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    color: #666666;
+}
+
+textarea.bug {
+    width: 700px;
+    font-size: 12px;
+    font-family: Monaco, 'Courier New', Courier, monospace;
+}
+
+#mainArea td.actionButtons {
+    border-right: 1px solid rgb( 2, 57, 83 );
+    border-bottom: 1px solid rgb( 2, 57, 83 );
+    border-left: 1px solid rgb( 46, 134, 160 );
+    border-top: 1px solid rgb( 46, 134, 160 );
+    padding: 2px 1px 3px 8px;
+    background-color: rgb( 89, 143, 169 );
+}
+
+#mainArea select.actionButton, #mainArea input.actionButton_pseudo {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    text-decoration: none;
+    border: 0px;
+    color: #000000;
+    padding: 3px 6px;
+    margin: 0px;
+}
+
+#mainArea a.actionButton:link, #mainArea a.actionButton:visited {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 0px;
+    background-color: #DDDDDD;
+    color: #000000;
+    padding: 3px 6px;
+    margin: 0px;
+}
+
+#mainArea a.actionButton:hover {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: underline;
+    border: 0px;
+    background-color: #DDDDDD;
+    color: blue;
+    padding: 3px 6px;
+    margin: 0px;
+}
+
+#mainArea a.actionButtonDisabled:link, #mainArea a.actionButtonDisabled:visited {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 0px;
+    background-color: #DDDDDD;
+    color: #999999;
+    padding: 3px 6px;
+    margin: 0px;
+}
+
+#mainArea a.actionButtonDisabled:hover {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 0px;
+    background-color: #DDDDDD;
+    color: #999999;
+    padding: 3px 6px;
+    margin: 0px;
+}
+
+table.bug {
+    background-color: #EEEEEE;
+    border: 1px solid rgb( 89, 143, 169 );
+}
+
+#idBugTitle {
+    font-size: 18px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb( 89, 143, 169 );
+}
+
+#idAreaProject {
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    color: rgb( 89, 143, 169 );
+    width: 100%;
+}
+
+.projectAreaPrompt {
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    vertical-align: 3px;
+}
+
+select.bugEditing, input.bugEditing_pseudo {
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    width: 300px;
+}
+
+input.bugEditing {
+    font-size: 12px;
+    font-family: Monaco, 'Courier New', Courier, monospace;
+}
+
+select.filter, input.filter_pseudo {
+    padding: 0;
+    margin: 0;
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+
+input.filter {
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.bugTip {
+    background-color: rgb( 255, 255, 179 );
+    border-right: 1px solid #444444;
+    border-bottom: 1px solid #444444;
+    margin-left: 10px;
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    color: #666666;
+    padding: 5px;
+}
+
+.hoverBugTip {
+    background-color: rgb( 255, 255, 179 );
+    border-right: 1px solid #444444;
+    border-bottom: 1px solid #444444;
+    margin-left: 10px;
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    color: #666666;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+}
+
+.hoverBugTipInvisible {
+    visibility: hidden;
+    height: 0px;
+    width: 0px;
+}
+
+table.bugDetails {
+    line-height: 15px;
+    border-collapse: collapse;
+}
+
+td.topLeft {
+    padding-bottom: 3px;
+    background-color: #EEEEEE;
+    border-left: 1px solid rgb( 89, 143, 169 );
+    border-top: 1px solid rgb( 89, 143, 169 );
+}
+
+td.topRight {
+    padding-bottom: 3px;
+    background-color: #EEEEEE;
+    border-top: 1px solid rgb( 89, 143, 169 );
+    border-right: 1px solid rgb( 89, 143, 169 );
+}
+
+td.middleLeft {
+    padding-bottom: 3px;
+    background-color: #EEEEEE;
+    border-left: 1px solid rgb( 89, 143, 169 );
+}
+
+td.middleRight {
+    padding-bottom: 3px;
+    background-color: #EEEEEE;
+    border-right: 1px solid rgb( 89, 143, 169 );
+}
+
+td.bottomLeft {
+    padding-bottom: 3px;
+    background-color: #EEEEEE;
+    border-left: 1px solid rgb( 89, 143, 169 );
+}
+
+td.bottomRight {
+    padding-bottom: 3px;
+    background-color: #EEEEEE;
+    border-right: 1px solid rgb( 89, 143, 169 );
+}
+
+td.description {
+    border-bottom: 1px solid rgb( 89, 143, 169 );
+    border-top: 1px solid rgb( 89, 143, 169 );
+    border-right: 1px solid rgb( 89, 143, 169 );
+    border-left: 1px solid rgb( 89, 143, 169 );
+    padding: 2px;
+}
+
+.bugPrompt {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    padding-left: 3px;
+}
+
+.bugMail {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    padding-left: 3px;
+}
+
+.bugDetail {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    padding-left: 3px;
+    font-weight: bold;
+}
+
+div.email {
+    border: 1px solid rgb( 89, 143, 169 );
+}
+
+div.emailHeader {
+    background-color: #EEE;
+    padding: 3px 7px;
+    height: 100%;
+}
+
+div.emailHeaderName {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    padding-left: 3px;
+    font-weight: bold;
+    float: left;
+}
+
+div.emailHeaderValue {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    padding-left: 3px;
+    margin-left: 7em;
+}
+
+div.emailBody {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    padding: 20px 10px;
+    word-wrap: break-word;
+}
+
+.subscribe {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    padding-left: 3px;
+}
+
+td.estimatePrompt {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    padding-right: 6px;
+    padding-left: 3px;
+    color: #666666;
+}
+
+.selectAll {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #666666;
+}
+
+#mainArea a.nextPrev, #mainArea a.nextPrev:visited {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb( 89, 143, 169 );
+}
+
+#mainArea a.nextPrev:hover {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: rgb( 89, 143, 169 );
+}
+
+.leftAlign {
+    float: left;
+}
+
+caption.fileDiff {
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: #CCCCCC;
+}
+
+th.fileDiff {
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: #CCCCCC;
+}
+
+td.fileDiff {
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    border-top: 1px solid #CCCCCC;
+}
+
+table.fileDiff {
+    margin-bottom: 1.5ex;
+    border-bottom: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+}
+
+td.fileDiffAdd {
+    font-size: 11px;
+    font-family: Monaco, 'Courier New', Courier, monospace;
+    background-color: #CCCCFF;
+}
+
+td.fileDiffChange {
+    font-size: 11px;
+    font-family: Monaco, 'Courier New', Courier, monospace;
+    vertical-align: top;
+    background-color: #CCFFCC;
+}
+
+td.fileDiffDelete {
+    font-size: 11px;
+    font-family: Monaco, 'Courier New', Courier, monospace;
+    background-color: #FFCCCC;
+}
+
+#tabsBlock {
+    border: 1px solid #ddd;
+    border-right: 1px solid #abc;
+    border-bottom: 1px solid #abc;
+    background-color: #f3f6f9;
+    width: 285px;
+    padding: 0 .5em 1em .5em;
+    margin: 1em 0 0 0;
+    z-index: 1;
+}
+
+#tabs ul {
+    display: block;
+    list-style: none outside;
+    padding: 0;
+    margin: 0 0 0 4px;
+}
+
+* > #tabs ul {
+    margin: 1px 0 0 4px;
+}
+
+#tabs li {
+    padding: 0;
+    margin: 0 8px 0 0;
+    border-top: 1px solid #cde;
+    border-right: 2px solid #789;
+    border-left: 1px solid #cde;
+
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold; /* re-organize horizontally */
+    display: block;
+    float: left;
+    position: relative;
+    z-index: 0;
+    top: -21px;
+}
+
+* > #tabs li {
+    top: -20px;
+}
+
+#tabs a:link,
+    #tabs a:visited {
+    padding: 5px 5px 0 0;
+    background-color: #d3d6d9;
+    color: #000;
+    text-decoration: none;
+}
+
+#tabs li a:hover {
+    background-color: #def;
+    color: #000066;
+    padding: 5px 5px 0 0;
+}
+
+#clearFloat {
+    display: block;
+    clear: both;
+    margin-top: -1em;
+}
+
+html>body #clearFloat {
+    margin-top: 0;
+}
+
+.filterDescription {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11pt;
+    color: black;
+}
+
+.filterDescription a:link,
+    .filterDescription a:visited {
+    color: black;
+    text-decoration: underline;
+}
+
+.popWarning {
+    font-weight: bold;
+    background-color: rgb( 255, 255, 179 );
+    border-right: 2px solid #444444;
+    border-bottom: 2px solid #444444;
+    margin-left: 10px;
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    color: #CC0000;
+    padding: 5px;
+    position: absolute;
+    width: 160px;
+}
+
+#mainArea .popFilterOpt {
+    text-decoration: none;
+    font: 12px "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    color: #fff;
+    border: solid 1px #70725C;
+    background: #919382;
+    position: absolute;
+    display: block;
+}
+
+#mainArea .popFilterOpt div {
+    padding: 4px 0;
+    margin: 0;
+}
+
+#mainArea .popFilterOpt div.highlight {
+    padding: 7px 0;
+    background: #999B8C url( /internal/images/test/popup-highlight-bg.gif );
+    border-bottom: solid 1px #A6A89A;
+    border-top: solid 1px #888B79;
+}
+
+#mainArea .popFilterOpt a:link, #mainArea .popFilterOpt a:visited {
+    color: #fff;
+    text-decoration: none;
+    line-height: 1;
+    margin: 0;
+    padding: 2px 15px 2px 15px;
+    display: block;
+}
+
+#mainArea .popFilterOpt a:hover {
+    color: #094A66;
+    background: #fff url( /internal/images/test/popup-li-bg.gif ) 5px 5px no-repeat;
+}
+
+#mainArea .popFilterOpt button {
+    font-weight: bold;
+    font-size: 10px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    border: 1px solid black;
+    background-color: gray;
+    color: white;
+    padding: 1px 4px;
+    margin-top: 8px;
+    margin-bottom: 5px;
+    margin-right: 1px;
+    margin-left: 1px;
+}
+
+#mainArea .popFilterOpt div.close {
+    display: block;
+    text-align: right;
+    padding: 0;
+}
+
+#mainArea .popFilterOpt div.close a:link, #mainArea .popFilterOpt div.close a:visited {
+    text-align: right;
+    display: inline;
+    text-decoration: none;
+    background: none;
+    padding: 0;
+}
+
+.expandSpacer {
+    padding-left: 13px;
+}
+
+.expandIndent {
+    margin-left: 20px;
+}
+
+.helperHeader {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.snippetName {
+    font-size: 11px;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+}
+
+.snippetText {
+    font-size: 12px;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+}
+
+.snippetComment {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#idSnippetHelper {
+    background-color: rgb( 255, 255, 179 );
+    border-left: 1px solid #F1E9D6;
+    border-top: 1px solid #F1E9D6;
+    border-bottom: 1px solid #7E8276;
+    border-right: 1px solid #7E8276;
+    padding: 0px 2px;
+    font-size: 11px;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    display: none;
+    position: absolute;
+    overflow: hidden;
+}
+
+#idSnippetSelect {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    font-size: 12px;
+}
+
+#idSnippetText {
+    overflow: auto;
+}
+
+h1.discuss {
+    font-size: 120%;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb( 89, 143, 169 );
+    margin-bottom: 0px;
+    padding-left: 7px;
+    padding-top: 1em;
+}
+
+h1.discuss a {
+    text-decoration: none;
+    color: rgb( 89, 143, 169 );
+}
+
+h1.discuss a:hover {
+    text-decoration: underline;
+}
+
+p.discuss {
+    font-size: 12px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    margin-top: 0px;
+    padding-left: 7px;
+    padding-bottom: 7px;
+    color: rgb( 89, 143, 169 );
+    border-bottom: 1px solid rgb( 89, 143, 169 );
+}
+
+p.discuss a {
+    color: rgb( 89, 143, 169 );
+}
+
+h3.discuss, h3.discussSpam, h3.discussUndecided {
+    font-size: 140%;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px 0px 1em 0px;
+    width: 400px;
+}
+
+h3.discussSpam {
+    text-decoration: line-through;
+}
+
+h3.discussUndecided {
+    color: #999999;
+}
+
+td.discuss {
+    font-size: 1.25em;
+}
+
+div.discussReview {
+    border: 2px solid #FF0000;
+    padding: 8px;
+    width: 30em;
+    margin: 8px;
+    margin-left: 0px;
+}
+
+div.discussTopics {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: normal;
+    margin-left: 7px;
+    x-height: 1%;
+}
+
+div.discussTopics a {
+    text-decoration: none;
+}
+
+div.discussTopics a:hover {
+    text-decoration: underline;
+}
+
+div.discussTopics a.discussSpam {
+    text-decoration: line-through;
+}
+
+div.discussTopics a.discussUndecided {
+    color: #999999
+}
+
+div.discussTopics a.discussSpam:hover {
+    text-decoration: line-through underline;
+}
+
+div.discussThread {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: normal;
+    margin-left: 7px;
+}
+
+td.discussSideBar {
+}
+
+div.discussOtherTopics {
+    float: right;
+    padding: 3px;
+    margin-top: -1em;
+    width: 7em;
+}
+
+div.discussOtherTopics a {
+    text-decoration: none;
+}
+
+div.discussBody, div.discussBodySpam, div.discussBodyUndecided {
+    width: 30em;
+    padding-top: 1em;
+}
+
+div.discussApprovalNotes {
+    font-size: 0.95em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 7px;
+    x-height: 1%;
+}
+
+div.discussSign {
+    width: 30em;
+}
+
+div.discussBodySpam {
+    text-decoration: line-through;
+}
+
+div.discussBodyUndecided {
+    color: #999999
+}
+
+div.discussSign {
+    padding-top: 1em;
+    text-align: right;
+    font-style: italic;
+}
+
+div.discussCommands {
+    margin: 2em 0 0 0;
+}
+
+div.discussCommands a {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    border-top: 1px solid #EEE;
+    border-left: 1px solid #EEE;
+    border-right: 1px solid #333;
+    border-bottom: 1px solid #333;
+    background-color: #DDD;
+    color: #000;
+    padding: 2px 4px;
+    margin-top: 0ex;
+    margin-bottom: 0ex;
+    margin-right: 1ex;
+    margin-left: 0ex;
+}
+
+div.discussCommands a img {
+    vertical-align: text-top;
+}
+
+div.discussAdmin {
+    width: 30em;
+    font-style: normal;
+    text-align: right;
+    margin: 0 0 0 0;
+}
+
+.helpbox {
+    width: 200px;
+    background-color: rgb( 255, 255, 179 );
+    border-right: 1px solid #444444;
+    border-bottom: 1px solid #444444;
+    margin-left: -400px;
+    margin-top: 30px;
+    font-size: 11px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    color: #666666;
+    padding: 5px;
+}
+
+* > .helpbox {
+/* for other browsers */
+    margin-left: -250px;
+}
+
+div.discussSearch {
+    float: right;
+    margin-left: 7px;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: rgb( 89, 143, 169 );
+    color: rgb( 255, 255, 255 );
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    padding: 3px 1px 2px 5px;
+    border-right: 1px solid #0F5675;
+    border-bottom: 1px solid #0F5675;
+}
+
+.skinnyButton {
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    border-top: 1px solid #EEEEEE;
+    border-left: 1px solid #EEEEEE;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    background-color: #CCCCCC;
+    padding: 2px 2px;
+    width: 30px;
+    margin-left: 4px;
+}
+
+table.calendar {
+    border: 1px solid black;
+}
+
+table.calendar, table.calendar tr {
+    background-color: white;
+}
+
+table.calendar tr {
+    padding: 2px;
+}
+
+table.calendar td, table.calendar th {
+    font-family: Tahoma;
+    font-size: 11px;
+}
+
+table.calendar a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+
+table.calendar a:hover {
+    text-decoration: underline;
+}
+
+table.calendar tr.day td a:hover {
+    background-color: #def !important;
+}
+
+table.calendar tr.monthname th, table.calendar tr.tips td {
+    background-color: rgb( 212, 208, 200 );
+    text-align: center;
+}
+
+table.calendar tr.tips td {
+    width: 140px;
+}
+
+table.calendar tr.day td, table.calendar tr.weekname th {
+    height: 16px;
+    padding: 0px 2px 0px 0px;
+    text-align: center;
+}
+
+table.calendar tr.weekname th {
+    border-bottom: 1px solid rgb( 0, 0, 0 );
+    width: 20px;
+}
+
+* > td.middleRight img {
+    margin: 0 0 -2px 0;
+}
+
+table.noBorder, span.noBorder, form.noBorder, div.noBorder, button.noBorder {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    display: inline;
+}
+
+.navbarButton {
+    font-weight: bold;
+    font-size: 10px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    border: 1px solid black;
+    margin: 1px;
+    background-color: gray;
+    color: white;
+    padding: 0px;
+}
+
+span.pagebanner {
+    background-color: #eee;
+    border: 1px dotted #999;
+    padding: 2px 4px 2px 4px;
+    width: 98%;
+    margin-top: 5px;
+    margin-right: 5px;
+    display: block;
+    border-bottom: none;
+    font-size: 11px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    padding: 0px 2px;
+}
+
+span.pagelinks {
+    background-color: #eee;
+    border: 1px dotted #999;
+    padding: 2px 4px 2px 4px;
+    width: 98%;
+    display: block;
+    border-top: none;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    font-size: 11px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    padding: 0px 2px;
+}

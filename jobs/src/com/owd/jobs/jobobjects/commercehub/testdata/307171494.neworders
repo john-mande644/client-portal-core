@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<OrderMessageBatch batchNumber="307171494">
+<partnerID name="Gildan USA Inc." roleType="vendor">gildanusa</partnerID>
+<hubOrder transactionID="119547818">
+  <participatingParty name="JC Penney Company, Inc." roleType="merchant" participationCode="From:">jcpenney</participatingParty>
+  <sendersIdForReceiver>033274</sendersIdForReceiver>
+  <orderId>119547818</orderId>
+  <lineCount>2</lineCount>
+  <poNumber>122412009_3331</poNumber>
+  <orderDate>20170420</orderDate>
+  <shipTo personPlaceID="PP3005426058" />
+  <customer personPlaceID="PP3005426060" />
+  <shipFrom vendorShipID="VS100943002_119547818" />
+  <invoiceTo personPlaceID="PP3005426059" />
+  <shippingCode>UNSP_CG</shippingCode>
+  <poHdrData>
+    
+	<merchDept>333</merchDept>
+    
+	<poTypeCode>00</poTypeCode>
+    
+	<vendorMessage>GOODS SHIPPED PER EDI ORDERS SUBJECT TO JCP                 WHOLESALE CONTRACT/LISTINGS TERMS AND CONDITIONS</vendorMessage>
+    
+	<merchandiseTypeCode>D2S</merchandiseTypeCode>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>119616851</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>3</merchantLineNumber>
+    <qtyOrdered>1</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 1</description>
+    <merchantSKU>220880231</merchantSKU>
+    <unitCost>75.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20170422</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <lineItem>
+    <lineItemId>119616852</lineItemId>
+    <orderLineNumber>2</orderLineNumber>
+    <merchantLineNumber>5</merchantLineNumber>
+    <qtyOrdered>1</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 2</description>
+    <merchantSKU>220880232</merchantSKU>
+    <unitCost>3.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20170422</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <personPlace personPlaceID="PP3005426060">
+    <name1>John Doe</name1>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3005426059">
+    <name1>JCPenney AP Contact</name1>
+    <dayPhone>555-555-5555</dayPhone>
+    <partnerPersonPlaceId>12345</partnerPersonPlaceId>
+  </personPlace>
+  <personPlace personPlaceID="PP3005426058">
+    <name1>Amanda Blake</name1>
+    <address1>JCPENNEY COLLIN CREEK MALL - 12345</address1>
+    <address2>ATTN AMANDA BLAKE             ORDERID 1236 SCAN LABEL</address2>
+    <address3>821 N CENTRAL EXPY</address3>
+    <city>Plano</city>
+    <state>TX</state>
+    <postalCode>75075</postalCode>
+    <partnerPersonPlaceId>12345</partnerPersonPlaceId>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS100943002_119547818">
+    <partnerLocationId>01</partnerLocationId>
+  </vendorShipInfo>
+</hubOrder>
+<messageCount>1</messageCount>
+</OrderMessageBatch>

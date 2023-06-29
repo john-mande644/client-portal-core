@@ -1,0 +1,1213 @@
+<?xml version="1.0"?>
+<OrderMessageBatch batchNumber="3003135529">
+<partnerID name="JustBrand Limited" roleType="vendor">justbrand</partnerID>
+<hubOrder transactionID="120883808">
+  <participatingParty name="QVC Online" roleType="merchant" participationCode="From:">iqvc</participatingParty>
+  <sendersIdForReceiver>FC08</sendersIdForReceiver>
+  <orderId>120883808</orderId>
+  <lineCount>2</lineCount>
+  <poNumber>000000135330027</poNumber>
+  <orderDate>20190614</orderDate>
+  <paymentMethod>MASTERCARD</paymentMethod>
+  <merchandise>789.98</merchandise>
+  <tax>4.12</tax>
+  <shipping>45.00</shipping>
+  <total>839.10</total>
+  <shipTo personPlaceID="PP3007782072" />
+  <billTo personPlaceID="PP3007782073" />
+  <customer personPlaceID="PP3007782074" />
+  <shipFrom vendorShipID="VS54127388_120883808" />
+  <memberNumber>XXXXXX7890</memberNumber>
+  <shippingCode>UPSN_CG</shippingCode>
+  <salesDivision>iQVC</salesDivision>
+  <custOrderNumber>0135330028</custOrderNumber>
+  <custOrderDate>20190614</custOrderDate>
+  <poHdrData>
+    
+	<packListData>
+      
+		<rmPhone1>1-800-345-1515</rmPhone1>
+      
+		<rmPhone2>1-800-345-1212</rmPhone2>
+      
+		<rmPhone3>1-800-367-9444</rmPhone3>
+      
+	
+    </packListData>
+    
+	<custOrderNumber>0135330028</custOrderNumber>
+    
+	<custOrderDate>20190614</custOrderDate>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>120993827</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>1</merchantLineNumber>
+    <qtyOrdered>5</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990501</UPC>
+    <description>Sample item description for line 1</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990501</merchantSKU>
+    <vendorSKU>0670501</vendorSKU>
+    <unitPrice>148.0000</unitPrice>
+    <unitCost>75.0000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865011">
+      <boxNumber>1</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865012">
+      <boxNumber>2</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865013">
+      <boxNumber>3</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865014">
+      <boxNumber>4</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865015">
+      <boxNumber>5</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <boxNumber1>1</boxNumber1>
+      <boxNumber2>2</boxNumber2>
+      <boxNumber3>3</boxNumber3>
+      <boxNumber4>4</boxNumber4>
+      <boxNumber5>5</boxNumber5>
+    </poLineData>
+  </lineItem>
+  <lineItem>
+    <lineItemId>120993828</lineItemId>
+    <orderLineNumber>2</orderLineNumber>
+    <merchantLineNumber>4</merchantLineNumber>
+    <qtyOrdered>2</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990502</UPC>
+    <description>Sample item description for line 2</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990502</merchantSKU>
+    <vendorSKU>0670502</vendorSKU>
+    <unitPrice>24.9900</unitPrice>
+    <unitCost>12.5000</unitCost>
+    <lineShipping>5.00</lineShipping>
+    <shippingCode>UPSN_CG</shippingCode>
+    <lineCredits>15.00</lineCredits>
+    <vendorWarehouseId>3005</vendorWarehouseId>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865016">
+      <shippingLabelIndicia>PARCEL SELECT[.]US POSTAGE PAID[.]UPS[.]eVS</shippingLabelIndicia>
+      <trackingNumberBanner>USPS TRACKING # eVS</trackingNumberBanner>
+      <trackingNumber>1Z000000000135330031</trackingNumber>
+      <shippingCode description="UPS SUREPOST">UPSN_ST</shippingCode>
+      <boxNumber>1</boxNumber>
+      <deliveryConfirmationBanner>USPS TRACKING # eVS</deliveryConfirmationBanner>
+      <deliveryConfirmationNumber>92612904851703581000000555</deliveryConfirmationNumber>
+      <packageQty>1</packageQty>
+      <grossWeight weightUnit="OZ">90.00</grossWeight>
+      <heightDimension dimensionUnit="IN">5.00</heightDimension>
+      <widthDimension dimensionUnit="IN">7.00</widthDimension>
+      <depthDimension dimensionUnit="IN">10.00</depthDimension>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865017">
+      <shippingLabelIndicia>PARCEL SELECT[.]US POSTAGE PAID[.]UPS[.]eVS</shippingLabelIndicia>
+      <trackingNumberBanner>USPS TRACKING # eVS</trackingNumberBanner>
+      <trackingNumber>1Z000000000135330033</trackingNumber>
+      <shippingCode description="UPS SUREPOST">UPSN_ST</shippingCode>
+      <boxNumber>2</boxNumber>
+      <deliveryConfirmationBanner>USPS TRACKING # eVS</deliveryConfirmationBanner>
+      <deliveryConfirmationNumber>92612904851703581000000555</deliveryConfirmationNumber>
+      <packageQty>1</packageQty>
+      <grossWeight weightUnit="OZ">90.00</grossWeight>
+      <heightDimension dimensionUnit="IN">5.00</heightDimension>
+      <widthDimension dimensionUnit="IN">7.00</widthDimension>
+      <depthDimension dimensionUnit="IN">10.00</depthDimension>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <creditAmount>15.0</creditAmount>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <vendorWarehouseId>3005</vendorWarehouseId>
+      <permitNumber>016060</permitNumber>
+      <permitIssuingCity>KANSAS CITY</permitIssuingCity>
+      <permitIssuingState>ks</permitIssuingState>
+      <UPSTrackingNumber1>1Z000000000135330031</UPSTrackingNumber1>
+      <boxNumber1>1</boxNumber1>
+      <UPSTrackingNumber2>1Z000000000135330033</UPSTrackingNumber2>
+      <boxNumber2>2</boxNumber2>
+    </poLineData>
+  </lineItem>
+  <personPlace personPlaceID="PP3007782072">
+    <name1>Mary Doe</name1>
+    <address1>5 Busch Blvd</address1>
+    <city>Tampa</city>
+    <state>FL</state>
+    <country>US</country>
+    <postalCode>33612-1234</postalCode>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782073">
+    <name1>Mary Doe</name1>
+    <address1>5 Busch Blvd</address1>
+    <city>Tampa</city>
+    <state>FL</state>
+    <country>US</country>
+    <postalCode>33612-1234</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782074">
+    <name1>Mary Doe</name1>
+    <address1>5 Busch Blvd</address1>
+    <city>Tampa</city>
+    <state>FL</state>
+    <country>US</country>
+    <postalCode>33612-1234</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS54127388_120883808">
+    <name1>RETURN PROCESSING CENTER (QVC)</name1>
+    <address1>100 QVC BOULEVARD</address1>
+    <city>ROCKY MOUNT</city>
+    <state>NC</state>
+    <country>USA</country>
+    <postalCode>27801</postalCode>
+  </vendorShipInfo>
+</hubOrder><hubOrder transactionID="120883809">
+  <participatingParty name="QVC Online" roleType="merchant" participationCode="From:">iqvc</participatingParty>
+  <sendersIdForReceiver>FC08</sendersIdForReceiver>
+  <orderId>120883809</orderId>
+  <lineCount>2</lineCount>
+  <poNumber>000000135330035</poNumber>
+  <orderDate>20190614</orderDate>
+  <paymentMethod>MASTERCARD</paymentMethod>
+  <merchandise>273.00</merchandise>
+  <tax>22.68</tax>
+  <total>297.60</total>
+  <shipTo personPlaceID="PP3007782075" />
+  <billTo personPlaceID="PP3007782076" />
+  <customer personPlaceID="PP3007782077" />
+  <shipFrom vendorShipID="VS54127388_120883809" />
+  <memberNumber>XXXXXX7890</memberNumber>
+  <shippingCode>UPSN_CG</shippingCode>
+  <salesDivision>iQVC</salesDivision>
+  <custOrderNumber>0135330036</custOrderNumber>
+  <custOrderDate>20190614</custOrderDate>
+  <poHdrData>
+    
+	<packListData>
+      
+		<rmPhone1>1-800-345-1515</rmPhone1>
+      
+		<rmPhone2>1-800-345-1212</rmPhone2>
+      
+		<rmPhone3>1-800-367-9444</rmPhone3>
+      
+	
+    </packListData>
+    
+	<custOrderNumber>0135330036</custOrderNumber>
+    
+	<custOrderDate>20190614</custOrderDate>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>120993829</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>1</merchantLineNumber>
+    <qtyOrdered>5</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990601</UPC>
+    <description>Sample item description for line 1</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990601</merchantSKU>
+    <vendorSKU>0670601</vendorSKU>
+    <unitPrice>6.9900</unitPrice>
+    <unitCost>3.0000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865018">
+      <boxNumber>1</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865019">
+      <boxNumber>2</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865020">
+      <boxNumber>3</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865021">
+      <boxNumber>4</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865022">
+      <boxNumber>5</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <boxNumber1>1</boxNumber1>
+      <boxNumber2>2</boxNumber2>
+      <boxNumber3>3</boxNumber3>
+      <boxNumber4>4</boxNumber4>
+      <boxNumber5>5</boxNumber5>
+    </poLineData>
+  </lineItem>
+  <lineItem>
+    <lineItemId>120993830</lineItemId>
+    <orderLineNumber>2</orderLineNumber>
+    <merchantLineNumber>2</merchantLineNumber>
+    <qtyOrdered>3</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990602</UPC>
+    <description>Sample item description for line 2</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990602</merchantSKU>
+    <vendorSKU>0670602</vendorSKU>
+    <unitPrice>79.9900</unitPrice>
+    <unitCost>35.0000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865023">
+      <boxNumber>1</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865024">
+      <boxNumber>2</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865025">
+      <boxNumber>3</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <boxNumber1>1</boxNumber1>
+      <boxNumber2>2</boxNumber2>
+      <boxNumber3>3</boxNumber3>
+    </poLineData>
+  </lineItem>
+  <personPlace personPlaceID="PP3007782075">
+    <name1>Lisa Smith</name1>
+    <address1>6 West Loop South</address1>
+    <city>Houston</city>
+    <state>TX</state>
+    <country>US</country>
+    <postalCode>77027-1234</postalCode>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782076">
+    <name1>Mary Doe</name1>
+    <address1>6 Quorum Drive</address1>
+    <city>Dallas</city>
+    <state>TX</state>
+    <country>US</country>
+    <postalCode>75240-1234</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782077">
+    <name1>Mary Doe</name1>
+    <address1>6 Quorum Drive</address1>
+    <city>Dallas</city>
+    <state>TX</state>
+    <country>US</country>
+    <postalCode>75240-1234</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS54127388_120883809">
+    <name1>RETURN PROCESSING CENTER (QVC)</name1>
+    <address1>100 QVC BOULEVARD</address1>
+    <city>ROCKY MOUNT</city>
+    <state>NC</state>
+    <country>USA</country>
+    <postalCode>27801</postalCode>
+  </vendorShipInfo>
+</hubOrder><hubOrder transactionID="120883810">
+  <participatingParty name="QVC Online" roleType="merchant" participationCode="From:">iqvc</participatingParty>
+  <sendersIdForReceiver>FC08</sendersIdForReceiver>
+  <orderId>120883810</orderId>
+  <lineCount>10</lineCount>
+  <poNumber>000000135330039</poNumber>
+  <orderDate>20190614</orderDate>
+  <paymentMethod>MASTERCARD</paymentMethod>
+  <merchandise>440.00</merchandise>
+  <tax>36.25</tax>
+  <credits>25.00</credits>
+  <shipping>55.00</shipping>
+  <total>450.70</total>
+  <shipTo personPlaceID="PP3007782078" />
+  <billTo personPlaceID="PP3007782079" />
+  <customer personPlaceID="PP3007782080" />
+  <shipFrom vendorShipID="VS54127388_120883810" />
+  <memberNumber>XXXXXX7890</memberNumber>
+  <shippingCode>UPSN_CG</shippingCode>
+  <salesDivision>iQVC</salesDivision>
+  <custOrderNumber>0135330040</custOrderNumber>
+  <custOrderDate>20190614</custOrderDate>
+  <poHdrData>
+    
+	<packListData>
+      
+		<rmPhone1>1-800-345-1515</rmPhone1>
+      
+		<rmPhone2>1-800-345-1212</rmPhone2>
+      
+		<rmPhone3>1-800-367-9444</rmPhone3>
+      
+		<packslipMessage>Test Message 1 of 4 Test Message 2 of 4 Test Message 3 of 4 Test Message 4 of 4</packslipMessage>
+      
+	
+    </packListData>
+    
+	<custOrderNumber>0135330040</custOrderNumber>
+    
+	<custOrderDate>20190614</custOrderDate>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>120993831</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>1</merchantLineNumber>
+    <qtyOrdered>10</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990901</UPC>
+    <description>Sample item description for line 1</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990901</merchantSKU>
+    <vendorSKU>0670901</vendorSKU>
+    <unitPrice>3.9900</unitPrice>
+    <unitCost>2.0000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865026">
+      <boxNumber>1</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865027">
+      <boxNumber>2</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865028">
+      <boxNumber>3</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865029">
+      <boxNumber>4</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865030">
+      <boxNumber>5</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865031">
+      <boxNumber>6</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865032">
+      <boxNumber>7</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865033">
+      <boxNumber>8</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865034">
+      <boxNumber>9</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865035">
+      <boxNumber>10</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <boxNumber1>1</boxNumber1>
+      <boxNumber2>2</boxNumber2>
+      <boxNumber3>3</boxNumber3>
+      <boxNumber4>4</boxNumber4>
+      <boxNumber5>5</boxNumber5>
+      <boxNumber6>6</boxNumber6>
+      <boxNumber7>7</boxNumber7>
+      <boxNumber8>8</boxNumber8>
+      <boxNumber9>9</boxNumber9>
+      <boxNumber10>10</boxNumber10>
+    </poLineData>
+  </lineItem>
+  <lineItem>
+    <lineItemId>120993832</lineItemId>
+    <orderLineNumber>2</orderLineNumber>
+    <merchantLineNumber>2</merchantLineNumber>
+    <qtyOrdered>9</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990902</UPC>
+    <description>Sample item description for line 2</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990902</merchantSKU>
+    <vendorSKU>0670902</vendorSKU>
+    <unitPrice>4.9900</unitPrice>
+    <unitCost>2.5000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865036">
+      <boxNumber>1</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865037">
+      <boxNumber>2</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865038">
+      <boxNumber>3</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865039">
+      <boxNumber>4</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865040">
+      <boxNumber>5</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865041">
+      <boxNumber>6</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865042">
+      <boxNumber>7</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865043">
+      <boxNumber>8</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865044">
+      <boxNumber>9</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <boxNumber1>1</boxNumber1>
+      <boxNumber2>2</boxNumber2>
+      <boxNumber3>3</boxNumber3>
+      <boxNumber4>4</boxNumber4>
+      <boxNumber5>5</boxNumber5>
+      <boxNumber6>6</boxNumber6>
+      <boxNumber7>7</boxNumber7>
+      <boxNumber8>8</boxNumber8>
+      <boxNumber9>9</boxNumber9>
+    </poLineData>
+  </lineItem>
+  <lineItem>
+    <lineItemId>120993833</lineItemId>
+    <orderLineNumber>3</orderLineNumber>
+    <merchantLineNumber>3</merchantLineNumber>
+    <qtyOrdered>8</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990903</UPC>
+    <description>Sample item description for line 3</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990903</merchantSKU>
+    <vendorSKU>0670903</vendorSKU>
+    <unitPrice>5.9900</unitPrice>
+    <unitCost>3.0000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865045">
+      <boxNumber>1</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865046">
+      <boxNumber>2</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865047">
+      <boxNumber>3</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865048">
+      <boxNumber>4</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865049">
+      <boxNumber>5</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865050">
+      <boxNumber>6</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865051">
+      <boxNumber>7</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865052">
+      <boxNumber>8</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <boxNumber1>1</boxNumber1>
+      <boxNumber2>2</boxNumber2>
+      <boxNumber3>3</boxNumber3>
+      <boxNumber4>4</boxNumber4>
+      <boxNumber5>5</boxNumber5>
+      <boxNumber6>6</boxNumber6>
+      <boxNumber7>7</boxNumber7>
+      <boxNumber8>8</boxNumber8>
+    </poLineData>
+  </lineItem>
+  <lineItem>
+    <lineItemId>120993834</lineItemId>
+    <orderLineNumber>4</orderLineNumber>
+    <merchantLineNumber>4</merchantLineNumber>
+    <qtyOrdered>7</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990904</UPC>
+    <description>Sample item description for line 4</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990904</merchantSKU>
+    <vendorSKU>0670904</vendorSKU>
+    <unitPrice>6.9900</unitPrice>
+    <unitCost>3.5000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865053">
+      <boxNumber>1</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865054">
+      <boxNumber>2</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865055">
+      <boxNumber>3</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865056">
+      <boxNumber>4</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865057">
+      <boxNumber>5</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865058">
+      <boxNumber>6</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865059">
+      <boxNumber>7</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <boxNumber1>1</boxNumber1>
+      <boxNumber2>2</boxNumber2>
+      <boxNumber3>3</boxNumber3>
+      <boxNumber4>4</boxNumber4>
+      <boxNumber5>5</boxNumber5>
+      <boxNumber6>6</boxNumber6>
+      <boxNumber7>7</boxNumber7>
+    </poLineData>
+  </lineItem>
+  <lineItem>
+    <lineItemId>120993835</lineItemId>
+    <orderLineNumber>5</orderLineNumber>
+    <merchantLineNumber>5</merchantLineNumber>
+    <qtyOrdered>6</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990905</UPC>
+    <description>Sample item description for line 5</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990905</merchantSKU>
+    <vendorSKU>0670905</vendorSKU>
+    <unitPrice>7.9900</unitPrice>
+    <unitCost>4.0000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865060">
+      <boxNumber>1</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865061">
+      <boxNumber>2</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865062">
+      <boxNumber>3</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865063">
+      <boxNumber>4</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865064">
+      <boxNumber>5</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865065">
+      <boxNumber>6</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <boxNumber1>1</boxNumber1>
+      <boxNumber2>2</boxNumber2>
+      <boxNumber3>3</boxNumber3>
+      <boxNumber4>4</boxNumber4>
+      <boxNumber5>5</boxNumber5>
+      <boxNumber6>6</boxNumber6>
+    </poLineData>
+  </lineItem>
+  <lineItem>
+    <lineItemId>120993836</lineItemId>
+    <orderLineNumber>6</orderLineNumber>
+    <merchantLineNumber>6</merchantLineNumber>
+    <qtyOrdered>5</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990906</UPC>
+    <description>Sample item description for line 6</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990906</merchantSKU>
+    <vendorSKU>0670906</vendorSKU>
+    <unitPrice>8.9900</unitPrice>
+    <unitCost>4.5000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865066">
+      <boxNumber>1</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865067">
+      <boxNumber>2</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865068">
+      <boxNumber>3</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865069">
+      <boxNumber>4</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865070">
+      <boxNumber>5</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <boxNumber1>1</boxNumber1>
+      <boxNumber2>2</boxNumber2>
+      <boxNumber3>3</boxNumber3>
+      <boxNumber4>4</boxNumber4>
+      <boxNumber5>5</boxNumber5>
+    </poLineData>
+  </lineItem>
+  <lineItem>
+    <lineItemId>120993837</lineItemId>
+    <orderLineNumber>7</orderLineNumber>
+    <merchantLineNumber>7</merchantLineNumber>
+    <qtyOrdered>4</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990907</UPC>
+    <description>Sample item description for line 7</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990907</merchantSKU>
+    <vendorSKU>0670907</vendorSKU>
+    <unitPrice>9.9900</unitPrice>
+    <unitCost>5.0000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865071">
+      <boxNumber>1</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865072">
+      <boxNumber>2</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865073">
+      <boxNumber>3</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865074">
+      <boxNumber>4</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <boxNumber1>1</boxNumber1>
+      <boxNumber2>2</boxNumber2>
+      <boxNumber3>3</boxNumber3>
+      <boxNumber4>4</boxNumber4>
+    </poLineData>
+  </lineItem>
+  <lineItem>
+    <lineItemId>120993838</lineItemId>
+    <orderLineNumber>8</orderLineNumber>
+    <merchantLineNumber>8</merchantLineNumber>
+    <qtyOrdered>3</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990908</UPC>
+    <description>Sample item description for line 8</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990908</merchantSKU>
+    <vendorSKU>0670908</vendorSKU>
+    <unitPrice>10.9900</unitPrice>
+    <unitCost>5.5000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865075">
+      <boxNumber>1</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865076">
+      <boxNumber>2</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865077">
+      <boxNumber>3</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <prodColor>123</prodColor>
+      <prodSize>321</prodSize>
+      <prodCSdesc>Color and Size Description</prodCSdesc>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <boxNumber1>1</boxNumber1>
+      <boxNumber2>2</boxNumber2>
+      <boxNumber3>3</boxNumber3>
+    </poLineData>
+  </lineItem>
+  <lineItem>
+    <lineItemId>120993839</lineItemId>
+    <orderLineNumber>9</orderLineNumber>
+    <merchantLineNumber>9</merchantLineNumber>
+    <qtyOrdered>2</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990909</UPC>
+    <description>Sample item description for line 9</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990909</merchantSKU>
+    <vendorSKU>0670909</vendorSKU>
+    <unitPrice>11.9900</unitPrice>
+    <unitCost>6.0000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865078">
+      <boxNumber>1</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865079">
+      <boxNumber>2</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <prodColor>123</prodColor>
+      <prodSize>321</prodSize>
+      <prodCSdesc>Color and Size Description</prodCSdesc>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <boxNumber1>1</boxNumber1>
+      <boxNumber2>2</boxNumber2>
+    </poLineData>
+  </lineItem>
+  <lineItem>
+    <lineItemId>120993840</lineItemId>
+    <orderLineNumber>10</orderLineNumber>
+    <merchantLineNumber>10</merchantLineNumber>
+    <qtyOrdered>1</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990910</UPC>
+    <description>Sample item description for line 10</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990910</merchantSKU>
+    <vendorSKU>0670910</vendorSKU>
+    <unitPrice>12.9900</unitPrice>
+    <unitCost>6.5000</unitCost>
+    <shippingCode>UPSN_CG</shippingCode>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865080">
+      <boxNumber>1</boxNumber>
+      <packageQty>1</packageQty>
+      <returnRelatedMessage>To return this item use the small RETURN YOUR WAY LABEL or visit QVC.com Order Status, select your order to print a Q return label.</returnRelatedMessage>
+    </shippingLabel>
+    <poLineData>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+      <boxNumber1>1</boxNumber1>
+    </poLineData>
+  </lineItem>
+  <personPlace personPlaceID="PP3007782080">
+    <name1>Paula Jones</name1>
+    <address1>Apt 9</address1>
+    <address2>9 Main St.</address2>
+    <city>Moab</city>
+    <state>UT</state>
+    <country>US</country>
+    <postalCode>84532-1234</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782079">
+    <name1>Paula Jones</name1>
+    <address1>Apt 9</address1>
+    <address2>9 Main St.</address2>
+    <city>Moab</city>
+    <state>UT</state>
+    <country>US</country>
+    <postalCode>84532-1234</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782078">
+    <name1>Mike Jones</name1>
+    <address1>Suite 9 - High Towers</address1>
+    <address2>9 Wakara Way</address2>
+    <city>Salt Lake City</city>
+    <state>UT</state>
+    <country>US</country>
+    <postalCode>84108-1234</postalCode>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS54127388_120883810">
+    <name1>RETURN PROCESSING CENTER (QVC)</name1>
+    <address1>100 QVC BOULEVARD</address1>
+    <city>ROCKY MOUNT</city>
+    <state>NC</state>
+    <country>USA</country>
+    <postalCode>27801</postalCode>
+  </vendorShipInfo>
+</hubOrder><hubOrder transactionID="120885803">
+  <participatingParty name="QVC Online" roleType="merchant" participationCode="From:">iqvc</participatingParty>
+  <sendersIdForReceiver>FC08</sendersIdForReceiver>
+  <orderId>120885803</orderId>
+  <lineCount>1</lineCount>
+  <poNumber>000000135330043</poNumber>
+  <orderDate>20190614</orderDate>
+  <paymentMethod>MASTERCARD</paymentMethod>
+  <merchandise>179.97</merchandise>
+  <tax>15.67</tax>
+  <credits>5.00</credits>
+  <shipping>10.00</shipping>
+  <total>200.64</total>
+  <shipTo personPlaceID="PP3007782081" />
+  <billTo personPlaceID="PP3007782082" />
+  <customer personPlaceID="PP3007782083" />
+  <shipFrom vendorShipID="VS54127388_120885803" />
+  <memberNumber>XXXXXX7890</memberNumber>
+  <shippingCode>UPSN_CG</shippingCode>
+  <salesDivision>iQVC</salesDivision>
+  <custOrderNumber>0135330044</custOrderNumber>
+  <custOrderDate>20190614</custOrderDate>
+  <poHdrData>
+    
+	<packListData>
+      
+		<rmPhone1>1-800-345-1515</rmPhone1>
+      
+		<rmPhone2>1-800-345-1212</rmPhone2>
+      
+		<rmPhone3>1-800-367-9444</rmPhone3>
+      
+		<packslipMessage>Character@ .°¢™&amp;èé€-á&lt; "'Test</packslipMessage>
+      
+	
+    </packListData>
+    
+	<custOrderNumber>0135330044</custOrderNumber>
+    
+	<custOrderDate>20190614</custOrderDate>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>120995800</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>1</merchantLineNumber>
+    <qtyOrdered>3</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990101</UPC>
+    <description>Sample item description for line 1</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990101</merchantSKU>
+    <vendorSKU>0670101</vendorSKU>
+    <unitPrice>59.9900</unitPrice>
+    <unitCost>25.0000</unitCost>
+    <lineShipping>10.00</lineShipping>
+    <lineTax>15.67</lineTax>
+    <shippingCode>UPSN_CG</shippingCode>
+    <lineCredits>5.00</lineCredits>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865081">
+      <packageQty>1</packageQty>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865082">
+      <packageQty>1</packageQty>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865083">
+      <packageQty>1</packageQty>
+    </shippingLabel>
+    <poLineData>
+      <prodColor>123</prodColor>
+      <prodSize>321</prodSize>
+      <prodCSdesc>Color and Size Description</prodCSdesc>
+      <creditAmount>5.0</creditAmount>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+    </poLineData>
+  </lineItem>
+  <personPlace personPlaceID="PP3007782082">
+    <name1>Samual Smith</name1>
+    <address1>13 Fuller Rd</address1>
+    <city>Albany</city>
+    <state>NY</state>
+    <country>US</country>
+    <postalCode>12203</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782081">
+    <name1>Samual Smith</name1>
+    <address1>13 Stewart St</address1>
+    <city>Albany</city>
+    <state>NY</state>
+    <country>US</country>
+    <postalCode>12203</postalCode>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782083">
+    <name1>Samual Smith</name1>
+    <address1>13 Fuller Rd</address1>
+    <city>Albany</city>
+    <state>NY</state>
+    <country>US</country>
+    <postalCode>12203</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS54127388_120885803">
+    <name1>RETURN PROCESSING CENTER (QVC)</name1>
+    <address1>100 QVC BOULEVARD</address1>
+    <city>ROCKY MOUNT</city>
+    <state>NC</state>
+    <country>USA</country>
+    <postalCode>27801</postalCode>
+  </vendorShipInfo>
+</hubOrder><hubOrder transactionID="120885804">
+  <participatingParty name="QVC Online" roleType="merchant" participationCode="From:">iqvc</participatingParty>
+  <sendersIdForReceiver>FC08</sendersIdForReceiver>
+  <orderId>120885804</orderId>
+  <lineCount>1</lineCount>
+  <poNumber>000000135330047</poNumber>
+  <orderDate>20190614</orderDate>
+  <paymentMethod>MASTERCARD</paymentMethod>
+  <merchandise>179.97</merchandise>
+  <tax>15.67</tax>
+  <credits>5.00</credits>
+  <shipping>10.00</shipping>
+  <total>200.64</total>
+  <shipTo personPlaceID="PP3007782084" />
+  <billTo personPlaceID="PP3007782085" />
+  <customer personPlaceID="PP3007782086" />
+  <shipFrom vendorShipID="VS54127388_120885804" />
+  <memberNumber>XXXXXX7890</memberNumber>
+  <shippingCode>UPSN_CG</shippingCode>
+  <salesDivision>iQVC</salesDivision>
+  <custOrderNumber>0135330048</custOrderNumber>
+  <custOrderDate>20190614</custOrderDate>
+  <poHdrData>
+    
+	<packListData>
+      
+		<rmPhone1>1-800-345-1515</rmPhone1>
+      
+		<rmPhone2>1-800-345-1212</rmPhone2>
+      
+		<rmPhone3>1-800-367-9444</rmPhone3>
+      
+		<packslipMessage>Character@ .°¢™&amp;èé€-á&lt; "'Test</packslipMessage>
+      
+	
+    </packListData>
+    
+	<custOrderNumber>0135330048</custOrderNumber>
+    
+	<custOrderDate>20190614</custOrderDate>
+    
+	<poTypeCode>R</poTypeCode>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>120995801</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>1</merchantLineNumber>
+    <qtyOrdered>3</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>9999999990101</UPC>
+    <description>Sample item description for line 1</description>
+    <merchantProductId>E123456</merchantProductId>
+    <merchantSKU>9990101</merchantSKU>
+    <vendorSKU>0670101</vendorSKU>
+    <unitPrice>59.9900</unitPrice>
+    <unitCost>25.0000</unitCost>
+    <lineShipping>10.00</lineShipping>
+    <lineTax>15.67</lineTax>
+    <shippingCode>UPSN_CG</shippingCode>
+    <lineCredits>5.00</lineCredits>
+    <expectedShipDate>20190619</expectedShipDate>
+    <requestedArrivalDate>20190619</requestedArrivalDate>
+    <shippingLabel ShippingLabelId="SL102865084">
+      <packageQty>1</packageQty>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865085">
+      <packageQty>1</packageQty>
+    </shippingLabel>
+    <shippingLabel ShippingLabelId="SL102865086">
+      <packageQty>1</packageQty>
+    </shippingLabel>
+    <poLineData>
+      <prodColor>123</prodColor>
+      <prodSize>321</prodSize>
+      <prodCSdesc>Color and Size Description</prodCSdesc>
+      <creditAmount>5.0</creditAmount>
+      <lineReqShipDate>20190619</lineReqShipDate>
+      <lineReqDelvDate>20190619</lineReqDelvDate>
+    </poLineData>
+  </lineItem>
+  <personPlace personPlaceID="PP3007782084">
+    <name1>Samual Smith</name1>
+    <address1>13 Stewart St</address1>
+    <city>Albany</city>
+    <state>NY</state>
+    <country>US</country>
+    <postalCode>12203</postalCode>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782086">
+    <name1>Samual Smith</name1>
+    <address1>13 Fuller Rd</address1>
+    <city>Albany</city>
+    <state>NY</state>
+    <country>US</country>
+    <postalCode>12203</postalCode>
+    <dayPhone>8004552354</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3007782085">
+    <name1>Samual Smith</name1>
+    <address1>13 Fuller Rd</address1>
+    <city>Albany</city>
+    <state>NY</state>
+    <country>US</country>
+    <postalCode>12203</postalCode>
+    <dayPhone>8004552354</dayPhone>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS54127388_120885804">
+    <name1>RETURN PROCESSING CENTER (QVC)</name1>
+    <address1>100 QVC BOULEVARD</address1>
+    <city>ROCKY MOUNT</city>
+    <state>NC</state>
+    <country>USA</country>
+    <postalCode>27801</postalCode>
+  </vendorShipInfo>
+</hubOrder>
+<messageCount>5</messageCount>
+</OrderMessageBatch>

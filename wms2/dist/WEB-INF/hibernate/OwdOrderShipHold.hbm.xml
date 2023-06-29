@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class 
+    name="com.owd.hibernate.OwdOrderShipHold" 
+    table="owd_order_ship_holds"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+        <generator class="identity" />
+    </id>
+       <property
+        name="needsReview"
+        type="java.lang.Integer"
+        column="needs_review"
+        length="10"
+    />
+    <property
+        name="isOnWhHold"
+        type="java.lang.Integer"
+        column="is_on_wh_hold"
+        length="10"
+    />
+    <property
+        name="whHoldReason"
+        type="java.lang.String"
+        column="wh_hold_reason"
+        length="50"
+    />
+    <property
+        name="whHoldNotes"
+        type="java.lang.String"
+        column="wh_hold_notes"
+        length="2147483647"
+    />
+    <property
+        name="createdDate"
+        type="java.util.Date"
+        column="created_date"
+        length="16"
+    />
+    <property
+        name="clearedDate"
+        type="java.util.Date"
+        column="cleared_date"
+        length="16"
+    />
+    <property
+        name="resolutionDate"
+        type="java.util.Date"
+        column="resolution_date"
+        length="16"
+    />
+        <property
+           name="resolutionType"
+           type="java.lang.String"
+           column="resolution_type"
+           length="50"
+       />
+    <property
+        name="resNote"
+        type="java.lang.String"
+        column="res_note"
+        length="2147483647"
+    />
+
+
+
+
+    <property
+           name="notifyAM"
+           type="java.lang.String"
+           column="notify_am"
+           length="50"
+       />
+
+        <property
+           name="notifyIT"
+           type="java.lang.String"
+           column="notify_it"
+           length="50"
+       />
+
+        <property
+           name="notifyEmail"
+           type="java.lang.String"
+           column="notify_email"
+           length="50"
+       />
+
+        <property
+           name="notifyUser"
+           type="java.lang.String"
+           column="notify_user"
+           length="50"
+       />
+
+        <property
+           name="resNotifyAM"
+           type="java.lang.String"
+           column="resnotify_am"
+           length="50"
+       />
+
+        <property
+           name="resNotifyEmail"
+           type="java.lang.String"
+           column="resnotify_email"
+           length="50"
+       />
+
+        <property
+           name="resNotifyPhone"
+           type="java.lang.String"
+           column="resnotify_phone"
+           length="50"
+       />
+
+        <property
+           name="resNotifyUser"
+           type="java.lang.String"
+           column="resnotify_user"
+           length="50"
+       />
+
+        <property
+           name="createdBy"
+           type="java.lang.String"
+           column="created_by"
+           length="50"
+       />
+     <property
+           name="clearedBy"
+           type="java.lang.String"
+           column="cleared_by"
+           length="50"
+       />
+
+
+
+    <!-- associations -->
+    <many-to-one name="order" class="com.owd.hibernate.OwdOrder" column="order_fkey" unique="true"/>
+</class>
+</hibernate-mapping>

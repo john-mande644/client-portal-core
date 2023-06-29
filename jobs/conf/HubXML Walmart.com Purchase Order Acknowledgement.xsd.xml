@@ -1,0 +1,26 @@
+<PO_Acknowledgements batch-number="string">
+  <partnerID name="string" roleType="string">string</partnerID>
+  <!--1 or more repetitions:-->
+  <PO_Acknowledgement ack-type="status-update">
+    <messageControlNumber>string</messageControlNumber>
+    <originatingSystemTrxId trxDate="string" trxType="string" systemOwner="string" systemName="string">string</originatingSystemTrxId>
+    <!--1 or more repetitions:-->
+    <participatingParty name="string" role="merchant" participationCode="To:">string</participatingParty>
+    <poNumber>string</poNumber>
+    <scheduledShipDate>string</scheduledShipDate>
+    <!--1 or more repetitions:-->
+    <lineitem_ack>
+      <poLineNumber>string</poLineNumber>
+      <quantityOpen>string</quantityOpen>
+      <!--1 or more repetitions:-->
+      <action>
+        <quantity>string</quantity>
+        <!--You have a CHOICE of the next 3 items at this level-->
+        <accept>string</accept>
+        <cancel reason="string">string</cancel>
+        <seal trackable="string">string</seal>
+      </action>
+    </lineitem_ack>
+  </PO_Acknowledgement>
+  <messageCount>string</messageCount>
+</PO_Acknowledgements>

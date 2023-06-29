@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.OwdInventoryShipinfo"
+        table="owd_inventory_shipinfo"
+        >
+
+        <id
+            name="inventoryShipinfoId"
+            type="java.lang.Integer"
+            column="inventory_shipinfo_id"
+            >
+            <generator class="identity"/>
+        </id>
+
+
+        <property
+            name="packageType"
+            type="java.lang.String"
+            column="package_type"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="predictWeight"
+            type="long"
+            column="predict_weight"
+            not-null="true"
+            length="18"
+            />
+        <property
+            name="depth"
+            type="long"
+            column="depth"
+            not-null="true"
+            length="18"
+            />
+        <property
+            name="height"
+            type="long"
+            column="height"
+            not-null="true"
+            length="18"
+            />
+        <property
+            name="width"
+            type="long"
+            column="width"
+            not-null="true"
+            length="18"
+            />
+        <property
+            name="forceUsage"
+            type="java.lang.Integer"
+            column="force_usage"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="packageNumber"
+            type="java.lang.Integer"
+            column="package_number"
+            not-null="true"
+            length="10"
+            />
+        <property
+                name="countryName"
+                type="java.lang.String"
+                column="country_name"
+                not-null="false"
+                length="50"
+                />
+        <property
+                name="inventoryFkey"
+                type="java.lang.Integer"
+                column="inentory_fkey"
+                not-null="false"
+                length="10"
+                />
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

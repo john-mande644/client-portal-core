@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OwdLineItem"
+        table="owd_line_item"
+        >
+
+        <id
+            name="lineItemId"
+            type="java.lang.Integer"
+            column="line_item_id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="inventoryNum"
+            type="java.lang.String"
+            column="inventory_num"
+            length="255"
+            />
+        <property
+            name="description"
+            type="java.lang.String"
+            column="description"
+            length="255"
+            />
+        <property
+            name="custRefnum"
+            type="java.lang.String"
+            column="cust_refnum"
+            length="30"
+            />
+        <property
+            name="quantityRequest"
+            type="java.lang.Integer"
+            column="quantity_request"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="quantityActual"
+            type="java.lang.Integer"
+            column="quantity_actual"
+            length="10"
+            />
+        <property
+            name="quantityBack"
+            type="java.lang.Integer"
+            column="quantity_back"
+            length="10"
+            />
+        <property
+            name="price"
+            type="java.math.BigDecimal"
+            column="price"
+            length="19"
+            />
+        <property
+            name="totalPrice"
+            type="java.math.BigDecimal"
+            column="total_price"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="createdDate"
+            type="java.util.Date"
+            column="created_date"
+            length="16"
+            />
+        <property
+            name="createdBy"
+            type="java.lang.String"
+            column="created_by"
+            length="30"
+            />
+        <property
+            name="modifiedDate"
+            type="java.util.Date"
+            column="modified_date"
+            length="16"
+            />
+        <property
+            name="modifiedBy"
+            type="java.lang.String"
+            column="modified_by"
+            length="30"
+            />
+        <property
+            name="rowIsLocked"
+            type="boolean"
+            column="row_is_locked"
+            not-null="true"
+            length="1"
+            />
+        <property
+            name="itemColor"
+            type="java.lang.String"
+            column="item_color"
+            length="50"
+            />
+        <property
+            name="itemSize"
+            type="java.lang.String"
+            column="item_size"
+            length="50"
+            />
+        <property
+            name="lineItemDisc"
+            type="java.lang.Double"
+            column="line_item_disc"
+            length="53"
+            />
+        <property
+            name="longDesc"
+            type="java.lang.String"
+            column="long_desc"
+            length="2147483647"
+            />
+        <property
+            name="customsDesc"
+            type="java.lang.String"
+            column="customs_desc"
+            length="2147483647"
+            />
+        <property
+            name="decItemValue"
+            type="java.math.BigDecimal"
+            column="dec_item_value"
+            length="19"
+            />
+         <property
+            name="isParent"
+            type="java.lang.Integer"
+            column="is_parent"
+            length="10"
+            />
+        <property
+            name="parentKey"
+            type="java.lang.Integer"
+            column="parent_line"
+            length="10"
+            />
+        <property
+            name="isInsert"
+            type="java.lang.Integer"
+            column="is_insert"
+            length="10"
+            />
+        <!-- associations -->
+           <set name="serials" table="owd_line_serial_link" lazy="true">
+            <key column="line_fkey"/>
+            <many-to-many class="com.owd.hibernate.OwdInventorySerial" column="serial_fkey"/>
+        </set>
+
+        <!-- bi-directional many-to-one association to OwdInventory -->
+        <many-to-one
+            name="owdInventory"
+            class="com.owd.hibernate.OwdInventory"
+            not-null="true"
+            >
+            <column name="inventory_id"/>
+        </many-to-one>
+
+        <many-to-one
+            name="order"
+            class="com.owd.hibernate.OwdOrder"
+            not-null="true"
+            >
+            <column name="order_fkey"/>
+        </many-to-one>
+
+
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<ReturnMessageBatch>
+  <partnerID name="string" roleType="vendor">string</partnerID>
+  <!--1 or more repetitions:-->
+  <hubReturn>
+    <participatingParty name="JC Penney" roleType="merchant" participationCode="To:">string</participatingParty>
+    <partnerTrxID>string</partnerTrxID>
+    <partnerTrxDate>100</partnerTrxDate>
+    <poNumber>string</poNumber>
+    <!--1 or more repetitions:-->
+    <hubAction>
+      <action>v_return</action>
+      <actionCode>string</actionCode>
+      <merchantLineNumber>100</merchantLineNumber>
+      <trxQty>100</trxQty>
+      <!--1 or more repetitions:-->
+      <returnDetailLink returnDetailID="string">quae ventos</returnDetailLink>
+    </hubAction>
+    <!--1 or more repetitions:-->
+    <returnDetail returnDetailID="string">
+      <returnDate>100</returnDate>
+    </returnDetail>
+  </hubReturn>
+  <messageCount>100</messageCount>
+</ReturnMessageBatch>

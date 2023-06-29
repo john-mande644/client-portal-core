@@ -1,0 +1,436 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<!-- DTD for Order creation request  S. Buskirk	2000.5.1 -->
+<!-- Copyright (c) 2000 by One World Distribution, Inc. All Rights Reserved. -->
+<!-- Dates formatted as YYYYMMDD -->
+
+<-- Updated 3/24/2011 -->
+
+
+<!-- OWD_ORDER_CREATE_REQUEST element attributes
+	order_reference		= Alphanumeric identifier for order as known to client system
+	order_source		= Alphanumeric free text source identifier (e.g., fax, email, phone, web. etc.)
+	is_gift			= if "YES", prices will be suppressed on the packing list and any MESSAGE element data printed as a gift message
+	backorder_rule		= Defines action in response to an out-of-stock situation. Possible values are:
+					BACKORDER=Backorder entire order until it can be completely filled
+					PARTIALSHIP=Ship available items, backorder the rest
+					IGNOREBACKORDER=Ship available items, backorder the rest, but do not create backorder record. Preserves original backordered item information without creating a pending backorder for out of stock items. Added in version 1.9.
+					HOLDORDER=Create order record, but do not allocate items from inventory and prevent processing until order is released
+					NOBACKORDER=Reject the order; do not create a new order record (Default behavior)
+					
+	
+	hold_for_release        = if "YES", order will be placed on hold for manual release. Inventory will not be decremented. Introduced in API v1.1.
+
+
+	OWD_ORDER_CREATE_REQUEST returns an OWD_ORDER_STATUS_RESPONSE element
+	
+	OWD_ORDER_CREATE_REQUEST also encompasses a single SHIPPING_INFO element
+
+**NOTE ON SHIPPING TERMS***
+        	This acct and terms elements can be used in a variety of ways to determine the exact billing method for shipping. 
+        	They should only be used in cases where you need to override the default shipping billing method set up with OWD for your account.
+        	
+        	Here are the rules:
+        	
+        	1. If the SHIPPING_INFO.acct attribute is provided and the SHIPPING_INFO.terms
+        	attribute is missing or set to 'SHIPPER', the shipment will be billed to the provided account number using third party billing.
+        	
+        	2. If the SHIPPING_INFO.terms are set to 'COLLECT' and a SHIPPING_INFO.acct number is provided, 
+        	the shipment will be shipped 'Freight Collect' and billed to the provided account.
+        	
+        	3. If the SHIPPING_INFO.terms are set to 'COLLECT' and a SHIPPING_INFO.acct value is not provided, 
+        	the shipment will be billed as 'Consignee Billing'.
+        	
+        	Also see the description for the  optional subelement 'THIRD_PARTY_SHIPPING'
+        	
+        	These billing methods are not appropriate for all carriers - for example, USPS has no shipper accounts. If you have any questions,
+        	please contact us.
+        	
+**END NOTE**
+
+
+
+		SHIPPING_INFO element attributes	
+			last_name	= Last name of addressee
+	  		first_name	= First name of addressee
+	  		company_name	= Company name of addressee
+	  		address_one	= First address line
+	  		address_two	= Second address line
+	  		city		= Addressee city
+	  		state		= Addressee state/province/region
+	  		zip		= Addressee postal code
+	  		country		= Country of addressee (if missing or blank, defaults to "USA")
+	  		phone		= Phone number for addressee. Required because many carriers require a phone number.
+	  		email		= Addressee's email address
+	  		ship_cost	= Amount to charge purchaser for shipping/handling
+	  		ship_type	= Default carrier used for shipping. Value must be one of the codes translated below:
+	  		
+                                   FDX.ECO=FedEx Two-Day
+                                   FDX.ESF=FedEx Express Saver Freight
+                                   FDX.ESP=FedEx Express Saver
+                                   FDX.FO=FedEx 1st Overnight
+                                   FDX.FR2=FedEx Two-Day Freight
+                                   FDX.FRO=FedEx Overnight Freight
+                                   FDX.IEC=FedEx Int'l Economy
+                                   FDX.IPR=FedEx Int'l Priority
+                                   FDX.PRI=FedEx Priority Overnight
+                                   FDX.STD=FedEx Standard Overnight
+                                   OWD.1ST.LETTER=First Class
+                                   OWD.1ST.PRIORITY=Priority Mail
+                                   OWD.4TH.BOOK=Std Mail B Special (Book)
+                                   OWD.4TH.PARCEL=Std Mail B Parcel Post
+                                   OWD.4TH.PRINTED=Std Mail B Bound Printed Mtr
+                                   OWD.AIR.BSM=Int'l PM Book/Music Air
+                                   OWD.AIR.PARCELPOST=Int'l Parcel Post Air
+                                   OWD.AIR.PMATTER=Int'l PM Regular Air
+                                   OWD.AIR.PUP=Int'l PM Periodical Air
+                                   OWD.AIR.SMP=Int'l PM Small Packet Air
+                                   OWD.SFC.BSM=Int'l PM Book/Music Surface
+                                   OWD.SFC.PARCELPOST=Int'l Parcel Post Surface
+                                   OWD.SFC.PMATTER=Int'l PM Regular Surface
+                                   OWD.SFC.PUP=Int'l Periodical Surface
+                                   OWD.SFC.SMP=Int'l PM Small Packet Surface
+                                   UPS.2AM=UPS 2nd Day Air A.M.
+                                   UPS.2DA=UPS 2nd Day Air
+                                   UPS.3DA=UPS 3 Day Select
+                                   UPS.EPDCAMX=UPS Expedited Canada
+                                   UPS.EXPCAMX=UPS Express Canada
+                                   UPS.GND=UPS Ground
+                                   UPS.NAM=UPS Next Day Air A.M.
+                                   UPS.NDA=UPS Next Day Air
+                                   UPS.NDS=UPS Next Day Air Saver
+                                   UPS.STDCAMX=UPS Standard Canada
+                                   UPS.WEPD=UPS Worldwide Expedited
+                                   UPS.WEXP=UPS Worldwide Express
+                                   BWY=Use BEST_WAY->CARRIER element values. Not valid in a CARRIER element.
+                                   
+            insure_amount	= Decimal number. It is the USD amount the shipment should be insured for against loss or damage.
+	  		declared_value	= Amount to use for customs declarations of shipment value. Ignored for domestic addresses.
+	  		customs_desc	= Short (<30 characters) description of contents for customs purposes. Ignored for domestic addresses.
+
+            terms			= Value must be one of SHIPPER or COLLECT. Default (if terms value is missing) is SHIPPER. (Added v.1.6)
+            
+			acct			= shipper's account number with carrier (Moved v.1.6)
+			
+			billing_ref		= shipper's billing reference for order to be passed through carrier  (Moved v.1.6)
+			
+			call_tag_desc		= call tag description
+			cod_amount			= dollar value for COD
+			
+			** NOTE the following three attributes are only used if supported by the final ship method used for the shipment
+			
+			signature_release   = allows services that would normally require a signature to be left without proof of delivery - the existence of the attribute requests the service
+			proof_of_delivery	= Proof of Delivery service - the existence of the attribute requests the service
+			saturday_delivery	= Saturday delivery service - the existence of the attribute requests the service
+
+                                   
+        SHIPPING_INFO encompasses the following optional elements (only one instance of each element is allowed except where noted).
+        All these elements were introduced in API v1.1.
+        	
+
+(The following section was updated in API v.1.6)
+        	THIRD_PARTY_SHIPPER is used to provide a third party contact/address information for shipment billing by the carrier. If you
+        	indicate that a third party shipping account should be used (via the SHIPPING_INFO.acct attribute) and set the SHIPPING_INFO.terms
+        	attribute to SHIPPER and do not provide contact/address info for the account holder via this element, your 
+        	address of record with OWD will be given to the carrier for billing purposes.
+        	
+        	If a shipping account reference is provided in SHIPPING_INFO and this element is present and populated, the address
+        	information given here will be passed to the carrier for billing. In all other cases, this element will be ignored.
+        	
+        	In order to utilize this element in your request, the SHIPPING_INFO.acct attribute value must be present.
+
+        	
+(End API v.1.6 Update)        	
+
+        	THIRD_PARTY_SHIPPER element attributes
+        		contact		= Contact name on shipper's account
+        		company		= Company name on shipper's account
+        		address_one	= First line of address on shipper's account
+        		address_two	= Second line of address shipper's account
+        		city		= City on shipper's account
+        		state		= State on shipper's account
+        		zip		= Postal code on shipper's account
+        		phone		= Phone number on shipper's account
+      		
+        		
+        		
+
+        	
+        	BEST_WAY is used to allow OWD to choose among a provided list of carriers to obtain the least expensive shipping rate.
+        	If none of the indicated carriers are available, the default carrier provided in the SHIPPING_INFO ship_type element
+        	is used instead.
+        	
+        	The BEST_WAY element contains 1 or more CARRIER elements.
+        	
+        		CARRIER elements' values are one of the carrier/service codes as listed in the SHIPPING_INFO.ship_type attribute above.
+                                  
+	OWD_ORDER_CREATE_REQUEST also encompasses a single BILLING_INFO element
+	
+		BILLING_INFO element attributes	
+			last_name	= Last name of buyer
+	  		first_name	= First name of buyer
+	  		company_name	= Company name of buyer
+	  		address_one	= First address line
+	  		address_two	= Second address line
+	  		city		= buyer city
+	  		state		= buyer state/province/region
+	  		zip		= buyer postal code
+	  		country		= Country of buyer (if blank, defaults to "USA")
+	  		phone		= Phone number for buyer.
+	  		email		= buyer's email address
+	  		tax_pct		= floating point number of the tax percentage, if any, e.g., 6% sales tax would be indicated with a value of 0.06.
+	  		tax_amount = floating point number >= 0.00 of the actual tax amount recorded for this order. If supplied, tax_pct is ignored.
+          		po_number	= Optional PO or other charge identifier
+	  		paid		= if "YES", payment information will be recorded but not processed. Payment is presumed to be equal to the total order cost.
+	  		payment_type	= Type of payment
+	  					CC : Credit Card
+						CK : Check/Money Order
+						PO : Purchase Order
+						CLIENT : Use CLIENT is OWD does not handle payment processing. If CLIENT is specified, the paid attribute should be "YES".
+	  		acct_no		= if CC payment, the CC account number
+	  		exp_year	= if CC payment, the year the CC expires as YYYY. All 4 digits must be supplied.
+	  		exp_month	= if CC payment, the month the CC expires as MM. Leading zeroes are not necessary. Months are numbered from 1-12, with 1 being January.
+
+	  		order_discount	= A decimal numeric value, greater than or equal to zero. Defaults to zero. If present, this amount will be recorded as the order discount and subtracted from the order subtotal before calculating a grand total for the order. This field may be printed on packing slips and does appear on the extranet.
+			paid_date	= last paid date 
+			auth_amount	= if CC authorization is made and OWD is intended to capture the authorized funds upon shipment, you must provide the amount of the authorization in this attribute
+	  		auth_code	= if CC authorization is made and OWD is intended to capture the authorized funds upon shipment, you must provide the authorization code string from the CC processor here
+	  		auth_trans	= if CC authorization is made and OWD is intended to capture the authorized funds upon shipment, you must provide the transaction ID from the CC processor here
+	  
+
+	OWD_ORDER_CREATE_REQUEST also encompasses one or more LINE_ITEM elements
+	
+		LINE_ITEM element attributes	
+		part_reference		= alphanumeric item SKU (part reference) - must be unique across all client part references
+					  (API v1.1) If the SKU contains a forward slash (/), only the portion of the part reference 
+					  up to but not including the first forward slash found is read and used for this line item.
+					  This function is provided to allow aliases to SKUs.
+		description		= description of item (up to 255 characters)
+		requested		= number of units in shipment of this SKU (e.g., 4 cases of 24 units/case is a count of 96)
+		cost			= the cost in US Dollars of each unit of the item (e.g., 5.82)
+		declared_value		= the USD value of the SKU, per unit, for customs/VAT/duties.
+		customs_desc		= free text, up to 80 characters. It is the official description of this SKU for customs purposes.
+		backordered			= number of units of this SKU to force to be backordered. If the value of the "requested" attribute is more than
+		 					  the number of units actually in stock, the order will be rejected for insufficent inventory. If the "requested"
+		 					  value is less than the actual stock level, the order will be handled as though the actual quantity was equal to the 
+		 					  "requested" value and the standard backorder policy rule as requested will be applied to the order. Example: to 
+		 					  force the packing slip and order record to show the backordered quantity without actually creating a backorder, set this attribute
+		 					  to the proper value and set the backorder policy rule to IGNOREBACKORDER.
+		line_number		= optional string (up to 50 chars) representing the identifier for this line to an external system. Normally used to report shipping status by line to external system.					  
+		
+	
+	OWD_ORDER_CREATE_REQUEST also encompasses zero or one MESSAGE elements
+	
+		The MESSAGE element is intended for gift orders - it is a gift message from the buyer to the addressee. It is ignored unless
+		the is_gift attribute of the OWD_ORDER_CREATE_REQUEST element is "YES".
+		
+	
+	OWD_ORDER_CREATE_REQUEST also encompasses zero or one COMMENTS elements
+	
+		The COMMENTS element is intended for special instructions for processing the order. It is free text.
+	
+	OWD_ORDER_CREATE_REQUEST also encompasses zero or one WAREHOUSENOTES elements
+	
+		The WAREHOUSENOTES element is intended for notes about delivery or order assembly. It is free text.
+-->
+
+<!ELEMENT OWD_ORDER_CREATE_REQUEST (SHIPPING_INFO,BILLING_INFO,LINE_ITEM+,MESSAGE?,COMMENTS?,WAREHOUSENOTES?)>
+<!ATTLIST OWD_ORDER_CREATE_REQUEST
+          order_reference       	CDATA   #REQUIRED
+          order_source       		CDATA   #IMPLIED
+          is_gift       		CDATA   #IMPLIED
+          backorder_rule		(	BACKORDER|
+          					PARTIALSHIP|
+          					IGNOREBACKORDER|
+          					HOLDORDER|
+          					NOBACKORDER)	"NOBACKORDER"
+          hold_for_release     	CDATA   #IMPLIED
+          group_name     		CDATA   #IMPLIED
+          >
+          
+<!ELEMENT SHIPPING_INFO (THIRD_PARTY_SHIPPER?,BEST_WAY?)>
+<!ATTLIST SHIPPING_INFO
+	  last_name		CDATA	#IMPLIED
+	  first_name		CDATA	#IMPLIED
+	  company_name		CDATA	#IMPLIED
+	  address_one		CDATA	#REQUIRED
+	  address_two		CDATA	#IMPLIED
+	  city			CDATA	#REQUIRED
+	  state			CDATA	#REQUIRED
+	  zip			CDATA	#REQUIRED
+	  country		CDATA	#REQUIRED
+	  phone			CDATA	#IMPLIED
+
+	  email			CDATA	#IMPLIED
+	  ship_type		(  FDX.ECO|
+                                   FDX.ESF|
+                                   FDX.ESP|
+                                   FDX.FO|
+                                   FDX.FR2|
+                                   FDX.FRO|
+                                   FDX.IEC|
+                                   FDX.IPR|
+                                   FDX.PRI|
+                                   FDX.STD|
+                                   OWD.1ST.LETTER|
+                                   OWD.1ST.PRIORITY|
+                                   OWD.4TH.BOOK|
+                                   OWD.4TH.PARCEL|
+                                   OWD.4TH.PRINTED|
+                                   OWD.AIR.BSM|
+                                   OWD.AIR.PARCELPOST|
+                                   OWD.AIR.PMATTER|
+                                   OWD.AIR.PUP|
+                                   OWD.AIR.SMP|
+                                   OWD.SFC.BSM|
+                                   OWD.SFC.PARCELPOST|
+                                   OWD.SFC.PMATTER|
+                                   OWD.SFC.PUP|
+                                   OWD.SFC.SMP|
+                                   RPS.3DA|
+                                   RPS.GND|
+                                   RSP.2DA|
+                                   UPS.2AM|
+                                   UPS.2DA|
+                                   UPS.3DA|
+                                   UPS.EPDCAMX|
+                                   UPS.EXPCAMX|
+                                   UPS.GND|
+                                   UPS.NAM|
+                                   UPS.NDA|
+                                   UPS.NDS|
+                                   UPS.STDCAMX|
+                                   UPS.WEPD|
+                                   UPS.WEXP|
+                                   BWY)
+                                  	#REQUIRED
+	  ship_cost		CDATA	#REQUIRED
+	  insure_amount		CDATA	#IMPLIED
+	  declared_value	CDATA	#IMPLIED
+	  customs_desc		CDATA	#IMPLIED
+		
+	  terms			(SHIPPER|CONSIGNEE) "SHIPPER"
+	  
+	  acct			CDATA	#IMPLIED
+	  billing_ref		CDATA	#IMPLIED
+	  call_tag_desc		CDATA	#IMPLIED
+	  cod_amount		CDATA	#IMPLIED
+	  proof_of_delivery	CDATA	#IMPLIED	
+	  saturday_delivery	CDATA	#IMPLIED
+>
+
+
+<!ELEMENT CARRIER (#PCDATA)>
+
+<!ELEMENT BEST_WAY (CARRIER+)>
+<!ELEMENT THIRD_PARTY_SHIPPER EMPTY>
+<!ATTLIST THIRD_PARTY_SHIPPER
+
+	  contact		CDATA	#IMPLIED
+	  company		CDATA	#REQUIRED
+	  address_one		CDATA	#REQUIRED
+
+	  address_two		CDATA	#IMPLIED
+	  city			CDATA	#REQUIRED
+	  state			CDATA	#REQUIRED
+	  zip			CDATA	#REQUIRED
+	  country		CDATA	#REQUIRED
+
+	  phone			CDATA	#IMPLIED
+
+
+          >
+
+<!ELEMENT BILLING_INFO EMPTY>
+<!ATTLIST BILLING_INFO
+	  last_name		CDATA	#IMPLIED
+	  first_name		CDATA	#IMPLIED
+	  company_name		CDATA	#IMPLIED
+	  address_one		CDATA	#REQUIRED
+	  address_two		CDATA	#IMPLIED
+	  city			CDATA	#REQUIRED
+	  state			CDATA	#REQUIRED
+	  zip			CDATA	#REQUIRED
+	  country		CDATA	#REQUIRED
+	  phone			CDATA	#IMPLIED
+	  email			CDATA	#IMPLIED
+      tax_pct		CDATA	#REQUIRED
+      tax_amount	CDATA	#IMPLIED
+      po_number		CDATA	#IMPLIED
+	  paid			(YES|NO)		"YES"
+	  paid_date		CDATA	#IMPLIED
+	  payment_type		(CC|CK|PO|CLIENT)	"CLIENT"
+	  acct_no		CDATA	#IMPLIED
+	  exp_year		CDATA	#IMPLIED
+	  exp_month		CDATA	#IMPLIED
+      order_discount  CDATA #IMPLIED
+	  auth_amount	CDATA	#IMPLIED
+	  auth_code		CDATA	#IMPLIED
+	  auth_trans	CDATA	#IMPLIED		
+	  >
+
+<!ELEMENT LINE_ITEM EMPTY>
+<!ATTLIST LINE_ITEM
+	  part_reference		CDATA	#REQUIRED
+	  description			CDATA	#REQUIRED
+	  requested			CDATA	#REQUIRED
+	  cost				CDATA	#REQUIRED
+	  declared_value		CDATA	#IMPLIED
+	  customs_desc			CDATA	#IMPLIED
+	  backordered		CDATA #IMPLIED
+	  external_line_id		CDATA	#IMPLIED
+	  >	           
+
+<!ELEMENT MESSAGE (#PCDATA)>
+<!ELEMENT COMMENTS (#PCDATA)>
+<!ELEMENT WAREHOUSENOTES (#PCDATA)>
+
+<!-- EXAMPLE
+
+<OWD_API_REQUEST	api_version="1.0"
+          		client_id="1234"
+          		client_authorization="12938462"
+          		testing="FALSE" >
+	<OWD_ORDER_CREATE_REQUEST order_reference="OWD2883994"
+				order_source="Intranet"
+				is_gift="NO"
+				backorder_rule="PARTIALSHIP">
+		<SHIPPING_INFO 	last_name="Cratchit" 
+			first_name="Bob Jr"
+			address_one="321 77th Pl" 
+			city="los Angeles" 
+			state="CA" 
+			zip="90045" 
+			country="USA" 
+			phone="425-193-2293" 
+			email="bob@bob.com" 
+			ship_type="OWD.1ST.PRIORITY"
+			ship_cost="4.50"
+			/>
+		
+		<BILLING_INFO 	last_name="Cratchit" 
+			first_name="Bob Jr"
+			address_one="321 77th Pl" 
+			city="los Angeles" 
+			state="CA" 
+			zip="90045" 
+			country="USA" 
+			phone="425-193-2293" 
+			email="bob@bob.com" 
+			/>
+			
+		<LINE_ITEM part_reference="12323"
+			description="Big red hat"
+			requested="23"
+			cost="4.95" />
+		<LINE_ITEM part_reference="eer4545"
+			description="Paperclips"
+			requested="4"
+			cost="2.95" />
+		<LINE_ITEM part_reference="nnm54355"
+			description="T-shirt"
+			requested="12"
+			cost="5.95" />	
+        </OWD_ORDER_CREATE_REQUEST>
+</OWD_API_REQUEST>
+
+-->

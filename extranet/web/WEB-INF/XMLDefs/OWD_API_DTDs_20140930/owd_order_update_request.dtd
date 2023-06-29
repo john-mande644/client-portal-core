@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<!-- DTD for Order update request  OWD 2012.10.10 -->
+<!-- Copyright (c) 2012 by One World Distribution, Inc. dba One World Direct All Rights Reserved. -->
+<!-- Dates formatted as YYYYMMDD -->
+
+<!-- this version of the API requires specifying the version attribute in the OWD_API_REQUEST as 2.0 or higher -->
+
+
+<!-- OWD_ORDER_UPDATE_REQUEST element attributes
+		clientOrderId 		= OWD-assigned order identifier. If client does not track OWD order IDs, they can use their
+				  own order reference as supplied with the order, but the request will only succeed if the order reference
+				  is unique among all non-voided orders for the client. OWD-assigned order identifiers are guaranteed to be unique.
+
+	OWD_ORDER_UPDATE_REQUEST returns an OWD_ORDER_STATUS_RESPONSE element
+	
+		All the elements below are optional. If they are provided with a value, the
+		corresponding part of the order record will be updated to the provided value.
+		
+		BILL_NAME = Full name of customer
+		BILL_COMPANY = Company name of buyer
+		BILL_ADDRESS_ONE = First address line of customer address
+		BILL_ADDRESS_TWO = Second address line of customer address
+		BILL_CITY = City of customer address
+		BILL_STATE = State/region of customer address
+		BILL_POSTCODE = Zip or postal code for customer address
+		BILL_COUNTRY = Country of customer address. 2-letter IANA codes should be used if possible.
+		BILL_PHONE = Phone number for customer
+		BILL_EMAIL = Email address for customer
+		BILL_PO = PO Number field for customer
+		
+		SHIP_NAME = Full name of consignee (the person the shipment is addressed to)
+		SHIP_COMPANY = Company name for consignee
+		SHIP_ADDRESS_ONE = First address line of shipping address
+		SHIP_ADDRESS_TWO = Second address line of shipping address
+		SHIP_CITY = City of shipping address
+		SHIP_STATE = State/region of shipping address
+		SHIP_POSTCODE = Zip or postal code for shipping address
+		SHIP_COUNTRY = Country of shipping address. 2-letter IANA codes should be used if possible.
+		SHIP_PHONE = Phone number for consignee
+		SHIP_EMAIL = Email address for consignee
+		
+		TOTAL_SHIPHANDLING = Total shipping/handling charge to show on order - decimal numeric value greater than or equal to 0.00. 
+		TOTAL_TAX = Total sales tax amount to show on order - decimal numeric value greater than or equal to 0.00. 
+		TOTAL_DISCOUNT = Total discount to show on order - decimal numeric value greater than or equal to 0.00.
+							Negative values may be provided, but the recorded value will always be the negative of the absolute value of the number provided.
+		
+		ORDER_COMMENT = Free text
+		ORDER_WAREHOUSENOTES = Free text
+		
+		ADD_NOTE = Free text. If present, will be added to order history as a comment viewable on the OWD extranet
+		
+		SHIPPING_METHOD = Must be one of the standard OWD ship method codes, as listed in the 'Shipping Method Code' column at http://service.owd.com/webapps/clienttools/shipmethods.jsp
+		
+		LINE_ITEMS = If present, this elements contains one or more LINE_ITEM elements, representing the new intended contents of the order. 
+		
+		The LINE_ITEMS/LINE_ITEM elements are special in that if you provide the LINE_ITEMS element to update or add, all existing line items
+	    will be deleted and only the new LINE_ITEM values provided in your update request will exist after the update is complete. Providing a LINE_ITEMS
+	    element without any LINE_ITEM contents will result in an error (orders are not allowed to have zero line items).
+
+				
+		LINE_ITEM element attributes	
+		part_reference	= alphanumeric item SKU (part reference) - must be unique across all client SKU references
+		description		= description of item (up to 255 characters). If an empty description is provided (''), the default description from OWD's inventory records will be used.
+		requested		= number of units in shipment of this SKU (e.g., 4 cases of 24 units/case is a count of 96)
+		cost			= the decimal cost of each unit of the item (e.g., 5.82)
+		line_number		= optional string (up to 50 chars) representing the identifier for this line to an external system. Normally used to report shipping status by line to external system.					  
+		
+		The part_reference,cost and requested values are required. Any other attributes are optional.
+	
+
+	-->
+
+<!ELEMENT OWD_ORDER_UPDATE_REQUEST (BILL_NAME?,BILL_COMPANY?,BILL_ADDRESS_ONE?,BILL_ADDRESS_TWO?,BILL_CITY?,BILL_STATE?,BILL_POSTCODE?,
+									BILL_COUNTRY?,BILL_PHONE?,BILL_EMAIL?,BILL_PO?,SHIP_NAME?,SHIP_COMPANY?,SHIP_ADDRESS_ONE?,SHIP_ADDRESS_TWO?,
+									SHIP_CITY?,SHIP_STATE?,SHIP_POSTCODE?,SHIP_COUNTRY?,SHIP_PHONE?,SHIP_EMAIL?,TOTAL_SHIPHANDLING?,TOTAL_TAX?,
+									TOTAL_DISCOUNT?,ORDER_COMMENT?, ORDER_WAREHOUSENOTES?,SHIPPING_METHOD?,ADD_NOTE?,GROUP_NAME?,FACILITY_RULE?,LINE_ITEMS?)>
+									
+<!ATTLIST OWD_ORDER_UPDATE_REQUEST
+          clientOrderId       	CDATA   #REQUIRED
+          >
+          
+<!ELEMENT LINE_ITEM EMPTY>          
+<!ATTLIST LINE_ITEM
+	  part_reference		CDATA	#REQUIRED
+	  description			CDATA	#REQUIRED
+	  requested			CDATA	#REQUIRED
+	  cost				CDATA	#REQUIRED
+	  line_number		CDATA	#IMPLIED
+	  >	 
+	  
+<!ELEMENT BILL_NAME (#PCDATA)>
+<!ELEMENT BILL_COMPANY (#PCDATA)>
+<!ELEMENT BILL_ADDRESS_ONE (#PCDATA)>
+<!ELEMENT BILL_ADDRESS_TWO (#PCDATA)>
+<!ELEMENT BILL_CITY (#PCDATA)>
+<!ELEMENT BILL_STATE (#PCDATA)>
+<!ELEMENT BILL_POSTCODE (#PCDATA)>
+<!ELEMENT BILL_COUNTRY (#PCDATA)>
+<!ELEMENT BILL_PHONE (#PCDATA)>
+<!ELEMENT BILL_EMAIL (#PCDATA)>
+<!ELEMENT BILL_PO (#PCDATA)>
+<!ELEMENT SHIP_NAME (#PCDATA)>
+<!ELEMENT SHIP_COMPANY (#PCDATA)>
+<!ELEMENT SHIP_ADDRESS_ONE (#PCDATA)>
+<!ELEMENT SHIP_ADDRESS_TWO (#PCDATA)>
+<!ELEMENT SHIP_CITY (#PCDATA)>
+<!ELEMENT SHIP_STATE (#PCDATA)>
+<!ELEMENT SHIP_POSTCODE (#PCDATA)>
+<!ELEMENT SHIP_COUNTRY (#PCDATA)>
+<!ELEMENT SHIP_PHONE (#PCDATA)>
+<!ELEMENT SHIP_EMAIL (#PCDATA)>
+<!ELEMENT TOTAL_SHIPHANDLING (#PCDATA)>
+<!ELEMENT TOTAL_TAX (#PCDATA)>
+<!ELEMENT TOTAL_DISCOUNT (#PCDATA)>
+<!ELEMENT ORDER_COMMENT (#PCDATA)>
+<!ELEMENT ORDER_WAREHOUSENOTES (#PCDATA)>
+<!ELEMENT SHIPPING_METHOD (#PCDATA)>
+<!ELEMENT ADD_NOTE (#PCDATA)>
+<!ELEMENT GROUP_NAME (#PCDATA)>
+<!ELEMENT FACILITY_RULE (#PCDATA)> <!-- API version 2.0+ only -->
+<!ELEMENT LINE_ITEMS (LINE_ITEM+)>
+
+<!-- EXAMPLE
+
+<?xml version='1.0' encoding='UTF-8'?>
+<OWD_API_REQUEST api_version='1.9' client_authorization='00000' client_id='000' testing='TRUE'>
+	<OWD_ORDER_UPDATE_REQUEST clientOrderId='9173672'>
+		<ADD_NOTE>Hello world!</ADD_NOTE>
+		<SHIPPING_METHOD>UPS.GND</SHIPPING_METHOD>
+		<SHIP_NAME>Joe Despacio</SHIP_NAME>
+		<SHIP_ADDRESS_ONE>123 Main Street</SHIP_ADDRESS_ONE>
+		<SHIP_CITY>Mobridge</SHIP_CITY>
+		<SHIP_STATE>SD</SHIP_STATE>
+		<SHIP_POSTCODE>57601</SHIP_POSTCODE>
+		<SHIP_COUNTRY>US</SHIP_COUNTRY>
+		<TOTAL_TAX>1.23</TOTAL_TAX>
+		<TOTAL_DISCOUNT>3.21</TOTAL_DISCOUNT>
+		<TOTAL_SHIPHANDLING>4.56</TOTAL_SHIPHANDLING>
+		<LINE_ITEMS>
+			<LINE_ITEM part_reference='SKUTest1' description='Some stuff that sounds good' requested='3' cost='4.99' line_number='88934'/>
+		</LINE_ITEMS>
+	</OWD_ORDER_UPDATE_REQUEST>
+</OWD_API_REQUEST>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<OWD_API_RESPONSE results="SUCCESS">
+  <OWD_ORDER_STATUS_RESPONSE backorderedFromOrderId="9173563" clientOrderId="10595" orderId="9173672" paymentStatus="CLIENTMANAGED" shipMethod="UPS Ground" shipMethodCode="UPS.GND" status="BACKORDER">
+    <LINE assigned="0" backordered="0" clientSKU="SKUTest1" line_number="88934" requested="3"/>
+  </OWD_ORDER_STATUS_RESPONSE>
+</OWD_API_RESPONSE>
+
+-->

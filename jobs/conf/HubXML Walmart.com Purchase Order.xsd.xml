@@ -1,0 +1,95 @@
+<OrderMessageBatch batchNumber="string">
+  <partnerID name="string" roleType="vendor">string</partnerID>
+  <!--1 or more repetitions:-->
+  <hubOrder type="string" transactionID="string">
+    <!--1 or more repetitions:-->
+    <participatingParty name="string" roleType="vendor" participationCode="From:">string</participatingParty>
+    <sendersIdForReceiver>string</sendersIdForReceiver>
+    <orderId>string</orderId>
+    <lineCount>string</lineCount>
+    <poNumber>string</poNumber>
+    <orderDate>string</orderDate>
+    <paymentMethod>string</paymentMethod>
+    <!--Optional:-->
+    <merchandise>string</merchandise>
+    <!--Optional:-->
+    <total>string</total>
+    <shipTo personPlaceID="string"/>
+    <billTo personPlaceID="string"/>
+    <shippingCode>string</shippingCode>
+    <!--Optional:-->
+    <salesDivision>string</salesDivision>
+    <custOrderNumber>string</custOrderNumber>
+    <custOrderDate>string</custOrderDate>
+    <poHdrData>
+      <!--Optional:-->
+      <custOrderNumber>string</custOrderNumber>
+      <!--Optional:-->
+      <custOrderDate>string</custOrderDate>
+      <!--Optional:-->
+      <poTypeCode>string</poTypeCode>
+      <!--Optional:-->
+      <merchandiseTypeCode>string</merchandiseTypeCode>
+    </poHdrData>
+    <!--1 or more repetitions:-->
+    <lineItem>
+      <lineItemId>string</lineItemId>
+      <orderLineNumber>string</orderLineNumber>
+      <merchantLineNumber>string</merchantLineNumber>
+      <qtyOrdered>string</qtyOrdered>
+      <unitOfMeasure>string</unitOfMeasure>
+      <UPC>string</UPC>
+      <description>string</description>
+      <!--Optional:-->
+      <merchantProductId>string</merchantProductId>
+      <merchantSKU>string</merchantSKU>
+      <vendorSKU>string</vendorSKU>
+      <!--Optional:-->
+      <unitPrice>string</unitPrice>
+      <unitCost>string</unitCost>
+      <!--Optional:-->
+      <lineShipping>string</lineShipping>
+      <!--Optional:-->
+      <lineTax>string</lineTax>
+      <shippingCode>string</shippingCode>
+      <!--Optional:-->
+      <requestedArrivalDate>string</requestedArrivalDate>
+      <!--Optional:-->
+      <poLineData>
+        <!--Optional:-->
+        <creditAmount>string</creditAmount>
+        <!--Optional:-->
+        <giftWrapIndicator>string</giftWrapIndicator>
+        <!--Optional:-->
+        <giftMessage>string</giftMessage>
+      </poLineData>
+    </lineItem>
+    <!--1 or more repetitions:-->
+    <personPlace personPlaceID="string">
+      <name1>string</name1>
+      <!--Optional:-->
+      <name2>string</name2>
+      <address1>anyType</address1>
+      <!--Optional:-->
+      <address2>anyType</address2>
+      <!--1 or more repetitions:-->
+      <city>string</city>
+      <state>string</state>
+      <!--Optional:-->
+      <country>string</country>
+      <postalCode>string</postalCode>
+      <!--Optional:-->
+      <email>string</email>
+      <!--Optional:-->
+      <dayPhone>string</dayPhone>
+      <!--Optional:-->
+      <partnerPersonPlaceId>string</partnerPersonPlaceId>
+      <!--Optional:-->
+      <personPlaceData>
+        <!--Optional:-->
+        <ReceiptID>string</ReceiptID>
+      </personPlaceData>
+    </personPlace>
+  </hubOrder>
+  <messageCount>string</messageCount>
+</OrderMessageBatch>

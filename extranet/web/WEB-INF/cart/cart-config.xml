@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+        "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+    <!-- Form Bean Definitions -->
+    <form-beans>
+
+        <form-bean name="bedfordForm" type="com.owd.web.carts.bedford.bedfordForm"/>
+        <form-bean name="bedfordPatientForm" type="com.owd.web.carts.bedford.bedfordPatientForm"/>
+        <form-bean name="sunbutterStoreForm" type="com.owd.web.carts.sunbutter.sunbutterStoreForm"/>
+    </form-beans>
+
+    <action-mappings>
+
+         <action path="/sunbutterStores"
+                type="com.owd.web.carts.sunbutter.sunbutterStoresAction"
+                name="sunbutterStoreForm"
+                scope="session"
+                parameter="submit"
+                validate="false"
+                input="/sunbutter/stores/start.jsp"
+                >
+            <forward
+                    name="gotstates"
+                    path="/sunbutter/stores/start.jsp"/>
+            
+
+        </action>
+        <action path="/bedford"
+                type="com.owd.web.carts.bedford.cartAction"
+                name="bedfordForm"
+                scope="session"
+                parameter="submit"
+                validate="false"
+                input="/bedford/cart.jsp"
+                >
+            <forward
+                    name="success"
+                    path="/bedford/ordersuccess.jsp"/>
+            <forward
+                    name="start"
+                    path="/bedford/cart.jsp"/>
+            <forward
+                    name="error"
+                    path="/bedford/cart.jsp"/>
+
+        </action>
+        <action path="/bedfordp"
+                type="com.owd.web.carts.bedford.bedfordPatientAction"
+                name="bedfordPatientForm"
+                scope="session"
+                parameter="submit"
+                validate="false"
+                input="/bedford/patientcart.jsp"
+                >
+            <forward
+                    name="success"
+                    path="/bedford/patientordersuccess.jsp"/>
+            <forward
+                    name="doctor"
+                    path="/bedford/doctorselect.jsp"/>
+            <forward
+                    name="start"
+                    path="/bedford/patientcart.jsp"/>
+            <forward
+                    name="error"
+                    path="/bedford/patientcart.jsp"/>
+            <forward
+                    name="error2"
+                    path="/bedford/doctorselect.jsp"/>
+
+        </action>
+
+
+    </action-mappings>
+   <message-resources
+            parameter="com.owd.web.messageresources"
+            null="false"/>
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
+        /WEB-INF/validation.xml"/>
+    </plug-in>
+
+
+</struts-config>

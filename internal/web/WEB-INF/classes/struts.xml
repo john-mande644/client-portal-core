@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <constant name="struts.devMode" value="false"/>
+
+    <include file="automoves.xml"/>
+
+    <include file="boxcodes.xml"/>
+    <include file="screenpops.xml"/>
+    <include file="shortShip.xml"/>
+    <include file="flatRateDims.xml"/>
+    <include file="privacyRequest.xml"/>
+
+    <package name="it" namespace="/it" extends="struts-default">
+        <default-interceptor-ref name="defaultStack"/>
+        <default-action-ref name="status"/>
+        <action name="status" class="com.owd.web.internal.it.StatusAction" method="status">
+            <result name="success">/it/status.jsp</result>
+        </action>
+    </package>
+
+        <package name="orderhistory" namespace="/orderhistory" extends="struts-default">
+        <default-interceptor-ref name="defaultStack"/>
+        <default-action-ref name="lookup"/>
+        <action name="lookup" class="com.owd.web.internal.orderhistory.LookupAction" method="find">
+            <result name="success">/orderhistory/lookup.jsp</result>
+            <result name="input">/orderhistory/lookup.jsp</result>
+        </action>
+    </package>
+
+      <package name="sendmail" namespace="/sendmail" extends="struts-default">
+        <default-interceptor-ref name="defaultStack"/>
+        <default-action-ref name="send"/>
+        <action name="send" class="com.owd.web.internal.it.SendMailAction" method="input">
+            <result name="success">/it/sendmailok.jsp</result>
+            <result name="input">/it/sendmail.jsp</result>
+        </action>
+    </package>
+
+    <!-- Add packages here -->
+    <package name="markShippedBatch" namespace="/markShippedBatch" extends="struts-default">
+        <action name="start" method="starting" class="com.owd.web.internal.warehouse.markShippedBatchAction">
+            <result name="success">/warehouse/markShippedBatch/index.jsp</result>
+        </action>
+        <action name="processBatch" method="processBatch" class="com.owd.web.internal.warehouse.markShippedBatchAction">
+            <interceptor-ref name="params"/>
+            <interceptor-ref name="execAndWait">
+                <param name="delay">1000</param>
+                <param name="delaySleepInterval">1500</param>
+            </interceptor-ref>
+            <result name="error">/warehouse/markShippedBatch/index.jsp</result>
+            <result name="wait">/warehouse/markShippedBatch/wait.jsp</result>
+            <result name="success">/warehouse/markShippedBatch/success.jsp</result>
+        </action>
+    </package>
+</struts>

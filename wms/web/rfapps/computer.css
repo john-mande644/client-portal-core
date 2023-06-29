@@ -1,0 +1,290 @@
+.overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:150%;
+    z-index:1000;
+}
+
+BODY
+{
+    FONT-SIZE: 10px;
+    FONT-FAMILY: Arial, Helvetica, sans-serif;
+    BACKGROUND-COLOR: #ffffff;
+}
+.locationList{
+    padding:5px;
+
+}
+.Primary{
+    background-color: #77ee66;
+    padding:3px;
+
+}
+.Secondary{
+    background-color: #ffee77;
+    padding:3px;
+}
+.caseInfo{
+    background-color: #47bbff;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-right: black solid 4px;
+    font-size:24px;
+}
+.casePickInfo{
+    background-color: #47bbff;
+
+    text-align: center;
+    padding-top:3px;
+    padding-bottom:3px;
+    font-size:24px;
+
+}
+.casePick{
+    padding:5px;
+}
+.caseHeader{
+    font-size:25px;
+    padding-bottom:15px;
+}
+.caseFooter{
+    font-size:25px !important;
+}
+table.selectCase{
+    font-size: 30px;
+}
+table.selectCase td{
+    text-align: center;
+
+}
+.red{
+    color:red;
+}
+.redOrder{
+    background-color: #F8C2C2;
+}
+table{
+ width:100%;
+}
+select.select{
+    FONT-SIZE:20px;
+    
+}
+
+
+div.body{
+ align:left;
+}
+div.receive{
+ width:250px;
+}
+table.find{
+width: 250px;
+cell-spacinig: 0;
+}
+table.menu td{
+    padding:5px;
+}
+td.find{
+ border: thin solid #000;
+  color: #000;
+  padding: 1px;
+  margin: 0;
+  border-collapse: collapse;
+  text-align: center;
+}
+table.multi{
+border:thick solid black;
+width: 250px;
+cell-spacinig: 0;
+}
+table.multirem{
+border:thick solid red;
+width: 250px;
+cell-spacinig: 0;
+}
+td.multi{
+  width: 125px;
+  color: #000;
+  padding: 1px;
+  margin: 0;
+  text-align: center;
+  background-color:#ddd;
+  font-weight:bold;
+}
+td.multia{
+
+  color: #000;
+  padding: 1px;
+  margin: 0;
+  text-align: center;
+
+}
+td.multib{
+border-bottom:thick solid black;
+  color: #000;
+  padding: 1px;
+  margin: 0;
+  text-align: center;
+  background-color:#eee;
+ border-collapse:collapse;
+}
+tr.multi{
+  border-top: thin solid #000;
+  text-align: center;
+ background-color:#ccc
+}
+
+a.button{
+width: 6em;
+ color: black;
+background: lightgrey;
+text-decoration: none;
+padding: 0.25em;
+border: 1px solid;
+border-color: black;
+Font-size:13px;
+Font-weight:bold;
+letter-spacing: 2px
+
+}
+a:hover.button{
+ color: #000000;
+background: #0099ff;
+text-decoration: none;
+padding: 0.2em;
+border: 4px solid;
+border-color: #99f #008 #008 #99f;
+
+}
+a.invbutton{
+ color: #000000;
+background: #0099ff;
+text-decoration: none;
+padding: 0.1em;
+border: 2px solid;
+border-color: #99f #008 #008 #99f;
+Font-size:12px;
+Font-weight:bold;
+}
+a.stockout{
+color: #85147C;
+background: #ccccff;
+text-decoration: none;
+padding: 0.2em;
+border: 1px solid;
+border-color: #69f #008 #008 #69f;
+Font-size:12px;
+Font-weight:bold;
+   }
+B.error{
+color:red;
+}
+P.button{
+padding-top:1px;
+padding-bottom:1px;
+}
+span.inventorynum{
+font-weight:bold;
+ color: #85147C;
+}
+span.inventoryid{
+ font-weight:bold;
+ color: #01D709;
+}
+span.location2{
+    font-weight:bold;
+ font-size:16px;
+    color: #000000;
+}
+span.location{
+ color: #0000FF;
+}
+span.notes{
+ color: red;
+ font-weight:bold;
+ font-size:11;
+}
+span.verify{
+
+ font-weight:bold;
+  Font-size:16px;
+ color:blue;
+}
+span.outcome{
+    font-weight:bold;
+    font-size:12;
+    color:blue;
+
+}
+span.error{
+color:red;
+}
+span.label{
+ font-weight:bold;
+ font-size:11;
+ padding-top:1px;
+padding-bottom:1px;
+}
+.center{
+Font-size:12px;
+text-align:center;
+}
+table.selectsku{
+border:thick solid green;
+width: 250px;
+cell-spacinig: 0;
+}
+
+td.selectsku{
+  width: 125px;
+  color: #000;
+  padding: 1px;
+  margin: 0;
+  text-align: center;
+  background-color:#ddd;
+  font-weight:bold;
+}
+
+td.selectskub{
+border-bottom:thick solid black;
+  color: #000;
+  padding: 1px;
+  margin: 0;
+  text-align: center;
+  background-color:#eee;
+ border-collapse:collapse;
+}
+tr.selectsku{
+  border-top: thin solid #000;
+  text-align: center;
+ background-color:#ccc
+}
+td.right{
+vertical-align:top;
+text-align:right;
+ }
+td.setup{
+vertical-align:top;
+font-size:8pt;
+}
+hr.head{
+    color:blue;
+    background-color:blue;
+    width:80%;
+    height:5px;
+}
+hr.foot{
+    color:green;
+    background-color:green;
+    width:95%;
+    height:4px;
+}
+.header{
+   height:28px;
+
+}
+

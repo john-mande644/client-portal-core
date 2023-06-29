@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SizeID" type="xs:string"/>
+  <xs:element name="OrderID" type="xs:string"/>
+  <xs:element name="ColorID" type="xs:string"/>
+  <xs:element name="ShipType" type="xs:string"/>
+  <xs:element name="OrderDetails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="OrderInfo">
+          <xs:annotation>
+            <xs:documentation>You have a CHOICE of the next 3 items at this level</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="OrderItem" maxOccurs="unbounded" minOccurs="0"/>
+        <xs:element ref="OrderShippingInfo" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProductID" type="xs:string"/>
+  <xs:element name="ShipDateTime" type="xs:string"/>
+  <xs:element name="MFGSKU" type="xs:string"/>
+  <xs:element name="QuantityShipped" type="xs:string"/>
+  <xs:element name="OrderItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ProductID">
+          <xs:annotation>
+            <xs:documentation>Optional:Optional:</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="ColorID">
+          <xs:annotation>
+            <xs:documentation>Optional:Optional:</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="SizeID">
+          <xs:annotation>
+            <xs:documentation>Optional:Optional:</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="MFGSKU">
+          <xs:annotation>
+            <xs:documentation>Optional:Optional:</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="UPC"/>
+        <xs:element ref="QuantityShipped"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OrderShippingInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="TrackingNumber">
+          <xs:annotation>
+            <xs:documentation>Optional:Optional:</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="ShipName">
+          <xs:annotation>
+            <xs:documentation>Optional:Optional:</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="ShipType"/>
+        <xs:element ref="ShipDateTime"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TrackingNumber" type="xs:string"/>
+  <xs:element name="OrderInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="OrderID"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UPC" type="xs:string"/>
+  <xs:element name="ShipName" type="xs:string"/>
+</xs:schema>

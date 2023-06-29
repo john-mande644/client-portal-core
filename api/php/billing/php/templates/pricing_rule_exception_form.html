@@ -1,0 +1,94 @@
+<!-- BEGIN: main -->
+<div id="sidebar"></div>
+
+<div id="section_title">{SECTION_TITLE}</div>
+
+<div class="section_tabs">
+    <a href="{CLIENT_CONTRACTS_URL}">Contracts</a> |
+    <a href="{CLIENT_INVOICES_URL}">Invoices</a> |
+    <a href="{CLIENT_BILLABLE_EVENTS_URL}">Billable Events</a> |
+    <a href="{CLIENT_PRICED_EVENTS_URL}">Priced Events</a>
+</div>
+
+<div id="frame">
+    <div id="content">
+        <div class="section_sub_tabs">
+            <a href="{CONTRACT_GENERAL_URL}">General</a> |
+            <a href="{CONTRACT_RECURRING_ITEMS_URL}">Recurring Items</a> |
+            <a href="{CONTRACT_PRICING_RULES_URL}">Pricing Rules</a>
+        </div>
+
+        <div id="page_title">{PAGE_TITLE}</div>
+
+        <form id="post_form" name="post_form" method="post" action="pricing_rule_exception_form.php">
+            <input type="hidden" name="clientID" value="{CLIENT_ID}">
+            <input type="hidden" name="contractID" value="{CONTRACT_ID}">
+            <input type="hidden" name="pricingRuleID" value="{PRICING_RULE_ID}">
+            <input type="hidden" name="pricingRuleExceptionID" value="{PRICING_RULE_EXCEPTION_ID}">
+
+            <table class="form_table" border="0" cellpadding="0" cellspacing="0">
+
+            <!-- BEGIN: error_message -->
+            <tr>
+                <td colspan="2" class="form_error_message">
+                    {ERROR_MESSAGE}
+                </td>
+            </tr>
+            <!-- END: error_message -->
+
+            <tr>
+                <td class="form_field_label_required">{FIELD1_NAME}:</td>
+                <td class="form_field_required">
+
+                    <select id="field1Comparator" name="field1Comparator" onchange="onSelectComparisonType('field1Comparator', 'field1Value')">
+                        <option value="">-</option>
+                        <!-- BEGIN: field1ComparisonTypes -->
+                        <option value="{LIST_FIELD1_COMPARISON_TYPE}" {LIST_FIELD1_COMPARISON_TYPE_SELECTED}>{LIST_FIELD1_COMPARISON_TYPE}</option>
+                        <!-- END: field1ComparisonTypes -->
+                    </select>
+
+                    <input type="text" id="field1Value" name="field1Value" value="{FIELD1_VALUE}" size="20">
+                </td>
+            </tr>
+
+            <!-- BEGIN: field2 -->
+            <tr>
+                <td class="form_field_label_required">{FIELD2_NAME}:</td>
+                <td class="form_field_required">
+
+                    <select id="field2Comparator" name="field2Comparator" onchange="onSelectComparisonType('field2Comparator', 'field2Value')">
+                        <option value="">-</option>
+                        <!-- BEGIN: field2ComparisonTypes -->
+                        <option value="{LIST_FIELD2_COMPARISON_TYPE}" {LIST_FIELD2_COMPARISON_TYPE_SELECTED}>{LIST_FIELD2_COMPARISON_TYPE}</option>
+                        <!-- END: field2ComparisonTypes -->
+                    </select>
+
+                    <input type="text" id="field2Value" name="field2Value" value="{FIELD2_VALUE}" size="20">
+                </td>
+            </tr>
+            <!-- END: field2 -->
+
+            <tr>
+                <td class="form_field_label_required">Price:</td>
+                <td class="form_field_required">
+                    <input type="text" name="price" value="{PRICE}" size="7">
+                    per {BILLABLE_UNIT_NAME}
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="form_submit">
+                    <input name="save" type="submit" value="Save">
+                    <!-- BEGIN: addAnotherButton -->
+                    <input name="saveAndAddAnother" type="submit" value="Save and Add Another">
+                    <!-- END: addAnotherButton -->
+                    or
+                    <a href="{CONTRACT_PRICING_RULES_URL}" class="cancel_link">Cancel</a>
+                </td>
+            </tr>
+
+            </table>
+        </form>
+    </div>
+</div>
+<!-- END: main -->

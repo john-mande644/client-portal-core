@@ -1,0 +1,48 @@
+<!-- BEGIN: main -->
+<div id="sidebar">
+    &nbsp;
+</div>
+
+<style>
+div#client_alpha_index {
+    margin-left: 15px;
+    margin-top: 15px;
+    padding-left: 10px;
+    padding: 10px;
+    border: 1px solid rgb(164, 164, 164);
+    font-size: 16px;
+    font-weight: bold;
+}
+</style>
+
+<div id="section_title" style="margin-bottom: 5px">Clients</div>
+
+<div id="frame">
+
+    <div id="content">
+
+        <table class="table_list" border="0" cellpadding="0" cellspacing="0">
+        <!-- BEGIN: clients -->
+        <tr>
+            <td class="table_list_text_field" style="padding-right: 50px">
+                <a href="{LEFT_COLUMN_URL}">{LEFT_COLUMN_NAME}<a>
+            </td>
+            <td class="table_list_text_field">
+                <a href="{MIDDLE_COLUMN_URL}">{MIDDLE_COLUMN_NAME}<a>
+            </td>
+            <td class="table_list_text_field">
+                <a href="{RIGHT_COLUMN_URL}">{RIGHT_COLUMN_NAME}<a>
+            </td>
+        </tr>
+        <!-- END: clients -->
+
+        <!-- BEGIN: no_clients -->
+        <tr>
+            <td colspan="4" class="list_table_row"><i>No clients found.</i></td>
+        </tr>
+        <!-- END: no_clients -->
+
+        </table>
+    </div>
+</div>
+<!-- END: main -->

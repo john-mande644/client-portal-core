@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+            name="com.owd.hibernate.OwdMapping"
+            table="owd_mapping"
+            >
+
+        <id
+                name="id"
+                type="java.lang.Integer"
+                column="id"
+                >
+            <generator class="identity"/>
+        </id>
+
+        <property
+                name="type"
+                type="java.lang.String"
+                column="keytype"
+                not-null="true"
+                length="255"
+                />
+        <property
+                name="key"
+                type="java.lang.String"
+                column="keyvalue"
+                not-null="true"
+                length="255"
+                />
+        <property
+                name="value"
+                type="java.lang.String"
+                column="value"
+                not-null="true"
+                length="255"
+                />
+        <property
+                name="modifiedDate"
+                type="java.util.Date"
+                column="lastupdate"
+                length="16"
+                />
+
+    </class>
+</hibernate-mapping>

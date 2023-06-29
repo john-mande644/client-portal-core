@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/dtd/
+-->
+
+<class 
+    name="com.owd.hibernate.generated.OwdInventorySerial"
+    table="owd_inventory_serial"
+>
+
+    <id
+        name="id"
+        type="java.lang.Integer"
+        column="id"
+    >
+        <generator class="identity" />
+    </id>
+
+    <property
+        name="serialNumber"
+        type="java.lang.String"
+        column="serial_number"
+        not-null="true"
+        length="80"
+    />
+    <property
+        name="created"
+        type="java.util.Date"
+        column="created"
+        not-null="true"
+        length="23"
+    />
+
+
+
+        <many-to-one name="owdInventory" class="com.owd.hibernate.generated.OwdInventory" column="inventory_fkey" unique="true"/>
+
+    <set name="lineItems" table="owd_line_serial_link" inverse="true" lazy="true">
+            <key column="serial_fkey"/>
+            <many-to-many class="com.owd.hibernate.generated.OwdLineItem" column="line_fkey"/>
+        </set>
+
+
+
+     <set name="receiveItems" table="receive_serial" inverse="true" lazy="true">
+            <key column="serial_fkey"/>
+            <many-to-many class="com.owd.hibernate.generated.ReceiveItem" column="receive_item_fkey"/>
+        </set>
+    <!-- associations -->
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SortationTracking" type="SortationTrackingType"/>
+  <xs:complexType name="SortationTrackingType">
+    <xs:sequence>
+      <xs:element type="trackerType" name="tracker" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="trackerType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="tracking_no"/>
+      <xs:element type="xs:string" name="ship_Method"/>
+      <xs:element type="xs:string" name="lane"/>
+      <xs:element type="xs:string" name="weight"/>
+      <xs:element type="xs:string" name="tracking_fkey"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+    <package name="receive" namespace="/receive" extends="struts-default">
+
+
+        <action name="start"  class="com.owd.dc.receive.receiveAction">
+
+            <result name="success" >/rfapps/receive/index.jsp</result>
+
+        </action>
+        <action name="loadAsn" method="loadAsn" class="com.owd.dc.receive.receiveAction">
+            <result name="mark">/rfapps/receive/markInBuilding.jsp</result>
+            <result name="error">/rfapps/receive/index.jsp</result>
+            <result name="success">/rfapps/receive/receiveMain.jsp</result>
+        </action>
+        <action name="loadSearch" method="loadSearch" class="com.owd.dc.receive.receiveAction">
+            <result name="error">/rfapps/receive/receiveMain.jsp</result>
+            <result name="success">/rfapps/receive/receiveSearch.jsp</result>
+        </action>
+        <action name="loadASNSearch" method="loadASNSearch" class="com.owd.dc.receive.receiveAction">
+
+            <result name="success">/rfapps/receive/ASNSearch.jsp</result>
+        </action>
+        <action name="loadASNSearchableItems" method="loadASNSearchableItems" class="com.owd.dc.receive.receiveAction">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="loadSearchableItems" method="loadSearchableItems" class="com.owd.dc.receive.receiveAction">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="loadSku" method="loadSku" class="com.owd.dc.receive.receiveAction">
+           <result name="error">/rfapps/receive/receiveMain.jsp</result>
+           <result name="success">/rfapps/receive/getQty.jsp</result>
+
+        </action>
+        <action name="getCount" method="getSkuCount" class="com.owd.dc.receive.receiveAction">
+          <result name="error">/rfapps/receive/getQty.jsp</result>
+            <result name="success">/rfapps/receive/getDamaged.jsp</result>
+
+
+
+        </action>
+        <action name="getDamaged" method="getSkuDamaged" class="com.owd.dc.receive.receiveAction">
+            <result name="error">/rfapps/receive/getDamaged.jsp</result>
+            <result name="success">/rfapps/receive/verify.jsp</result>
+            <result name="weigh">/rfapps/receive/getWeight.jsp</result>
+            <result name="lotControlled">/rfapps/receive/lots.jsp</result>
+
+
+        </action>
+        <action name="getWeight" method="getSkuWeight" class="com.owd.dc.receive.receiveAction">
+            <result name="error">/rfapps/receive/getWeight.jsp</result>
+            <result name="success">/rfapps/receive/verify.jsp</result>
+            <result name="lotControlled">/rfapps/receive/lots.jsp</result>
+        </action>
+        <action name="getLots" method="getLots" class="com.owd.dc.receive.receiveAction">
+            <result name="error">/rfapps/receive/lots.jsp</result>
+            <result name="success">/rfapps/receive/verify.jsp</result>
+        </action>
+         <action name="verify" method="verify" class="com.owd.dc.receive.receiveAction">
+             <interceptor-ref name="token"/>
+             <interceptor-ref name="basicStack"/>
+             <result name="invalid.token">/rfapps/receive/reset.action</result>
+             <result name="error">/rfapps/receive/verify.jsp</result>
+             <result name="serial">/rfapps/receive/serial.jsp</result>
+             <result name="printing">/rfapps/receive/printing.jsp</result>
+             <result name="success" type="redirectAction">
+                 <param name="actionName">loadAsn</param>
+                                  <param name="asnId">${asnId}</param>
+                 <param name="employeeId">${employeeId}</param>
+                 <param name="employeeName">${employeeName}</param>
+
+             </result>
+         </action>
+
+        <action name="printSmallLabel" method="printSmallLabel" class="com.owd.dc.receive.receiveAction">
+             <result type="stream">
+                 <param name="contentType">text/html</param>
+                 <param name="inputName">inputStream</param>
+             </result>
+        </action>
+
+        <action name="printLargeLabel" method="printLargeLabel" class="com.owd.dc.receive.receiveAction">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="printTags" method="printTags" class="com.owd.dc.receive.receiveAction">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="doneWithLabels" method="doneWithLabels" class="com.owd.dc.receive.receiveAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadAsn</param>
+                <param name="asnId">${asnId}</param>
+                <param name="employeeId">${employeeId}</param>
+                <param name="employeeName">${employeeName}</param>
+
+            </result>
+        </action>
+        <action name="complete" method="complete" class="com.owd.dc.receive.receiveAction">
+            <result name="success">/rfapps/receive/complete.jsp</result>
+        </action>
+        <action name="saveFinished" method="saveFinished" class="com.owd.dc.receive.receiveAction">
+            <result name="error">/rfapps/receive/complete.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">start</param>
+            </result>
+        </action>
+    </package>
+
+    </struts>

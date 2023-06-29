@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE struts PUBLIC
+                "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+                "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+        <struts>
+
+
+    <package name="labelMaker" namespace="/labelMaker" extends="struts-default">
+           <result-types>
+           <result-type name="customJSON" class="com.owd.results.JSONResult"/>
+       </result-types>
+        <action name="start" class="com.owd.dc.warehouse.labelMaker.labelMakerAction">
+                     <result name="success">/WEB-INF/classes/com/owd/dc/warehouse/labelMaker/printIndex.jsp</result>
+        </action>
+        <action name="locTab" method="locationTab" class="com.owd.dc.warehouse.labelMaker.labelMakerAction">
+                     <result name="success">/WEB-INF/classes/com/owd/dc/warehouse/labelMaker/locationTab.jsp</result>
+        </action>
+        <action name="printLocation" method="printLocation" class="com.owd.dc.warehouse.labelMaker.labelMakerAction">
+            <result type="customJSON"/>
+        </action>
+        <action name="printDirectLocation" method="printDirectChildrenLocations" class="com.owd.dc.warehouse.labelMaker.labelMakerAction">
+            <result type="customJSON"/>
+        </action>
+        <action name="printRange" method="printRange" class="com.owd.dc.warehouse.labelMaker.labelMakerAction">
+            <result type="customJSON"/>
+        </action>
+        <action name="printTree" method="printTree" class="com.owd.dc.warehouse.labelMaker.labelMakerAction">
+            <result type="customJSON"/>
+        </action>
+         <action name="getInventory" method="getInventory" class="com.owd.dc.warehouse.labelMaker.labelMakerAction">
+            <result type="customJSON"/>
+        </action>
+         <action name="printInventory" method="printInventory" class="com.owd.dc.warehouse.labelMaker.labelMakerAction">
+            <result type="customJSON"/>
+        </action>
+      </package>
+  
+
+
+    </struts>

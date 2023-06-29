@@ -1,0 +1,154 @@
+
+
+//apply plugin: 'java'
+org.gradle.util.SingleMessageLogger.whileDisabled {
+    apply plugin: 'groovy'
+}
+apply plugin: 'war'
+
+
+
+
+compileJava.doFirst {
+    println "source compatibility extranet: " + sourceCompatibility
+    println "target compatibility extranet: " + targetCompatibility
+}
+
+
+compileGroovy.doFirst {
+    println "source compatibility extranet: " + sourceCompatibility
+    println "target compatibility extranet: " + targetCompatibility
+}
+
+
+
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
+}
+
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
+}
+
+repositories {
+   // jcenter()
+    mavenCentral()
+    ivy {
+        artifactPattern "http://internal.owd.com/ivyrepo/[organisation]/[module]/[artifact].[ext]"
+    }
+
+}
+
+
+dependencies {
+
+    compile project(':owd_core')
+    compile 'struts:struts:1.2.9'
+    compile 'struts:struts-el:1.2.9'
+    compile ('displaytag:displaytag:1.2')   {
+        exclude  group:'org.slf4j', module:'jcl104-over-slf4j'
+        exclude  group:'org.slf4j', module:'slf4j-log4j12'
+
+    }
+    compile 'org.jfree:jfreechart:1.0.19'
+
+
+    providedCompile  'javax.servlet.jsp:jsp-api:2.1+'
+    providedCompile 'javax.servlet:servlet-api:2.5'
+    compile 'javax.servlet:jstl:1.2'
+
+    compile 'owd:ditchnettabs:'
+}
+
+sourceSets {
+    main {
+        groovy {
+            srcDirs = ['src']
+        }
+    }
+}
+/*    configurations.compile.each {
+        println "compile: $it"
+    }*/
+
+    war {
+        archiveName 'webapps.war'
+        from 'web' // adds a file-set to the root of the archive
+       // webInf { from 'src/additionalWebInf' } // adds a file-set to the WEB-INF dir.
+       // classpath fileTree('additionalLibs') // adds a file-set to the WEB-INF/lib dir.
+       // classpath configurations.moreLibs // adds a configuration to the WEB-INF/lib dir.
+       // webXml = file('src/someWeb.xml') // copies a file to WEB-INF/web.xml
+      // archiveName 'webapps.war'
+    }
+
+// We define a new configuration with the name 'sshAntTask'.
+// This configuration is used to define our dependencies.
+configurations {
+    sshAntTask
+}
+
+// Assign dependencies to the sshAntTask configuration.
+dependencies {
+    sshAntTask 'ant:ant-jsch:1.6.5', 'com.jcraft:jsch:0.1.51'
+}
+
+
+task deployToStagingServer << {
+    description = 'Update files on remote server.'
+
+    // Get passphrase from user input.
+    //def console = System.console()
+    //def passphrase = console.readPassword('%s: ', 'Please enter the passphrase for the keyfile')
+
+    // Redefine scp Ant task, with the classpath property set to our newly defined
+    // sshAntTask configuration classpath.
+    ant.taskdef(name: 'scpme', classname: 'org.apache.tools.ant.taskdefs.optional.ssh.Scp',
+            classpath: configurations.sshAntTask.asPath)
+
+    // Invoke the scp Ant task. (Use gradle -i update to see the output of the Ant task.)
+    ant.scpme(todir: 'owd@service2.owd.com:/home/owd/tomcattest/webapps/testapps.war',
+            keyfile: '${user.home}/.ssh/id_dsa',
+            //   passphrase: passphrase as String, // Use phassphrase entered by the user.
+            passphrase: '',
+            verbose: true,
+            file: war.archivePath)
+
+
+}
+
+task deployToProduction << {
+    description = 'Update files on remote server.'
+
+    // Get passphrase from user input.
+    //def console = System.console()
+    //def passphrase = console.readPassword('%s: ', 'Please enter the passphrase for the keyfile')
+
+    // Redefine scp Ant task, with the classpath property set to our newly defined
+    // sshAntTask configuration classpath.
+    ant.taskdef(name: 'scpme', classname: 'org.apache.tools.ant.taskdefs.optional.ssh.Scp',
+            classpath: configurations.sshAntTask.asPath)
+
+    // Invoke the scp Ant task. (Use gradle -i update to see the output of the Ant task.)
+    ant.scpme(todir: 'owd@service.owd.com:/home/owd/webapps.war',
+            keyfile: '${user.home}/.ssh/id_dsa',
+            //   passphrase: passphrase as String, // Use phassphrase entered by the user.
+            passphrase: '',
+            verbose: true,
+            file: war.archivePath)
+
+
+}
+
+task copyJSPToTestServer(type: Copy){
+    from 'web'
+    into 'H:\\tomcat\\tomcatold\\webapps\\webapps'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+    distributionPath = '../owd_core/wrapper/dists'
+    jarFile = '../owd_core/wrapper/gradle-wrapper.jar'
+}

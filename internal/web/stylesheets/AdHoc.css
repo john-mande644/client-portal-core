@@ -1,0 +1,347 @@
+/* Default CSS Stylesheet for the Ad Hoc Report Builder */
+/* Specify font sizes in pixels for better cross-browser compatibility */
+
+/* Sitewide styles for menus and navigation. */
+#menu {
+    background: #4A719C;
+    padding-bottom: 2px;
+}
+
+#menu a {
+    color: White;
+    margin: 0px 5px;
+    font: bold 12px Verdana, Arial, Helvetica, sans-serif;
+}
+
+#menu .menubutton {
+    border: 0;
+    vertical-align: middle; /* Centers icons on inline text. */
+}
+
+#menu_DBSelector {
+    color: White;
+    margin: 0 0 0 28px;
+    white-space: nowrap;
+}
+
+#submenu {
+    background-color: #E7EFF7;
+    padding: 5px 5px 5px 18px;
+
+}
+
+#submenu  ul {
+    margin: 0;
+    padding: 0;
+}
+
+#submenu li {
+    display: inline;
+}
+
+#submenu li a {
+    color: #214973;
+    font: normal 11px Verdana, Arial, Helvetica, sans-serif;
+}
+
+#submenu li a.current {
+    font-weight: bold;
+}
+
+#functions {
+    float: right;
+    margin: 5px 5px;
+    color: White;
+    font: normal 10px Verdana, Arial, Helvetica, sans-serif;
+}
+
+#functions a {
+    color: White;
+    font: normal 10px Verdana, Arial, Helvetica, sans-serif;
+}
+
+.separator {
+    padding: 0px 10px;
+}
+
+/* General page styles. */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    font: normal 11px Verdana, Arial, Helvetica, sans-serif;
+}
+
+form {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+input {
+    font: 10px Verdana, Arial, Helvetica, sans-serif;
+}
+
+textarea {
+    font: 10px Verdana, Arial, Helvetica, sans-serif;
+}
+
+select {
+    font: 10px Verdana, Arial, Helvetica, sans-serif;
+}
+
+option {
+    font: 10px Verdana, Arial, Helvetica, sans-serif;
+}
+
+td {
+    font-size: 10px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* Styles for the report list. */
+
+#ReportGrid .ReportLink {
+    font: bold 11px Verdana, Arial, Helvetica, sans-serif;
+}
+
+.legend {
+    background-color: #E7EFF7;
+    margin: 14px 0px;
+    padding: 4px;
+    border: solid 1px #D7DFE7;
+    color: #333333;
+}
+
+.legend dl {
+    display: inline;
+    font-weight: normal;
+}
+
+.legend dt {
+    display: inline;
+    margin-left: 20px;
+    font: normal 10px Verdana, Arial, Helvetica, sans-serif;
+}
+
+.legend dd {
+    display: inline;
+    margin-left: 5px;
+    font: normal 10px Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* Styles for the MSL user control. */
+#available, #assigned, #DBavailable, #DBassigned, #Ravailable, #Rassigned {
+/* Min-width rule for CSS compliant browsers */
+    min-width: 250px; /* IE Dynamic Expression workaround to set the width */
+    width: expression( this . clientWidth < = 250 ? "250px": "" );
+}
+
+.mslbutton {
+    background-color: White;
+    display: block;
+    border-style: none;
+    margin: 25px 3px;
+}
+
+/* Styles for the MS GridControl. */
+.grid {
+    background-color: White;
+    margin: 14px 0px;
+    border: 2px solid #1D1F5C;
+}
+
+.grid td {
+
+    padding: 4px;
+    vertical-align: middle;
+}
+
+.gridheader {
+    font-weight: bold;
+    background-color: #E7EFF7;
+    text-align: center;
+}
+
+.gridfooter {
+    background-color: #E7EFF7;
+}
+
+/* General page styles */
+.help {
+    background: #DDDDDD url( _images/iconHelpText.gif ) no-repeat;
+    font: normal 11px Verdana, Arial, Helvetica, sans-serif;
+    border: solid 1px #CCCCCC;
+    color: Black;
+    margin-top: 14px;
+    padding: 2px 0px 2px 20px;
+    background-position: top left;
+}
+
+.info {
+    background: #E7EFF7 url( _images/iconInfo.gif ) no-repeat;
+    border: solid 1px #D7DFE7;
+    font: normal 11px Verdana, Arial, Helvetica, sans-serif;
+    margin-top: 14px;
+    padding: 2px 0px 2px 20px;
+    background-position: top left;
+}
+
+.error {
+    background: #FFDDCC url( _images/iconError.gif ) no-repeat;
+    border: solid 1px #EECDBC;
+    font: normal 11px Verdana, Arial, Helvetica, sans-serif;
+    margin-top: 14px;
+    padding: 2px 0px 2px 20px;
+    background-position: top left;
+}
+
+.warning {
+    background: #FFEEBB url( _images/iconWarning.gif ) no-repeat;
+    border: solid 1px #FFDEAB;
+    font: normal 11px Verdana, Arial, Helvetica, sans-serif;
+    color: Black;
+    margin-top: 14px;
+    padding: 2px 0px 2px 20px;
+    background-position: top left;
+}
+
+.spacer {
+    cursor: default;
+}
+
+.command {
+    color: #000099;
+    cursor: hand; /* Internet Exporer only. */
+    cursor: pointer; /* All other browsers. */
+    border: solid 1px #4A719C;
+    background-color: #F7F7F7;
+}
+
+/* Mozilla, Opera styles to preserve disabled look for command buttons. */
+.command[disabled='true'] {
+    color: #999;
+}
+
+.command[disabled='false'] {
+    color: #009;
+}
+
+.command[disabled] {
+    padding: 0px 6px; /* Firefox 0.8 bug; changes the size. */
+    color: #999;
+}
+
+.detailpanel {
+    margin: 14px 0px;
+    border: dashed 2px #1D1F5C;
+    padding: 2px;
+    background: #ddd;
+}
+
+/* Form submit button styles. (Save, Delete, Cancel, etc.) */
+#actions {
+    margin-top: 14px;
+}
+
+#actions input {
+    background-color: #D6DFEF;
+    color: #214973;
+    border-top: 1px solid #BDC7CE;
+    border-left: 1px solid #BDC7CE;
+    border-bottom: 1px solid #4A719C;
+    border-right: 1px solid #4A719C;
+    margin: 0 10px 0 0;
+    font: normal 10px / 18px Verdana, Arial, Helvetica, sans-serif;
+}
+
+#divActions input {
+    background-color: #D6DFEF;
+    color: #214973;
+    border-top: 1px solid #BDC7CE;
+    border-left: 1px solid #BDC7CE;
+    border-bottom: 1px solid #4A719C;
+    border-right: 1px solid #4A719C;
+    margin: 0 10px 0 0;
+    font: normal 10px / 18px Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* Navigation element styles used in the Report Wizard. */
+#myNavBar_navlinks {
+    margin: 10px 0;
+}
+
+#myNavBar_navlinks ol, #myNavBar_navlinks ul {
+    margin: 0px 0px 0px -2px;
+    padding: 0;
+}
+
+#myNavBar_navlinks li {
+    display: inline;
+}
+
+#myNavBar_navlinks li a {
+    background: #fff;
+    border-top: 1px solid #cad8e8;
+    border-left: 1px solid #cad8e8;
+    border-bottom: 1px solid #214973;
+    border-right: 1px solid #214973;
+    padding: 2px 5px;
+    margin: 0px 2px;
+    color: #000;
+    text-decoration: none;
+    font: normal 10px / 18px Verdana, Arial, Helvetica, sans-serif;
+    white-space: nowrap;
+}
+
+/* Doesn't work due to the Response.Redirect. Use currentpage class instead. */
+    /*
+    #myNavBar_navlinks a:active
+    {
+        background: #eef;
+    }
+    */
+
+#myNavBar_navlinks .currentpage {
+    background-color: #D6DFEF;
+    color: #214973;
+    border-top: 1px solid #BDC7CE;
+    border-left: 1px solid #BDC7CE;
+    border-bottom: 1px solid #4A719C;
+    border-right: 1px solid #4A719C;
+    font-weight: bold;
+}
+
+#myNavButtons_navbuttons {
+    margin-top: 14px;
+}
+
+#myNavButtons_navbuttons a {
+    background-color: #D6DFEF;
+    color: #214973;
+    border-top: 1px solid #BDC7CE;
+    border-left: 1px solid #BDC7CE;
+    border-bottom: 1px solid #4A719C;
+    border-right: 1px solid #4A719C;
+    height: 18px;
+    padding: 2px 5px;
+    margin: 0 10px 0 0;
+    text-decoration: none;
+    text-align: center;
+    font: bold 10px / 18px Verdana, Arial, Helvetica, sans-serif;
+    white-space: nowrap;
+}
+
+#myNavButtons_navbuttons a#myNavButtons_Back {
+    background-image: url( _images/arrowBack.gif );
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding: 2px 5px 2px 15px;
+}
+
+#myNavButtons_navbuttons a#myNavButtons_Next {
+    background-image: url( _images/arrowNext.gif );
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding: 2px 15px 2px 5px;
+}
+

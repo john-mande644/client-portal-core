@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<OWD_AddMultipleProducts>
+			<version>1.0</version>
+		</OWD_AddMultipleProducts>
+	</modules>
+	<frontend>
+		<routers>
+			<addmultipleproducts>
+				<use>standard</use>
+				<args>
+					<module>OWD_AddMultipleProducts</module>
+					<frontName>multiadd</frontName>
+				</args>
+			</addmultipleproducts>
+		</routers>
+	</frontend>
+</config>

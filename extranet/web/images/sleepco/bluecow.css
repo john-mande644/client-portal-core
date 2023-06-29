@@ -1,0 +1,77 @@
+body {
+   font-family: Arial, Helvetica, Sans-Serif;
+   font-size: 13px;}
+
+td {
+   color: #000000;
+   font-family: Arial, Helvetica, Sans-Serif;
+   font-size: 13px;}
+
+	
+a:link {
+	color: #0054A6;
+	text-decoration: underline;}
+
+a:visited {
+	color: #0054A6;
+	text-decoration: underline;}
+
+a:active {
+	color: #0054A6;
+	text-decoration: none;}
+
+a:hover {
+	color: #0054A6;
+	text-decoration: none;}
+
+.footer  {
+	COLOR : #0054A6;
+	FONT : normal 10px Arial, Helvetica, Sans-Serif;
+}
+
+.n { 
+     width: 88px;
+     height: 139px;
+     margin: 0;
+     padding: 0;
+     }
+     
+.nav { width: 88px;
+       height: 139px;
+       margin: 0;
+       padding: 0;
+       text-align: center;
+       }
+       
+.nav ul { margin: 0;
+          padding: 0;
+          }
+          
+.nav ul li { width: 88px;
+             height: 139px;
+             margin: 0;
+             padding: 0;
+             list-style: none;
+             }
+
+.nav ul li a { display: block;
+               width: 88px;
+               height: 139px;
+               margin: 0;
+               padding: 0;
+               list-style: none;
+               }
+
+#ben { background: url(/images/sleepco/ben.jpg) left top no-repeat; }
+#purchase { background: url(/images/sleepco/purchase.jpg) left top no-repeat; }
+#survey { background: url(/images/sleepco/survey.jpg) left top no-repeat; }
+#faqs { background: url(/images/sleepco/faqs.jpg) left top no-repeat; }
+#users { background: url(/images/sleepco/users.jpg) left top no-repeat; }
+#about { background: url(/images/sleepco/about.jpg) left top no-repeat; }
+
+
+span { position: absolute;
+            display: block;
+            top: -10000px;
+            right: -10000px;
+            }

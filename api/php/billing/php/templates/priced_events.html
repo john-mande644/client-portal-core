@@ -1,0 +1,53 @@
+<!-- BEGIN: main -->
+<div id="section_title">{SECTION_TITLE}</div>
+
+<div class="section_tabs">
+    <a href="{CLIENT_CONTRACTS_URL}">Contracts</a> |
+    <a href="{CLIENT_INVOICES_URL}">Invoices</a> |
+    <a href="{CLIENT_BILLABLE_EVENTS_URL}">Billable Events</a> |
+    <a href="{PRICED_EVENTS_URL}">Priced Events</a>
+</div>
+
+<div id="frame">
+    <div id="sidebar">
+        <input type="button" value="Add Priced Event" onclick="location.href='{ADD_PRICED_EVENT_URL}'">
+    </div>
+
+    <div id="content">
+        <div id="page_title">{PAGE_TITLE}</div>
+
+        <table class="table_list" width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="table_list_trash_header">&nbsp;</td>
+            <td class="table_list_header" nowrap>Name</td>
+            <td class="table_list_header" nowrap>Event Date</td>
+            <td class="table_list_header" nowrap>Units</td>
+            <td class="table_list_header" nowrap>Unit Price</td>
+            <td class="table_list_header" nowrap>GL Account</td>
+            <td class="table_list_header" nowrap>Department</td>
+            <td class="table_list_header" nowrap>Location</td>
+        </tr>
+
+        <!-- BEGIN: pricedEvents -->
+        <tr>
+            <td class="table_list_trash_field">
+                <a href="{DELETE_PRICED_EVENT_URL}" onclick="return confirmDelete('priced events')"><img src="images/trash.gif" border="0" width="10" height="11"><a>
+            </td>
+            <td class="table_list_text_field"><a href="{PRICED_EVENT_URL}">{NAME}</a></td>
+            <td class="table_list_text_field">{EVENT_DATE}</td>
+            <td class="table_list_text_field">{UNITS}</td>
+            <td class="table_list_text_field">{UNIT_PRICE}</td>
+            <td class="table_list_text_field">{GL_ACCOUNT_CODE}</td>
+            <td class="table_list_text_field">{DEPARTMENT_CODE}</td>
+            <td class="table_list_text_field">{LOCATION_CODE}</td>
+        </tr>
+        <!-- END: pricedEvents -->
+
+        <!-- BEGIN: noPricedEvents -->
+        <tr>
+            <td colspan="6" class="list_table_row"><i>No priced events.</i></td>
+        </tr>
+        <!-- END: noPricedEvents -->
+    </div>
+</div>
+<!-- END: main -->

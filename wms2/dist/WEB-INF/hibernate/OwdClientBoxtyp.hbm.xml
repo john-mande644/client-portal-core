@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OwdClientBoxtyp"
+        table="owd_client_boxtypes"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="assigned"/>
+        </id>
+
+        <property
+            name="clientFkey"
+            type="java.lang.Integer"
+            column="client_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="boxtypeFkey"
+            type="java.lang.Integer"
+            column="boxtype_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="billedAmount"
+            type="java.math.BigDecimal"
+            column="billed_amount"
+            not-null="true"
+            length="19"
+            />
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

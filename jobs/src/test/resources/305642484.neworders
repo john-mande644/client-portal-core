@@ -1,0 +1,611 @@
+<?xml version="1.0"?>
+<OrderMessageBatch batchNumber="305642484">
+<partnerID name="Gildan USA Inc." roleType="vendor">gildanusa</partnerID>
+<hubOrder transactionID="118957830">
+  <participatingParty name="JC Penney Company, Inc." roleType="merchant" participationCode="From:">jcpenney</participatingParty>
+  <sendersIdForReceiver>033274</sendersIdForReceiver>
+  <orderId>118957830</orderId>
+  <lineCount>1</lineCount>
+  <poNumber>116468003_111</poNumber>
+  <orderDate>20151014</orderDate>
+  <shipTo personPlaceID="PP3004371158" />
+  <customer personPlaceID="PP3004371160" />
+  <shipFrom vendorShipID="VS100943002_118957830" />
+  <invoiceTo personPlaceID="PP3004371159" />
+  <shippingCode>UNSP_CG</shippingCode>
+  <poHdrData>
+    
+	<merchDept>111</merchDept>
+    
+	<poTypeCode>00</poTypeCode>
+    
+	<vendorMessage>GOODS SHIPPED PER EDI ORDERS SUBJECT TO JCP                 WHOLESALE CONTRACT/LISTINGS TERMS AND CONDITIONS</vendorMessage>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>118971869</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>1</merchantLineNumber>
+    <qtyOrdered>3</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>123467899999</UPC>
+    <description>Sample item description for line 1</description>
+    <merchantSKU>220880211</merchantSKU>
+    <unitCost>500.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData>
+      <prodColor>Blue</prodColor>
+      <prodSize>Large</prodSize>
+      <personalizationData>
+        <nameValuePair name="height">1</nameValuePair>
+        <nameValuePair name="heightUnit">IN</nameValuePair>
+        <nameValuePair name="width">1</nameValuePair>
+        <nameValuePair name="widthUnit">IN</nameValuePair>
+        <nameValuePair name="lengthDepth">1</nameValuePair>
+        <nameValuePair name="lengthDepthUnit">IN</nameValuePair>
+        <nameValuePair name="JCP_PID04">WC03MNT I</nameValuePair>
+      </personalizationData>
+    </poLineData>
+  </lineItem>
+  <personPlace personPlaceID="PP3004371160">
+    <name1>John Doe</name1>
+    <email>JCPCustomer@sample.com</email>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371158">
+    <name1>John Doe</name1>
+    <address1>1 Fuller Rd</address1>
+    <city>Albany</city>
+    <state>NY</state>
+    <postalCode>12203</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371159">
+    <name1>JCPenney AP Contact</name1>
+    <dayPhone>555-555-5555</dayPhone>
+    <partnerPersonPlaceId>12345</partnerPersonPlaceId>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS100943002_118957830">
+    <partnerLocationId>01</partnerLocationId>
+  </vendorShipInfo>
+</hubOrder><hubOrder transactionID="118957832">
+  <participatingParty name="JC Penney Company, Inc." roleType="merchant" participationCode="From:">jcpenney</participatingParty>
+  <sendersIdForReceiver>033274</sendersIdForReceiver>
+  <orderId>118957832</orderId>
+  <lineCount>2</lineCount>
+  <poNumber>116468007_333</poNumber>
+  <orderDate>20151014</orderDate>
+  <shipTo personPlaceID="PP3004371164" />
+  <customer personPlaceID="PP3004371166" />
+  <shipFrom vendorShipID="VS100943002_118957832" />
+  <invoiceTo personPlaceID="PP3004371165" />
+  <shippingCode>UNSP_CG</shippingCode>
+  <poHdrData>
+    
+	<merchDept>333</merchDept>
+    
+	<poTypeCode>00</poTypeCode>
+    
+	<vendorMessage>GOODS SHIPPED PER EDI ORDERS SUBJECT TO JCP                 WHOLESALE CONTRACT/LISTINGS TERMS AND CONDITIONS</vendorMessage>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>118971871</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>3</merchantLineNumber>
+    <qtyOrdered>1</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 1</description>
+    <merchantSKU>220880231</merchantSKU>
+    <unitCost>75.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <lineItem>
+    <lineItemId>118971872</lineItemId>
+    <orderLineNumber>2</orderLineNumber>
+    <merchantLineNumber>5</merchantLineNumber>
+    <qtyOrdered>1</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 2</description>
+    <merchantSKU>220880232</merchantSKU>
+    <unitCost>3.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <personPlace personPlaceID="PP3004371165">
+    <name1>JCPenney AP Contact</name1>
+    <dayPhone>555-555-5555</dayPhone>
+    <partnerPersonPlaceId>12345</partnerPersonPlaceId>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371166">
+    <name1>John Doe</name1>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371164">
+    <name1>JCPENNEY STONEBRIAR MALL</name1>
+    <address1>2607 Preston Rd</address1>
+    <address2>Suite 99</address2>
+    <address3>3rd Floor</address3>
+    <city>Frisco</city>
+    <state>TX</state>
+    <postalCode>75034</postalCode>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS100943002_118957832">
+    <partnerLocationId>01</partnerLocationId>
+  </vendorShipInfo>
+</hubOrder><hubOrder transactionID="118957833">
+  <participatingParty name="JC Penney Company, Inc." roleType="merchant" participationCode="From:">jcpenney</participatingParty>
+  <sendersIdForReceiver>033274</sendersIdForReceiver>
+  <orderId>118957833</orderId>
+  <lineCount>2</lineCount>
+  <poNumber>116468009_444</poNumber>
+  <orderDate>20151014</orderDate>
+  <shipTo personPlaceID="PP3004371167" />
+  <customer personPlaceID="PP3004371169" />
+  <shipFrom vendorShipID="VS100943002_118957833" />
+  <invoiceTo personPlaceID="PP3004371168" />
+  <shippingCode>UNSP_CG</shippingCode>
+  <poHdrData>
+    
+	<merchDept>444</merchDept>
+    
+	<poTypeCode>00</poTypeCode>
+    
+	<vendorMessage>GOODS SHIPPED PER EDI ORDERS SUBJECT TO JCP                 WHOLESALE CONTRACT/LISTINGS TERMS AND CONDITIONS</vendorMessage>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>118971873</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>1</merchantLineNumber>
+    <qtyOrdered>3</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <UPC>123467899990</UPC>
+    <description>Sample item description for line 1</description>
+    <merchantSKU>220880241</merchantSKU>
+    <vendorSKU>ABC-126</vendorSKU>
+    <unitCost>100.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <lineItem>
+    <lineItemId>118971874</lineItemId>
+    <orderLineNumber>2</orderLineNumber>
+    <merchantLineNumber>2</merchantLineNumber>
+    <qtyOrdered>1</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 2</description>
+    <merchantSKU>220880242</merchantSKU>
+    <vendorSKU>ABC-127</vendorSKU>
+    <unitCost>50.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <personPlace personPlaceID="PP3004371167">
+    <name1>Joe Sample</name1>
+    <address1>Care of: Jane Sample</address1>
+    <address2>4 Jamboree Rd</address2>
+    <city>Newport Beach</city>
+    <state>CA</state>
+    <postalCode>92660</postalCode>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371169">
+    <name1>Joe Sample</name1>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371168">
+    <name1>JCPenney AP Contact</name1>
+    <dayPhone>555-555-5555</dayPhone>
+    <partnerPersonPlaceId>12345</partnerPersonPlaceId>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS100943002_118957833">
+    <partnerLocationId>01</partnerLocationId>
+  </vendorShipInfo>
+</hubOrder><hubOrder transactionID="118957834">
+  <participatingParty name="JC Penney Company, Inc." roleType="merchant" participationCode="From:">jcpenney</participatingParty>
+  <sendersIdForReceiver>033274</sendersIdForReceiver>
+  <orderId>118957834</orderId>
+  <lineCount>2</lineCount>
+  <poNumber>116468011_555</poNumber>
+  <orderDate>20151014</orderDate>
+  <shipTo personPlaceID="PP3004371170" />
+  <customer personPlaceID="PP3004371172" />
+  <shipFrom vendorShipID="VS100943002_118957834" />
+  <invoiceTo personPlaceID="PP3004371171" />
+  <shippingCode>UNSP_CG</shippingCode>
+  <poHdrData>
+    
+	<merchDept>555</merchDept>
+    
+	<poTypeCode>00</poTypeCode>
+    
+	<vendorMessage>GOODS SHIPPED PER EDI ORDERS SUBJECT TO JCP                 WHOLESALE CONTRACT/LISTINGS TERMS AND CONDITIONS</vendorMessage>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>118971875</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>1</merchantLineNumber>
+    <qtyOrdered>5</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 1</description>
+    <merchantSKU>220880251</merchantSKU>
+    <vendorSKU>ABC-128</vendorSKU>
+    <unitCost>75.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <lineItem>
+    <lineItemId>118971876</lineItemId>
+    <orderLineNumber>2</orderLineNumber>
+    <merchantLineNumber>4</merchantLineNumber>
+    <qtyOrdered>2</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 2</description>
+    <merchantSKU>220880252</merchantSKU>
+    <vendorSKU>ABC-129</vendorSKU>
+    <unitCost>12.5000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <personPlace personPlaceID="PP3004371171">
+    <name1>JCPenney AP Contact</name1>
+    <dayPhone>555-555-5555</dayPhone>
+    <partnerPersonPlaceId>12345</partnerPersonPlaceId>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371172">
+    <name1>Mary Doe</name1>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371170">
+    <name1>Mary Doe</name1>
+    <address1>5 Busch Blvd</address1>
+    <city>Tampa</city>
+    <state>FL</state>
+    <postalCode>33612</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS100943002_118957834">
+    <partnerLocationId>01</partnerLocationId>
+  </vendorShipInfo>
+</hubOrder><hubOrder transactionID="118957835">
+  <participatingParty name="JC Penney Company, Inc." roleType="merchant" participationCode="From:">jcpenney</participatingParty>
+  <sendersIdForReceiver>033274</sendersIdForReceiver>
+  <orderId>118957835</orderId>
+  <lineCount>10</lineCount>
+  <poNumber>116468013_999</poNumber>
+  <orderDate>20151014</orderDate>
+  <shipTo personPlaceID="PP3004371173" />
+  <customer personPlaceID="PP3004371175" />
+  <shipFrom vendorShipID="VS100943002_118957835" />
+  <invoiceTo personPlaceID="PP3004371174" />
+  <shippingCode>UNSP_CG</shippingCode>
+  <poHdrData>
+    
+	<merchDept>999</merchDept>
+    
+	<poTypeCode>00</poTypeCode>
+    
+	<vendorMessage>GOODS SHIPPED PER EDI ORDERS SUBJECT TO JCP                 WHOLESALE CONTRACT/LISTINGS TERMS AND CONDITIONS</vendorMessage>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>118971877</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>1</merchantLineNumber>
+    <qtyOrdered>10</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 1</description>
+    <merchantSKU>220880291</merchantSKU>
+    <vendorSKU>ABC-133</vendorSKU>
+    <unitCost>25.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <lineItem>
+    <lineItemId>118971878</lineItemId>
+    <orderLineNumber>2</orderLineNumber>
+    <merchantLineNumber>2</merchantLineNumber>
+    <qtyOrdered>9</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 2</description>
+    <merchantSKU>220880292</merchantSKU>
+    <vendorSKU>ABC-134</vendorSKU>
+    <unitCost>30.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <lineItem>
+    <lineItemId>118971879</lineItemId>
+    <orderLineNumber>3</orderLineNumber>
+    <merchantLineNumber>3</merchantLineNumber>
+    <qtyOrdered>8</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 3</description>
+    <merchantSKU>220880293</merchantSKU>
+    <vendorSKU>ABC-135</vendorSKU>
+    <unitCost>35.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <lineItem>
+    <lineItemId>118971880</lineItemId>
+    <orderLineNumber>4</orderLineNumber>
+    <merchantLineNumber>4</merchantLineNumber>
+    <qtyOrdered>7</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 4</description>
+    <merchantSKU>220880294</merchantSKU>
+    <vendorSKU>ABC-136</vendorSKU>
+    <unitCost>40.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <lineItem>
+    <lineItemId>118971881</lineItemId>
+    <orderLineNumber>5</orderLineNumber>
+    <merchantLineNumber>5</merchantLineNumber>
+    <qtyOrdered>6</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 5</description>
+    <merchantSKU>220880295</merchantSKU>
+    <vendorSKU>ABC-137</vendorSKU>
+    <unitCost>10.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <lineItem>
+    <lineItemId>118971882</lineItemId>
+    <orderLineNumber>6</orderLineNumber>
+    <merchantLineNumber>6</merchantLineNumber>
+    <qtyOrdered>5</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 6</description>
+    <merchantSKU>220880296</merchantSKU>
+    <vendorSKU>ABC-138</vendorSKU>
+    <unitCost>10.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <lineItem>
+    <lineItemId>118971883</lineItemId>
+    <orderLineNumber>7</orderLineNumber>
+    <merchantLineNumber>7</merchantLineNumber>
+    <qtyOrdered>4</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 7</description>
+    <merchantSKU>220880297</merchantSKU>
+    <vendorSKU>ABC-139</vendorSKU>
+    <unitCost>410.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <lineItem>
+    <lineItemId>118971884</lineItemId>
+    <orderLineNumber>8</orderLineNumber>
+    <merchantLineNumber>8</merchantLineNumber>
+    <qtyOrdered>3</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 8</description>
+    <merchantSKU>220880298</merchantSKU>
+    <vendorSKU>ABC-140</vendorSKU>
+    <unitCost>10.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <lineItem>
+    <lineItemId>118971885</lineItemId>
+    <orderLineNumber>9</orderLineNumber>
+    <merchantLineNumber>9</merchantLineNumber>
+    <qtyOrdered>2</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 9</description>
+    <merchantSKU>220880299</merchantSKU>
+    <vendorSKU>ABC-141</vendorSKU>
+    <unitCost>10.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <lineItem>
+    <lineItemId>118971886</lineItemId>
+    <orderLineNumber>10</orderLineNumber>
+    <merchantLineNumber>10</merchantLineNumber>
+    <qtyOrdered>1</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 10</description>
+    <merchantSKU>220880290</merchantSKU>
+    <vendorSKU>ABC-142</vendorSKU>
+    <unitCost>15.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <personPlace personPlaceID="PP3004371175">
+    <name1>Mike Jones</name1>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371174">
+    <name1>JCPenney AP Contact</name1>
+    <dayPhone>555-555-5555</dayPhone>
+    <partnerPersonPlaceId>12345</partnerPersonPlaceId>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371173">
+    <name1>Mike Jones</name1>
+    <address1>9 Wakara Way</address1>
+    <city>Salt Lake City</city>
+    <state>UT</state>
+    <postalCode>84108</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS100943002_118957835">
+    <partnerLocationId>01</partnerLocationId>
+  </vendorShipInfo>
+</hubOrder><hubOrder transactionID="118957836">
+  <participatingParty name="JC Penney Company, Inc." roleType="merchant" participationCode="From:">jcpenney</participatingParty>
+  <sendersIdForReceiver>033274</sendersIdForReceiver>
+  <orderId>118957836</orderId>
+  <lineCount>2</lineCount>
+  <poNumber>116468015_333</poNumber>
+  <orderDate>20151014</orderDate>
+  <shipTo personPlaceID="PP3004371176" />
+  <customer personPlaceID="PP3004371178" />
+  <shipFrom vendorShipID="VS100943002_118957836" />
+  <invoiceTo personPlaceID="PP3004371177" />
+  <shippingCode>UNSP_CG</shippingCode>
+  <poHdrData>
+    
+	<merchDept>555</merchDept>
+    
+	<poTypeCode>00</poTypeCode>
+    
+	<vendorMessage>GOODS SHIPPED PER EDI ORDERS SUBJECT TO JCP                 WHOLESALE CONTRACT/LISTINGS TERMS AND CONDITIONS</vendorMessage>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>118971887</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>2</merchantLineNumber>
+    <transferLocation personPlaceID="PP100000001_118971887" />
+    <qtyOrdered>1</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 1</description>
+    <merchantSKU>220880998</merchantSKU>
+    <vendorSKU>ABC-998</vendorSKU>
+    <unitCost>75.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <lineItem>
+    <lineItemId>118971888</lineItemId>
+    <orderLineNumber>2</orderLineNumber>
+    <merchantLineNumber>4</merchantLineNumber>
+    <transferLocation personPlaceID="PP100000001_118971888" />
+    <qtyOrdered>1</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 2</description>
+    <merchantSKU>220880999</merchantSKU>
+    <vendorSKU>ABC-999</vendorSKU>
+    <unitCost>12.5000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData />
+  </lineItem>
+  <personPlace personPlaceID="PP100000001_118971887">
+    <name1>Warehouse #99</name1>
+    <address1>123 Anywhere St</address1>
+    <city>Albany</city>
+    <state>NY</state>
+    <postalCode>12203</postalCode>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371177">
+    <name1>JCPenney AP Contact</name1>
+    <dayPhone>555-555-5555</dayPhone>
+    <partnerPersonPlaceId>12345</partnerPersonPlaceId>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371178">
+    <name1>John Doe</name1>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP100000001_118971888">
+    <name1>Warehouse #99</name1>
+    <address1>123 Anywhere St</address1>
+    <city>Albany</city>
+    <state>NY</state>
+    <postalCode>12203</postalCode>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371176">
+    <name1>Lisa Smith</name1>
+    <address1>ABC Company Name</address1>
+    <address2>15 West Loop South</address2>
+    <city>Houston</city>
+    <state>TX</state>
+    <postalCode>77027</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS100943002_118957836">
+    <partnerLocationId>01</partnerLocationId>
+  </vendorShipInfo>
+</hubOrder><hubOrder transactionID="118957831">
+  <participatingParty name="JC Penney Company, Inc." roleType="merchant" participationCode="From:">jcpenney</participatingParty>
+  <sendersIdForReceiver>033274</sendersIdForReceiver>
+  <orderId>118957831</orderId>
+  <lineCount>1</lineCount>
+  <poNumber>116468005_222</poNumber>
+  <orderDate>20151014</orderDate>
+  <shipTo personPlaceID="PP3004371161" />
+  <customer personPlaceID="PP3004371163" />
+  <shipFrom vendorShipID="VS100943002_118957831" />
+  <invoiceTo personPlaceID="PP3004371162" />
+  <shippingCode>UNSP_CG</shippingCode>
+  <poHdrData>
+    
+	<merchDept>222</merchDept>
+    
+	<poTypeCode>00</poTypeCode>
+    
+	<vendorMessage>GOODS SHIPPED PER EDI ORDERS SUBJECT TO JCP                 WHOLESALE CONTRACT/LISTINGS TERMS AND CONDITIONS</vendorMessage>
+    
+
+  </poHdrData>
+  <lineItem>
+    <lineItemId>118971870</lineItemId>
+    <orderLineNumber>1</orderLineNumber>
+    <merchantLineNumber>6</merchantLineNumber>
+    <qtyOrdered>2</qtyOrdered>
+    <unitOfMeasure>EA</unitOfMeasure>
+    <description>Sample item description for line 1</description>
+    <merchantSKU>220880221</merchantSKU>
+    <vendorSKU>ABC-123</vendorSKU>
+    <unitCost>9.0000</unitCost>
+    <shippingCode>UNSP_CG</shippingCode>
+    <expectedShipDate>20151016</expectedShipDate>
+    <poLineData>
+      <lineNote1>ABC#123</lineNote1>
+    </poLineData>
+  </lineItem>
+  <personPlace personPlaceID="PP3004371163">
+    <name1>Jane Smith</name1>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371162">
+    <name1>JCPenney AP Contact</name1>
+    <dayPhone>555-555-5555</dayPhone>
+    <partnerPersonPlaceId>12345</partnerPersonPlaceId>
+  </personPlace>
+  <personPlace personPlaceID="PP3004371161">
+    <name1>Jane Smith</name1>
+    <address1>2 Woodbridge Ave</address1>
+    <city>Edison</city>
+    <state>NJ</state>
+    <postalCode>08837</postalCode>
+    <dayPhone>555-555-5555</dayPhone>
+  </personPlace>
+  <vendorShipInfo vendorShipID="VS100943002_118957831">
+    <partnerLocationId>01</partnerLocationId>
+  </vendorShipInfo>
+</hubOrder>
+<messageCount>7</messageCount>
+</OrderMessageBatch>

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+    <!-- Form Bean Definitions -->
+    <form-beans>
+        <form-bean name="forwardForm" type="com.owd.intranet.forms.forwardForm"/>
+        <form-bean name="reprintForm" type="com.owd.intranet.forms.reprintForm"/>
+        <form-bean name="ajaxForm"    type="com.owd.intranet.forms.ajaxForm"/>
+        <form-bean name="returnForm" type="com.owd.intranet.forms.returnForm"/>
+        <form-bean name="adjustForm"    type="com.owd.intranet.forms.adjustForm"/>
+        <form-bean name="lotCountForm"    type="com.owd.intranet.forms.lotCountForm"/>
+        <form-bean name="viewAdjustForm" type="com.owd.intranet.forms.viewAdjustForm"/>
+    </form-beans>
+    <!-- Global forwards -->
+    <global-forwards>
+        <forward name="error" path="/error.jsp"/>
+
+    </global-forwards>
+
+    <!--  Action Mapping Definitions  -->
+    <action-mappings>
+        <action path="/"
+                type="com.owd.intranet.defaultAction"
+                name="forwardForm"
+                scope="request"                                                                                   
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/index.jsp"
+                    module="adjust"/>
+            <forward
+                    name="error"
+                    path="/error.jsp"/>
+
+        </action>
+        <action path="/ajax"
+                type="com.owd.intranet.apps.ajaxAction"
+                name="ajaxForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/apps/ajaxtest.jsp"/>
+            <forward
+                    name="error"
+                    path="/apps/ajaxtest.jsp"/>
+
+        </action>
+        <action path="/reprint"
+                  type="com.owd.intranet.apps.reprintAction"
+                  name="reprintForm"
+                  scope="request"
+                  parameter="submit"
+                  validate="true"
+                  input="/apps/reprint.jsp"
+                  >
+              <forward
+                      name="loaded"
+                      path="/apps/reprint.jsp"/>
+              <forward
+                      name="printed"
+                      path="/apps/reprint.jsp"/>
+              <forward
+                      name="error"
+                      path="/apps/reprint.jsp"/>
+
+          </action>
+          <action path="/saveReturn"
+                  type="com.owd.intranet.adjustments.returns.saveReturnAction"
+                  name="returnForm"
+                  scope="session"
+                  parameter="submit"
+                  validate="false"
+                  input="/adjustments/return/return.jsp"
+                  >
+
+              <forward
+                      name="success"
+                      path="/adjustments/return/returnSaved.jsp"/>
+              <forward
+                      name="error"
+                      path="/adjustments/return/return.jsp"/>
+
+          </action>
+          <action path="/startReturn"
+                  type="com.owd.intranet.adjustments.returns.beginReturnAction"
+                  name="returnForm"
+                  scope="session"
+                  validate="false"
+                  input="/adjustments/return/return.jsp"
+                  >
+          <forward
+                      name="success"
+                      path="/adjustments/return/return.jsp"/>
+          <forward
+                      name="error"
+                      path="/adjustments/return/return.jsp"/>
+
+          </action>
+          <action path="/addItem"
+                  type="com.owd.intranet.adjustments.returns.addItemAction"
+                  name="returnForm"
+                  scope="session"
+                  validate="true"
+                  input="/adjustments/return/return.jsp"
+                  >
+          <forward
+                      name="success"
+                      path="/adjustments/return/return.jsp"/>
+          <forward
+                      name="error"
+                      path="/adjustments/return/return.jsp"/>
+
+          </action>
+          <action path="/removeItem"
+                  type="com.owd.intranet.adjustments.returns.removeItemAction"
+                  name="returnForm"
+                  scope="session"
+                  validate="false"
+                  input="/adjustments/return/return.jsp"
+                  >
+          <forward
+                      name="success"
+                      path="/adjustments/return/return.jsp"/>
+          <forward
+                      name="error"
+                      path="/adjustments/return/return.jsp"/>
+
+          </action>
+
+          <action path="/saveAdjust"
+                  type="com.owd.intranet.adjustments.saveAdjustAction"
+                  name="adjustForm"
+                  scope="session"
+                  parameter="submit"
+                  validate="false"
+                  input="/adjustments/adjust/adjust.jsp"
+                  >
+
+              <forward
+                      name="success"
+                      path="/adjustments/adjust/adjustSaved.jsp"/>
+              <forward
+                      name="error"
+                      path="/adjustments/adjust/adjust.jsp"/>
+
+          </action>
+          <action path="/startAdjust"
+                  type="com.owd.intranet.adjustments.beginAdjustAction"
+                  name="adjustForm"
+                  scope="session"
+                  validate="false"
+                  input="/adjustments/adjust/adjust.jsp"
+                  >
+          <forward
+                      name="success"
+                      path="/adjustments/adjust/adjust.jsp"/>
+          <forward
+                      name="error"
+                      path="/adjustments/adjust/adjust.jsp"/>
+
+          </action>
+
+        <action path="/saveLotCount"
+                type="com.owd.intranet.adjustments.saveLotCountAction"
+                name="lotCountForm"
+                scope="session"
+                parameter="submit"
+                validate="false"
+                input="/adjustments/lotcount/adjust.jsp"
+        >
+
+            <forward
+                    name="success"
+                    path="/adjustments/lotcount/adjusted.jsp"/>
+            <forward
+                    name="error"
+                    path="/adjustments/lotcount/adjust.jsp"/>
+
+        </action>
+        <action path="/startLotCount"
+                type="com.owd.intranet.adjustments.beginLotCountAction"
+                name="lotCountForm"
+                scope="session"
+                validate="false"
+                input="/adjustments/lotcount/adjust.jsp"
+        >
+            <forward
+                    name="success"
+                    path="/adjustments/lotcount/adjust.jsp"/>
+            <forward
+                    name="error"
+                    path="/adjustments/lotcount/adjust.jsp"/>
+
+        </action>
+        <action path="/indexLotCount"
+                type="com.owd.intranet.adjustments.indexLotCountAction"
+                name="lotCountForm"
+                scope="session"
+                validate="false"
+                input="/adjustments/lotcount/adjust.jsp"
+        >
+            <forward
+                    name="success"
+                    path="/adjustments/lotcount/adjust.jsp"/>
+            <forward
+                    name="error"
+                    path="/adjustments/lotcount/adjust.jsp"/>
+
+        </action>
+        <action path="/addLotCountItem"
+                type="com.owd.intranet.adjustments.addLotCountItemAction"
+                name="lotCountForm"
+                scope="session"
+                validate="true"
+                input="/adjustments/lotcount/adjust.jsp"
+        >
+            <forward
+                    name="success"
+                    path="/adjustments/lotcount/adjust.jsp"/>
+            <forward
+                    name="error"
+                    path="/adjustments/lotcount/adjust.jsp"/>
+
+        </action>
+
+          <action path="/addAdjustItem"
+                  type="com.owd.intranet.adjustments.addAdjustItemAction"
+                  name="adjustForm"
+                  scope="session"
+                  validate="true"
+                  input="/adjustments/adjust/adjust.jsp"
+                  >
+          <forward
+                      name="success"
+                      path="/adjustments/adjust/adjust.jsp"/>
+          <forward
+                      name="error"
+                      path="/adjustments/adjust/adjust.jsp"/>
+
+          </action>
+          <action path="/removeAdjustItem"
+                  type="com.owd.intranet.adjustments.removeAdjustItemAction"
+                  name="adjustForm"
+                  scope="session"
+                  validate="false"
+                  input="/adjustments/adjust/adjust.jsp"
+                  >
+          <forward
+                      name="success"
+                      path="/adjustments/adjust/adjust.jsp"/>
+          <forward
+                      name="error"
+                      path="/adjustments/adjust/adjust.jsp"/>
+
+          </action>
+         <action path="/viewAdjust"
+                  type="com.owd.intranet.adjustments.view.viewAdjustAction"
+                  name="viewAdjustForm"
+                  scope="session"
+                  validate="false"
+                  input="/adjustments/view/view.jsp"
+                  >
+          <forward
+                      name="success"
+                      path="/adjustments/view/view.jsp"/>
+          <forward
+                      name="error"
+                      path="/adjustments/view/view.jsp"/>
+
+          </action>
+          <action path="/searchAdjust"
+                  type="com.owd.intranet.adjustments.view.searchAdjustAction"
+                  name="viewAdjustForm"
+                  scope="session"
+                  validate="false"
+                  input="/adjustments/view/view.jsp"
+                  >
+          <forward
+                      name="success"
+                      path="/adjustments/view/view.jsp"/>
+          <forward
+                      name="error"
+                      path="/adjustments/view/view.jsp"/>
+
+          </action>
+          <action path="/loadAdjust"
+                  type="com.owd.intranet.adjustments.view.loadAdjustAction"
+                  name="viewAdjustForm"
+                  scope="session"
+                  validate="false"
+                  input="/adjustments/view/view.jsp"
+                  >
+          <forward
+                      name="success"
+                      path="/adjustments/view/view.jsp"/>
+          <forward
+                      name="error"
+                      path="/adjustments/view/view.jsp"/>
+
+          </action>
+         <action path="/voidAdjust"
+                  type="com.owd.intranet.adjustments.view.voidAdjustAction"
+                  name="viewAdjustForm"
+                  scope="session"
+                  validate="false"
+                  input="/adjustments/view/view.jsp"
+                  >
+          <forward
+                      name="success"
+                      path="/adjustments/view/view.jsp"/>
+          <forward
+                      name="error"
+                      path="/adjustments/view/view.jsp"/>
+
+          </action>
+          <action path="/loadReturnOrder"
+                  type="com.owd.intranet.adjustments.returns.loadReturnOrderAction"
+                  name="returnForm"
+                  scope="session"
+                  validate="false"
+                  input="/adjustments/return/return.jsp"
+                  >
+          <forward
+                      name="success"
+                      path="/adjustments/return/return.jsp"/>
+          <forward
+                      name="error"
+                      path="/adjustments/return/return.jsp"/>
+
+          </action>
+          <action path="/startreprint" forward ="/apps/reprint.jsp"/>
+          <action path="/index" forward="/adjustments/adjust/index.jsp"/>
+
+    </action-mappings>
+
+    <!-- message resources -->
+    <message-resources
+            parameter="ApplicationResources"
+            null="false"/>
+
+    <!--  plugins -->
+      <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
+        /WEB-INF/validation.xml"/>
+    </plug-in>
+
+
+</struts-config>

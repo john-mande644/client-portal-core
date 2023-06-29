@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OwdReceive"
+        table="owd_receive"
+        >
+
+        <id
+            name="receiveId"
+            type="java.lang.Integer"
+            column="receive_id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="transactionNum"
+            type="java.lang.String"
+            column="transaction_num"
+            unique="true"
+            length="20"
+            />
+        <property
+            name="receiveDate"
+            type="java.util.Date"
+            column="receive_date"
+            length="23"
+            />
+        <property
+            name="receiveUser"
+            type="java.lang.String"
+            column="receive_user"
+            length="100"
+            />
+        <property
+            name="timeIn"
+            type="java.util.Date"
+            column="time_in"
+            length="23"
+            />
+        <property
+            name="timeOut"
+            type="java.util.Date"
+            column="time_out"
+            length="23"
+            />
+        <property
+            name="totalTime"
+            type="java.math.BigDecimal"
+            column="total_time"
+            length="10"
+            />
+        <property
+            name="numEmployees"
+            type="java.lang.Byte"
+            column="num_employees"
+            length="3"
+            />
+        <property
+            name="carrier"
+            type="java.lang.String"
+            column="carrier"
+            length="100"
+            />
+        <property
+            name="blNum"
+            type="java.lang.String"
+            column="bl_num"
+            length="50"
+            />
+        <property
+            name="driver"
+            type="java.lang.String"
+            column="driver"
+            length="100"
+            />
+        <property
+            name="refNum"
+            type="java.lang.String"
+            column="ref_num"
+            length="255"
+            />
+        <property
+            name="notes"
+            type="java.lang.String"
+            column="notes"
+            length="2147483647"
+            />
+        <property
+            name="isVoid"
+            type="boolean"
+            column="is_void"
+            not-null="true"
+            length="1"
+            />
+        <property
+            name="createdDate"
+            type="java.util.Date"
+            column="created_date"
+            length="23"
+            />
+        <property
+            name="createdBy"
+            type="java.lang.String"
+            column="created_by"
+            length="30"
+            />
+        <property
+            name="modifiedDate"
+            type="java.util.Date"
+            column="modified_date"
+            length="23"
+            />
+        <property
+            name="modifiedBy"
+            type="java.lang.String"
+            column="modified_by"
+            length="30"
+            />
+        <property
+            name="rowIsLocked"
+            type="boolean"
+            column="row_is_locked"
+            not-null="true"
+            length="1"
+            />
+        <property
+            name="type"
+            type="java.lang.String"
+            column="type"
+            length="16"
+            />
+        <property
+            name="expectedDate"
+            type="java.util.Date"
+            column="expected_date"
+            length="23"
+            />
+        <property
+            name="shipperRef"
+            type="java.lang.String"
+            column="shipper_ref"
+            length="255"
+            />
+        <property
+                name="facilityCode"
+                type="java.lang.String"
+                column="facility_code"
+                not-null="false"
+                length="10"
+                />
+        <!-- associations -->
+        
+
+        <!-- bi-directional many-to-one association to OwdClient -->
+        <many-to-one
+            name="owdClient"
+            class="com.owd.hibernate.OwdClient"
+            not-null="true"
+            >
+            <column name="client_fkey"/>
+        </many-to-one>
+        <!-- bi-directional one-to-many association to OwdReceiveItem -->
+        <bag
+            name="owdReceiveItems"
+            lazy="true"
+            inverse="true"
+            >
+            <key>
+                <column name="receive_fkey"/>
+            </key>
+            <one-to-many
+                class="com.owd.hibernate.OwdReceiveItem"
+                />
+        </bag>
+
+    </class>
+</hibernate-mapping>

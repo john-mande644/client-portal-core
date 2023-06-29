@@ -1,0 +1,127 @@
+<!-- BEGIN: main -->
+<div id="section_title">Billables</div>
+
+<div class="section_tabs">
+    <a href="billable_types.php">Types</a> |
+    <a href="billable_units.php">Units</a>
+</div>
+
+<div id="frame">
+
+    <div id="sidebar">
+    </div>
+
+    <div id="content">
+        <form id="post_form" name="post_form" method="post" action="billable_type_form.php">
+            <input type="hidden" name="billableTypeID" value="{BILLABLE_TYPE_ID}">
+
+            <table class="form_table" border="0" cellpadding="0" cellspacing="0">
+
+            <!-- BEGIN: error_message -->
+            <tr>
+                <td colspan="2" class="form_error_message">
+                    {ERROR_MESSAGE}
+                </td>
+            </tr>
+            <!-- END: error_message -->
+
+            <tr>
+                <td class="form_field_label_required">Name:</td>
+                <td class="form_field_required">
+                    <input type="text" name="name" value="{NAME}" size="50">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required" valign="top">Description:</td>
+                <td class="form_field_required">
+                    <textarea name="description" cols="50" rows="4">{DESCRIPTION}</textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Billable Unit:</td>
+                <td class="form_field_required">
+                    <select name="billableUnitID">
+                        <option value="0">-</option>
+                        <!-- BEGIN: billableUnits -->
+                        <option value="{LIST_BILLABLE_UNIT_ID}" {LIST_BILLABLE_UNIT_SELECTED}>{LIST_BILLABLE_UNIT_NAME}</option>
+                        <!-- END: billableUnits -->
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">GL Account:</td>
+                <td class="form_field_required">
+                    <select name="glAccountID">
+                        <option value="0">-</option>
+                        <!-- BEGIN: glAccounts -->
+                        <option value="{LIST_GL_ACCOUNT_ID}" {LIST_GL_ACCOUNT_SELECTED}>{LIST_GL_ACCOUNT_CODE}</option>
+                        <!-- END: glAccounts -->
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Department:</td>
+                <td class="form_field_required">
+                    <select name="departmentID">
+                        <option value="0">-</option>
+                        <!-- BEGIN: departments -->
+                        <option value="{LIST_DEPARTMENT_ID}" {LIST_DEPARTMENT_SELECTED}>{LIST_DEPARTMENT_CODE}</option>
+                        <!-- END: departments -->
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Location:</td>
+                <td class="form_field_required">
+                    <select name="locationID">
+                        <option value="0">-</option>
+                        <!-- BEGIN: locations -->
+                        <option value="{LIST_LOCATION_ID}" {LIST_LOCATION_SELECTED}>{LIST_LOCATION_CODE}</option>
+                        <!-- END: locations -->
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Exception:</td>
+                <td class="form_field_required">
+                    Field 1:
+                    <input type="text" name="exception_field1_name" value="{EXCEPTION_FIELD1_NAME}" size="15">
+
+                    <select name="exception_field1_type">
+                        <option value="">-</option>
+                        <option value="integer" {EXCEPTION_FIELD1_TYPE_INTEGER_SELECTED}>Integer</option>
+                        <option value="decimal" {EXCEPTION_FIELD1_TYPE_DECIMAL_SELECTED}>Decimal</option>
+                        <option value="string" {EXCEPTION_FIELD1_TYPE_STRING_SELECTED}>String</option>
+                    </select>
+
+                    &nbsp;
+
+                    Field 2:
+                    <input type="text" name="exception_field2_name" value="{EXCEPTION_FIELD2_NAME}" size="15">
+
+                    <select name="exception_field2_type">
+                        <option value="">-</option>
+                        <option value="integer" {EXCEPTION_FIELD2_TYPE_INTEGER_SELECTED}>Integer</option>
+                        <option value="decimal" {EXCEPTION_FIELD2_TYPE_DECIMAL_SELECTED}>Decimal</option>
+                        <option value="string" {EXCEPTION_FIELD2_TYPE_STRING_SELECTED}>String</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="form_submit">
+                    <input type="submit" name="submit" value="Save"> or
+                    <a href="billable_types.php" class="cancel_link">Cancel</a>
+                </td>
+            </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<!-- END: main -->

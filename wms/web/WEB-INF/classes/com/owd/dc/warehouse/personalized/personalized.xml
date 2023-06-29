@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE struts PUBLIC
+                "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+                "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+        <struts>
+
+
+    <package name="personalized" namespace="/personalized" extends="struts-default">
+        <action name="start">
+            <result>/warehouse/personalized/index.jsp</result>
+        </action>
+        <action name="loadSticker" class="com.owd.dc.warehouse.personalized.loadStickerAction" >
+            
+            <result name="SUCCESS">/warehouse/personalized/index.jsp</result>
+            <result name="success">/warehouse/personalized/index.jsp</result>
+             <result name="input">/warehouse/personalized/index.jsp</result>
+        </action>
+        <action name="processStickers" class="com.owd.dc.warehouse.personalized.proccessStickersAction">
+            <interceptor-ref name="completeStack"/>
+            <interceptor-ref name="execAndWait"/>
+            <result name="wait">/warehouse/personalized/proccessing.jsp</result>
+            <result name="SUCCESS">/warehouse/personalized/results.jsp</result>
+
+        </action>
+</package>
+
+    </struts>

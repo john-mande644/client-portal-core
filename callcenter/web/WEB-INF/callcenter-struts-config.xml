@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+    <!-- Form Bean Definitions -->
+
+    <form-beans>
+        <form-bean name="forwardForm" type="com.owd.callcenter.forms.forwardForm"/>
+
+        <form-bean name="recordOutcomeForm" type="com.owd.callcenter.forms.wrapup.recordOutcomeForm"/>
+        <form-bean name="spForm" type="com.owd.callcenter.forms.spForm"/>
+         <form-bean name="callForm" type="com.owd.callcenter.forms.util.callForm"/>
+          <form-bean name="outcomeForm" type="com.owd.callcenter.forms.wrapup.outcomeForm"/>
+           <form-bean name="problemFormForm" type="com.owd.callcenter.forms.problemFormForm"/>
+           <form-bean name="callSearchForm" type="com.owd.callcenter.forms.calls.callSearchForm"/>
+        <form-bean name="caseSearchForm" type="com.owd.callcenter.forms.caseSearchForm"/>
+                      <form-bean name="phoneForm" type="com.owd.callcenter.forms.util.phoneForm"/>
+        <form-bean name="ajaxForm"    type="com.owd.callcenter.forms.ajaxForm"/>
+
+    </form-beans>
+    <!-- Global forwards -->
+    <global-forwards>
+        <forward name="error" path="/error.jsp"/>
+
+    </global-forwards>
+
+       <action-mappings>
+
+           <action path="/ajax"
+                type="com.owd.callcenter.apps.ajaxAction"
+                name="ajaxForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/apps/ajaxtest.jsp"/>
+            <forward
+                    name="error"
+                    path="/apps/ajaxtest.jsp"/>
+
+        </action>
+
+           <action path="/changeOutcome"
+                   type="com.owd.callcenter.wrapup.admin.changeOutcomeAction"
+                   name="outcomeForm"
+                   scope="session"
+                   parameter="submit"
+                   validate="false"
+                   input="/wrapup/admin/outcomeeditor.jsp"
+                   >
+               <forward
+                       name="success"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+               <forward
+                       name="error"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+           </action>
+           <action path="/loadClientOutcome"
+                   type="com.owd.callcenter.wrapup.admin.loadClientOutcomeAction"
+                   name="outcomeForm"
+                   scope="session"
+                   parameter="submit"
+                   validate="false"
+                   input="/wrapup/admin/outcomeeditor.jsp"
+                   >
+               <forward
+                       name="success"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+               <forward
+                       name="error"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+           </action>
+
+           <action path="/addClientItem"
+                   type="com.owd.callcenter.wrapup.admin.addClientItemAction"
+                   name="outcomeForm"
+                   scope="session"
+                   parameter="submit"
+                   validate="false"
+                   input="/wrapup/admin/outcomeeditor.jsp"
+                   >
+               <forward
+                       name="success"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+               <forward
+                       name="error"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+           </action>
+           <action path="/loadOutcome"
+                   type="com.owd.callcenter.wrapup.admin.loadOutcomeAction"
+                   name="outcomeForm"
+                   scope="session"
+                   parameter="submit"
+                   validate="false"
+                   input="/wrapup/admin/outcomeeditor.jsp"
+                   >
+               <forward
+                       name="success"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+               <forward
+                       name="error"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+           </action>
+
+           <action path="/doOrder"
+                   type="com.owd.callcenter.wrapup.admin.doOrderAction"
+                   name="outcomeForm"
+                   scope="session"
+                   parameter="submit"
+                   validate="false"
+                   input="/wrapup/admin/outcomeeditor.jsp"
+                   >
+               <forward
+                       name="success"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+               <forward
+                       name="error"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+           </action>
+
+           <action path="/changeDefaultText"
+                   type="com.owd.callcenter.wrapup.admin.changeDefaultTextAction"
+                   name="outcomeForm"
+                   scope="session"
+                   parameter="submit"
+                   validate="false"
+                   input="/wrapup/admin/outcomeeditor.jsp"
+                   >
+               <forward
+                       name="success"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+               <forward
+                       name="error"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+           </action>
+           <action path="/addOutcome"
+                   type="com.owd.callcenter.wrapup.admin.addOutcomeAction"
+                   name="outcomeForm"
+                   scope="session"
+                   parameter="submit"
+                   validate="false"
+                   input="/wrapup/admin/outcomeeditor.jsp"
+                   >
+               <forward
+                       name="success"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+               <forward
+                       name="error"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+           </action>
+           <action path="/removeCallType"
+                   type="com.owd.callcenter.wrapup.admin.removeCallTypeAction"
+                   name="outcomeForm"
+                   scope="session"
+                   parameter="submit"
+                   validate="false"
+                   input="/wrapup/admin/outcomeeditor.jsp"
+                   >
+               <forward
+                       name="success"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+               <forward
+                       name="error"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+           </action>
+           <action path="/removeOutcome"
+                   type="com.owd.callcenter.wrapup.admin.removeOutcomeAction"
+                   name="outcomeForm"
+                   scope="session"
+                   parameter="submit"
+                   validate="false"
+                   input="/wrapup/admin/outcomeeditor.jsp"
+                   >
+               <forward
+                       name="success"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+               <forward
+                       name="error"
+                       path="/wrapup/admin/outcomeeditor.jsp"/>
+
+           </action>
+           <action path="/problemForm"
+                   type="com.owd.callcenter.problemFormAction"
+                   name="problemFormForm"
+                   scope="request"
+                   parameter="submit"
+                   validate="false"
+                   input="/problemforms/form.jsp"
+                   >
+               <forward
+                       name="success"
+                       path="/problemforms/form.jsp"/>
+               <forward
+                       name="sent"
+                       path="/problemforms/sent.jsp"/>
+               <forward
+                       name="error"
+                       path="/problemforms/form.jsp"/>
+
+           </action>
+
+           <action path="/callInfo"
+                   type="com.owd.callcenter.screenpop.util.callInfoAction"
+                   name="callForm"
+                   scope="request"
+                   parameter="submit"
+                   validate="true"
+                   input="/util/call.jsp"
+                   >
+               <forward
+                       name="success"
+                       path="/util/call.jsp"/>
+               <forward
+                       name="sent"
+                       path="/util/call.jsp"/>
+               <forward
+                       name="error"
+                       path="/util/call.jsp"/>
+
+           </action>
+
+           <action path="/callSearch"
+                   type="com.owd.callcenter.calls.callSearchAction"
+                   name="callSearchForm"
+                   scope="session"
+                   parameter="submit"
+                   validate="false"
+                   input="/calls/callSearch.jsp"
+                   >
+               <forward
+                       name="success"
+                       path="/calls/callSearch.jsp"/>
+               <forward
+                       name="sent"
+                       path="/calls/callSearch.jsp"/>
+               <forward
+                       name="error"
+                       path="/calls/callSearch.jsp"/>
+
+           </action>
+
+            <action path="/caseSearch"
+                   type="com.owd.callcenter.caseSearchAction"
+                   name="caseSearchForm"
+                   scope="session"
+                   parameter="submit"
+                   validate="false"
+                   input="/problemforms/caseSearch.jsp"
+                   >
+               <forward
+                       name="success"
+                       path="/problemforms/caseSearch.jsp"/>
+               <forward
+                       name="sent"
+                       path="/problemforms/caseSearch.jsp"/>
+               <forward
+                       name="error"
+                       path="/problemforms/caseSearch.jsp"/>
+
+           </action>
+
+
+           <action path="/callPages" forward="/calls/callSearch.jsp"/>
+
+    <!--  Action Mapping Definitions  -->
+  
+
+
+        <action path="/"
+                type="com.owd.callcenter.defaultAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/index.jsp"
+                    module="adjust"/>
+            <forward
+                    name="error"
+                    path="/testing.jsp"/>
+
+        </action>
+
+
+
+         <action path="/wrapup"
+                 type="com.owd.callcenter.wrapup.wrapupAction"
+                 name="recordOutcomeForm"
+                 scope="session"
+                 parameter="submit"
+                 validate="false"
+                 input="/wrapup/recordoutcome.jsp"
+                 >
+             <forward
+                     name="success"
+                     path="/wrapup/recordoutcome.jsp"/>
+
+             <forward
+                     name="error"
+                     path="/wrapup/recordoutcome.jsp"/>
+
+         </action>
+         <action path="/wrapupRecord"
+                 type="com.owd.callcenter.wrapup.wrapupRecordAction"
+                 name="recordOutcomeForm"
+                 scope="session"
+                 parameter="submit"
+                 validate="false"
+                 input="/wrapup/recordoutcome.jsp"
+                 >
+             <forward
+                     name="success"
+                     path="/wrapup/recordsuccess.jsp"/>
+
+             <forward
+                     name="error"
+                     path="/wrapup/recordoutcome.jsp"/>
+
+         </action>
+         <action path="/wrapupLoadOutcome"
+                 type="com.owd.callcenter.wrapup.wrapupLoadOutcomeAction"
+                 name="recordOutcomeForm"
+                 scope="session"
+                 parameter="submit"
+                 validate="false"
+                 input="/wrapup/recordoutcome.jsp"
+                 >
+             <forward
+                     name="success"
+                     path="/wrapup/recordoutcome.jsp"/>
+
+             <forward
+                     name="error"
+                     path="/wrapup/recordoutcome.jsp"/>
+
+         </action>
+
+         <action path="/wrapupLoadType"
+                 type="com.owd.callcenter.wrapup.wrapupLoadTypeAction"
+                 name="recordOutcomeForm"
+                 scope="session"
+                 parameter="submit"
+                 validate="false"
+                 input="/wrapup/recordoutcome.jsp"
+                 >
+             <forward
+                     name="success"
+                     path="/wrapup/recordoutcome.jsp"/>
+
+             <forward
+                     name="error"
+                     path="/wrapup/recordoutcome.jsp"/>
+
+         </action>
+         <action path="/screenpop"
+                 type="com.owd.callcenter.screenpop.screenpopAction"
+                 name="spForm"
+                 scope="session"
+                 parameter="submit"
+                 validate="false"
+                 input="/screenpops/screenpop.jsp"
+                 >
+             <forward
+                     name="success"
+                     path="/screenpops/screenpop.jsp"/>
+
+             <forward
+                     name="error"
+                     path="/screenpops/screenpop.jsp"/>
+
+         </action>
+          <action path="/loadscreenpop"
+                 type="com.owd.callcenter.screenpop.loadScreenpopAction"
+                 name="spForm"
+                 scope="session"
+                 parameter="submit"
+                 validate="false"
+                 input="/screenpops/screenpop.jsp"
+                 >
+             <forward
+                     name="success"
+                     path="/screenpops/screenpop.jsp"/>
+
+             <forward
+                     name="error"
+                     path="/screenpops/screenpop.jsp"/>
+
+         </action>
+         <action path="/callInfo"
+                 type="com.owd.callcenter.screenpop.util.callInfoAction"
+                 name="callForm"
+                 scope="request"
+                 parameter="submit"
+                 validate="true"
+                 input="/util/call.jsp"
+                 >
+             <forward
+                     name="success"
+                     path="/util/call.jsp"/>
+             <forward
+                     name="sent"
+                     path="/util/call.jsp"/>
+             <forward
+                     name="error"
+                     path="/util/call.jsp"/>
+
+         </action>
+
+    </action-mappings>
+
+    <!-- message resources -->
+    <message-resources
+            parameter="ApplicationResources"
+            null="false"/>
+  <!--   <message-resources
+            parameter="ApplicationResources_en_US"
+            null="false"/>
+    <message-resources
+               parameter="com.owd.callcenter.screenpop.ccmessageresources"
+               null="false"/>
+       <message-resources
+            parameter="com.owd.callcenter.messageresources"
+            null="false"/>
+          <message-resources
+            parameter="com.owd.callcenter.wrapup.messageresources"
+            null="false"/>-->
+    <!--  plugins -->
+      <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
+        /WEB-INF/validation.xml,/WEB-INF/cc/validation.xml"/>
+    </plug-in>
+
+
+</struts-config>

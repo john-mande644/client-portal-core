@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2e77af26-3429-49ce-802c-bf39f4363cf4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="210"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="783"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OWDProdDataAdapter.jrdax"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="Detail" fontName="Arial" fontSize="12">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="light gray background" backcolor="#E6E6E6" fill="Solid">
+		<pen lineColor="#E6E6E6"/>
+		<box rightPadding="3">
+			<pen lineWidth="1.0" lineColor="#E6E6E6"/>
+			<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#E6E6E6"/>
+			<leftPen lineWidth="1.0" lineColor="#E6E6E6"/>
+			<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#E6E6E6"/>
+			<rightPen lineWidth="1.0" lineColor="#E6E6E6"/>
+		</box>
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="right padding" backcolor="#FFFFFF" fill="Solid">
+		<box rightPadding="3">
+			<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+			<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#CCCCCC"/>
+			<leftPen lineWidth="0.0" lineColor="#CCCCCC"/>
+			<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#CCCCCC"/>
+			<rightPen lineWidth="0.0" lineColor="#CCCCCC"/>
+		</box>
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<parameter name="order_id" class="java.lang.String"/>
+	<parameter name="imageDir" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+    *
+FROM
+    dbo.owd_order
+INNER JOIN     dbo.package_order
+	ON ( dbo.owd_order.order_id = dbo.package_order.owd_order_fkey)
+INNER JOIN     dbo.package
+	ON     (         dbo.package_order.id = dbo.package.package_order_fkey)
+INNER JOIN     dbo.package_line
+	ON     (        dbo.package.id = dbo.package_line.package_fkey)
+INNER JOIN     dbo.owd_line_item
+	ON     (       dbo.package_line.owd_line_item_fkey = dbo.owd_line_item.line_item_id)
+INNER JOIN    dbo.owd_inventory
+	ON    (        dbo.owd_line_item.inventory_id = dbo.owd_inventory.inventory_id)
+INNER JOIN    dbo.owd_order_ship_info
+	ON    (        dbo.owd_order.order_id = dbo.owd_order_ship_info.order_fkey)
+INNER JOIN      (
+select external_id,
+XMLDocument.value('(/Order/Meta/IsDropShip)[1]', 'varchar(50)') as isDropShip,
+XMLDocument.value('(/Order/Header/OrderHeader/PurchaseOrderNumber)[1]', 'varchar(50)') as PO,
+convert(varchar,XMLDocument.value('(/Order/Header/OrderHeader/PurchaseOrderDate)[1]', 'datetime'),101) as order_date,
+XMLDocument.value('(/Order/Header/OrderHeader/CustomerOrderNumber)[1]', 'varchar(50)') as customer_order_number,
+XMLDocument.value('(/Order/Header/Reference/ReferenceQual[contains(.,"CT")]/parent::Reference/ReferenceID)[1]', 'varchar(50)')+XMLDocument.value('(/Order/Header/OrderHeader/PurchaseOrderNumber)[1]', 'varchar(50)') as edi_release_number,
+XMLDocument.value('(/Order/Header/Address/AddressTypeCode[contains(.,"ST")]/parent::Address/AddressLocationNumber)[1]','varchar(25)') as location_id
+from owd_tags   tag join vw_edi_850_tags x on x.id=tag.id
+where type='ORDER' and name='com.owd.edi.850' ) as edi on edi.external_id=order_id
+JOIN (
+SELECT
+	external_id,
+	LTRIM(RTRIM(isnull(l.orderline.value('(./OrderLine/BuyerPartNumber)[1]', 'varchar(50)'), ''))) as edi_buyer_sku,
+	LTRIM(RTRIM(isnull(l.orderline.value('(./OrderLine/LineSequenceNumber)[1]', 'varchar(50)'), ''))) as LineSequenceNumber,
+	LTRIM(RTRIM(isnull(l.orderline.value('(./OrderLine/VendorPartNumber)[1]', 'varchar(50)'), ''))) as edi_vendor_sku,
+	LTRIM(RTRIM(isnull(l.orderline.value('(./OrderLine/ConsumerPackageCode)[1]', 'varchar(50)'), ''))) as edi_item_upc,
+	LTRIM(RTRIM(isnull(convert(bigint, l.orderline.value('(./OrderLine/OrderQty)[1]', 'int')), ''))) as edi_item_qty,
+	LTRIM(RTRIM(isnull(l.orderline.value('(./OrderLine/OrderQtyUOM)[1]', 'varchar(50)'), ''))) as edi_item_qty_uom,
+	LTRIM(RTRIM(isnull(convert(money, l.orderline.value('(./OrderLine/PurchasePrice)[1]', 'varchar(50)')), ''))) as edi_unit_price,
+	LTRIM(RTRIM(isnull(l.orderline.value('(./OrderLine/NRFStandardColorAndSize/SizePrimaryDescription)[1]', 'varchar(50)'), ''))) as edi_item_title,
+	LTRIM(RTRIM(isnull(l.orderline.value('(./OrderLine/ProductID/PartNumberQual[contains(.,"CB")]/parent::ProductID/PartNumber)[1]', 'varchar(50)'), ''))) as edi_item_DCPI,
+	LTRIM(RTRIM(isnull(l.orderline.value('(./Reference/ReferenceQual[contains(.,"L1")]/parent::Reference/Description)[1]', 'varchar(50)'), ''))) + ' ' + LTRIM(RTRIM(isnull(l.orderline.value('(./Reference/ReferenceQual[contains(.,"L1")]/parent::Reference/Description)[2]', 'varchar(50)'), ''))) as edi_item_extradesc,
+	LTRIM(RTRIM(isnull(l.orderline.value('(./Notes/NoteInformationField)[1]', 'varchar(50)'), ''))) as edi_item_return
+FROM
+	owd_tags tag
+join vw_edi_850_tags x cross apply x.XMLDocument.nodes('/Order/LineItems/LineItem') as l(orderline) on
+	x.id = tag.id
+WHERE
+	type = 'ORDER'
+	and name = 'COM.OWD.EDI.850') as line_data ON
+		line_data.external_id = order_id
+		and LineSequenceNumber = owd_line_item.cust_refnum
+WHERE dbo.package_order.is_void = 0
+AND dbo.owd_order.order_num = $P{order_id}
+order by sscc, edi_item_upc
+;]]>
+	</queryString>
+	<field name="order_id" class="java.lang.Integer"/>
+	<field name="client_fkey" class="java.lang.Integer"/>
+	<field name="customer_fkey" class="java.lang.Integer"/>
+	<field name="order_num" class="java.lang.String"/>
+	<field name="order_refnum" class="java.lang.String"/>
+	<field name="order_num_barcode" class="java.lang.String"/>
+	<field name="po_num" class="java.lang.String"/>
+	<field name="order_type" class="java.lang.String"/>
+	<field name="salesperson" class="java.lang.String"/>
+	<field name="actual_order_date" class="java.sql.Timestamp"/>
+	<field name="order_sub_total" class="java.math.BigDecimal"/>
+	<field name="discount" class="java.math.BigDecimal"/>
+	<field name="tax_pct" class="java.math.BigDecimal"/>
+	<field name="tax_amount" class="java.math.BigDecimal"/>
+	<field name="ship_handling_fee" class="java.math.BigDecimal"/>
+	<field name="order_total" class="java.math.BigDecimal"/>
+	<field name="paid_amount" class="java.math.BigDecimal"/>
+	<field name="paid_date" class="java.sql.Timestamp"/>
+	<field name="order_balance" class="java.math.BigDecimal"/>
+	<field name="customer_num" class="java.lang.String"/>
+	<field name="customer_vendor_no" class="java.lang.String"/>
+	<field name="bill_last_name" class="java.lang.String"/>
+	<field name="bill_first_name" class="java.lang.String"/>
+	<field name="bill_address_one" class="java.lang.String"/>
+	<field name="bill_address_two" class="java.lang.String"/>
+	<field name="bill_city" class="java.lang.String"/>
+	<field name="bill_state" class="java.lang.String"/>
+	<field name="bill_zip" class="java.lang.String"/>
+	<field name="bill_country" class="java.lang.String"/>
+	<field name="bill_company_name" class="java.lang.String"/>
+	<field name="bill_title" class="java.lang.String"/>
+	<field name="bill_phone_num" class="java.lang.String"/>
+	<field name="bill_fax_num" class="java.lang.String"/>
+	<field name="bill_email_address" class="java.lang.String"/>
+	<field name="prt_pick_reqd" class="java.lang.Boolean"/>
+	<field name="prt_invoice_reqd" class="java.lang.Boolean"/>
+	<field name="prt_pack_reqd" class="java.lang.Boolean"/>
+	<field name="prt_priceonslip_reqd" class="java.lang.Boolean"/>
+	<field name="is_backorder" class="java.lang.Boolean"/>
+	<field name="backorder_order_num" class="java.lang.String"/>
+	<field name="original_order_num" class="java.lang.String"/>
+	<field name="is_future_ship" class="java.lang.Integer"/>
+	<field name="is_void" class="java.lang.Integer"/>
+	<field name="post_date" class="java.sql.Timestamp"/>
+	<field name="created_date" class="java.sql.Timestamp"/>
+	<field name="created_by" class="java.lang.String"/>
+	<field name="modified_date" class="java.sql.Timestamp"/>
+	<field name="modified_by" class="java.lang.String"/>
+	<field name="row_is_locked" class="java.lang.Boolean"/>
+	<field name="cc_type" class="java.lang.String"/>
+	<field name="is_gift" class="java.lang.Integer"/>
+	<field name="gift_message" class="java.lang.String"/>
+	<field name="gift_wrap_fee" class="java.math.BigDecimal"/>
+	<field name="reported" class="java.lang.Boolean"/>
+	<field name="cc_num" class="java.lang.String"/>
+	<field name="cc_exp_mon" class="java.lang.Integer"/>
+	<field name="cc_exp_year" class="java.lang.Integer"/>
+	<field name="pick_status" class="java.lang.Integer"/>
+	<field name="payment_status" class="java.lang.String"/>
+	<field name="pick_by" class="java.lang.String"/>
+	<field name="coupon" class="java.lang.String"/>
+	<field name="backorder_level" class="java.lang.Integer"/>
+	<field name="discount_pct" class="java.math.BigDecimal"/>
+	<field name="order_status" class="java.lang.String"/>
+	<field name="shipped_on" class="java.sql.Timestamp"/>
+	<field name="ship_packs" class="java.lang.Integer"/>
+	<field name="tracking_nums" class="java.lang.String"/>
+	<field name="shipped_cost" class="java.math.BigDecimal"/>
+	<field name="shipped_weight" class="java.math.BigDecimal"/>
+	<field name="shipped_lines" class="java.lang.Integer"/>
+	<field name="shipped_units" class="java.lang.Long"/>
+	<field name="ship_sub_total" class="java.math.BigDecimal"/>
+	<field name="ship_tax" class="java.math.BigDecimal"/>
+	<field name="ship_total" class="java.math.BigDecimal"/>
+	<field name="facility_code" class="java.lang.String"/>
+	<field name="group_name" class="java.lang.String"/>
+	<field name="packing_instructions" class="java.sql.Clob"/>
+	<field name="facility_policy" class="java.lang.String"/>
+	<field name="not_billed" class="java.lang.Integer"/>
+	<field name="no_customs_account" class="java.lang.Integer"/>
+	<field name="is_shipping" class="java.lang.Integer"/>
+	<field name="sla" class="java.sql.Timestamp"/>
+	<field name="license_plate" class="java.lang.String"/>
+	<field name="barcode_when_lp_assigned" class="java.lang.String"/>
+	<field name="pre_ship_weight" class="java.math.BigDecimal"/>
+	<field name="business_order" class="java.lang.Boolean"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="owd_order_fkey" class="java.lang.Integer"/>
+	<field name="packer_ref" class="java.lang.String"/>
+	<field name="pack_start" class="java.sql.Timestamp"/>
+	<field name="pack_end" class="java.sql.Timestamp"/>
+	<field name="COLUMN_92" class="java.lang.Integer"/>
+	<field name="void_time" class="java.sql.Timestamp"/>
+	<field name="void_by" class="java.lang.String"/>
+	<field name="num_packs" class="java.lang.Integer"/>
+	<field name="packs_shipped" class="java.lang.Integer"/>
+	<field name="facility" class="java.lang.String"/>
+	<field name="packType" class="java.lang.Integer"/>
+	<field name="OSMCloseOutCode" class="java.lang.String"/>
+	<field name="endTimeAltered" class="java.lang.Integer"/>
+	<field name="PurolatorPARS" class="java.lang.String"/>
+	<field name="labelDate" class="java.sql.Timestamp"/>
+	<field name="consolidatorCode" class="java.lang.String"/>
+	<field name="COLUMN_104" class="java.lang.Integer"/>
+	<field name="owd_boxtypes_fkey" class="java.lang.Integer"/>
+	<field name="package_order_fkey" class="java.lang.Integer"/>
+	<field name="pack_barcode" class="java.lang.String"/>
+	<field name="weight_lbs" class="java.math.BigDecimal"/>
+	<field name="curr_cost" class="java.math.BigDecimal"/>
+	<field name="depth" class="java.math.BigDecimal"/>
+	<field name="width" class="java.math.BigDecimal"/>
+	<field name="height" class="java.math.BigDecimal"/>
+	<field name="ship_time" class="java.sql.Timestamp"/>
+	<field name="order_track_fkey" class="java.lang.Integer"/>
+	<field name="owd_insurance_cost" class="java.math.BigDecimal"/>
+	<field name="insured_amount" class="java.math.BigDecimal"/>
+	<field name="ip_address" class="java.lang.String"/>
+	<field name="weight_verify" class="java.lang.String"/>
+	<field name="customs_docs" class="java.lang.Integer"/>
+	<field name="gss_shipment" class="java.lang.Integer"/>
+	<field name="SSCC" class="java.lang.String"/>
+	<field name="dunnage_factor" class="java.lang.Integer"/>
+	<field name="label_string" class="java.sql.Clob"/>
+	<field name="transfered_to_server" class="java.lang.Boolean"/>
+	<field name="label_printed" class="java.lang.Boolean"/>
+	<field name="shipment_posted" class="java.lang.Boolean"/>
+	<field name="external_id" class="java.lang.String"/>
+	<field name="dim_weight_lbs" class="java.math.BigDecimal"/>
+	<field name="downloaded" class="java.lang.Boolean"/>
+	<field name="package_fkey" class="java.lang.Integer"/>
+	<field name="owd_line_item_fkey" class="java.lang.Integer"/>
+	<field name="pack_quantity" class="java.lang.Integer"/>
+	<field name="COLUMN_133" class="java.lang.Long"/>
+	<field name="line_item_id" class="java.lang.Integer"/>
+	<field name="order_fkey" class="java.lang.Integer"/>
+	<field name="inventory_id" class="java.lang.Integer"/>
+	<field name="inventory_num" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="cust_refnum" class="java.lang.String"/>
+	<field name="quantity_request" class="java.lang.Integer"/>
+	<field name="quantity_actual" class="java.lang.Integer"/>
+	<field name="quantity_back" class="java.lang.Integer"/>
+	<field name="price" class="java.math.BigDecimal"/>
+	<field name="total_price" class="java.math.BigDecimal"/>
+	<field name="COLUMN_145" class="java.sql.Timestamp"/>
+	<field name="COLUMN_146" class="java.lang.String"/>
+	<field name="COLUMN_147" class="java.sql.Timestamp"/>
+	<field name="COLUMN_148" class="java.lang.String"/>
+	<field name="COLUMN_149" class="java.lang.Boolean"/>
+	<field name="item_color" class="java.lang.String"/>
+	<field name="item_size" class="java.lang.String"/>
+	<field name="line_item_disc" class="java.lang.Double"/>
+	<field name="long_desc" class="java.sql.Clob"/>
+	<field name="customs_desc" class="java.sql.Clob"/>
+	<field name="dec_item_value" class="java.math.BigDecimal"/>
+	<field name="parent_line" class="java.lang.Integer"/>
+	<field name="is_parent" class="java.lang.Integer"/>
+	<field name="is_insert" class="java.lang.Integer"/>
+	<field name="COLUMN_159" class="java.lang.Integer"/>
+	<field name="COLUMN_160" class="java.lang.Integer"/>
+	<field name="COLUMN_161" class="java.lang.String"/>
+	<field name="mfr_part_num" class="java.lang.String"/>
+	<field name="COLUMN_163" class="java.lang.String"/>
+	<field name="keyword" class="java.lang.String"/>
+	<field name="COLUMN_165" class="java.math.BigDecimal"/>
+	<field name="is_active" class="java.lang.Boolean"/>
+	<field name="barcode_no" class="java.lang.String"/>
+	<field name="front_location" class="java.lang.String"/>
+	<field name="back_location" class="java.lang.String"/>
+	<field name="unusable_location" class="java.lang.String"/>
+	<field name="qty_reorder" class="java.lang.Integer"/>
+	<field name="qty_unusable" class="java.lang.Integer"/>
+	<field name="qty_high_alert" class="java.lang.Integer"/>
+	<field name="item_cost" class="java.math.BigDecimal"/>
+	<field name="item_ship_cost" class="java.math.BigDecimal"/>
+	<field name="is_insurable" class="java.lang.Boolean"/>
+	<field name="notes" class="java.sql.Clob"/>
+	<field name="COLUMN_178" class="java.sql.Timestamp"/>
+	<field name="COLUMN_179" class="java.lang.String"/>
+	<field name="COLUMN_180" class="java.sql.Timestamp"/>
+	<field name="COLUMN_181" class="java.lang.String"/>
+	<field name="COLUMN_182" class="java.lang.Boolean"/>
+	<field name="COLUMN_183" class="java.lang.String"/>
+	<field name="COLUMN_184" class="java.lang.String"/>
+	<field name="client_item_key" class="java.lang.Integer"/>
+	<field name="COLUMN_186" class="java.sql.Clob"/>
+	<field name="supp_cost" class="java.math.BigDecimal"/>
+	<field name="supp_fkey" class="java.lang.Integer"/>
+	<field name="harm_code" class="java.lang.String"/>
+	<field name="COLUMN_190" class="java.lang.Float"/>
+	<field name="documents_only" class="java.lang.Boolean"/>
+	<field name="COLUMN_192" class="java.lang.String"/>
+	<field name="customs_value" class="java.math.BigDecimal"/>
+	<field name="upc_code" class="java.lang.String"/>
+	<field name="isbn_code" class="java.lang.String"/>
+	<field name="is_serialized" class="java.lang.Integer"/>
+	<field name="is_scan_for_release" class="java.lang.Integer"/>
+	<field name="is_auto_inventory" class="java.lang.Integer"/>
+	<field name="image_url" class="java.lang.String"/>
+	<field name="image_thumb_url" class="java.lang.String"/>
+	<field name="catalog_url" class="java.lang.String"/>
+	<field name="default_facility_code" class="java.lang.String"/>
+	<field name="no_scan" class="java.lang.Integer"/>
+	<field name="COLUMN_204" class="java.lang.String"/>
+	<field name="COLUMN_205" class="java.lang.Integer"/>
+	<field name="master_case_qty" class="java.lang.Long"/>
+	<field name="case_qty" class="java.lang.Long"/>
+	<field name="lot_tracking" class="java.lang.Long"/>
+	<field name="lot_pattern" class="java.lang.String"/>
+	<field name="ship_system_weight" class="java.lang.Integer"/>
+	<field name="pallet_qty" class="java.lang.Integer"/>
+	<field name="case_upc" class="java.lang.String"/>
+	<field name="pallet_upc" class="java.lang.String"/>
+	<field name="i_length" class="java.lang.Float"/>
+	<field name="i_height" class="java.lang.Float"/>
+	<field name="i_width" class="java.lang.Float"/>
+	<field name="cubic_feet" class="java.lang.Float"/>
+	<field name="is_bulky_pick" class="java.lang.Boolean"/>
+	<field name="is_bulky_pack" class="java.lang.Boolean"/>
+	<field name="bulky_pick_override" class="java.lang.Boolean"/>
+	<field name="bulky_pack_override" class="java.lang.Boolean"/>
+	<field name="bulky_pick_fee_override" class="java.math.BigDecimal"/>
+	<field name="bulky_pack_Fee_override" class="java.math.BigDecimal"/>
+	<field name="dimensions_set_date" class="java.sql.Timestamp"/>
+	<field name="is_owd_dimensions" class="java.lang.Boolean"/>
+	<field name="reported_percent" class="java.lang.Integer"/>
+	<field name="order_ship_info_id" class="java.lang.Integer"/>
+	<field name="scheduled_ship_date" class="java.sql.Timestamp"/>
+	<field name="ship_last_name" class="java.lang.String"/>
+	<field name="ship_first_name" class="java.lang.String"/>
+	<field name="ship_address_one" class="java.lang.String"/>
+	<field name="ship_address_two" class="java.lang.String"/>
+	<field name="ship_city" class="java.lang.String"/>
+	<field name="ship_state" class="java.lang.String"/>
+	<field name="ship_zip" class="java.lang.String"/>
+	<field name="ship_country" class="java.lang.String"/>
+	<field name="ship_country_ref_num" class="java.lang.String"/>
+	<field name="ship_company_name" class="java.lang.String"/>
+	<field name="ship_title" class="java.lang.String"/>
+	<field name="ship_phone_num" class="java.lang.String"/>
+	<field name="ship_fax_num" class="java.lang.String"/>
+	<field name="ship_email_address" class="java.lang.String"/>
+	<field name="carr_service" class="java.lang.String"/>
+	<field name="carr_service_ref_num" class="java.lang.String"/>
+	<field name="carr_freight_terms" class="java.lang.String"/>
+	<field name="carr_freight_terms_ref_num" class="java.lang.String"/>
+	<field name="third_party_refnum" class="java.lang.String"/>
+	<field name="ss_addl_hand" class="java.lang.Boolean"/>
+	<field name="ss_declared_value" class="java.lang.Boolean"/>
+	<field name="declared_value" class="java.math.BigDecimal"/>
+	<field name="ss_proof_delivery" class="java.lang.Boolean"/>
+	<field name="ss_call_tag" class="java.lang.Boolean"/>
+	<field name="call_tag" class="java.lang.String"/>
+	<field name="ss_cod" class="java.lang.Boolean"/>
+	<field name="cod_charge" class="java.math.BigDecimal"/>
+	<field name="ss_saturday" class="java.lang.Boolean"/>
+	<field name="ss_tracking" class="java.lang.Boolean"/>
+	<field name="ss_oversize" class="java.lang.Boolean"/>
+	<field name="ss_hazardous" class="java.lang.Boolean"/>
+	<field name="ss_residential" class="java.lang.Boolean"/>
+	<field name="comments" class="java.lang.String"/>
+	<field name="whse_notes" class="java.lang.String"/>
+	<field name="status" class="java.lang.Integer"/>
+	<field name="print_date" class="java.sql.Timestamp"/>
+	<field name="avs_overide" class="java.lang.Boolean"/>
+	<field name="isDropShip" class="java.lang.String"/>
+	<field name="PO" class="java.lang.String"/>
+	<field name="order_date" class="java.lang.String"/>
+	<field name="customer_order_number" class="java.lang.String"/>
+	<field name="edi_release_number" class="java.lang.String"/>
+	<field name="location_id" class="java.lang.String"/>
+	<field name="edi_buyer_sku" class="java.lang.String"/>
+	<field name="LineSequenceNumber" class="java.lang.String"/>
+	<field name="edi_vendor_sku" class="java.lang.String"/>
+	<field name="edi_item_upc" class="java.lang.String"/>
+	<field name="edi_item_qty" class="java.lang.String"/>
+	<field name="edi_item_qty_uom" class="java.lang.String"/>
+	<field name="edi_unit_price" class="java.lang.String"/>
+	<field name="edi_item_title" class="java.lang.String"/>
+	<field name="edi_item_DCPI" class="java.lang.String"/>
+	<field name="edi_item_extradesc" class="java.lang.String"/>
+	<field name="edi_item_return" class="java.lang.String"/>
+	<group name="order">
+		<groupExpression><![CDATA[$F{order_id}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="225" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="1" width="176" height="54" forecolor="#000000" backcolor="#FFFFFF" uuid="49bea630-a459-4ee0-b3ab-4fe12a1a1e7e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="16" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Sephora Packing List]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="88" width="110" height="16" uuid="ae1be4cb-d6e6-4ca2-af05-52362a62280a"/>
+				<text><![CDATA[Shipping Quantity:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="330" y="143" width="242" height="65" uuid="bdde6229-4cd9-48b9-b58d-fdca363283a4"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ship_first_name}+" "+$F{ship_last_name}+"\n"+
+($F{ship_company_name}.length()>1?"":$F{ship_company_name}+"\n")+
+$F{ship_address_one}+"\n"+
+($F{ship_address_two}.equals("")?"":$F{ship_address_two}+"\n")+
+$F{ship_city}+", "+$F{ship_state}+"  "+$F{ship_zip}+"\n"+
+$F{ship_country}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="330" y="110" width="242" height="15" backcolor="#FFFFFF" uuid="39c5248f-c0cd-456b-b702-b8bdb8061ff4">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Ship To:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="111" y="89" width="94" height="15" uuid="7869225a-a312-4d91-92a9-c57ea303a795"/>
+				<textFieldExpression><![CDATA[$F{num_packs} + " Corrugated Carton"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="127" width="70" height="15" uuid="0cf04f78-e33b-4e9a-a696-72c721bde2fc">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{location_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="330" y="127" width="70" height="15" backcolor="#FFFFFF" uuid="dd40013f-41c3-4a6a-a0c9-daaf3fe4469a">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Location ID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4" y="129" width="70" height="15" backcolor="#FFFFFF" uuid="7a00e97b-2919-4947-97f7-980033249d2d">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Location ID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4" y="112" width="70" height="15" backcolor="#FFFFFF" uuid="1086dd23-955b-4a2b-b289-9a9cb7e733c2">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Ship From:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="74" y="129" width="110" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="7f6c4fae-5c44-4a86-b05f-02aedbfab9b5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[2127360041]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4" y="145" width="226" height="75" forecolor="#000000" backcolor="#FFFFFF" uuid="8453f974-74b6-4ab6-b4b4-099f7bd06757"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[LAWLESS BEAUTY
+One World Direct
+3326 Manitou Ct.
+Mira Loma CA, 91752]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="70" width="27" height="16" uuid="eef1e553-6385-40da-9856-7df60243bfb0"/>
+				<text><![CDATA[PO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="30" y="71" width="94" height="15" uuid="d07a1c95-a1d7-4306-b82e-4b42c4383fa1"/>
+				<textFieldExpression><![CDATA[$F{po_num}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="91" y="0" width="69" height="38" backcolor="#FFFFFF" uuid="aa88bb4f-412b-4311-b7e1-631d050c46d6"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[LOCATION#
+STORE#]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="0" y="0" width="35" height="38" backcolor="#FFFFFF" uuid="d0bbe60b-3d17-4d0d-8176-3656189549da"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[LINE #]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="35" y="0" width="56" height="38" backcolor="#FFFFFF" uuid="683dc1db-e623-4f64-841a-a89ae47dc170"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ORDER#]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="551" y="0" width="31" height="38" backcolor="#FFFFFF" uuid="918959c2-20af-4a84-b384-7113e2abb696"/>
+				<box leftPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[UOM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="277" y="20" width="60" height="19" backcolor="#C9C9C9" uuid="3fe7354f-cf04-45b6-9a01-64eb876c5b3b"/>
+				<box rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SKU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="160" y="0" width="110" height="38" backcolor="#FFFFFF" uuid="8dc7018e-6042-4421-8ce3-b42a92a6b92c"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CONTAINER ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="270" y="0" width="80" height="38" backcolor="#FFFFFF" uuid="6c749863-2bd2-4c43-b017-863b7229d03a"/>
+				<box rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[VENDOR PN
+UPC
+GTIN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="460" y="0" width="50" height="38" backcolor="#FFFFFF" uuid="a22600d9-9a36-468d-9656-c4866485653f"/>
+				<box rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[QTY
+SHIPPED]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="511" y="0" width="40" height="38" backcolor="#FFFFFF" uuid="4818cc73-ee20-46b1-9a56-e151f22993df"/>
+				<box rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[QTY
+PER
+PACK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="light gray background" mode="Opaque" x="350" y="0" width="110" height="38" backcolor="#FFFFFF" uuid="5f4ae8bb-766b-485d-9f7d-fb143bd111d8"/>
+				<box rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#E6E6E6"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DESCRIPTION]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="43" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="90" y="1" width="70" height="19" uuid="b44c20f6-e5b6-468f-bf9f-3342e5cb03e4">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{location_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="1" width="110" height="19" uuid="e42d76e3-b722-4f36-b67e-08e64d1b20ea">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SSCC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="20" width="80" height="19" uuid="d2699e69-2769-497d-825e-c7f18159a9bb">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{edi_item_upc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="80" height="19" uuid="96f68e2d-5fb4-4af7-a4f3-a9b78738fd48">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{edi_vendor_sku}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="35" y="1" width="55" height="19" uuid="4673dc45-a1d8-4dd5-9aa8-04c333de2707">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{order_refnum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="0" width="51" height="19" uuid="c3bf6165-ff05-4c6b-979a-42c4b47488d0">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pack_quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="512" y="0" width="39" height="19" uuid="ad2b189b-621c-4c18-b1ea-fc4bce36d818">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pack_quantity}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="551" y="0" width="31" height="19" uuid="91587f63-fd04-4f12-a346-fa8ee0f48d88">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Each]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="1" width="34" height="19" uuid="90db8286-3928-4f74-ab1d-604f4879c589">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cust_refnum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="-1" width="108" height="40" uuid="8996620f-e65c-4cab-85b4-ad8b18164aa4">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{edi_item_title}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Prevent"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="50" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<componentElement>
+				<reportElement x="-9" y="6" width="276" height="38" uuid="162f8a3e-116f-482c-9361-17b24110cb92"/>
+				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="1.5" textPosition="bottom">
+					<jr:codeExpression><![CDATA[$F{order_num_barcode}]]></jr:codeExpression>
+				</jr:Code39>
+			</componentElement>
+			<textField>
+				<reportElement style="Column header" x="440" y="31" width="80" height="13" uuid="f8c5b52c-3c99-4543-8570-5befb6ae36f8"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="520" y="31" width="40" height="13" uuid="489387bf-33d0-4e0b-852a-1d24e57fee8d"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

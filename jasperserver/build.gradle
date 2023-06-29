@@ -1,0 +1,48 @@
+org.gradle.util.SingleMessageLogger.whileDisabled {
+    apply plugin: 'groovy'
+}
+
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
+}
+
+tasks.withType(GroovyCompile) {
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
+}
+
+repositories {
+    // jcenter()
+    flatDir{
+        dirs 'libs'
+    }
+    mavenCentral()
+    ivy {
+        artifactPattern "http://internal.owd.com/ivyrepo/[organisation]/[module]/[artifact].[ext]"
+    }
+
+}
+
+
+dependencies {
+
+    apply plugin: 'application'
+    mainClassName = 'PrintServer'
+    compile project(':owd_core')
+    // http://mvnrepository.com/artifact/org.apache.commons/commons-exec
+    compile group: 'org.apache.commons', name: 'commons-exec', version: '1.0.1'
+    compile files('lib/JRJREngine.jar','lib/JRItext.jar')
+
+
+
+
+}
+sourceSets {
+    main {
+        groovy {
+            srcDirs = ['src']
+        }
+    }
+}

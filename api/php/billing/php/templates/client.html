@@ -1,0 +1,52 @@
+<!-- BEGIN: main -->
+<div id="section_title">{SECTION_TITLE}</div>
+
+<div class="section_tabs">
+    <a href="{CLIENT_CONTRACTS_URL}">Contracts</a> |
+    <a href="{CLIENT_INVOICES_URL}">Invoices</a> |
+    <a href="{CLIENT_BILLABLE_EVENTS_URL}">Billable Events</a> |
+    <a href="{CLIENT_PRICED_EVENTS_URL}">Priced Events</a>
+</div>
+
+<div id="frame">
+
+    <div id="sidebar">
+        <input type="button" value="Add Contract" onclick="location.href='{ADD_CONTRACT_URL}'">
+    </div>
+
+    <div id="content">
+        <div id="page_title">{PAGE_TITLE}</div>
+
+        <table class="table_list" width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="table_list_trash_header">&nbsp;</td>
+            <td class="table_list_header">Contract</td>
+            <td class="table_list_header">Start Date</td>
+            <td class="table_list_header">End Date</td>
+            <td class="table_list_header">Active</td>
+            <td class="table_list_header">Invoice</td>
+        </tr>
+
+        <!-- BEGIN: contracts -->
+        <tr>
+            <td class="table_list_trash_field">
+                <a href="{DELETE_CONTRACT_URL}" onclick="return confirmDelete('contract')"><img src="images/trash.gif" border="0"><a>
+            </td>
+            <td class="table_list_text_field"><a href="{CONTRACT_URL}">{CONTRACT_NAME}</a></td>
+            <td class="table_list_text_field">{START_DATE}</td>
+            <td class="table_list_text_field">{END_DATE}</td>
+            <td class="table_list_text_field">{ACTIVE}</td>
+            <td class="table_list_text_field">{INVOICE_INTERVAL}</td>
+        </tr>
+        <!-- END: contracts -->
+
+        <!-- BEGIN: no_contracts -->
+        <tr>
+            <td colspan="4" class="list_table_row"><i>No contracts found.</i></td>
+        </tr>
+        <!-- END: no_contracts -->
+        </table>
+
+    </div>
+</div>
+<!-- END: main -->

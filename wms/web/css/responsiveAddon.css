@@ -1,0 +1,64 @@
+.red{
+    color:red;
+
+}
+.lightred{
+    color:lightcoral;
+}
+.hrtitle{
+    color:blue;
+
+    height:5px;
+    background:blue;
+    margin:0;
+
+}
+.countData{
+    padding-top:5px;
+    margin-top:5px;
+    border-top:solid black 3px;
+}.center{
+    text-align: center;
+
+}
+span.inventorynum{
+    font-weight:bold;
+    color: #85147C;
+}
+span.inventoryid{
+    font-weight:bold;
+    color: #01D709;
+}
+.printLabels{
+    padding-top:5px;
+    margin-top:5px;
+    border-top:solid black 3px;
+}
+.errors, .error{
+    color:red;
+
+}
+
+.locHistory{
+    background-color:lightcoral;
+    margin-top:8px;
+}
+.locHistory .even{
+    background-color:#dddddd;
+}
+.locHistory .row{
+    padding:3px;
+}
+.locationList{
+    padding:5px;
+
+}
+.Primary{
+    background-color: #77ee66;
+    padding:3px;
+
+}
+.Secondary{
+    background-color: #ffee77;
+    padding:3px;
+}

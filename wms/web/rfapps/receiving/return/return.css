@@ -1,0 +1,27 @@
+body {
+FONT-SIZE: 10px;
+FONT-FAMILY: Arial, Helvetica, sans-serif;
+BACKGROUND-COLOR: #FFFFFF;
+}
+
+DIV.asn {
+overflow: auto;
+width: 240;
+height: 200;
+padding:0px; margin: 0px;
+}
+
+table.selectsku {
+ width: 240;
+
+}
+td.selectsku1 {
+ width: 200;
+ text-align: center;
+ rowspan: 1;
+}
+td.selectsku2 {
+ width: 40;
+ text-align: center;
+ rowspan: 2;
+}

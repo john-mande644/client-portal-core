@@ -1,0 +1,10 @@
+Flow:
+
+User clicks cycle count button
+ - if assigned or available counts exist, displayed as list with option to start new
+ - if none, goes directly to start new count screen
+
+ Start new count screen
+ - scan/enter inventory id or upc/isbn
+ - if multiple records with upc exist for scanned upc, choose client name
+ - successful submit creates inventory count and presents list of locations, if any

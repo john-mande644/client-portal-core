@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" >
+
+   <display-name>WMS2</display-name>
+             <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+          <init-param>
+              <param-name>actionPackages</param-name>
+              <param-value>com.owd</param-value>
+          </init-param>
+    </filter>
+     <filter>
+        <filter-name>hibernateFilter</filter-name>
+        <filter-class>com.owd.web.HibernateFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>hibernateFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+      <filter-mapping>
+	<filter-name>struts2</filter-name>
+	<url-pattern>/struts/*</url-pattern>
+</filter-mapping>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>*.action</url-pattern>
+    </filter-mapping>
+
+<jsp-config>
+     <taglib>
+        <taglib-uri>struts-dojo-tags</taglib-uri>
+        <taglib-location>/WEB-INF/struts-dojo-tags.tld</taglib-location>
+      </taglib>
+
+       </jsp-config>
+</web-app>

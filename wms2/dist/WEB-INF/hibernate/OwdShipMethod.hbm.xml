@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OwdShipMethod"
+        table="owd_ship_methods"
+        >
+
+        <id
+            name="shipMethodId"
+            type="java.lang.Integer"
+            column="ship_method_id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="methodName"
+            type="java.lang.String"
+            column="method_name"
+            length="50"
+            />
+        <property
+            name="carrierCode"
+            type="java.lang.String"
+            column="carrier_code"
+            length="50"
+            />
+        <property
+            name="carrierName"
+            type="java.lang.String"
+            column="carrier_name"
+            length="50"
+            />
+        <property
+            name="methodCode"
+            type="java.lang.String"
+            column="method_code"
+            length="50"
+            />
+        <property
+            name="labelDocName"
+            type="java.lang.String"
+            column="label_doc_name"
+            length="50"
+            />
+        <property
+            name="labelDocCode"
+            type="java.lang.String"
+            column="label_doc_code"
+            length="50"
+            />
+        <property
+            name="intlDocName"
+            type="java.lang.String"
+            column="intl_doc_name"
+            length="50"
+            />
+        <property
+            name="intlDocCode"
+            type="java.lang.String"
+            column="intl_doc_code"
+            length="50"
+            />
+        <property
+            name="intlDoc2Name"
+            type="java.lang.String"
+            column="intl_doc2_name"
+            length="50"
+            />
+        <property
+            name="intlDoc2Code"
+            type="java.lang.String"
+            column="intl_doc2_code"
+            length="50"
+            />
+        <property
+            name="intlDoc3Name"
+            type="java.lang.String"
+            column="intl_doc3_name"
+            length="50"
+            />
+        <property
+            name="intlDoc3Code"
+            type="java.lang.String"
+            column="intl_doc3_code"
+            length="50"
+            />
+        <property
+            name="labelCount"
+            type="java.lang.Integer"
+            column="label_count"
+            length="10"
+            />
+        <property
+            name="intlDocCount"
+            type="java.lang.Integer"
+            column="intl_doc_count"
+            length="10"
+            />
+        <property
+            name="intlDoc2Count"
+            type="java.lang.Integer"
+            column="intl_doc2_count"
+            length="10"
+            />
+        <property
+            name="intlDoc3Count"
+            type="java.lang.Integer"
+            column="intl_doc3_count"
+            length="10"
+            />
+        <property
+            name="isInternational"
+            type="java.lang.Integer"
+            column="is_international"
+            length="10"
+            />
+        <property
+            name="requestTracking"
+            type="java.lang.Integer"
+            column="request_tracking"
+            length="10"
+            />
+        <property
+            name="rateOnly"
+            type="java.lang.Integer"
+            column="rate_only"
+            length="10"
+            />
+        <property
+            name="oldCarrierCode"
+            type="java.lang.String"
+            column="old_carrier_code"
+            length="50"
+            />
+        <property
+            name="trackType"
+            type="java.lang.Integer"
+            column="track_type"
+            length="10"
+            />
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

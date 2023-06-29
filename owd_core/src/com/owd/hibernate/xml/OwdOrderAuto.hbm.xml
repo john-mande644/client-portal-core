@@ -1,0 +1,350 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.OwdOrderAuto"
+        table="owd_order_auto"
+        >
+
+        <id
+            name="autoShipId"
+            type="java.lang.Integer"
+            column="auto_ship_id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="clientFkey"
+            type="java.lang.Integer"
+            column="client_fkey"
+            length="10"
+            />
+        <property
+            name="shipInterval"
+            type="java.lang.Integer"
+            column="ship_interval"
+            length="10"
+            />
+        <property
+            name="calendarUnit"
+            type="java.lang.String"
+            column="calendar_unit"
+            length="10"
+            />
+        <property
+            name="requirePayment"
+            type="java.lang.Integer"
+            column="require_payment"
+            length="10"
+            />
+        <property
+            name="status"
+            type="java.lang.Integer"
+            column="status"
+            length="10"
+            />
+        <property
+            name="nextShipmentDate"
+            type="java.util.Date"
+            column="next_shipment_date"
+            length="23"
+            />
+        <property
+            name="billName"
+            type="java.lang.String"
+            column="bill_name"
+            length="82"
+            />
+        <property
+            name="billAddressOne"
+            type="java.lang.String"
+            column="bill_address_one"
+            length="82"
+            />
+        <property
+                name="billAddressTwo"
+                type="java.lang.String"
+                column="bill_address_two"
+                length="82"
+        />
+        <property
+                name="billCompany"
+                type="java.lang.String"
+                column="bill_company"
+                length="82"
+        />
+        <property
+            name="billCity"
+            type="java.lang.String"
+            column="bill_city"
+            length="82"
+            />
+        <property
+            name="billState"
+            type="java.lang.String"
+            column="bill_state"
+            length="82"
+            />
+        <property
+            name="billZip"
+            type="java.lang.String"
+            column="bill_zip"
+            length="13"
+            />
+        <property
+            name="billCountry"
+            type="java.lang.String"
+            column="bill_country"
+            length="32"
+            />
+        <property
+            name="ccNum"
+            type="java.lang.String"
+            column="cc_num"
+            length="19"
+            />
+        <property
+            name="ccExpMon"
+            type="java.lang.Integer"
+            column="cc_exp_mon"
+            length="10"
+            />
+        <property
+            name="ccExpYear"
+            type="java.lang.Integer"
+            column="cc_exp_year"
+            length="10"
+            />
+        <property
+            name="shipName"
+            type="java.lang.String"
+            column="ship_name"
+            length="82"
+            />
+        <property
+            name="shipAddressOne"
+            type="java.lang.String"
+            column="ship_address_one"
+            length="82"
+            />
+        <property
+            name="shipAddressTwo"
+            type="java.lang.String"
+            column="ship_address_two"
+            length="82"
+            />
+        <property
+                name="shipCompany"
+                type="java.lang.String"
+                column="ship_company"
+                length="82"
+        />
+        <property
+            name="shipCity"
+            type="java.lang.String"
+            column="ship_city"
+            length="82"
+            />
+        <property
+            name="shipState"
+            type="java.lang.String"
+            column="ship_state"
+            length="82"
+            />
+        <property
+            name="shipZip"
+            type="java.lang.String"
+            column="ship_zip"
+            length="19"
+            />
+        <property
+            name="shipCountry"
+            type="java.lang.String"
+            column="ship_country"
+            length="32"
+            />
+        <property
+            name="billPhone"
+            type="java.lang.String"
+            column="bill_phone"
+            length="32"
+            />
+        <property
+            name="shipPhone"
+            type="java.lang.String"
+            column="ship_phone"
+            length="32"
+            />
+        <property
+            name="shipMethod"
+            type="java.lang.String"
+            column="ship_method"
+            length="50"
+            />
+        <property
+            name="salesTax"
+            type="java.math.BigDecimal"
+            column="sales_tax"
+            length="19"
+            />
+        <property
+            name="shipCost"
+            type="java.math.BigDecimal"
+            column="ship_cost"
+            length="19"
+            />
+      <!--  <property
+            name="origOrderId"
+
+            type="java.lang.Integer"
+            column="orig_order_id"
+            length="10"
+            />-->
+        <property
+            name="created"
+            type="java.util.Date"
+            column="created"
+            length="23"
+            />
+        <property
+            name="cancelDate"
+            type="java.util.Date"
+            column="cancel_date"
+            length="23"
+            />
+        <property
+            name="orderSource"
+            type="java.lang.String"
+            column="order_source"
+            length="50"
+            />
+        <property
+            name="createdBy"
+            type="java.lang.String"
+            column="created_by"
+            length="50"
+            />
+        <property
+            name="billEmail"
+            type="java.lang.String"
+            column="bill_email"
+            length="50"
+            />
+        <property
+            name="shipEmail"
+            type="java.lang.String"
+            column="ship_email"
+            length="50"
+            />
+
+        <property
+                name="fop"
+                type="java.lang.Integer"
+                column="fop"
+                length="10"
+                />
+
+        <property
+                name="ckAbaNum"
+                type="java.lang.String"
+                column="ck_aba_num"
+                length="50"
+                />
+        <property
+                name="ckAcctNum"
+                type="java.lang.String"
+                column="ck_acct_num"
+                length="50"
+                />
+        <property
+                name="ckAcct"
+                type="java.lang.String"
+                column="ck_acct"
+                length="13"
+                />
+        <property
+                name="ckBank"
+                type="java.lang.String"
+                column="ck_bank"
+                length="50"
+                />
+        <property
+                name="ckNumber"
+                type="java.lang.String"
+                column="ck_number"
+                length="50"
+                />
+
+        <property
+                name="originalCoupon"
+                type="java.lang.String"
+                column="original_coupon"
+                length="255"
+                />
+
+        <!-- associations -->
+        <!-- bi-directional one-to-many association to OwdOrderAutoItem -->
+        <bag
+            name="owdOrderAutoItems"
+              lazy="true"
+            inverse="true"
+            order-by="sku asc"
+            >
+            <key>
+                <column name="autoship_fkey"/>
+            </key>
+            <one-to-many
+                class="com.owd.hibernate.generated.OwdOrderAutoItem"
+                />
+        </bag>
+        <!-- bi-directional one-to-many association to OwdOrderAutoHistory -->
+        <bag
+            name="owdOrderAutoHistories"
+            lazy="true"
+            inverse="true"
+
+            order-by="created desc"
+            >
+            <key>
+                <column name="order_auto_fkey"/>
+            </key>
+            <one-to-many
+                class="com.owd.hibernate.generated.OwdOrderAutoHistory"
+                />
+        </bag>
+
+      <!--  <many-to-one
+               name="sourceOrder"
+               class="com.owd.hibernate.generated.OwdOrder"
+                insert="false"
+                update="false"
+                not-null="false"
+                
+               >
+               <column name="orig_order_id"/>
+           </many-to-one>-->
+   
+
+         <set name="sourceOrders" table="auto_order_to_order" lazy="true" >
+            <key column="order_auto_fkey"/>
+            <many-to-many class="com.owd.hibernate.generated.OwdOrder" column="order_fkey" />
+        </set>
+
+         <set name="createdOrders" table="owd_order_auto_order" lazy="true" >
+            <key column="order_auto_fkey"/>
+            <many-to-many class="com.owd.hibernate.generated.OwdOrder" column="order_fkey" />
+        </set>
+
+    </class>
+</hibernate-mapping>

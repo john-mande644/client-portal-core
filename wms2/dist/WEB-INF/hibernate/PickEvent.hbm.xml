@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.PickEvent"
+        table="pick_events"
+        >
+    <meta attribute="implement-equals" >true</meta>
+
+        <composite-id>
+            <key-property
+                name="pickEventId"
+                column="pick_event_id"
+                type="java.lang.Integer"
+                length="10">
+        <meta attribute="use-in-equals" >true</meta>
+     </key-property>
+            <key-property
+                name="picker"
+                column="picker"
+                type="java.lang.String"
+                length="50">
+        <meta attribute="use-in-equals" >true</meta>
+     </key-property>
+            <key-property
+                name="pickTime"
+                column="pick_time"
+                type="java.util.Date"
+                length="23">
+        <meta attribute="use-in-equals" >true</meta>
+     </key-property>
+            <key-property
+                name="pickStart"
+                column="pick_start"
+                type="java.lang.Integer"
+                length="10"
+                />
+            <key-property
+                name="pickCancel"
+                column="pick_cancel"
+                type="java.lang.Integer"
+                length="10"
+                />
+            <key-property
+                name="pickEnd"
+                column="pick_end"
+                type="java.lang.Integer"
+                length="10"
+                />
+            <key-property
+                name="orderNum"
+                column="order_num"
+                type="java.lang.String"
+                length="50">
+        <meta attribute="use-in-equals" >true</meta>
+     </key-property>
+        </composite-id>
+
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

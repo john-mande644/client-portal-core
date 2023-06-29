@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+            name="com.owd.hibernate.generated.OwdExternalEvent"
+            table="owd_external_event"
+            >
+
+        <id
+                name="id"
+                type="java.lang.Integer"
+                column="id"
+                >
+            <generator class="identity"/>
+        </id>
+
+        <property
+                name="clientFkey"
+                type="java.lang.Integer"
+                column="client_fkey"
+                not-null="true"
+                length="10"
+                />
+        <property
+                name="entitytype"
+                type="java.lang.String"
+                column="entity_type"
+                not-null="true"
+                length="80"
+                />
+        <property
+                name="entityId"
+                type="java.lang.Integer"
+                column="entity_id"
+                not-null="true"
+                length="10"
+                />
+        <property
+                name="eventTime"
+                type="java.util.Date"
+                column="event_time"
+                not-null="false"
+                length="23"
+                />
+        <property
+                name="eventType"
+                type="java.lang.String"
+                column="event_type"
+                not-null="true"
+                length="80"
+                />
+        <property
+                name="eventSubtype"
+                type="java.lang.String"
+                column="event_subtype"
+                not-null="true"
+                length="80"
+                />
+        <property
+                name="source"
+                type="java.lang.String"
+                column="source"
+                not-null="true"
+                length="80"
+                />
+        <property
+                name="note"
+                type="java.lang.String"
+                column="note"
+                not-null="true"
+                length="2147483647"
+                />
+        <property
+                name="data"
+                type="java.lang.String"
+                column="data"
+                not-null="true"
+                length="2147483647"
+                />
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

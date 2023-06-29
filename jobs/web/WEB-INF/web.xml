@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+           version="2.5">
+    <display-name>
+		One World Internal Quartz Jobs
+    </display-name>
+
+
+    <servlet> <display-name>
+            Quartz Initializer Servlet
+        </display-name>
+        <servlet-name>
+            QuartzInitializer
+        </servlet-name>
+
+        <servlet-class>
+            org.quartz.ee.servlet.QuartzInitializerServlet
+        </servlet-class>    <init-param>
+            <param-name>shutdown-on-unload</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>
+            1
+        </load-on-startup> 
+
+    </servlet>
+
+
+    <filter>
+           <filter-name>hibernateFilter</filter-name>
+           <filter-class>com.owd.web.HibernateFilter</filter-class>
+       </filter>
+
+      <filter-mapping>
+           <filter-name>hibernateFilter</filter-name>
+           <url-pattern>/*</url-pattern>
+       </filter-mapping>
+
+</web-app>

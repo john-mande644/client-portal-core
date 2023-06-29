@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OWD_TEST_ORDER_RELEASE_RESPONSE" type="OWD_TEST_ORDER_RELEASE_RESPONSEType"/>
+  <xs:complexType name="OWD_TEST_ORDER_RELEASE_RESPONSEType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="RELEASED"/>
+      <xs:element type="xs:string" name="PDF_DATA"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

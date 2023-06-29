@@ -1,0 +1,1 @@
+Your locations are now created.  Cool

@@ -1,0 +1,8 @@
+
+<OWD_API_REQUEST api_version='1.0' client_authorization='abc123' client_id='123' testing='FALSE'>
+    <OWD_TEST_ORDER_RELEASE_REQUEST>
+        <ORDER>BPC-GU-MLBUNIV</ORDER>
+        <URL>http://www.client.com/script.action</URL>
+        <TYPE>(PDF|ORDER|ALL)</TYPE>
+    </OWD_TEST_ORDER_RELEASE_REQUEST>
+</OWD_API_REQUEST>

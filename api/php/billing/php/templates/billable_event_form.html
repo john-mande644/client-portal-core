@@ -1,0 +1,155 @@
+<!-- BEGIN: main -->
+<script type="text/javascript">
+var billableTypes = [];
+<!-- BEGIN: jsBillableTypes -->
+billableTypes.push({id: {JS_BILLABLE_TYPE_ID},
+                    name: "{JS_BILLABLE_TYPE_NAME}",
+                    unitName: "{JS_BILLABLE_TYPE_UNIT_NAME}",
+                    exceptionField1Name: "{JS_EXCEPTION_FIELD1_NAME}",
+                    exceptionField2Name: "{JS_EXCEPTION_FIELD2_NAME}"});
+<!-- END: jsBillableTypes -->
+
+function onSelectBillableType() {
+    var billableTypeSelect = document.getElementById('billableTypeSelect');
+    var selectedIndex = billableTypeSelect.selectedIndex;
+    var selectedID = billableTypeSelect.options[selectedIndex].value;
+
+    var exceptionField1NameLabel = document.getElementById('exceptionField1NameLabel');
+    exceptionField1NameLabel.innerHTML = '';
+
+    var exceptionField1Row = document.getElementById('exceptionField1Row');
+    exceptionField1Row.style.display = 'none';
+
+    var exceptionField2NameLabel = document.getElementById('exceptionField2NameLabel');
+    exceptionField2NameLabel.innerHTML = '';
+
+    var exceptionField2Row = document.getElementById('exceptionField2Row');
+    exceptionField2Row.style.display = 'none';
+
+    var unitNameSpan = document.getElementById('unitName');
+    unitNameSpan.innerHTML = '';
+
+    var unitName = '';
+    for(var i = 0; i < billableTypes.length; i++) {
+        if (billableTypes[i].id == selectedID) {
+            var unitName = billableTypes[i].unitName;
+            unitNameSpan.innerHTML = 'per ' + unitName;
+
+
+            var exceptionField1Name = billableTypes[i].exceptionField1Name;
+            if (billableTypes[i].exceptionField1Name) {
+                exceptionField1NameLabel.innerHTML = exceptionField1Name;
+                exceptionField1Row.style.display = '';
+            }
+
+            var exceptionField2Row = document.getElementById('exceptionField2Row');
+            var exceptionField2Name = billableTypes[i].exceptionField2Name;
+            if (billableTypes[i].exceptionField2Name) {
+                exceptionField2NameLabel.innerHTML = exceptionField2Name;
+                exceptionField2Row.style.display = '';
+            }
+        }
+    }
+}
+
+function onLoad() {
+    onSelectBillableType();
+}
+
+window.onload = onLoad;
+
+</script>
+
+<div id="sidebar">
+    <div class="sidebar_button_line">
+
+    </div>
+</div>
+
+<div id="section_title">{SECTION_TITLE}</div>
+
+<div class="section_tabs">
+    <a href="{CLIENT_CONTRACTS_URL}">Contracts</a> |
+    <a href="{CLIENT_INVOICES_URL}">Invoices</a> |
+    <a href="{CLIENT_BILLABLE_EVENTS_URL}">Billable Events</a> |
+    <a href="{CLIENT_PRICED_EVENTS_URL}">Priced Events</a>
+</div>
+
+<div id="frame">
+
+    <div id="content">
+
+        <div id="page_title">{PAGE_TITLE}</div>
+
+        <form id="post_form" name="post_form" method="post" action="billable_event_form.php">
+            <input type="hidden" name="clientID" value="{CLIENT_ID}">
+            <input type="hidden" name="billableEventID" value="{BILLABLE_EVENT_ID}">
+
+            <table class="form_table" border="0" cellpadding="0" cellspacing="0">
+
+            <!-- BEGIN: error_message -->
+            <tr>
+                <td colspan="2" class="form_error_message">
+                    {ERROR_MESSAGE}
+                </td>
+            </tr>
+            <!-- END: error_message -->
+
+            <tr>
+                <td class="form_field_label_required">Billable Type:</td>
+                <td class="form_field_required">
+                    <select id="billableTypeSelect" name="billableTypeID" onchange="onSelectBillableType(this);">
+                        <option value="0">-</option>
+                        <!-- BEGIN: billableTypes -->
+                        <option value="{LIST_BILLABLE_TYPE_ID}" {LIST_BILLABLE_TYPE_SELECTED}>{LIST_BILLABLE_TYPE_NAME}</option>
+                        <!-- END: billableTypes -->
+                    </select>
+                </td>
+            </tr>
+
+            <tr id="exceptionField1Row">
+                <td class="form_field_label_required" id="exceptionField1NameLabel">-Exception 1 Name-:</td>
+                <td class="form_field_required">
+                    <input type="text" name="exceptionField1Value" value="{EXCEPTION_FIELD1_VALUE}" size="30">
+                </td>
+            </tr>
+
+            <tr id="exceptionField2Row">
+                <td class="form_field_label_required" id="exceptionField2NameLabel">-Exception 2 Name-:</td>
+                <td class="form_field_required">
+                    <input type="text" name="exceptionField2Value" value="{EXCEPTION_FIELD2_VALUE}" size="30">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Units:</td>
+                <td class="form_field_required">
+                    <input type="text" name="units" value="{UNITS}" size="10">
+                    <span id="unitName">(Unit Type)</span>
+                    <span style="margin-left: 15px; color: rgb(128, 128, 128); font-weight: bold">To apply a credit just enter a negative number.</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Event Date:</td>
+                <td class="form_field_required">
+                    <input type="text" name="eventDate" value="{EVENT_DATE}" size="10">
+                    <span>(m/d/yyyy)</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="form_submit">
+                    <input name="save" type="submit" value="Save">
+                    <input name="saveAndAddAnother" type="submit" value="Save and Add Another">
+                    or
+                    <a href="{CANCEL_URL}" class="cancel_link">Cancel</a>
+                </td>
+            </tr>
+
+            </table>
+
+        </form>
+    </div>
+</div>
+<!-- END: main -->

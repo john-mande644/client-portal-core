@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OWD_API_REQUEST" type="OWD_API_REQUESTType"/>
+  <xs:complexType name="OWD_TEST_ORDER_RELEASE_REQUESTType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="ORDERREF"/>
+      <xs:element type="xs:string" name="URL"/>
+      <xs:element type="xs:string" name="CHECKTYPE"/>
+      <xs:element type="xs:string" name="PDF_EMAIL"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OWD_API_REQUESTType">
+    <xs:sequence>
+      <xs:element type="OWD_TEST_ORDER_RELEASE_REQUESTType" name="OWD_TEST_ORDER_RELEASE_REQUEST"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="api_version"/>
+    <xs:attribute type="xs:string" name="client_authorization"/>
+    <xs:attribute type="xs:string" name="client_id"/>
+    <xs:attribute type="xs:string" name="testing"/>
+  </xs:complexType>
+</xs:schema>

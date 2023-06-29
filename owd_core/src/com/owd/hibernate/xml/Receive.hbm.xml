@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.Receive"
+        table="receive"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="startTimestamp"
+            type="java.util.Date"
+            column="start_timestamp"
+            not-null="true"
+            length="23"
+            />
+        <property
+            name="endTimestamp"
+            type="java.util.Date"
+            column="end_timestamp"
+            not-null="true"
+            length="23"
+            />
+        <property
+            name="receiveBy"
+            type="java.lang.String"
+            column="receive_by"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="isAsnFound"
+            type="java.lang.Integer"
+            column="is_asn_found"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="isPackSlipFound"
+            type="java.lang.Integer"
+            column="is_pack_slip_found"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="cartonCount"
+            type="java.lang.Integer"
+            column="carton_count"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="palletCount"
+            type="java.lang.Integer"
+            column="pallet_count"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="createdBy"
+            type="java.lang.String"
+            column="created_by"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="countMethod"
+            type="java.lang.String"
+            column="count_method"
+            not-null="false"
+            length="50"
+            />
+        <property
+            name="createdOn"
+
+            type="java.util.Date"
+            column="created_on"
+            not-null="true"
+            length="23"
+            />
+        <property
+            name="isPosted"
+            type="java.lang.Integer"
+            column="is_posted"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="postDate"
+            type="java.util.Date"
+            column="post_date"
+            length="23"
+            />
+
+        <property
+            name="billedMinutes"
+            type="java.lang.Integer"
+            column="billed_minutes"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="notes"
+            type="java.lang.String"
+            column="notes"
+            not-null="true"
+            length="2147483647"
+            />
+        <property
+            name="skuCount"
+            type="java.lang.Integer"
+            column="sku_count"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="unitCount"
+            type="java.lang.Integer"
+            column="unit_count"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="clientFkey"
+            type="java.lang.Integer"
+            column="client_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="isPackSlipMatch"
+            type="java.lang.Integer"
+            column="is_pack_slip_match"
+            not-null="true"
+            length="10"
+            />
+        <property
+                name="facilityCode"
+                type="java.lang.String"
+                column="facility_code"
+                not-null="false"
+                length="10"
+                />
+
+        <!-- associations -->
+        <!-- bi-directional one-to-many association to ReceiveItem -->
+        <bag
+            name="receiveItems"
+            order-by="inventory_fkey asc" 
+            lazy="true"
+            inverse="true"
+            >
+            <key>
+                <column name="receive_fkey"/>
+            </key>
+            <one-to-many
+                class="com.owd.hibernate.generated.ReceiveItem"
+                />
+        </bag>
+         <bag
+            name="scanDocs"
+            lazy="true"
+                 inverse="true"
+            >
+            <key>
+                <column name="scan_id"/>
+            </key>
+            <one-to-many
+
+                class="com.owd.hibernate.generated.ScanReceive"
+                />
+        </bag>
+        <bag
+                name="tags"
+                lazy="true"
+                inverse="true"
+                >
+            <key>
+                <column name="external_id"/>
+            </key>
+            <one-to-many
+
+                    class="com.owd.hibernate.generated.ReceiveTag"
+                    />
+        </bag>
+
+
+        <!-- bi-directional many-to-one association to Asn -->
+        <many-to-one
+            name="asn"
+            class="com.owd.hibernate.generated.Asn"
+            not-null="true"
+            >
+            <column name="asn_fkey"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

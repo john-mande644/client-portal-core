@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OwdUser"
+        table="owd_users"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="clientFkey"
+            type="java.lang.Integer"
+            column="client_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="isAdmin"
+            type="boolean"
+            column="is_admin"
+            not-null="true"
+            length="1"
+            />
+        <property
+            name="isActive"
+            type="boolean"
+            column="is_active"
+            not-null="true"
+            length="1"
+            />
+        <property
+            name="isClientAdmin"
+            type="boolean"
+            column="is_client_admin"
+            not-null="true"
+            length="1"
+            />
+
+        <property
+                    name="login"
+                    type="java.lang.String"
+                    column="login"
+                    not-null="true"
+                    length="50"
+                    />
+
+        <property
+                    name="password"
+                    type="java.lang.String"
+                    column="password"
+                    not-null="true"
+                    length="255"
+                    />
+
+        <property
+                    name="name"
+                    type="java.lang.String"
+                    column="name"
+                    not-null="true"
+                    length="255"
+                    />
+
+        <property
+                    name="email"
+                    type="java.lang.String"
+                    column="email"
+                    not-null="true"
+                    length="255"
+                    />
+
+        <!-- associations -->
+        <set name="groups" table="owd_user_group" >
+    <key column="user_fkey"/>
+    <many-to-many column="group_fkey" class="com.owd.hibernate.OwdGroup" outer-join="false" />
+</set>
+
+    </class>
+</hibernate-mapping>

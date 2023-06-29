@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+
+    <class name="com.owd.hibernate.clientreports.generated.CcClContact"
+           table="cc_cl_contacts">
+        <id
+                name="id"
+                type="java.lang.Integer"
+                column="id"
+                >
+            <generator class="identity"/>
+        </id>
+        
+        <property name="contactId"
+            column="contact_id" type="java.lang.String" length="82" not-null="true"/>
+        
+        <property name="clientId"
+            column="client_id" type="java.lang.Integer" length="10"/>
+        
+        <property name="client"
+            column="client" type="java.lang.String" length="82"/>
+        
+        <property name="contactSource"
+            column="contact_source" type="java.lang.String" length="82"/>
+        
+        <property name="contactInitiated"
+            column="contact_initiated" type="java.util.Date" length="23" precision="3"/>
+        
+        <property name="contactInitiatedDate"
+            column="contact_initiated_date" type="java.util.Date" length="23" precision="3"/>
+        
+        <property name="contactInitiatedHour"
+            column="contact_initiated_hour" type="java.lang.Integer" length="10"/>
+        
+        <property name="contactType"
+            column="contact_type" type="java.lang.String" length="82"/>
+        
+        <property name="contactOutcome"
+            column="contact_outcome" type="java.lang.String" length="82"/>
+        
+        <property name="result"
+            column="result" type="java.lang.String" length="254"/>
+        
+        <property name="reason"
+            column="reason" type="java.lang.String" length="254"/>
+        
+        <property name="resultReason"
+            column="result_reason" type="java.lang.String" length="254"/>
+        
+        <property name="contactMinutes"
+            column="contact_minutes" type="java.lang.Double" length="19" precision="4"/>
+        
+        <property name="queueMinutes"
+            column="queue_minutes" type="java.lang.Double" length="19" precision="4"/>
+        
+        <property name="rerouteCount"
+            column="reroute_count" type="java.lang.String" length="82"/>
+        
+        <property name="rerouteMinutes"
+            column="reroute_minutes" type="java.lang.Double" length="19" precision="4"/>
+        
+        <property name="agentId"
+            column="agent_id" type="java.lang.String" length="50"/>
+        
+        <property name="isInternal"
+            column="is_internal" type="java.lang.Integer" length="10" not-null="true"/>
+        
+        <property name="notes"
+            column="notes" type="java.lang.String" length="2147483647" not-null="true"/>
+        
+        <property name="numberDialed"
+            column="number_dialed" type="java.lang.String" length="50"/>
+        
+        <property name="orderId"
+            column="order_id" type="java.lang.Integer" length="10"/>
+        
+        <property name="externalOrderRef"
+            column="external_order_ref" type="java.lang.String" length="50"/>
+        
+        <property name="externalCustomerId"
+            column="external_customer_id" type="java.lang.String" length="50"/>
+        
+        <property name="queueName"
+            column="queue_name" type="java.lang.String" length="50"/>
+        
+        <property name="wrapupMinutes"
+            column="wrapup_minutes" type="java.lang.Double" length="19" precision="4"/>
+        
+        <property name="billedMinutes"
+            column="billed_minutes" type="java.lang.Double" length="19" precision="4"/>
+        
+        <property name="callerId"
+            column="caller_id" type="java.lang.String" length="50"/>
+        
+        <property name="crossSell"
+            column="cross_sell" type="java.lang.Integer" length="10"/>
+        
+        <property name="ccGroup"
+            column="cc_group" type="java.lang.String" length="30"/>
+        
+        <property name="ivrVars"
+            column="ivr_vars" type="java.lang.String" length="1073741823"/>
+        
+    </class>
+</hibernate-mapping>

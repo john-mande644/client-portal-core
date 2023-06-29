@@ -1,0 +1,71 @@
+table.report td,table.report th {
+	font: menu;
+}
+
+table.report th {
+	background: buttonface;
+	border-width: 1px;
+	border-style: solid;
+	border-color: threedhighlight threedshadow threedshadow threedhighlight;
+
+}
+
+table.report idcol {
+	background: buttonface;
+}
+
+table.report tr.even {
+	background-color: #E2F9E3;
+}
+
+table.report tbody {
+	height: 400px;
+	overflow: auto;
+}
+
+table.report {
+	height: 400px;
+    overflow: auto;
+}
+
+table.report tbody tr {
+	height: 10px;
+}
+
+
+table.its {
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+        border-top: none;
+
+        margin: 0px 4px 2px 0px;
+
+        font-size: 12px;
+        width: 100%;
+        display: block;
+    }
+
+    table.its th {
+
+    }
+
+    table.its td {
+        
+    }
+table.its thead tr {
+        background-color: #C7E5EA;
+
+    }
+
+    table.its tr.even {
+        background-color: #E2F9E3;
+
+    }
+span.void {
+        background:red;
+        font-weight:bold;
+        font-size:14pt;
+        padding-left:5px;
+        padding-right:5px;
+    }

@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.OwdContact"
+        table="owd_contact"
+        >
+
+        <id
+            name="contactId"
+            type="java.lang.Integer"
+            column="contact_id"
+            >
+            <generator class="assigned"/>
+        </id>
+
+        <property
+            name="clientFkey"
+            type="java.lang.Integer"
+            column="client_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="contactName"
+            type="java.lang.String"
+            column="contact_name"
+            not-null="true"
+            length="82"
+            />
+        <property
+            name="phoneNum"
+            type="java.lang.String"
+            column="phone_num"
+            not-null="true"
+            length="16"
+            />
+        <property
+            name="faxNum"
+            type="java.lang.String"
+            column="fax_num"
+            length="16"
+            />
+        <property
+            name="emailAddress"
+            type="java.lang.String"
+            column="email_address"
+            length="82"
+            />
+        <property
+            name="createdDate"
+            type="java.util.Date"
+            column="created_date"
+            length="16"
+            />
+        <property
+            name="createdBy"
+            type="java.lang.String"
+            column="created_by"
+            length="30"
+            />
+        <property
+            name="modifiedDate"
+            type="java.util.Date"
+            column="modified_date"
+            length="16"
+            />
+        <property
+            name="modifiedBy"
+            type="java.lang.String"
+            column="modified_by"
+            length="30"
+            />
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

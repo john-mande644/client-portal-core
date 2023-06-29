@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.OwdClientMethod"
+        table="owd_client_method"
+        >
+
+        <id
+            name="clientMethodId"
+            type="java.lang.Integer"
+            column="client_method_id"
+            >
+            <generator class="identity"/>
+        </id>
+
+            <property
+                name="methodCode"
+                column="method_code"
+                type="java.lang.String"
+                length="255"
+                />
+            <property
+                name="discountPct"
+                column="discount_pct"
+                type="java.lang.Double"
+                length="53"
+                />
+
+
+        <!-- associations -->
+        <!-- bi-directional many-to-one association to OwdClient
+        <many-to-one
+            name="owdClient"
+            class="com.owd.hibernate.generated.OwdClient"
+            not-null="true"
+            >
+            <column name="client_fkey"/>
+        </many-to-one>             -->
+
+    </class>
+</hibernate-mapping>

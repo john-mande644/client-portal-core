@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.OrderPickItem"
+        table="order_pick_item"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="itemBarcode"
+            type="java.lang.Integer"
+            column="item_barcode"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="qtyPicked"
+            type="java.lang.Integer"
+            column="qty_picked"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="qtyToPick"
+            type="java.lang.Integer"
+            column="qty_to_pick"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="sku"
+            type="java.lang.String"
+            column="sku"
+            not-null="true"
+            length="255"
+            />
+        <property
+            name="skuDesc"
+            type="java.lang.String"
+            column="sku_desc"
+            not-null="true"
+            length="255"
+            />
+        <property
+            name="defaultLoc"
+            type="java.lang.String"
+            column="default_loc"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="locList"
+            type="java.lang.String"
+            column="loc_list"
+            not-null="true"
+            length="2147483647"
+            />
+        <property
+            name="startTime"
+            type="java.util.Date"
+            column="start_time"
+            not-null="false"
+            length="16"
+            />
+        <property
+            name="firstPickTime"
+            type="java.util.Date"
+            column="first_pick_time"
+            not-null="false"
+            length="16"
+            />
+        <property
+            name="endTime"
+            type="java.util.Date"
+            column="end_time"
+            not-null="false"
+            length="16"
+            />
+        <property
+            name="replenishTime"
+            type="java.lang.Integer"
+            column="replenish_time"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="indexId"
+            type="java.lang.Integer"
+            column="index_id"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="dcHold"
+            type="java.lang.Integer"
+            column="dchold"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="isSerialized"
+            type="java.lang.Integer"
+            column="is_serialized"
+            not-null="false"
+            length="10"
+            />
+        <property
+            name="serials"
+            type="java.lang.String"
+            column="serials"
+            not-null="false"
+            length="255"
+            />
+        <property
+            name="sort"
+            type="java.lang.String"
+            column="sort"
+            not-null="false"
+            length="50"
+            />
+
+        <!-- associations -->
+        <!-- bi-directional many-to-one association to OrderPickStatu -->
+        <many-to-one
+            name="orderPickStatu"
+            class="com.owd.hibernate.generated.OrderPickStatus"
+            not-null="true"
+            >
+            <column name="order_pick_fkey"/>
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OrderShipInfo2"
+        table="order_ship_info2"
+        >
+
+        <id
+            name="orderShipInfo2Id"
+            type="java.lang.Integer"
+            column="order_ship_info2_id"
+            >
+            <generator class="assigned"/>
+        </id>
+
+        <property
+            name="orderFkey"
+            type="java.lang.Integer"
+            column="order_fkey"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="returnName"
+            type="java.lang.String"
+            column="return_name"
+            length="50"
+            />
+        <property
+            name="returnAddressOne"
+            type="java.lang.String"
+            column="return_address_one"
+            length="50"
+            />
+        <property
+            name="returnAddressTwo"
+            type="java.lang.String"
+            column="return_address_two"
+            length="50"
+            />
+        <property
+            name="returnCompany"
+            type="java.lang.String"
+            column="return_company"
+            length="50"
+            />
+        <property
+            name="returnCity"
+            type="java.lang.String"
+            column="return_city"
+            length="50"
+            />
+        <property
+            name="returnState"
+            type="java.lang.String"
+            column="return_state"
+            length="50"
+            />
+        <property
+            name="returnZip"
+            type="java.lang.String"
+            column="return_zip"
+            length="50"
+            />
+        <property
+            name="returnCountry"
+            type="java.lang.String"
+            column="return_country"
+            length="50"
+            />
+        <property
+            name="returnCountryRef"
+            type="java.lang.String"
+            column="return_country_ref"
+            length="50"
+            />
+        <property
+            name="returnPhone"
+            type="java.lang.String"
+            column="return_phone"
+            length="50"
+            />
+        <property
+            name="shipperName"
+            type="java.lang.String"
+            column="shipper_name"
+            length="50"
+            />
+        <property
+            name="shipperCompany"
+            type="java.lang.String"
+            column="shipper_company"
+            length="50"
+            />
+        <property
+            name="shipperAddressOne"
+            type="java.lang.String"
+            column="shipper_address_one"
+            length="50"
+            />
+        <property
+            name="shipperAddressTwo"
+            type="java.lang.String"
+            column="shipper_address_two"
+            length="50"
+            />
+        <property
+            name="shipperCity"
+            type="java.lang.String"
+            column="shipper_city"
+            length="50"
+            />
+        <property
+            name="shipperState"
+            type="java.lang.String"
+            column="shipper_state"
+            length="50"
+            />
+        <property
+            name="shipperZip"
+            type="java.lang.String"
+            column="shipper_zip"
+            length="50"
+            />
+        <property
+            name="shipperPhone"
+            type="java.lang.String"
+            column="shipper_phone"
+            length="50"
+            />
+        <property
+            name="packageRef"
+            type="java.lang.String"
+            column="package_ref"
+            length="30"
+            />
+        <property
+            name="bwayText"
+            type="java.lang.String"
+            column="bway_text"
+            length="2147483647"
+            />
+        <property
+            name="bwayType"
+            type="java.lang.Integer"
+            column="bway_type"
+            length="10"
+            />
+
+        <!-- associations -->
+
+    </class>
+</hibernate-mapping>

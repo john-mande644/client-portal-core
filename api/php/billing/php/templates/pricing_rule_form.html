@@ -1,0 +1,106 @@
+<!-- BEGIN: main -->
+<script type="text/javascript">
+var billableTypes = [];
+<!-- BEGIN: jsBillableTypes -->
+billableTypes.push({id: {JS_BILLABLE_TYPE_ID}, name: "{JS_BILLABLE_TYPE_NAME}", unitName: "{JS_BILLABLE_TYPE_UNIT_NAME}"});
+<!-- END: jsBillableTypes -->
+
+function onSelectBillableType() {
+    var billableTypeSelect = document.getElementById('billableTypeSelect');
+    var selectedIndex = billableTypeSelect.selectedIndex;
+    var selectedID = billableTypeSelect.options[selectedIndex].value;
+
+    var unitNameSpan = document.getElementById('unitName');
+    unitNameSpan.innerHTML = '';
+
+    var unitName = '';
+    for(var i = 0; i < billableTypes.length; i++) {
+        if (billableTypes[i].id == selectedID) {
+            unitName = billableTypes[i].unitName;
+            unitNameSpan.innerHTML = 'per ' + unitName;
+        }
+    }
+}
+
+function onLoad() {
+    onSelectBillableType();
+}
+
+window.onload = onLoad;
+
+</script>
+
+<div id="sidebar"></div>
+
+<div id="section_title">{SECTION_TITLE}</div>
+
+<div class="section_tabs">
+    <a href="{CLIENT_CONTRACTS_URL}">Contracts</a> |
+    <a href="{CLIENT_INVOICES_URL}">Invoices</a> |
+    <a href="{CLIENT_BILLABLE_EVENTS_URL}">Billable Events</a> |
+    <a href="{CLIENT_PRICED_EVENTS_URL}">Priced Events</a>
+</div>
+
+<div id="frame">
+    <div id="content">
+        <div class="section_sub_tabs">
+            <a href="{CONTRACT_GENERAL_URL}">General</a> |
+            <a href="{CONTRACT_RECURRING_ITEMS_URL}">Recurring Items</a> |
+            <a href="{CONTRACT_PRICING_RULES_URL}">Pricing Rules</a>
+        </div>
+
+        <div id="page_title">{PAGE_TITLE}</div>
+
+
+        <form id="post_form" name="post_form" method="post" action="pricing_rule_form.php">
+            <input type="hidden" name="clientID" value="{CLIENT_ID}">
+            <input type="hidden" name="contractID" value="{CONTRACT_ID}">
+            <input type="hidden" name="pricingRuleID" value="{PRICING_RULE_ID}">
+
+
+            <table class="form_table" border="0" cellpadding="0" cellspacing="0">
+
+            <!-- BEGIN: error_message -->
+            <tr>
+                <td colspan="2" class="form_error_message">
+                    {ERROR_MESSAGE}
+                </td>
+            </tr>
+            <!-- END: error_message -->
+
+            <tr>
+                <td class="form_field_label_required">Billable Type:</td>
+                <td class="form_field_required">
+                    <select id="billableTypeSelect" name="billableTypeID" onchange="onSelectBillableType(this);">
+                        <option value="0">-</option>
+                        <!-- BEGIN: billableTypes -->
+                        <option value="{LIST_BILLABLE_TYPE_ID}" {LIST_BILLABLE_TYPE_SELECTED}>{LIST_BILLABLE_TYPE_NAME}</option>
+                        <!-- END: billableTypes -->
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="form_field_label_required">Price:</td>
+                <td class="form_field_required">
+                    <input type="text" name="unitPrice" value="{UNIT_PRICE}" size="10">
+                    <span id="unitName">(Unit Type)</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="form_submit">
+                    <input name="save" type="submit" value="Save">
+                    <!-- BEGIN: addAnotherButton -->
+                    <input name="saveAndAddAnother" type="submit" value="Save and Add Another">
+                    <!-- END: addAnotherButton -->
+                    or
+                    <a href="{CONTRACT_PRICING_RULES_URL}" class="cancel_link">Cancel</a>
+                </td>
+            </tr>
+
+            </table>
+        </form>
+    </div>
+</div>
+<!-- END: main -->

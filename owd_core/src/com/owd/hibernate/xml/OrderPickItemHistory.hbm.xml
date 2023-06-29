@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.OrderPickItemHistory"
+        table="order_pick_item_history"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="firstScanTime"
+            type="java.lang.Integer"
+            column="first_scan_time"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="allUnitsPicked"
+            type="java.lang.Integer"
+            column="all_units_picked"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="inventoryId"
+            type="java.lang.String"
+            column="inventory_id"
+            not-null="true"
+            length="50"
+            />
+        <property
+            name="unitsPicked"
+            type="java.lang.Integer"
+            column="units_picked"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="replenishTime"
+            type="java.lang.Integer"
+            column="replenish_time"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="dcHold"
+            type="java.lang.Integer"
+            column="dchold"
+            not-null="true"
+            length="10"
+            />
+
+        <!-- associations -->
+        <!-- bi-directional many-to-one association to OrderPickStatu -->
+        <many-to-one
+            name="orderPickHist"
+            class="com.owd.hibernate.generated.OrderPickHistory"
+            not-null="true"
+            >
+            <column name="pick_history_id"/>
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

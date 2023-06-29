@@ -1,0 +1,21 @@
+<!DOCTYPE OWD_API_REQUEST [
+        <!ELEMENT OWD_API_REQUEST (OWD_TEST_INVENTORY_SETCOUNT_REQUEST)*>
+        <!ATTLIST OWD_API_REQUEST
+                api_version CDATA #REQUIRED
+                client_authorization CDATA #REQUIRED
+                client_id CDATA #REQUIRED
+                testing CDATA #REQUIRED>
+        <!ELEMENT OWD_TEST_INVENTORY_SETCOUNT_REQUEST (SKU|TYPE|VALUE)>
+        <!ELEMENT SKU (#PCDATA)>
+        <!ELEMENT TYPE (#PCDATA)>
+        <!ELEMENT VALUE (#PCDATA)>
+        ]>
+
+
+<OWD_API_REQUEST api_version='1.0' client_authorization='abc123' client_id='123' testing='FALSE'>
+    <OWD_TEST_INVENTORY_SETCOUNT_REQUEST>
+        <SKU>BPC-GU-MLBUNIV</SKU>
+        <TYPE>ADJUST</TYPE>
+        <VALUE>666</VALUE>
+    </OWD_TEST_INVENTORY_SETCOUNT_REQUEST>
+</OWD_API_REQUEST>

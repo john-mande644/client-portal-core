@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://hibernate.sourceforge.net/
+    -->
+
+    <class
+        name="com.owd.hibernate.OwdInventoryRequiredSku"
+        table="owd_inventory_required_skus"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="id"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="qty"
+            type="java.lang.Integer"
+            column="req_inventory_quant"
+            length="10"
+            />
+
+
+        <!-- associations -->
+        <!-- bi-directional many-to-one association to OwdInventory -->
+        <many-to-one name="owdInventoryParent" class="com.owd.hibernate.OwdInventory" column="inventory_fkey" />
+
+           <many-to-one
+            name="owdInventory"
+            class="com.owd.hibernate.OwdInventory"
+            not-null="true"
+            >
+            <column name="req_inventory_fkey"/>
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

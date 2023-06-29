@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<!-- DTD for testing accounts to set arbitrary inventory levels   -->
+<!-- Copyright (c) 2012 by One World Distribution, Inc. All Rights Reserved. -->
+<!-- Dates formatted as YYYYMMDD -->
+
+<-- Updated 9/23/2011 -->
+
+<!-- OWD_TEST_INVENTORY_SETCOUNT_REQUEST 
+
+	The OWD_TEST_INVENTORY_SETCOUNT_REQUEST request returns an OWD_INVENTORY_STATUS_RESPONSE if successful. 
+	
+	This request sets or adjust the available stock level of a specific SKU. It can only be used with test accounts.
+	
+	Elements:
+	
+	SKU - client SKU for item
+	TYPE - must be either SET or ADJUST. If SET, the stock level will be set to that of the VALUE element.
+			If ADJUST, the stock level will be changed by the amount in the VALUE element
+	VALUE - numeric integer. Must be a positive value for the SET type, can be positive or negative for the ADJUST type -->
+
+<!ELEMENT OWD_TEST_INVENTORY_SETCOUNT_REQUEST (SKU|TYPE|VALUE)>
+<!ELEMENT SKU (#PCDATA)>
+<!ELEMENT TYPE (#PCDATA)>
+<!ELEMENT VALUE (#PCDATA)>
+ 
+
+	           
+<!-- EXAMPLE
+
+<OWD_API_REQUEST api_version='1.0' client_authorization='abc123' client_id='123' testing='FALSE'>
+    <OWD_TEST_INVENTORY_SETCOUNT_REQUEST>
+        <SKU>BPC-GU-MLBUNIV</SKU>
+        <TYPE>ADJUST</TYPE>
+        <VALUE>666</VALUE>
+    </OWD_TEST_INVENTORY_SETCOUNT_REQUEST>
+</OWD_API_REQUEST>
+-->
+

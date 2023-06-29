@@ -1,0 +1,2014 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd" >
+<struts-config>
+    <!-- Form Bean Definitions -->
+    <form-beans>
+        <form-bean name="skuForm" type="com.owd.dc.inventory.forms.skuForm"/>
+        <form-bean name="skuForm1" type="com.owd.dc.inventory.forms.skuForm"/>
+        <form-bean name="locationForm" type="com.owd.dc.locations.forms.locationForm"/>
+        <form-bean name="loginForm" type="com.owd.dc.loginForm"/>
+        <form-bean name="forwardForm" type="com.owd.dc.forwardForm"/>
+        <form-bean name="ordernumForm" type="com.owd.dc.picking.forms.ordernumForm"/>
+        <form-bean name="ordernumForm2" type="com.owd.dc.picking.forms.ordernumForm2"/>
+        <form-bean name="upcForm" type="com.owd.dc.inventory.forms.upcForm"/>
+        <form-bean name="asnForm" type="com.owd.dc.receiving.forms.asnIDForm"/>
+        <form-bean name="labelForm" type="com.owd.dc.inventory.forms.labelForm"/>
+        <form-bean name="replenishForm" type="com.owd.dc.picking.forms.replenishForm"/>
+        <form-bean name="buttonForm" type="com.owd.dc.setup.buttonForm"/>
+        <form-bean name="holdForm" type="com.owd.dc.picking.forms.holdForm"/>
+        <form-bean name="holdLocationForm" type="com.owd.dc.picking.forms.holdLocationForm"/>
+        <form-bean name="inventoryRequestForm" type="com.owd.dc.inventory.forms.inventoryRequestForm"/>
+
+        <form-bean name="addWcountForm" type="com.owd.dc.inventorycount.addWcountForm"/>
+        <form-bean name="winventoryRequestForm" type="com.owd.dc.inventorycount.winventoryRequestForm"/>
+        <form-bean name="wCountForm" type="com.owd.dc.inventorycount.wCountForm"/>
+        <form-bean name="editWCountForm" type="com.owd.dc.inventorycount.editWCountForm"/>
+        <form-bean name="stockoutForm" type="com.owd.dc.stockout.stockoutForm"/>
+        <form-bean name="receiveForm" type="com.owd.dc.receiving.forms.receiveForm"/>
+        <form-bean name="serialForm" type="com.owd.dc.picking.forms.serialForm"/>
+        <form-bean name="countEditForm" type="com.owd.dc.inventorycount.countEditForm"/>
+        <form-bean name="listOfCountEditForms" type="com.owd.dc.inventorycount.listOfCountEditForms"/>
+        <form-bean name="searchForm" type="com.owd.dc.receiving.forms.searchForm"/>
+        <form-bean name="emailForm" type="com.owd.dc.setup.emailForm"/>
+        <form-bean name="batchPackForm" type="com.owd.dc.packing.batchPackForm"/>
+        <form-bean name="timeclockForm" type="com.owd.dc.timeclock.timeclockForm"/>
+    </form-beans>
+    <!-- Global forwards -->
+    <global-forwards>
+        <forward name="error" path="/error.jsp"/>
+        <forward name="login" path="/login.jsp"/>
+    </global-forwards>
+
+    <!--  Action Mapping Definitions  -->
+    <action-mappings>
+        <action path="/button"
+                type="com.owd.dc.actions.buttonAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="find"
+                    path="/do/find"/>
+            <forward
+                    name="assign"
+                    path="/rfapps/locations/assign/assignstart.jsp"/>
+            <forward
+                    name="remove"
+                    path="/rfapps/locations/remove/removestart.jsp"/>
+            <forward
+                    name="upc"
+                    path="/rfapps/inventory/upcstart.jsp"/>
+            <forward
+                    name="doinventory"
+                    path="/do/doinventory"/>
+            <forward
+                    name="menu"
+                    path="/do/menu"/>
+            <forward
+                    name="loc-menu"
+                    path="/do/loc-menu"/>
+            <forward
+                    name="inv-menu"
+                    path="/do/inv-menu"/>
+            <forward
+                    name="pickstart"
+                    path="/do/pick"/>
+            <forward
+                    name="checkupcstart"
+                    path="/do/checkupcstart"/>
+            <forward
+                    name="printskulabel"
+                    path="/do/printskulabel"/>
+
+        </action>
+
+
+        <action path="/menu"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/index.jsp"/>
+
+        </action>
+        <action path="/quit"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/quit.jsp"/>
+        </action>
+        <action path="/loc-menu"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/locations/menu.jsp"/>
+
+        </action>
+        <action path="/inv-menu"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/invmenu.jsp"/>
+
+        </action>
+        <action path="/find"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/find/find.jsp"/>
+
+
+        </action>
+        <action path="/assign"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/locations/assign/assignstart.jsp"/>
+
+        </action>
+        <action path="/remove"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/locations/remove/removestart.jsp"/>
+
+        </action>
+        <action path="/clear"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/locations/remove/clear.jsp"/>
+
+        </action>
+
+        <action path="/login"
+                type="com.owd.dc.actions.loginAction"
+                name="loginForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/index.jsp"/>
+        </action>
+        <action path="/logout"
+                type="com.owd.dc.actions.logoutAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/login.jsp"/>
+        </action>
+
+        <action path="/findSku"
+                type="com.owd.dc.inventory.actions.skuFindAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/find/find.jsp"/>
+
+            <forward
+                    name="locationscan"
+                    path="/rfapps/find/locationlist.jsp"/>
+            <forward
+                    name="multi"
+                    path="/rfapps/multisku.jsp"/>
+            <forward
+                    name="error"
+                    path="/rfapps/find/find.jsp"/>
+            <forward
+                    name="pic"
+                    path="/rfapps/find/picfind.jsp"/>
+        </action>
+        <action path="/assignlocationstart"
+                type="com.owd.dc.locations.actions.assignStartAction"
+                name="locationForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="single"
+                    path="/rfapps/locations/assign/getlocation.jsp"/>
+            <forward
+                    name="batch"
+                    path="/rfapps/locations/assign/getitem.jsp"/>
+            <forward
+                    name="home"
+                    path="/rfapps/locations/assign/assignstart.jsp"/>
+
+            <forward
+                    name="multi"
+                    path="/rfapps/multisku.jsp"/>
+            <forward
+                    name="getLots"
+                    path="/rfapps/locations/assign/getLocationLots.jsp"/>
+
+        </action>
+        <action path="/assigngetlot"
+                type="com.owd.dc.locations.actions.assignGetLotAction"
+                name="locationForm"
+                scope="request"
+                validate="false"
+        >
+        <forward
+                name="success"
+                path="/rfapps/locations/assign/getlocation.jsp"/>
+        <forward
+                name="error"
+                path="/rfapps/locations/assign/getlocation.jsp"/>
+
+
+        </action>
+
+        <action path="/assignsinglelocation"
+                type="com.owd.dc.locations.actions.assignSingleAction"
+                name="locationForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/locations/assign/assignstart.jsp"/>
+            <forward
+                    name="home"
+                    path="/rfapps/locations/assign/getlocation.jsp"/>
+            <forward
+                    name="newParent"
+                    path="/rfapps/locations/assign/getParentLocation.jsp"/>
+
+
+
+        </action>
+        <action path="/assignbatchlocation"
+                type="com.owd.dc.locations.actions.assignBatchAction"
+                name="locationForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/locations/assign/getitem.jsp"/>
+            <forward
+                    name="start"
+                    path="/rfapps/locations/assign/assignstart.jsp"/>
+
+            <forward
+                    name="multi"
+                    path="/rfapps/multisku.jsp"/>
+
+
+        </action>
+        <action path="/removelocationstart"
+                type="com.owd.dc.locations.actions.removeStartAction"
+                name="locationForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="single"
+                    path="/rfapps/locations/remove/getlocationremove.jsp"/>
+            <forward
+                    name="batch"
+                    path="/rfapps/locations/remove/getitemremove.jsp"/>
+            <forward
+                    name="home"
+                    path="/rfapps/locations/remove/removestart.jsp"/>
+
+            <forward
+                    name="multi"
+                    path="/rfapps/multisku.jsp"/>
+
+        </action>
+        <action path="/removesinglelocation"
+                type="com.owd.dc.locations.actions.removeSingleAction"
+                name="locationForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/locations/remove/removestart.jsp"/>
+            <forward
+                    name="home"
+                    path="/rfapps/locations/remove/getlocationremove.jsp"/>
+
+
+        </action>
+        <action path="/removebatchlocation"
+                type="com.owd.dc.locations.actions.removeBatchAction"
+                name="locationForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/locations/remove/getitemremove.jsp"/>
+            <forward
+                    name="start"
+                    path="/rfapps/locations/remove/removestart.jsp"/>
+
+            <forward
+                    name="multi"
+                    path="/rfapps/multisku.jsp"/>
+
+
+        </action>
+        <action path="/clearlocation"
+                type="com.owd.dc.locations.actions.clearAction"
+                name="locationForm"
+                scope="request"
+                validate="false"
+                >
+
+            <forward
+                    name="success"
+                    path="/rfapps/locations/remove/clear.jsp"/>
+            <forward
+                    name="pickClient"
+                    path="/rfapps/locations/remove/askclear.jsp"/>
+        </action>
+        <action path="/pick"
+                type="com.owd.dc.picking.actions.pickAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/pick/startpick.jsp"/>
+
+            <forward
+                    name="recover"
+                    path="/rfapps/pick/recoverpick.jsp"/>
+        </action>
+        <action path="/pickstart"
+                type="com.owd.dc.picking.actions.pickStartAction"
+                name="ordernumForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/pick/pickitem.jsp"/>
+
+            <forward
+                    name="recover"
+                    path="/rfapps/pick/recoverpick.jsp"/>
+            <forward
+                    name="home"
+                    path="/rfapps/pick/startpick.jsp"/>
+
+        </action>
+        <action path="/verify"
+                type="com.owd.dc.picking.actions.pickStartAction"
+                name="ordernumForm2"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/pick/pickitem.jsp"/>
+
+            <forward
+                    name="recover"
+                    path="/rfapps/pick/recoverpick.jsp"/>
+            <forward
+                    name="home"
+                    path="/rfapps/pick/startpick.jsp"/>
+
+        </action>
+        <action path="/pickcancel"
+                type="com.owd.dc.picking.actions.pickCancelAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/pick/startpick.jsp"/>
+
+
+
+        </action>
+        <action path="/picpick"
+                type="com.owd.dc.picking.actions.picPickAction"
+                name="skuForm1"
+                scope="request"
+                validate="false">
+               <forward
+                    name="success"
+                    path="/rfapps/pick/picpick.jsp"/>
+                </action>
+        <action path="/pickitem"
+                type="com.owd.dc.picking.actions.pickItemAction"
+                name="skuForm1"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/pick/pickitem.jsp"/>
+
+            <forward
+                    name="recover"
+                    path="/rfapps/pick/recoverpick.jsp"/>
+            <forward
+                    name="newpick"
+                    path="/rfapps/pick/startpick.jsp"/>
+            <forward
+                    name="multi"
+                    path="/rfapps/multisku.jsp"/>
+            <forward
+                    name="dchold"
+                    path="/rfapps/replenish/holdset.jsp"/>
+            <forward
+                    name="serial"
+                    path="/rfapps/pick/serialforpick.jsp"/>
+             <forward
+                    name="message"
+                    path="/rfapps/pick/message.jsp"/>
+        </action>
+        <action path="/pickall"
+                type="com.owd.dc.picking.actions.pickAllAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/pick/pickitem.jsp"/>
+
+            <forward
+                    name="recover"
+                    path="/rfapps/pick/recoverpick.jsp"/>
+            <forward
+                    name="newpick"
+                    path="/rfapps/pick/startpick.jsp"/>
+
+        </action>
+        <action path="/pickcontinue"
+                type="com.owd.dc.picking.actions.pickcontinueAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/pick/pickitem.jsp"/>
+
+            <forward
+                    name="recover"
+                    path="/rfapps/pick/recoverpick.jsp"/>
+            <forward
+                    name="newpick"
+                    path="/rfapps/pick/startpick.jsp"/>
+            <forward
+                    name="serial"
+                    path="/rfapps/pick/serialforpick.jsp"/>
+
+        </action>
+        <action path="/pickstatuscancel"
+                type="com.owd.dc.picking.actions.pickStatusCancelAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/pick/pickitem.jsp"/>
+
+            <forward
+                    name="recover"
+                    path="/rfapps/pick/recoverpick.jsp"/>
+            <forward
+                    name="newpick"
+                    path="/rfapps/pick/startpick.jsp"/>
+
+        </action>
+        <action path="/upcisbnstart"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/upcstart.jsp"/>
+
+        </action>
+        <action path="/upcAssignStart"
+                type="com.owd.dc.inventory.actions.upcAssignStartAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/upcassign.jsp"/>
+
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/upcstart.jsp"/>
+        </action>
+        <action path="/upcAssignFinish"
+                type="com.owd.dc.inventory.actions.upcAssignFinishtAction"
+                name="upcForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/upcstart.jsp"/>
+
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/upcassign.jsp"/>
+        </action>
+        <action path="/checkupcstart"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/checkupc.jsp"/>
+
+        </action>
+        <action path="/assignsku"
+                type="com.owd.dc.locations.actions.assignSkuAction"
+                name="upcForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/checkupc.jsp"/>
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/assignsku.jsp"/>
+
+        </action>
+        <action path="/checkupc"
+                type="com.owd.dc.locations.actions.checkUpcAction"
+                name="upcForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/checkupc.jsp"/>
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/checkupc.jsp"/>
+
+            <forward
+                    name="getsku"
+                    path="/rfapps/inventory/assignsku.jsp"/>
+        </action>
+        <action path="/verifyupc"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/verifyupc.jsp"/>
+
+
+        </action>
+        <action path="/upcVerifyStart"
+                type="com.owd.dc.inventory.actions.upcAssignStartAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/verifyupcend.jsp"/>
+
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/verifyupc.jsp"/>
+        </action>
+        <action path="/upcVerifyFinish"
+                type="com.owd.dc.inventory.actions.upcVerifyFinishtAction"
+                name="upcForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/verifyupc.jsp"/>
+
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/verifyupcend.jsp"/>
+        </action>
+        <action path="/printskulabel"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/printsku.jsp"/>
+
+
+        </action>
+        <action path="/printSkuStart"
+                type="com.owd.dc.inventory.actions.upcAssignStartAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/printskuend.jsp"/>
+
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/printsku.jsp"/>
+        </action>
+        <action path="/printskuend"
+                type="com.owd.dc.inventory.actions.printSkuEndAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/printsku.jsp"/>
+
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/printskuend.jsp"/>
+        </action>
+        <action path="/recv-menu"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/menu.jsp"/>
+
+        </action>
+        <action path="/asn"
+                type="com.owd.dc.receiving.actions.asnAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/asn/asnmain.jsp"/>
+
+
+        </action>
+        <action path="/loadAsn"
+                type="com.owd.dc.receiving.actions.loadAsnAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/asn/asnmain.jsp"/>
+
+        </action>
+        <action path="/receiveSku"
+                type="com.owd.dc.receiving.actions.receiveSkuAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/asn/asnmain.jsp"/>
+
+        </action>
+
+        <action path="/cancelRcv"
+                type="com.owd.dc.receiving.actions.cancelRcvAction"
+                name="asnForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/asn/asnmain.jsp"/>
+        </action>
+        <action path="/inventorystart"
+                type="com.owd.dc.inventory.actions.inventoryStartAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/inventory/inventorygetsku.jsp"/>
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/inventory/inventorystart.jsp"/>
+        </action>
+        <action path="/doinventory"
+                type="com.owd.dc.inventory.actions.doInventoryAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/inventory/inventorystart.jsp"/>
+
+            <forward
+                    name="counting"
+                    path="/rfapps/inventory/inventory/inventorygetsku.jsp"/>
+
+        </action>
+        <action path="/inventorygetsku"
+                type="com.owd.dc.inventory.actions.inventoryGetSkuAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/inventory/inventorygetquanity.jsp"/>
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/inventory/inventorygetsku.jsp"/>
+            <forward
+                    name="multi"
+                    path="/rfapps/multisku.jsp"/>
+        </action>
+        <action path="/inventorygetquanity"
+                type="com.owd.dc.inventory.actions.inventoryGetQuanityAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/inventory/inventorygetsku.jsp"/>
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/inventory/inventorygetquanity.jsp"/>
+        </action>
+        <action path="/clearinventory"
+                type="com.owd.dc.inventory.actions.clearInventoryAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/inventory/inventorygetsku.jsp"/>
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/inventory/inventorygetsku.jsp"/>
+        </action>
+        <action path="/doneinventory"
+                type="com.owd.dc.inventory.actions.doneInventoryAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/inventory/inventorystart.jsp"/>
+
+        </action>
+        <action path="/clearRememberingClient"
+                type="com.owd.dc.actions.clearRememberingClientAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/locations/menu.jsp"/>
+
+
+        </action>
+        <action path="/printInventoryLabel"
+                type="com.owd.dc.inventory.actions.printInventoryLabelAction"
+                name="labelForm"
+                scope="request"
+                parameter="submit"
+                validate="false"
+                >
+            <forward
+                    name="inventory"
+                    path="/rfapps/inventory/inventory/inventorygetsku.jsp"/>
+            <forward
+                    name="inventoryerror"
+                    path="/rfapps/inventory/inventory/inventorygetsku.jsp"/>
+            <forward
+                    name="find"
+                    path="/do/findSku"/>
+            <forward
+                    name="finderror"
+                    path="/do/findSku"/>
+
+        </action>
+        <action path="/return"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/return/returnmain.jsp"/>
+
+
+        </action>
+        <action path="/returnLoadOrder"
+                type="com.owd.dc.returns.actions.returnLoadOrderAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/return/returnselectsku.jsp"/>
+            <forward
+                    name="error"
+                    path="/rfapps/receiving/return/returnmain.jsp"/>
+
+        </action>
+        <action path="/returnSelectSku"
+                type="com.owd.dc.returns.actions.returnSelectSkuAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/return/next.jsp"/>
+            <forward
+                    name="error"
+                    path="/rfapps/receiving/return/returnselectsku.jsp"/>
+
+        </action>
+
+
+        <action path="/replenish"
+                type="com.owd.dc.picking.actions.replenishAction"
+                name="replenishForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/replenish/replenishstart.jsp"/>
+            <forward
+                    name="error"
+                    path="/rfapps/pick/pickitem.jsp"/>
+
+        </action>
+        <action path="/skipLine"
+                type="com.owd.dc.picking.actions.skipLineAction"
+                name="replenishForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/do/pickcontinue"/>
+            <forward
+                    name="error"
+                    path="/rfapps/pick/pickitem.jsp"/>
+
+        </action>
+        <action path="/replenishEnd"
+                type="com.owd.dc.picking.actions.replenishEndAction"
+                name="replenishForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/replenish/replenishstart.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/pick/pickitem.jsp"/>
+
+        </action>
+        <action path="/stockout"
+                type="com.owd.dc.picking.actions.stockOutAction"
+                name="replenishForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/replenish/replenishstart.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/replenish/replenishstart.jsp"/>
+
+        </action>
+
+        <action path="/buttonsetup"
+                type="com.owd.dc.setup.setupStartAction"
+                name="buttonForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/index.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/setup/setup.jsp"/>
+
+        </action>
+        <action path="/savebuttonoptions"
+                type="com.owd.dc.setup.savebuttonoptionsAction"
+                name="buttonForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/index.jsp"/>
+            <forward
+                    name="error"
+                    path="/rfapps/setup/setup.jsp"/>
+
+        </action>
+        <action path="/setHold"
+                type="com.owd.dc.picking.actions.setHoldAction"
+                name="holdForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/replenish/replenishstart.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/pick/pickitem.jsp"/>
+
+            <forward
+                    name="dchold"
+                    path="/rfapps/replenish/holdset.jsp"/>
+        </action>
+        <action path="/setHoldLocation"
+                type="com.owd.dc.picking.actions.setHoldLocationAction"
+                name="holdLocationForm"
+                scope="request"
+                validate="false">
+            <forward
+                    name="error"
+                    path="/rfapps/replenish/holdset.jsp"/>
+            <forward
+                    name="success"
+                    path="/do/pick"/>
+        </action>
+        <action path="/createInventoryRequest"
+                type="com.owd.dc.inventory.actions.createInventoryRequestAction"
+                name="inventoryRequestForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/inventory/createnewrequest.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/inventory/createnewrequest.jsp"/>
+
+        </action>
+        <action path="/inventoryRequestStart"
+                type="com.owd.dc.inventory.actions.inventoryRequestStartAction"
+                name="inventoryRequestForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/inventory/createnewrequest.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/inventory/createnewrequest.jsp"/>
+
+        </action>
+        <action path="/viewRequestStart"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/inventory/view/viewrequeststart.jsp"/>
+
+        </action>
+        <action path="/viewRequest"
+                type="com.owd.dc.inventory.actions.viewRequestAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/inventory/view/requestview.jsp"/>
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/inventory/view/viewrequeststart.jsp"/>
+
+        </action>
+        <action path="/enterReceive"
+                type="com.owd.dc.receiving.actions.enterReceiveAction"
+                name="receiveForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/inventory/view/viewrequeststart.jsp"/>
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/inventory/view/requestview.jsp"/>
+
+        </action>
+        <action path="/dowinventory"
+                type="com.owd.dc.inventorycount.doWInventoryAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/winventory/winventorystart.jsp"/>
+
+            <forward
+                    name="counting"
+                    path="/rfapps/inventory/winventory/wgetlocation.jsp"/>
+
+        </action>
+        <action path="/winventoryRequestStart"
+                type="com.owd.dc.inventorycount.winventoryRequestStart"
+                name="inventoryRequestForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/winventory/wcreatenewrequest.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/winventory/wcreatenewrequest.jsp"/>
+
+        </action>
+
+        <action path="/wcreateInventoryRequest"
+                type="com.owd.dc.inventorycount.wcreateInventoryRequestAction"
+                name="winventoryRequestForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/winventory/wcreatenewrequest.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/winventory/waddlocation.jsp"/>
+
+        </action>
+
+        <action path="/wAddLocation"
+                type="com.owd.dc.inventorycount.wAddLocationAction"
+                name="addWcountForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/winventory/waddlocation.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/winventory/waddlocation.jsp"/>
+            <forward
+                    name="startover"
+                    path="/rfapps/inventory/winventory/winventorystart.jsp"/>
+
+        </action>
+
+        <action path="/wAddsku"
+                type="com.owd.dc.inventorycount.wAddskuAction"
+                name="addWcountForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/winventory/waddsku.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/winventory/waddsku.jsp"/>
+            <forward
+                    name="done"
+                    path="/rfapps/inventory/winventory/waddlocation.jsp"/>
+
+        </action>
+        <action path="/wstartInventory"
+                type="com.owd.dc.inventorycount.wstartInventoryAction"
+                name="skuForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/winventory/winventorystart.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/winventory/wgetlocation.jsp"/>
+
+        </action>
+
+        <action path="/donewinventory"
+                type="com.owd.dc.inventorycount.doneWInventoryAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/winventory/winventorystart.jsp"/>
+
+
+        </action>
+        <action path="/wgetLocation"
+                type="com.owd.dc.inventorycount.wgetLocationAction"
+                name="wCountForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/winventory/wgetlocation.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/winventory/wgetsku.jsp"/>
+            <forward
+                    name="addLocation"
+                    path="/rfapps/inventory/winventory/waddlocation.jsp"/>
+
+        </action>
+        <action path="/wgetSku"
+                type="com.owd.dc.inventorycount.wgetSkuAction"
+                name="wCountForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/winventory/wgetsku.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/winventory/wgetbarcode.jsp"/>
+
+            <forward
+                    name="newLocation"
+                    path="/do/dowinventory"/>
+            <forward
+                    name="multi"
+                    path="/rfapps/multisku.jsp"/>
+
+        </action>
+
+
+        <action path="/wgetQuanity"
+                type="com.owd.dc.inventorycount.wgetQuanityAction"
+                name="wCountForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/winventory/wgetquanity.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/winventory/wverifyquanity.jsp"/>
+
+
+        </action>
+        <action path="/batchPack"
+                type="com.owd.dc.packing.handheldBatchPackAction"
+                name="batchPackForm"
+                scope="session"
+                validate="false"
+                parameter="submit"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/packing/batchpack.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/packing/batchpack.jsp"/>
+            <forward
+                    name="pack"
+                    path="/rfapps/packing/batchpack.jsp"/>
+
+
+
+
+        </action>
+         <action path="/timeClockJobChange"
+                type="com.owd.dc.timeclock.timeClockJobChangeAction"
+                name="timeclockForm"
+                scope="session"
+                validate="false"
+                parameter="submit"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/timeclock/timeclock.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/timeclock/goodpunch.jsp"/>
+            <forward
+                    name="start"
+                    path="/rfapps/timeclock/timeclock.jsp"/>
+
+
+
+
+        </action>
+        <action path="/wverifyQuanity"
+                type="com.owd.dc.inventorycount.wverifyQuanityAction"
+                name="wCountForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/winventory/wverifyquanity.jsp"/>
+            <forward
+                    name="yes"
+                    path="/rfapps/inventory/winventory/wverifysku.jsp"/>
+            <forward
+                    name="no"
+                    path="/rfapps/inventory/winventory/wgetquanity.jsp"/>
+
+
+        </action>
+        <action path="/wVerifySku"
+                type="com.owd.dc.inventorycount.wVerifySkuAction"
+                name="wCountForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/winventory/wverifysku.jsp"/>
+            <forward
+                    name="success"
+                    path="/do/wgetLocation"/>
+
+
+        </action>
+        <action path="/wgetBarcode"
+                type="com.owd.dc.inventorycount.wgetBarcodeAction"
+                name="wCountForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/winventory/wgetbarcode.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/winventory/wgetquanity.jsp"/>
+
+            <forward
+                    name="goback"
+                    path="/do/wgetLocation"/>
+        </action>
+
+        <action path="/editWcount"
+                type="com.owd.dc.inventorycount.editWcountAction"
+                name="editWCountForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/winventory/wgetsku.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/winventory/editwcount.jsp"/>
+
+
+        </action>
+        <action path="/editWcountSave"
+                type="com.owd.dc.inventorycount.editWcountSaveAction"
+                name="editWCountForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/winventory/editwcount.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/winventory/wgetsku.jsp"/>
+
+
+        </action>
+        <action path="/startStockoutVerification"
+                type="com.owd.dc.stockout.startStockoutVerificationAction"
+                name="stockoutForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/stockout/pickLocation.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/stockout/stockoutGetLocation.jsp"/>
+
+
+        </action>
+        <action path="/doVerification"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/invmenu.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/stockout/pickLocation.jsp"/>
+
+
+        </action>
+        <action path="/stockoutGetLocation"
+                type="com.owd.dc.stockout.stockoutGetLocationAction"
+                name="stockoutForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/stockout/stockoutGetLocation.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/stockout/stockoutGetSku.jsp"/>
+
+
+        </action>
+        <action path="/stockoutGetSku"
+                type="com.owd.dc.stockout.stockoutGetSkuAction"
+                name="stockoutForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/stockout/stockoutGetSku.jsp"/>
+            <forward
+                    name="success"
+                    path="/do/startStockoutVerification"/>
+
+
+        </action>
+        <action path="/startreceive"
+                type="com.owd.dc.actions.forwardFormAction"
+                name="forwardForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/receive/receivemain.jsp"/>
+
+
+        </action>
+        <action path="/receiveLoadAsn"
+                type="com.owd.dc.receiving.actions.receiveLoadAsnAction"
+                name="receiveForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="scanDocs"
+                    path="/rfapps/receiving/receive/scan.jsp"/>
+            <forward
+                    name="error"
+                    path="/rfapps/receiving/receive/receivemain.jsp"/>
+            <forward
+                    name="askPack"
+                    path="/rfapps/receiving/receive/askPack.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/receive/getsku.jsp"/>
+
+        </action>
+        <action path="/askPack"
+                type="com.owd.dc.receiving.actions.askPackAction"
+                name="receiveForm"
+                scope="request"
+                parameter="submit"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/receiving/receive/askPack.jsp"/>
+            <forward
+                    name="askPack"
+                    path="/rfapps/receiving/receive/askPack.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/receive/getsku.jsp"/>
+
+        </action>
+        <action path="/receiveGetSku"
+                type="com.owd.dc.receiving.actions.receiveGetSkuAction"
+                name="receiveForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/receiving/receive/getsku.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/receive/getquanity.jsp"/>
+
+        </action>
+
+        <action path="/receiveGetQty"
+                type="com.owd.dc.receiving.actions.receiveGetQtyAction"
+                name="receiveForm"
+                scope="request"
+                parameter="submit"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/receiving/receive/getquanity.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/receive/getdamaged.jsp"/>
+            <forward
+                    name="edit"
+                    path="/rfapps/receiving/receive/verify.jsp"/>
+
+
+        </action>
+        <action path="/receiveGetDamaged"
+                type="com.owd.dc.receiving.actions.receiveGetDamagedAction"
+                name="receiveForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/receiving/receive/getquanity.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/receive/verify.jsp"/>
+            <forward
+                    name="weight"
+                    path="/rfapps/receiving/receive/getweight.jsp"/>
+            <forward
+                    name="edit"
+                    path="/rfapps/receiving/receive/verify.jsp"/>
+
+        </action>
+
+        <action path="/receiveGetWeight"
+                type="com.owd.dc.receiving.actions.receiveGetWeightAction"
+                name="receiveForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/receiving/receive/getweight.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/receive/verify.jsp"/>
+            <forward
+                    name="edit"
+                    path="/rfapps/receiving/receive/verify.jsp"/>
+
+        </action>
+
+        <action path="/receivePrintLabels"
+                type="com.owd.dc.receiving.actions.receivePrintLabelsAction"
+                name="receiveForm"
+                scope="request"
+                parameter="submit"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/receiving/receive/printlabels.jsp"/>
+            <forward
+                    name="success"
+                    path="/do/receiveLoadAsn"/>
+
+        </action>
+        <action path="/receiveVerify"
+                type="com.owd.dc.receiving.actions.receiveVerifyAction"
+                name="receiveForm"
+                scope="request"
+                parameter="submit"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/receiving/receive/verify.jsp"/>
+            <forward
+                    name="quanity"
+                    path="/rfapps/receiving/receive/getquanity.jsp"/>
+            <forward
+                    name="damaged"
+                    path="/rfapps/receiving/receive/getdamaged.jsp"/>
+            <forward
+                    name="weight"
+                    path="/rfapps/receiving/receive/getweight.jsp"/>
+            <forward
+                    name="success"
+                    path="/do/receiveLoadAsn"/>
+            <forward
+                    name="reset"
+                    path="/rfapps/receiving/receive/getsku.jsp"/>
+            <forward
+                    name="edit"
+                    path="/rfapps/receiving/receive/verify.jsp"/>
+            <forward
+                    name="serial"
+                    path="/rfapps/receiving/receive/getserial.jsp"/>
+            <forward
+                    name="printLabel"
+                    path="/rfapps/receiving/receive/printlabels.jsp"/>
+
+        </action>
+        <action path="/doneWithReceive"
+                type="com.owd.dc.receiving.actions.doneWithReceiveAction"
+                name="receiveForm"
+                scope="request"
+                parameter="submit"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/receiving/receive/askPack.jsp"/>
+            <forward
+                    name="getPackingSlip"
+                    path="/rfapps/receiving/receive/askPack.jsp"/>
+            <forward
+                    name="getPackages"
+                    path="/rfapps/receiving/receive/packages.jsp"/>
+            <forward
+                    name="getTime"
+                    path="/rfapps/receiving/receive/time.jsp"/>
+            <forward
+                    name="success"
+                    path="/do/startreceive"/>
+
+        </action>
+
+
+        <action path="/receiveGetSerial"
+                type="com.owd.dc.receiving.actions.receiveGetSerialAction"
+                name="receiveForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/receiving/receive/getserial.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/receive/verifyserial.jsp"/>
+
+
+        </action>
+
+        <action path="/receiveVerifySerial"
+                type="com.owd.dc.receiving.actions.receiveVerifySerialAction"
+                name="receiveForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/receiving/receive/verifyserial.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/receive/getsku.jsp"/>
+            <forward
+                    name="next"
+                    path="/rfapps/receiving/receive/getserial.jsp"/>
+            <forward
+                    name="change"
+                    path="/rfapps/receiving/receive/getserial.jsp"/>
+
+
+        </action>
+
+        <action path="/pickGetSerial"
+                type="com.owd.dc.picking.actions.pickGetSerialAction"
+                name="serialForm"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/pick/serialforpick.jsp"/>
+            <forward
+                    name="pickall"
+                    path="/do/pickall"/>
+            <forward
+                    name="success"
+                    path="/rfapps/pick/serialforpick.jsp"/>
+
+
+        </action>
+        <action path="/loadCounts"
+                type="com.owd.dc.inventorycount.loadCountsAction"
+                name="countEditForm"
+                scope="request"
+                validate="false"
+                >
+
+            <forward
+                    name="success"
+                    path="/warehouse/inventory/countsindex.jsp"/>
+
+
+        </action>
+        <action path="/loadCount"
+                type="com.owd.dc.inventorycount.loadCountAction"
+                name="countEditForm"
+                scope="session"
+                validate="false"
+                >
+
+            <forward
+                    name="success"
+                    path="/warehouse/inventory/countlistmain.jsp"/>
+            <forward
+                    name="sessionEx"
+                    path="/do/loadCounts"/>
+
+        </action>
+
+        <action path="/loadCountItem"
+                type="com.owd.dc.inventorycount.loadCountItemAction"
+                name="countEditForm"
+                scope="session"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/warehouse/inventory/countlistmain.jsp"/>
+            <forward
+                    name="success"
+                    path="/warehouse/inventory/countitemedit.jsp"/>
+            <forward
+                    name="sessionEx"
+                    path="/do/loadCounts"/>
+
+        </action>
+
+        <action path="/editCountItem"
+                type="com.owd.dc.inventorycount.editCountItemAction"
+                name="countEditForm"
+                scope="session"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/warehouse/inventory/countedit.jsp"/>
+            <forward
+                    name="success"
+                    path="/warehouse/inventory/countedit.jsp"/>
+            <forward
+                    name="sessionEx"
+                    path="/do/loadCounts"/>
+
+        </action>
+
+        <action path="/countSaveEdit"
+                type="com.owd.dc.inventorycount.countSaveEditAction"
+                name="countEditForm"
+                scope="session"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/warehouse/inventory/countedit.jsp"/>
+            <forward
+                    name="success"
+                    path="/do/loadCountItem"/>
+            <forward
+                    name="sessionEx"
+                    path="/do/loadCounts"/>
+
+        </action>
+
+        <action path="/deleteCountItem"
+                type="com.owd.dc.inventorycount.deleteCountItemAction"
+                name="countEditForm"
+                scope="session"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/warehouse/inventory/countedit.jsp"/>
+            <forward
+                    name="sessionEx"
+                    path="/do/loadCounts"/>
+            <forward
+                    name="success"
+                    path="/do/loadCountItem"/>
+
+
+        </action>
+        <action path="/loadCountLocations"
+                type="com.owd.dc.inventorycount.loadCountLocations"
+                name="countEditForm"
+                scope="session"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/do/loadCounts"/>
+            <forward
+                    name="sessionEx"
+                    path="/do/loadCounts"/>
+            <forward
+                    name="success"
+                    path="/warehouse/inventory/countlocationmain.jsp"/>
+
+
+        </action>
+
+        <action path="/loadCountLocation"
+                type="com.owd.dc.inventorycount.loadCountLocationAction"
+                name="countEditForm"
+                scope="session"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/warehouse/inventory/countlocationmain.jsp"/>
+            <forward
+                    name="sessionEx"
+                    path="/do/loadCounts"/>
+            <forward
+                    name="success"
+                    path="/warehouse/inventory/countlocationedit.jsp"/>
+
+
+        </action>
+        <action path="/closeCount"
+                type="com.owd.dc.inventorycount.closeCountAction"
+                name="countEditForm"
+                scope="session"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/do/loadCounts"/>
+            <forward
+                    name="sessionEx"
+                    path="/do/loadCounts"/>
+            <forward
+                    name="success"
+                    path="/do/loadCounts"/>
+
+
+        </action>
+        <action path="/countLocationReopen"
+                type="com.owd.dc.inventorycount.countLocationReopenAction"
+                name="countEditForm"
+                scope="session"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/warehouse/inventory/countlocationmain.jsp"/>
+            <forward
+                    name="sessionEx"
+                    path="/do/loadCounts"/>
+            <forward
+                    name="success"
+                    path="/do/loadCountLocations"/>
+
+
+        </action>
+
+        <action path="/loadEditSkuLocation"
+                type="com.owd.dc.inventorycount.loadEditSkuLocationAction"
+                name="countEditForm"
+                scope="session"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/warehouse/inventory/countlocationedit.jsp"/>
+            <forward
+                    name="sessionEx"
+                    path="/do/loadCounts"/>
+            <forward
+                    name="success"
+                    path="/warehouse/inventory/countlocationskuedit.jsp"/>
+
+
+        </action>
+
+        <action path="/viewLocationHistory"
+                type="com.owd.dc.inventory.actions.viewLocationHistoryAction"
+                name="skuForm"
+                scope="session"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/warehouse/inventory/locationhistory.jsp"/>
+
+            <forward
+                    name="success"
+                    path="/warehouse/inventory/locationhistory.jsp"/>
+
+
+        </action>
+        <action path="/locationCountSave"
+                type="com.owd.dc.inventorycount.locationCountSaveAction"
+                name="listOfCountEditForms"
+                scope="request"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/warehouse/inventory/countlocationskuedit.jsp"/>
+            <forward
+                    name="sessionEx"
+                    path="/do/loadCounts"/>
+            <forward
+                    name="success"
+                    path="/do/loadEditSkuLocation"/>
+
+
+        </action>
+        <action path="/search"
+                type="com.owd.dc.receiving.actions.searchAction"
+                name="searchForm"
+                scope="request"
+                parameter="submit"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/receiving/receive/search.jsp"/>
+            <forward
+                    name="askPack"
+                    path="/rfapps/receiving/receive/search.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/receiving/receive/search.jsp"/>
+
+        </action>
+        <action path="/viewUpc"
+                type="com.owd.dc.inventory.actions.viewUpcAction"
+                name="skuForm"
+                scope="request"
+                parameter="submit"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/viewupcstart.jsp"/>
+            <forward
+                    name="show"
+                    path="/rfapps/inventory/showupc.jsp"/>
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/showupc.jsp"/>
+        </action>
+        <action path="/emailEdit"
+                type="com.owd.dc.setup.emailNotifyChanges"
+                name="emailForm"
+                scope="request"
+                parameter="submit"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/setup/email.jsp"/>
+
+            <forward
+                    name="success"
+                    path="/rfapps/setup/email.jsp"/>
+
+        </action>
+        <action path="/useSupply"
+                type="com.owd.dc.inventory.actions.useSupplyAction"
+                name="skuForm"
+                scope="session"
+                parameter="submit"
+                validate="false"
+                >
+            <forward
+                    name="error"
+                    path="/rfapps/inventory/supply/supplystart.jsp"/>
+            <forward
+                    name="getquanity"
+                    path="/rfapps/inventory/supply/supplyquanity.jsp"/>
+
+            <forward
+                    name="success"
+                    path="/rfapps/inventory/supply/supplystart.jsp"/>
+
+        </action>
+        <!-- handles dispatch events of "insert" and "update" -->
+        <!--<action path="/employeeAction"
+            type="com.owd.strutstest.EmployeeDispatchAction"
+            name="employeeForm"
+            scope="request"
+            validate="true"
+            parameter="methodToCall"
+            input="/employeeForm.jsp"
+            >
+            <exception
+                key="exception.database.error"
+                type="com.owd.strutstest.DatabaseException"
+                path="/error.jsp"/>
+            <forward
+                name="insertSuccess"
+                path="/employeeForm.jsp"/>
+            <forward
+                name="updateSuccess"
+                path="/confirmation.jsp"/>
+        </action> -->
+    </action-mappings>
+
+    <!-- message resources -->
+    <message-resources
+            parameter="ApplicationResources"
+            null="false"/>
+
+    <!--  plugins -->
+    <!--
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
+                                              /WEB-INF/validation.xml"/>
+    </plug-in>
+        -->
+</struts-config>

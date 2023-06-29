@@ -1,0 +1,54 @@
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN"
+       "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+<validators>
+  <field name="boxcode.cost">
+       <field-validator type="required" short-circuit="true">
+        <message key="errors.required.cost"/>
+      </field-validator>
+      <field-validator type="double">
+      	<param name="minInclusive">0.00</param>
+      	<param name="maxInclusive">100.00</param>
+        <message key="errors.required.cost"/>
+      </field-validator>
+  </field>
+     <field name="boxcode.weight">
+       <field-validator type="required" short-circuit="true">
+        <message key="errors.required.weight"/>
+      </field-validator>
+      <field-validator type="double">
+      	<param name="minInclusive">0.00</param>
+      	<param name="maxInclusive">100.00</param>
+        <message key="errors.required.weight"/>
+      </field-validator>
+  </field>
+     <field name="boxcode.depth">
+       <field-validator type="required" short-circuit="true">
+        <message key="errors.required.depth"/>
+      </field-validator>
+      <field-validator type="double">
+      	<param name="minInclusive">0.00</param>
+      	<param name="maxInclusive">75.00</param>
+        <message key="errors.required.depth"/>
+      </field-validator>
+  </field>
+     <field name="boxcode.width">
+       <field-validator type="required" short-circuit="true">
+        <message key="errors.required.width"/>
+      </field-validator>
+      <field-validator type="double">
+      	<param name="minInclusive">0.00</param>
+      	<param name="maxInclusive">75.00</param>
+        <message key="errors.required.width"/>
+      </field-validator>
+  </field>
+     <field name="boxcode.height">
+       <field-validator type="required" short-circuit="true">
+        <message key="errors.required.height"/>
+      </field-validator>
+      <field-validator type="double">
+      	<param name="min">0.00</param>
+      	<param name="max">75.00</param>
+          <message key="errors.required.height"></message>
+      </field-validator>
+  </field>
+</validators>

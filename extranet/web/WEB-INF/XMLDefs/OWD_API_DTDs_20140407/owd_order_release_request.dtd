@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<!-- DTD for Order release requests   S. Buskirk	2010.12.12 -->
+<!-- Copyright (c) 2010 by One World Direct All Rights Reserved. -->
+<!-- Dates formatted as YYYYMMDD -->
+
+<-- Updated 9/23/2011 -->
+
+<!-- OWD_ORDER_RELEASE_REQUEST element attributes
+
+	clientOrderId = OWD-assigned order identifier. If client does not track OWD order IDs, they can use their
+				    own order reference as supplied with the order, but the request will only succeed if the order reference
+				    is unique among all non-voided orders for the client. OWD-assigned order identifiers are guaranteed to be unique.
+
+	partialShipAllowed = Optional flag to allow partial release of order. Must be passed with a value of "TRUE" to be recognized. If set,
+	                    the order will be released with all available units of all items. An active backorder will be created for any
+	                    remaining units requested.
+
+	The OWD_ORDER_RELEASE_REQUEST request returns an OWD_ORDER_STATUS_RESPONSE if successful. The
+	response will show an order status of "WAREHOUSE".
+
+	Requests to release orders can only be fulfilled if the order has not yet been released to the warehouse
+	for shipping and is not void. Orders released will be subject to further verifications of shippability, payment checks, etc.
+	these checks normally occur within 2-5 minutes after the initial release.
+
+	There are no OWD fees associated with releasing qualifying orders via this interface.
+-->
+
+
+<!ELEMENT OWD_ORDER_RELEASE_REQUEST EMPTY>
+<!ATTLIST OWD_ORDER_RELEASE_REQUEST
+          clientOrderId       		CDATA   #REQUIRED
+          partialShipAllowed       (TRUE|FALSE)        "FALSE">
+
+
+<!-- EXAMPLE RELEASE ALL ITEMS ONLY IF ALL ITEMS ARE IN STOCK
+
+<OWD_API_REQUEST	api_version="1.0"
+          		    client_id="1234"
+          		    client_authorization="12938462"
+          		    testing="FALSE" >
+	<OWD_ORDER_RELEASE_REQUEST clientOrderId="N1WEDrer" />
+</OWD_API_REQUEST>
+
+-->
+
+<!-- EXAMPLE RELEASE ALL AVAILABLE UNITS OF ALL ITEMS
+
+<OWD_API_REQUEST	api_version="1.0"
+          		    client_id="1234"
+          		    client_authorization="12938462"
+          		    testing="FALSE" >
+	<OWD_ORDER_RELEASE_REQUEST clientOrderId="N1WEDrer" partialShipAllowed="TRUE" />
+</OWD_API_REQUEST>
+
+-->

@@ -1,0 +1,151 @@
+body{
+    font-size:30px;
+
+}
+.redOrder{
+    background-color: #F8C2C2;
+}
+.formatedpick{
+    font-size: 60px;
+}
+table{
+    width:100%;
+   font-size: 30px;
+}
+h3{
+    font-size:1.2em;
+}
+span.label{
+    font-size:1.1em;
+}
+.label{
+    font-size:1.1em;
+    padding-bottom:6px;
+    padding-top:6px;
+
+}
+span.location2{
+    font-size:25px;
+
+}
+input, textarea, select, button {
+   -webkit-appearance: none;
+ }
+input, textarea, select, button {
+   border: 2px solid #555;
+   padding: 0.5em;
+   font-size: 24px;
+   line-height: 1.2em;
+
+   background: #fff;
+   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
+   -webkit-appearance: none;
+   -webkit-box-shadow: 1px 1px 1px #fff;
+   -webkit-border-radius: 0.5em;
+ }
+input[type=checkbox] {
+  font-size: 22px;
+  position: relative;
+  border: 2px solid #262626;
+  display: inline-block;
+  line-height: 1em;
+  margin: 7px;
+  padding: 0;
+  width: 1em;
+  height: 1em;
+  vertical-align: text-top;
+  background: -webkit-linear-gradient(
+    top, rgba(127,127,127,0.4), rgba(255,255,255,0.1)
+  );
+  -webkit-appearance: none;
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255, 0.1),
+                      inset 0 0 1px rgba(255,255,255, 0.4);
+  -webkit-border-radius: 3px;
+}
+
+input[type=checkbox]:active {
+  background: -webkit-linear-gradient(
+    top, rgba(255,255,255,0.05), rgba(255,255,255,0.2)
+  );
+}
+
+input[type=checkbox]:checked::after {
+  position: absolute;
+  content: '';
+  left: 15%;
+  top: -10%;
+  height: 40%;
+  width: 90%;
+    border-bottom: 4px solid #0033ff;
+      border-left: 4px solid #0033ff;
+  -webkit-box-shadow: -2px 2px 0 rgba(0,0,0,0.8);
+  -webkit-transform: rotate(-45deg);
+}
+
+ input[type=radio] {
+    -webkit-border-radius: 2em; /* Make radios round */
+  }
+
+.fullWidthTable{
+    width:100%!important;
+    border: 0;
+
+}
+.locationDisplay{
+    font-size:42px;
+    color: blue;
+}
+.header{
+   height:42px;
+
+}
+.error{
+color:red;
+}
+div.receive{
+  width:100%;
+}
+.submit{
+    font-size:30px;
+    padding: 18px;
+}
+.receiveItemtd{
+    font-size:30px;
+    width:500px
+}
+.receiveCounttd{
+    font-size:30px;
+
+}
+span.notes{
+    font-size:1em;
+}
+td.right{
+    font-size:30px;
+}
+a.button{
+   font-size:35px;
+   letter-spacing: 5px;
+    background-color: #d3d3d3;
+     padding: .35em;
+   width:280px;
+   display: block;
+}
+
+a.invbutton{
+  font-size:35px;
+   letter-spacing: 5px;
+    background-color: #d3d3d3;
+     padding: .35em;
+   width:280px;
+   display: block;
+    border: none;
+}
+.inventoryid, .inventorynum{
+    font-size:45px;
+    padding-bottom: 10px;
+
+}
+.receiveGetSkuTable{
+    width:100%;
+}

@@ -1,0 +1,323 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- DTD for ASN/Receiving API   S. Buskirk -->
+<!-- Copyright (c) 2011 by One World Direct All Rights Reserved. -->
+<!-- Dates formatted as YYYYMMDD -->
+
+<!-- Changes -->
+<!-- See changelog.txt -->
+
+<!-- OWD_ASN_STATUS_REQUEST description
+
+	This request returns an OWD_ASN_STATUS_RESPONSE if successful, which can contain multiple
+	descriptions of existing ASN and receive records. See OWD_ASN_STATUS_RESPONSE for response details.
+
+	An empty status request returns details for all asn records (this list may be very large and slow to return).
+
+	The returned list may be restricted by adding one or more FILTER elements to the status request. Each
+	FILTER element contains two subelements, FILTER_TYPE and FILTER_VALUE.
+
+	The value of the TYPE element must be one of the strings listed in the table below (case-sensitive).
+	The associated VALUE element may be a number, a date or a string value depending on the TYPE value.
+	Multiple FILTER elements can be included in the request - all FILTERs will be combined in a logical
+	AND. All returned results will have satisfied all FILTER requirements provided.
+
+	FILTER_TYPE option                  FILTER_VALUE contents
+	================================================================
+	reference             	String value. Returns asns whose client asn reference value matches the provided value.
+    containsSku             String value. Returns all asns containing the indicated SKU
+    status         			String value. Must be one of UNRECEIVED, PARTIALRECEIPT, CANCELLED or COMPLETE.
+    receivedOn              String value. Matches asns with a receive completed on the indicated date. Value should be in YYYYMMDD format.
+    receivedSince			String value. Matches asns with a receive completed on or after the indicated date. Value should be in YYYYMMDD format.
+    hasUnreleasedReceives   Integer value. Zero to restrict results to asns with no unreleased receives, 1 to restrict results to asns with at least one unreleased receive
+    owdReference        	Integer value. Returns all items with a quantity_available value below the indicated value
+    poReference             String value. Returns asns whose PO reference value matches the provided value.
+    shipper                 String value. Returns asns whose shipper value matches the provided value.
+    groupName           	String value. Returns only items with a matching groupname value
+-->
+
+<!ELEMENT FILTER_TYPE (#PCDATA)>
+<!ELEMENT FILTER_VALUE (#PCDATA)>
+
+<!ELEMENT FILTER (FILTER_TYPE,FILTER_VALUE)>
+
+<!ELEMENT OWD_ASN_STATUS_REQUEST (FILTER*)>
+
+
+<!-- OWD_ASN_STATUS_RESPONSE returns zero or more OWD_ASN_STATUS elements, one per returned subscription.
+
+   The initial COUNT subelement notes how many OWD_ASN_STATUS elements are being returned in this response. 0 is a valid value
+   if the requested criteria for a OWD_ASN_STATUS_REQUEST matched no records, or after a successful OWD_ASN_DELETE_REQUEST.
+
+   OWD_ASN_STATUS_RESPONSE is the response type for asn creation, update, deletion and search requests
+
+	Notes on each subelement of the OWD_ASN_STATUS element are below:
+	
+-->
+
+<!ELEMENT COUNT (#PCDATA)><!--Number of OWD_ASN_STATUS elements being returned in this response-->
+
+
+<!ELEMENT REFERENCE (#PCDATA)><!--Your reference value for this ASN record. Not checked for uniqueness. Optional.-->
+<!ELEMENT PO_REFERENCE (#PCDATA)><!--Another reference value for this ASN record. Normally used to help locate ASN for a shipment by comparing to PO number on paperwork accompanying incoming shipment. Not checked for uniqueness. Optional.-->
+<!ELEMENT NOTES (#PCDATA)><!--Any length of alphanumeric text with instructions or comments to be followed during the receiving process.-->
+<!ELEMENT SHIPPER (#PCDATA)><!--Name of supplier that will be sending the shipment. Optional.-->
+<!ELEMENT EXPECTED_DATE (#PCDATA)><!--Date that the shipment is expected to arrive. Required. Must be for a future date when creating or updating an asn record.-->
+<!ELEMENT CARRIER (#PCDATA)><!--Type of carrier delivering package must be one of Unknown, USPS, UPS, FedEx, or LTL Truck. Optional.-->
+<!ELEMENT AUTORELEASE (#PCDATA)><!--A value of "1" directs OWD to make inventory received on this ASN immediately available
+                              to fill new orders when the receive is completed. Any other value, or omitting this attribute, will require a
+                              manual confirmation or an asn update call to make any received inventory available to ship after the receive is done. Required during asn creation.-->
+<!ELEMENT CARTONS (#PCDATA)><!--Integer quantity of shipping cartons expected with this shipment. Optional.-->
+<!ELEMENT PALLETS (#PCDATA)><!--Integer quantity of pallets expected with this shipment. Optional.-->
+<!ELEMENT GROUPNAME (#PCDATA)><!--String reference value for arbitrary grouping of ASNs and receives by identifier. Optional. 50 character maximum.-->
+<!ELEMENT FACILITY_CODE (#PCDATA)><!--String reference value for the physical facility where the shipment will arrive. Optional. Current valid codes are 'DC1' (SD) and 'DC6' (CA).
+									  If not present during ASN creation, the default facility for the client account will be used automatically. -->
+<!ELEMENT STATUS (#PCDATA)><!-- General status of this asn record. In OWD_ASN_STATUS, must be one of UNRECEIVED, PARTIALRECEIPT, CANCELLED, or COMPLETE. CANCELLED indicates
+                                that the asn had a period of inactivity exceeding two months and was automatically cancelled by the system. This element can be used
+                                in an update request to force the status to COMPLETE or UNRECEIVED from the other states. See OWD_ASN_UPDATE_REQUEST -->
+
+
+
+
+<!--  Each asn can have zero or more RECEIVE elements. Each RECEIVE element represents a completed receive event against the parent asn record. Each receive
+      record will have one or more RECEIVE_ITEM subelements. Each RECEIVE_ITEM represents a single SKU received and counted. RECEIVE records are not editable.
+-->
+<!ELEMENT RECEIVE_ITEM (EMPTY)> <!-- One RECEIVE_ITEM exists for each SKU counted and accepted during the parent RECEIVE event -->
+<!ATTLIST RECEIVE_ITEM
+	      sku			        CDATA	#REQUIRED <!-- The SKU of the item -->
+	      count_method          CDATA   #REQUIRED <!-- Description of the method used to count this item. -->
+	      qtyReceived	    CDATA	#REQUIRED <!-- The quantity received into stock -->
+	      quantity_unusable	    CDATA	#REQUIRED ><!-- The quantity inspected but found to be unacceptable for shipping -->
+
+<!ELEMENT RECEIVE_ITEMS (RECEIVE_ITEM+)>
+
+<!ELEMENT RECEIVE_SCAN_URL (#PCDATA)>  <!-- Contains a URL to download a PDF-formatted scan of any documents used or seen during the receive. 
+									   This URL embeds authentication information into its parameters, and requires no further authentication to use. 
+									   May appear zero or more times in response -->
+<!ELEMENT RECEIVE_SCAN_URLS (RECEIVE_SCAN_URL+)>
+
+<!ELEMENT RECEIVE (RECEIVE_SCAN_URLS*, RECEIVE_ITEMS)>
+<!ATTLIST RECEIVE
+	      id			    CDATA	#REQUIRED  <!-- integer value of receive record key. Required by OWD_ASN_RECEIVE_RELEASE_REQUEST call -->
+	      created	        CDATA	#REQUIRED  <!-- The date (in YYYYMMDD format) that the receive was completed -->
+	      createdBy	        CDATA	#REQUIRED  <!-- The name or identifier of the receiver -->
+	      receiveMinutes	CDATA	#REQUIRED  <!-- The number of billable minutes required to accept, identify, inspect and put away the items in this receive -->
+	      receivedCartons	CDATA	#REQUIRED  <!-- The number of packages processed during this receive -->
+	      released	        CDATA	#REQUIRED  <!-- If the quantities from thsi receive were released into live stock levels, then "1" else "0". -->
+	      receivedPallets	CDATA	#REQUIRED  <!--Integer quantity of pallets processed with this receive -->
+	      notes	            CDATA	#REQUIRED  <!-- Notes from the receiver on events or observations made during the receive -->
+	      releaseDate	    CDATA	#IMPLIED   <!-- Date (YYYMMDD format) that received quantities were released into live stock levels. Only present when "released" attribute is 1.-->
+	  >
+<!ELEMENT RECEIVES (RECEIVE+)>
+
+
+<!ELEMENT ASNITEM_SKU (#PCDATA)>  <!-- the SKU of this item -->
+<!ELEMENT ASNITEM_EXPECTED_QTY (#PCDATA)>  <!-- Integer number of units of this item expected for this ASN -->
+<!ELEMENT ASNITEM_DESCRIPTION (#PCDATA)>   <!-- Optional description of the item for identification purposes -->
+<!ELEMENT ASNITEM (ASNITEM_SKU,ASNITEM_EXPECTED_QTY,ASNITEM_DESCRIPTION)>
+<!ATTLIST ASNITEM
+	      total_received			CDATA	#REQUIRED  <!-- Integer total accepted quantity received for this SKU - total is for all completed receives attached to this asn record -->
+	      total_remaining           CDATA	#REQUIRED  <!-- Integer difference between the expected and total received values (calculated as expected-received). Will be a negative if the received amount exceeds the expected -->
+	  >
+ <!ELEMENT ASNITEMS (ASNITEM+)>
+
+
+<!ELEMENT OWD_ASN_STATUS (STATUS,REFERENCE,PO_REFERENCE,NOTES,SHIPPER,EXPECTED_DATE,CARRIER,AUTORELEASE,CARTONS,
+								PALLETS,GROUPNAME,FACILITY_CODE,ASNITEMS+,RECEIVES*)>
+
+<!--  OWD_ASN_STATUS attributes are not editable through the API. -->
+
+<!ATTLIST OWD_ASN_STATUS
+        id       				CDATA   	#REQUIRED  <!-- internal OWD asn ID - this value must be used when updating or deleting asn records -->
+        created               	CDATA       #REQUIRED  <!-- YYYYMMDD format. Date asn record was created.-->
+        createdBy       		CDATA   	#REQUIRED  <!-- Text identifier of person or process creating the record.  -->
+        receive_count			CDATA   	#REQUIRED  <!-- Number of completed receives made against this asn -->
+        receive_active		    CDATA		#REQUIRED  <!-- if "1", a receive is currently being performed, else "0". An asn cannot be modified while a receive is in progress -->
+         >
+
+<!ELEMENT OWD_ASN_STATUS_RESPONSE (COUNT,OWD_ASN_STATUS*)>
+
+<!-- OWD_ASN_UPDATE_REQUEST description
+
+	This request updates an item record and returns an OWD_ASN_STATUS_RESPONSE if successful. See OWD_ASN_STATUS_RESPONSE for response details.
+
+	The returned records reflect the state of the system after the requested updates have been applied.
+
+	This call allows updating all available fields of the asn record, including the ASN_ITEM records. This call does respect the
+	TESTING flag and will roll back any database changes after sending a response if TESTING is set to TRUE.
+
+	Each OWD_ASN_UPDATE_REQUEST sent represents a request to update one item record. The id attribute value of OWD_ASN_UPDATE_REQUEST provides
+	the unique identifier for the item to update. This id value is the same returned in ASN_STATUS records.
+
+	The rest of the OWD_ASN_UPDATE subelements are the fields to update. You may include any number of the available fields to update. Please see
+	the examples for clarity (below). Update requests cannot be made and will be rejected while a new receive is being processed against the asn
+	(see the receive_active attribute of the OWD_ASN_STATUS element).
+
+	The ASNITEMS/ASNITEM elements are special in that if you provide any ASNITEM elements to update or add, all existing asn items
+	will be deleted and only the list provided in your update request will exist after the update is complete. ASNITEM lists cannot be modified after
+	the first receive is completed against the parent asn record.
+
+	For example, if an item has 2 ASNITEMs in it now and you want to add a new item to it, your update request must include
+	both the old and new ASNITEM information in your update request. Examples are provided below.
+
+	The STATUS element can be used to update the overall status of an asn record in two ways:
+
+	1. If the current status of an asn is anything other than COMPLETE, you can pass a value of COMPLETE int the STATUS element to change the asn status to COMPLETE
+	2. If the current status of an asn is COMPLETE or CANCELLED, you can change it to UNRECEIVED by passing that value in the STATUS element, but only if no
+	   receives are completed or active for the asn
+
+	
+-->
+
+<!ELEMENT OWD_ASN_UPDATE_REQUEST (REFERENCE?,PO_REFERENCE?,NOTES?,SHIPPER?,EXPECTED_DATE?,CARRIER?,AUTORELEASE?,CARTONS?,
+								PALLETS?,GROUPNAME?,FACILITY_CODE?,ASNITEMS*)>
+
+<!ATTLIST OWD_ASN_UPDATE_REQUEST
+        id       		CDATA   	#REQUIRED  <!-- See OWD_ASN_STATUS id attribute -->
+
+
+<!-- OWD_ASN_CREATE_REQUEST description
+
+	This request creates a new asn record and returns an OWD_ASN_STATUS_RESPONSE if successful. See OWD_ASN_STATUS_RESPONSE for response details.
+
+	EXPECTED_DATE, ASNITEMS and AUTORELEASE are the only required elements to create most items.
+	
+	Requests made with the "testing" OWD_API_REQUEST attribute set to "TRUE" will not permanently alter the OWD system.
+-->
+
+<!ELEMENT OWD_ASN_CREATE_REQUEST  (REFERENCE?,PO_REFERENCE?,NOTES?,SHIPPER?,EXPECTED_DATE,CARRIER?,AUTORELEASE,CARTONS?,
+								PALLETS?,GROUPNAME?,FACILITY_CODE?,ASNITEMS+)>
+
+<!-- OWD_ASN_RECEIVE_RELEASE_REQUEST description
+
+	This request creates releases an unreleased receive record to update available stock levels and returns an OWD_ASN_STATUS_RESPONSE if successful. See OWD_ASN_STATUS_RESPONSE for response details.
+
+	The id attribute value is obtained from a RECEIVE element of a previous OWD_ASN_STATUS response.
+
+	Requests made with the "testing" OWD_API_REQUEST attribute set to "TRUE" will not permanently alter the OWD system.
+-->
+<!ELEMENT OWD_ASN_RECEIVE_RELEASE_REQUEST (EMPTY)>
+
+<!ATTLIST OWD_ASN_RECEIVE_RELEASE_REQUEST
+        id       		CDATA   	#REQUIRED  <!-- See RECEIVE id attribute -->
+
+
+<!--
+
+Example of creating a new ASN
+
+<?xml version="1.0"?>
+<OWD_API_REQUEST api_version="1.0" client_authorization="xxx=" client_id="0" testing="FALSE">
+	<OWD_ASN_CREATE_REQUEST>
+		<REFERENCE>My ASN Reference</REFERENCE>
+		<PO_REFERENCE>Supplier PO &lt;123&gt;</PO_REFERENCE>
+		<SHIPPER>MY SUPPLIER</SHIPPER>
+		<EXPECTED_DATE>20110801</EXPECTED_DATE>
+		<CARRIER>USPS</CARRIER>
+		<AUTORELEASE>1</AUTORELEASE>
+		<CARTONS>2</CARTONS>
+		<PALLETS>0</PALLETS>
+		<NOTES>Check all items for Ebola</NOTES>
+		<ASNITEMS>
+			<ASNITEM>
+				<ASNITEM_SKU>SKUTest1</ASNITEM_SKU>
+				<ASNITEM_EXPECTED>1</ASNITEM_EXPECTED>
+				<ASNITEM_DESCRIPTION>SkuTest1 Desc</ASNITEM_DESCRIPTION>
+			</ASNITEM>
+			<ASNITEM>
+				<ASNITEM_SKU>SKUTest2</ASNITEM_SKU>
+				<ASNITEM_EXPECTED>200</ASNITEM_EXPECTED>
+				<ASNITEM_DESCRIPTION>SkuTest2 Desc</ASNITEM_DESCRIPTION>
+			</ASNITEM>
+		</ASNITEMS>
+	</OWD_ASN_CREATE_REQUEST>
+</OWD_API_REQUEST>
+
+Example of searching for ASNs meeting the following criteria: must contain SKU "SkuTest1" and have no receives completed
+
+<?xml version="1.0"?>
+<OWD_API_REQUEST api_version="1.0" client_authorization="xxx=" client_id="0" testing="FALSE">
+	<OWD_ASN_STATUS_REQUEST>
+		<FILTER>
+			<TYPE>containsSku</TYPE>
+			<VALUE>SkuTest1</VALUE>
+		</FILTER>
+		<FILTER>
+			<TYPE>status</TYPE>
+			<VALUE>UNRECEIVED</VALUE>
+		</FILTER>
+	</OWD_ASN_STATUS_REQUEST>
+</OWD_API_REQUEST>
+
+Example to update an ASN, including resetting the items list to one SKU
+
+<?xml version="1.0"?>
+<OWD_API_REQUEST api_version="1.0" client_authorization="xxx=" client_id="0" testing="FALSE">
+	<OWD_ASN_UPDATE_REQUEST id="28225">
+		<REFERENCE>My ASN Referencex</REFERENCE>
+		<PO_REFERENCE>Supplier PO &lt;123&gt;x</PO_REFERENCE>
+		<SHIPPER>MY SUPPLIERx</SHIPPER>
+		<EXPECTED_DATE>20110802</EXPECTED_DATE>
+		<CARRIER>UPS</CARRIER>
+		<AUTORELEASE>0</AUTORELEASE>
+		<CARTONS>0</CARTONS>
+		<PALLETS>1</PALLETS>
+		<NOTES>Delicate</NOTES>
+		<ASNITEMS>
+			<ASNITEM>
+				<ASNITEM_SKU>SKUTest2</ASNITEM_SKU>
+				<ASNITEM_EXPECTED>10</ASNITEM_EXPECTED>
+				<ASNITEM_DESCRIPTION>SkuTest2 updated Desc</ASNITEM_DESCRIPTION>
+			</ASNITEM>
+		</ASNITEMS>
+	</OWD_ASN_UPDATE_REQUEST>
+</OWD_API_REQUEST>
+
+Example of deleting an ASN
+
+<?xml version="1.0"?>
+<OWD_API_REQUEST api_version="1.0" client_authorization="xxx=" client_id="0" testing="FALSE">
+	<OWD_ASN_DELETE_REQUEST id="28226"/>
+</OWD_API_REQUEST>
+
+
+Example of releasing a completed but unreleased receive record
+
+<?xml version="1.0"?>
+<OWD_API_REQUEST api_version="1.0" client_authorization="xxx=" client_id="0" testing="FALSE">
+	<OWD_ASN_RECEIVE_RELEASE_REQUEST id="9999"/>
+</OWD_API_REQUEST>
+
+
+Example of an OWD_ASN_STATUS_RESPONSE with no receives yet completed
+
+<OWD_API_RESPONSE results="SUCCESS">
+  <OWD_ASN_STATUS_RESPONSE>
+    <COUNT>1</COUNT>
+    <OWD_ASN_STATUS created="20110705" createdBy="XML API" id="28148" receive_active="0" receive_count="0">
+      <STATUS>UNRECEIVED</STATUS>
+      <REFERENCE>My ASN Reference</REFERENCE>
+      <PO_REFERENCE><![CDATA[Supplier PO <123>]]></PO_REFERENCE>
+      <NOTES>Rock, Paper, Scissors, Lizard, Spock: A Strategy Guide</NOTES>
+      <SHIPPER>MY SUPPLIER</SHIPPER>
+      <EXPECTED_DATE>20110801</EXPECTED_DATE>
+      <CARRIER>USPS</CARRIER>
+      <AUTORELEASE>0</AUTORELEASE>
+      <CARTONS>2</CARTONS>
+      <PALLETS>0</PALLETS>
+      <ASNITEMS>
+        <ASNITEM qtyReceived="0" total_remaining="1">
+          <ASNITEM_SKU>SKUTest1</ASNITEM_SKU>
+          <ASNITEM_EXPECTED_QTY>1</ASNITEM_EXPECTED_QTY>
+          <ASNITEM_DESCRIPTION>A Test sku</ASNITEM_DESCRIPTION>
+        </ASNITEM>
+        <ASNITEM qtyReceived="0" total_remaining="200">
+          <ASNITEM_SKU>SKUTest2</ASNITEM_SKU>
+          <ASNITEM_EXPECTED_QTY>200</ASNITEM_EXPECTED_QTY>
+          <ASNITEM_DESCRIPTION>A test sku 2</ASNITEM_DESCRIPTION>
+        </ASNITEM>
+      </ASNITEMS>
+    </OWD_ASN_STATUS>
+  </OWD_ASN_STATUS_RESPONSE>
+</OWD_API_RESPONSE>
+
+-->

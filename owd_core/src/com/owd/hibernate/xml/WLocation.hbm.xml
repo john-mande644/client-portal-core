@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+    <!--
+        Created by the Middlegen Hibernate plugin
+
+        http://boss.bekk.no/boss/middlegen/
+        http://www.hibernate.org/dtd/
+    -->
+
+    <class
+        name="com.owd.hibernate.generated.WLocation"
+        table="w_location"
+        >
+
+        <id
+            name="id"
+            type="java.lang.Integer"
+            column="ixNode"
+            >
+            <generator class="identity"/>
+        </id>
+
+        <property
+            name="parentId"
+            type="java.lang.Integer"
+            column="ixParent"
+            not-null="true"
+            length="10"
+            />
+        <property
+            name="locationName"
+            type="java.lang.String"
+            column="locname"
+            not-null="true"
+            length="512"
+            />
+        <property
+            name="locationType"
+            type="java.lang.Integer"
+            column="ixLocType"
+            not-null="true"
+            length="10"
+            />
+        <property
+                name="pickString"
+                type="java.lang.String"
+                column="pickString"
+                not-null="false"
+
+                />
+        <property
+                name="formatedPickString"
+                type="java.lang.String"
+                column="formatedPickString"
+                not-null="false"
+
+                />
+        <property
+                name="sortString"
+                type="java.lang.String"
+                column="sortString"
+                not-null="false"
+
+                />
+        <property
+                name="pickPriority"
+                type="java.lang.String"
+                column="pickPriority"
+                not-null="true"
+
+                />
+        <!-- associations -->
+        <set
+                name="currentStock"
+                lazy="true"
+                inverse="true"
+                >
+            <key>
+                <column name="ixNode"/>
+            </key>
+            <one-to-many
+                    class="com.owd.hibernate.generated.WStock"
+                    />
+        </set><!-- bi-directional many-to-one association to OrderPickStatu -->
+
+
+    </class>
+</hibernate-mapping>

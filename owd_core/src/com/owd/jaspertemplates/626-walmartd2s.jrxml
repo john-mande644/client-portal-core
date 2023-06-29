@@ -1,0 +1,1122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ab21ca2d-400d-48aa-8c31-d1a087fe8fee">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OWD.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="Detail" fontName="Arial" fontSize="12">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="light gray background" backcolor="#E6E6E6" fill="Solid">
+		<pen lineColor="#E6E6E6"/>
+		<box rightPadding="3">
+			<pen lineWidth="1.0" lineColor="#E6E6E6"/>
+			<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#E6E6E6"/>
+			<leftPen lineWidth="1.0" lineColor="#E6E6E6"/>
+			<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#E6E6E6"/>
+			<rightPen lineWidth="1.0" lineColor="#E6E6E6"/>
+		</box>
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="right padding" backcolor="#FFFFFF" fill="Solid">
+		<box rightPadding="3">
+			<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+			<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#CCCCCC"/>
+			<leftPen lineWidth="0.0" lineColor="#CCCCCC"/>
+			<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#CCCCCC"/>
+			<rightPen lineWidth="0.0" lineColor="#CCCCCC"/>
+		</box>
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<parameter name="order_id" class="java.lang.String"/>
+	<parameter name="imageDir" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[execute getPackingSlipDataWalmartD2SCHUBEDI $P{order_id}]]>
+	</queryString>
+	<field name="order_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="order_id"/>
+	</field>
+	<field name="client_fkey" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="client_fkey"/>
+	</field>
+	<field name="customer_fkey" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="customer_fkey"/>
+	</field>
+	<field name="order_num" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_num"/>
+	</field>
+	<field name="order_refnum" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_refnum"/>
+	</field>
+	<field name="order_num_barcode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_num_barcode"/>
+	</field>
+	<field name="po_num" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="po_num"/>
+	</field>
+	<field name="order_type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_type"/>
+	</field>
+	<field name="salesperson" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="salesperson"/>
+	</field>
+	<field name="actual_order_date" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="actual_order_date"/>
+	</field>
+	<field name="order_sub_total" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="order_sub_total"/>
+	</field>
+	<field name="discount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="discount"/>
+	</field>
+	<field name="tax_pct" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="tax_pct"/>
+	</field>
+	<field name="tax_amount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="tax_amount"/>
+	</field>
+	<field name="ship_handling_fee" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="ship_handling_fee"/>
+	</field>
+	<field name="order_total" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="order_total"/>
+	</field>
+	<field name="paid_amount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="paid_amount"/>
+	</field>
+	<field name="paid_date" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="paid_date"/>
+	</field>
+	<field name="order_balance" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="order_balance"/>
+	</field>
+	<field name="customer_num" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="customer_num"/>
+	</field>
+	<field name="customer_vendor_no" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="customer_vendor_no"/>
+	</field>
+	<field name="bill_last_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bill_last_name"/>
+	</field>
+	<field name="bill_first_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bill_first_name"/>
+	</field>
+	<field name="bill_address_one" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bill_address_one"/>
+	</field>
+	<field name="bill_address_two" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bill_address_two"/>
+	</field>
+	<field name="bill_city" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bill_city"/>
+	</field>
+	<field name="bill_state" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bill_state"/>
+	</field>
+	<field name="bill_zip" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bill_zip"/>
+	</field>
+	<field name="bill_country" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bill_country"/>
+	</field>
+	<field name="bill_company_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bill_company_name"/>
+	</field>
+	<field name="bill_title" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bill_title"/>
+	</field>
+	<field name="bill_phone_num" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bill_phone_num"/>
+	</field>
+	<field name="bill_fax_num" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bill_fax_num"/>
+	</field>
+	<field name="bill_email_address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bill_email_address"/>
+	</field>
+	<field name="prt_pick_reqd" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="prt_pick_reqd"/>
+	</field>
+	<field name="prt_invoice_reqd" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="prt_invoice_reqd"/>
+	</field>
+	<field name="prt_pack_reqd" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="prt_pack_reqd"/>
+	</field>
+	<field name="prt_priceonslip_reqd" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="prt_priceonslip_reqd"/>
+	</field>
+	<field name="is_backorder" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="is_backorder"/>
+	</field>
+	<field name="backorder_order_num" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="backorder_order_num"/>
+	</field>
+	<field name="original_order_num" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="original_order_num"/>
+	</field>
+	<field name="is_future_ship" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="is_future_ship"/>
+	</field>
+	<field name="is_void" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="is_void"/>
+	</field>
+	<field name="post_date" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="post_date"/>
+	</field>
+	<field name="created_date" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="created_date"/>
+	</field>
+	<field name="created_by" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="created_by"/>
+	</field>
+	<field name="modified_date" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="modified_date"/>
+	</field>
+	<field name="modified_by" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="modified_by"/>
+	</field>
+	<field name="row_is_locked" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="row_is_locked"/>
+	</field>
+	<field name="cc_type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cc_type"/>
+	</field>
+	<field name="is_gift" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="is_gift"/>
+	</field>
+	<field name="gift_message" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="gift_message"/>
+	</field>
+	<field name="gift_wrap_fee" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="gift_wrap_fee"/>
+	</field>
+	<field name="reported" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="reported"/>
+	</field>
+	<field name="cc_num" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cc_num"/>
+	</field>
+	<field name="cc_exp_mon" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="cc_exp_mon"/>
+	</field>
+	<field name="cc_exp_year" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="cc_exp_year"/>
+	</field>
+	<field name="pick_status" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="pick_status"/>
+	</field>
+	<field name="payment_status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="payment_status"/>
+	</field>
+	<field name="pick_by" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pick_by"/>
+	</field>
+	<field name="coupon" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="coupon"/>
+	</field>
+	<field name="backorder_level" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="backorder_level"/>
+	</field>
+	<field name="discount_pct" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="discount_pct"/>
+	</field>
+	<field name="order_status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_status"/>
+	</field>
+	<field name="shipped_on" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="shipped_on"/>
+	</field>
+	<field name="ship_packs" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ship_packs"/>
+	</field>
+	<field name="tracking_nums" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tracking_nums"/>
+	</field>
+	<field name="shipped_cost" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="shipped_cost"/>
+	</field>
+	<field name="shipped_weight" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="shipped_weight"/>
+	</field>
+	<field name="shipped_lines" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="shipped_lines"/>
+	</field>
+	<field name="shipped_units" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="shipped_units"/>
+	</field>
+	<field name="ship_sub_total" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="ship_sub_total"/>
+	</field>
+	<field name="ship_tax" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="ship_tax"/>
+	</field>
+	<field name="ship_total" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="ship_total"/>
+	</field>
+	<field name="facility_code" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="facility_code"/>
+	</field>
+	<field name="group_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="group_name"/>
+	</field>
+	<field name="packing_instructions" class="java.sql.Clob">
+		<property name="com.jaspersoft.studio.field.label" value="packing_instructions"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="owd_order"/>
+	</field>
+	<field name="facility_policy" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="facility_policy"/>
+	</field>
+	<field name="not_billed" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="not_billed"/>
+	</field>
+	<field name="no_customs_account" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="no_customs_account"/>
+	</field>
+	<field name="is_shipping" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="is_shipping"/>
+	</field>
+	<field name="sla" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="sla"/>
+	</field>
+	<field name="license_plate" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="license_plate"/>
+	</field>
+	<field name="barcode_when_lp_assigned" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="barcode_when_lp_assigned"/>
+	</field>
+	<field name="pre_ship_weight" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="pre_ship_weight"/>
+	</field>
+	<field name="business_order" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="business_order"/>
+	</field>
+	<field name="external_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="external_id"/>
+	</field>
+	<field name="PO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PO"/>
+	</field>
+	<field name="order_date" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_date"/>
+	</field>
+	<field name="customer_order_number" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="customer_order_number"/>
+	</field>
+	<field name="edi_packSlipMessage" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_packSlipMessage"/>
+	</field>
+	<field name="edi_giftMessage" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_giftMessage"/>
+	</field>
+	<field name="edi_merchDivision" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_merchDivision"/>
+	</field>
+	<field name="edi_paymentType" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_paymentType"/>
+	</field>
+	<field name="returnCode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="returnCode"/>
+	</field>
+	<field name="salesDivision" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="salesDivision"/>
+	</field>
+	<field name="edi_MerchandiseTotal" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_MerchandiseTotal"/>
+	</field>
+	<field name="edi_shippingHandle" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_shippingHandle"/>
+	</field>
+	<field name="edi_tax" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_tax"/>
+	</field>
+	<field name="edi_total" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_total"/>
+	</field>
+	<field name="order_ship_info_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="order_ship_info_id"/>
+	</field>
+	<field name="order_fkey" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="order_fkey"/>
+	</field>
+	<field name="scheduled_ship_date" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="scheduled_ship_date"/>
+	</field>
+	<field name="ship_last_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ship_last_name"/>
+	</field>
+	<field name="ship_first_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ship_first_name"/>
+	</field>
+	<field name="ship_address_one" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ship_address_one"/>
+	</field>
+	<field name="ship_address_two" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ship_address_two"/>
+	</field>
+	<field name="ship_city" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ship_city"/>
+	</field>
+	<field name="ship_state" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ship_state"/>
+	</field>
+	<field name="ship_zip" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ship_zip"/>
+	</field>
+	<field name="ship_country" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ship_country"/>
+	</field>
+	<field name="ship_country_ref_num" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ship_country_ref_num"/>
+	</field>
+	<field name="ship_company_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ship_company_name"/>
+	</field>
+	<field name="ship_title" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ship_title"/>
+	</field>
+	<field name="ship_phone_num" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ship_phone_num"/>
+	</field>
+	<field name="ship_fax_num" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ship_fax_num"/>
+	</field>
+	<field name="ship_email_address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ship_email_address"/>
+	</field>
+	<field name="carr_service" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="carr_service"/>
+	</field>
+	<field name="carr_service_ref_num" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="carr_service_ref_num"/>
+	</field>
+	<field name="carr_freight_terms" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="carr_freight_terms"/>
+	</field>
+	<field name="carr_freight_terms_ref_num" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="carr_freight_terms_ref_num"/>
+	</field>
+	<field name="third_party_refnum" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="third_party_refnum"/>
+	</field>
+	<field name="ss_addl_hand" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="ss_addl_hand"/>
+	</field>
+	<field name="ss_declared_value" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="ss_declared_value"/>
+	</field>
+	<field name="declared_value" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="declared_value"/>
+	</field>
+	<field name="ss_proof_delivery" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="ss_proof_delivery"/>
+	</field>
+	<field name="ss_call_tag" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="ss_call_tag"/>
+	</field>
+	<field name="call_tag" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="call_tag"/>
+	</field>
+	<field name="ss_cod" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="ss_cod"/>
+	</field>
+	<field name="cod_charge" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="cod_charge"/>
+	</field>
+	<field name="ss_saturday" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="ss_saturday"/>
+	</field>
+	<field name="ss_tracking" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="ss_tracking"/>
+	</field>
+	<field name="ss_oversize" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="ss_oversize"/>
+	</field>
+	<field name="ss_hazardous" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="ss_hazardous"/>
+	</field>
+	<field name="ss_residential" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="ss_residential"/>
+	</field>
+	<field name="comments" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="comments"/>
+	</field>
+	<field name="whse_notes" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="whse_notes"/>
+	</field>
+	<field name="COLUMN_138" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="row_is_locked"/>
+	</field>
+	<field name="customs_value" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="customs_value"/>
+	</field>
+	<field name="customs_desc" class="java.sql.Clob">
+		<property name="com.jaspersoft.studio.field.label" value="customs_desc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="owd_order_ship_info"/>
+	</field>
+	<field name="status" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+	</field>
+	<field name="print_date" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="print_date"/>
+	</field>
+	<field name="COLUMN_143" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="shipped_on"/>
+	</field>
+	<field name="COLUMN_144" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ship_packs"/>
+	</field>
+	<field name="COLUMN_145" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tracking_nums"/>
+	</field>
+	<field name="COLUMN_146" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="shipped_cost"/>
+	</field>
+	<field name="COLUMN_147" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="shipped_weight"/>
+	</field>
+	<field name="avs_overide" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="avs_overide"/>
+	</field>
+	<field name="COLUMN_149" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="external_id"/>
+	</field>
+	<field name="edi_orderLineNumber" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_orderLineNumber"/>
+	</field>
+	<field name="edi_merchantLineNumber" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_merchantLineNumber"/>
+	</field>
+	<field name="edi_item_upc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_item_upc"/>
+	</field>
+	<field name="edi_item_qty" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_item_qty"/>
+	</field>
+	<field name="edi_item_qty_uom" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_item_qty_uom"/>
+	</field>
+	<field name="edi_unit_price" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="edi_unit_price"/>
+	</field>
+	<field name="edi_item_title" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_item_title"/>
+	</field>
+	<field name="merchantSKU" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="merchantSKU"/>
+	</field>
+	<field name="vendorSKU" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="vendorSKU"/>
+	</field>
+	<field name="shoppingCartSKU" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="shoppingCartSKU"/>
+	</field>
+	<field name="edi_item_color" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_item_color"/>
+	</field>
+	<field name="edi_item_size" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_item_size"/>
+	</field>
+	<field name="edi_giftRegistry" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_giftRegistry"/>
+	</field>
+	<field name="edi_line_note" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="edi_line_note"/>
+	</field>
+	<field name="edi_line_shipping" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="edi_line_shipping"/>
+	</field>
+	<field name="edi_line_tax" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="edi_line_tax"/>
+	</field>
+	<field name="line_item_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="line_item_id"/>
+	</field>
+	<field name="COLUMN_167" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="order_fkey"/>
+	</field>
+	<field name="inventory_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="inventory_id"/>
+	</field>
+	<field name="inventory_num" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="inventory_num"/>
+	</field>
+	<field name="description" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="description"/>
+	</field>
+	<field name="cust_refnum" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cust_refnum"/>
+	</field>
+	<field name="quantity_request" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="quantity_request"/>
+	</field>
+	<field name="quantity_actual" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="quantity_actual"/>
+	</field>
+	<field name="quantity_back" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="quantity_back"/>
+	</field>
+	<field name="price" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="price"/>
+	</field>
+	<field name="total_price" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="total_price"/>
+	</field>
+	<field name="COLUMN_177" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="created_date"/>
+	</field>
+	<field name="COLUMN_178" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="created_by"/>
+	</field>
+	<field name="COLUMN_179" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="modified_date"/>
+	</field>
+	<field name="COLUMN_180" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="modified_by"/>
+	</field>
+	<field name="COLUMN_181" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="row_is_locked"/>
+	</field>
+	<field name="item_color" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="item_color"/>
+	</field>
+	<field name="item_size" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="item_size"/>
+	</field>
+	<field name="line_item_disc" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="line_item_disc"/>
+	</field>
+	<field name="long_desc" class="java.sql.Clob">
+		<property name="com.jaspersoft.studio.field.label" value="long_desc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="owd_line_item"/>
+	</field>
+	<field name="COLUMN_186" class="java.sql.Clob">
+		<property name="com.jaspersoft.studio.field.label" value="customs_desc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="owd_line_item"/>
+	</field>
+	<field name="dec_item_value" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="dec_item_value"/>
+	</field>
+	<field name="parent_line" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="parent_line"/>
+	</field>
+	<field name="is_parent" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="is_parent"/>
+	</field>
+	<field name="is_insert" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="is_insert"/>
+	</field>
+	<field name="sladate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="sladate"/>
+	</field>
+	<field name="receiptId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="receiptId"/>
+	</field>
+	<field name="returnData" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="returnData"/>
+	</field>
+	<field name="returnBarcode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="returnBarcode"/>
+	</field>
+	<field name="sscc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="sscc"/>
+	</field>
+	<variable name="subtotal" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[DOUBLE_VALUE( $F{edi_unit_price}) *$F{quantity_actual}]]></variableExpression>
+		<initialValueExpression><![CDATA[0.00]]></initialValueExpression>
+	</variable>
+	<variable name="tax" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{edi_line_tax}]]></variableExpression>
+		<initialValueExpression><![CDATA[0.00]]></initialValueExpression>
+	</variable>
+	<variable name="shipping" class="java.lang.Float">
+		<variableExpression><![CDATA[$F{edi_line_shipping}]]></variableExpression>
+		<initialValueExpression><![CDATA[0.00]]></initialValueExpression>
+	</variable>
+	<group name="order">
+		<groupExpression><![CDATA[$F{order_id}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band height="169">
+				<textField pattern="$ #,##0.00 ">
+					<reportElement mode="Opaque" x="492" y="1" width="80" height="17" forecolor="#000000" uuid="46e7793e-03f8-465f-9cea-fdfc1d184303">
+						<printWhenExpression><![CDATA[$F{is_gift}.equals( 0 )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7" isBold="false" pdfFontName="Helvetica"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{subtotal}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="right padding" x="397" y="0" width="95" height="18" uuid="fee49e6b-f1f5-4437-9ca9-043a48569934">
+						<printWhenExpression><![CDATA[$F{is_gift}.equals( 0 )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[SUBTOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="right padding" x="397" y="17" width="95" height="18" uuid="b0db4e4f-8eb2-4df1-a1d9-2f8a78eaa33c">
+						<printWhenExpression><![CDATA[$F{is_gift}.equals( 0 )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[SALES TAX]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="right padding" x="397" y="34" width="95" height="18" uuid="03bbdccc-9edc-4956-97e4-8b1d6695a126">
+						<printWhenExpression><![CDATA[$F{is_gift}.equals( 0 )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[SHIPPING & HANDLING]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="right padding" x="397" y="51" width="95" height="18" uuid="37c0efb8-5db4-4c3b-9436-3ccbdd4d77c1">
+						<printWhenExpression><![CDATA[$F{is_gift}.equals( 0 )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[SHIPMENT TOTAL]]></text>
+				</staticText>
+				<textField pattern="$ #,##0.00 ">
+					<reportElement mode="Opaque" x="492" y="17" width="80" height="18" forecolor="#000000" uuid="1ce61ec8-d946-43b7-a55b-083f91e4c1ed">
+						<printWhenExpression><![CDATA[$F{is_gift}.equals( 0 )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{tax}]]></textFieldExpression>
+				</textField>
+				<textField pattern="$ #,##0.00 ">
+					<reportElement mode="Opaque" x="492" y="34" width="80" height="18" forecolor="#000000" uuid="4dd9aec1-10ff-4e30-a702-253778483e5f">
+						<printWhenExpression><![CDATA[$F{is_gift}.equals( 0 )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{shipping}]]></textFieldExpression>
+				</textField>
+				<textField pattern="$ #,##0.00 ">
+					<reportElement mode="Opaque" x="492" y="51" width="80" height="18" forecolor="#000000" uuid="026c3b39-fd15-4cb2-a8c6-ad0fceec9519">
+						<printWhenExpression><![CDATA[$F{is_gift}.equals( 0 )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{subtotal}+$V{tax}+$V{shipping}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="572" height="1" uuid="cd98ccc8-6c7c-4684-8c24-08a4fe098c81"/>
+					<graphicElement>
+						<pen lineWidth="2.0"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement style="right padding" x="0" y="59" width="142" height="16" uuid="d56c5640-b39f-4be6-9788-308e3b3a5007">
+						<printWhenExpression><![CDATA[$F{is_gift}.equals( 0 )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7" isBold="true"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Want to Return or Exchange an Item?]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="right padding" x="187" y="59" width="142" height="16" uuid="d5751402-417c-4422-bca6-dc5786e45587">
+						<printWhenExpression><![CDATA[$F{is_gift}.equals( 0 )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7" isBold="true"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Questions About Your Order?]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="right padding" x="0" y="75" width="158" height="35" uuid="cff4efae-9f17-48e4-b024-cb674931272f">
+						<printWhenExpression><![CDATA[$F{is_gift}.equals( 0 )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font fontName="SansSerif" size="7" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[If you're not satisfied with your order for any
+reason please go online to:
+www.walmart.com/returns]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="right padding" x="187" y="75" width="142" height="40" uuid="12bc6857-7787-4533-9b42-98c50e18d791">
+						<printWhenExpression><![CDATA[$F{is_gift}.equals( 0 )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font fontName="SansSerif" size="7" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Please go online to:
+www.walmart.com/ordertrack
+or contact us at:
+www.walmart.com/contact]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="7" y="147" width="254" height="12" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="b96a4952-6520-44c1-aa42-cabdc62a5aa3"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="7" isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA["TC: "+$F{comments}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement positionType="FixRelativeToBottom" x="0" y="168" width="572" height="1" uuid="d6a03d8b-90b5-4d63-87bc-762f2a75c7a0"/>
+					<graphicElement>
+						<pen lineWidth="2.0"/>
+					</graphicElement>
+				</line>
+				<componentElement>
+					<reportElement x="0" y="115" width="276" height="30" uuid="9c1a63a1-d188-46aa-b039-b14f3d5e4629"/>
+					<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="1.0" textPosition="bottom">
+						<jr:codeExpression><![CDATA[$F{comments}]]></jr:codeExpression>
+					</jr:Code39>
+				</componentElement>
+				<componentElement>
+					<reportElement x="21" y="23" width="281" height="42" uuid="45f3a7d3-432c-4739-b349-70581cbf8eb5"/>
+					<jr:EAN128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="2.0">
+						<jr:codeExpression><![CDATA[$F{sscc}]]></jr:codeExpression>
+					</jr:EAN128>
+				</componentElement>
+				<staticText>
+					<reportElement x="28" y="8" width="192" height="30" uuid="2b7794bf-9bb1-4221-b96f-5494ba428fe8"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<text><![CDATA[Walmart Associate Scan ASN Below]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="329" splitType="Stretch">
+			<rectangle>
+				<reportElement x="5" y="203" width="555" height="4" uuid="13e66304-7cbf-4359-90eb-82bcc1ce830f"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="36" y="87" width="58" height="15" backcolor="#FFFFFF" uuid="822d7288-7f3a-42f1-a18f-ea1154fb2552"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Ordered By:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="87" width="65" height="15" uuid="7aa4a501-75fb-4fea-a675-1aa43875a988"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Shipped To:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="36" y="102" width="182" height="101" uuid="fbaa51fa-a6bb-41f2-a994-e4b4535163b8"/>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bill_first_name}+" "+$F{bill_last_name}+"\n"+
+$F{bill_address_one}+"\n"+
+($F{bill_address_two}.equals("")?"":$F{bill_address_two}+"\n")+
+$F{bill_city}+", "+$F{bill_state}+"  "+$F{bill_zip}+"\n"+
+$F{bill_country}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="102" width="174" height="101" uuid="143c4d61-5cf1-49b4-9212-4ab761ac1c55"/>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ship_first_name}+" "+$F{ship_last_name}+"\n"+
+$F{ship_address_one}+"\n"+
+($F{ship_address_two}.equals("")?"":$F{ship_address_two}+"\n")+
+$F{ship_city}+", "+$F{ship_state}+"  "+$F{ship_zip}+"\n"+
+$F{ship_country}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape" isUsingCache="false">
+				<reportElement x="19" y="0" width="168" height="44" uuid="119fe986-092e-4901-826b-36877c2ea467"/>
+				<imageExpression><![CDATA[$P{imageDir}+"images/Walmartlogo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="366" y="10" width="65" height="14" uuid="d0afd3c7-4023-44df-ac14-6d9ca386a384"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="SansSerif" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Order Number:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="SubTitle" stretchType="RelativeToBandHeight" x="434" y="10" width="118" height="14" forecolor="#000000" uuid="45ef02e5-dc88-4146-b094-9d0af455f5e9"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="SansSerif" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_order_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="SubTitle" stretchType="RelativeToBandHeight" x="434" y="24" width="118" height="14" forecolor="#000000" uuid="e4689dbd-3c07-4620-96ac-9455f50df367"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="SansSerif" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{carr_service} ]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="366" y="24" width="65" height="14" uuid="4cd2842a-4380-4b37-8529-862b0086978b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="SansSerif" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Shipped Via:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="89" width="65" height="16" uuid="b37c711c-bdd4-42c8-a6d1-0076bd431950"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PO Number:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="105" width="95" height="30" uuid="7cb434a6-9b90-4e63-8cb9-c8c9ba77d1c5"/>
+				<textElement>
+					<font fontName="SansSerif" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{po_num}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="12" y="80" width="559" height="4" uuid="32de227d-3c74-47cc-8289-71896a586f90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="560" y="80" width="11" height="127" backcolor="#000000" uuid="00f02a32-6021-435d-9e4a-8d62fb93f03d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="80" width="11" height="127" backcolor="#000000" uuid="0501e84b-8e68-403a-9e75-dae82305eeeb"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="219" width="201" height="19" uuid="9d768b23-136e-487e-9e6c-8ba068d0298b"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="15" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Thank you for your order.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="248" width="218" height="14" uuid="ef8e8ba8-3a89-4bce-a2b9-ba3eeb0e07f9"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Didn't Get Your Entire Order?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="262" width="240" height="37" uuid="37bb378b-96cc-4afe-bdcc-df2e5a253636"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[You may receive your order in separate shipments.
+To track your order status, please go online to:
+www.walmart.com/ordertrack]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="312" width="218" height="17" uuid="6b3500c5-f707-4c7d-9b45-74b6798e300d"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="13" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Items in this shipment]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="19" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="37" height="19" forecolor="#FFFFFF" backcolor="#000000" uuid="b80a4989-504a-45cf-8934-56f7cae624be"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="37" y="0" width="117" height="19" forecolor="#FFFFFF" backcolor="#000000" uuid="34a1bbc3-7651-49f6-b791-4fc0ae9add15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ITEM NUMBER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="154" y="0" width="258" height="19" forecolor="#FFFFFF" backcolor="#000000" uuid="1a1201c0-dd99-41d6-b233-a6670a826c6a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DESCRIPTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="412" y="0" width="80" height="19" forecolor="#FFFFFF" backcolor="#000000" uuid="7fe7c6da-09cf-4d57-95ef-e4a9ed179ddf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[UNIT PRICE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="491" y="0" width="81" height="19" forecolor="#FFFFFF" backcolor="#000000" uuid="e09f5b73-0b4a-4a56-9f4e-6ea3aacf0aad"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[TOTAL PRICE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField pattern="$ #,##0.00 ">
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="492" y="0" width="78" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="2f1b48f4-4f93-4d61-8f86-f6788083b5a3">
+					<printWhenExpression><![CDATA[$F{is_gift}.equals( 0 )]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Helvetica" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[DOUBLE_VALUE( $F{edi_unit_price}) *$F{quantity_actual}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00 ">
+				<reportElement style="right padding" stretchType="RelativeToBandHeight" mode="Opaque" x="412" y="0" width="80" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="812760a8-6fc1-4334-8c65-5f9a6023792d">
+					<printWhenExpression><![CDATA[$F{is_gift}.equals( 0 )]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edi_unit_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="SubTitle" stretchType="RelativeToBandHeight" mode="Opaque" x="36" y="0" width="118" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="13571a88-0ec9-4921-a2e9-68715525cd70"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{merchantSKU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="SubTitle" stretchType="RelativeToBandHeight" mode="Opaque" x="4" y="0" width="32" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="6463cfe1-e91c-457e-b379-5f1da03c088f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantity_actual}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="158" y="0" width="254" height="19" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="1d9c1044-ca8d-452f-b73a-4414c801e5ae"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edi_item_title}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="492" y="0" width="1" height="29" uuid="011de1ab-4fc4-4af6-b05f-6a962d2b3268"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="154" y="0" width="1" height="29" uuid="eec3b0a0-f58e-41ce-bea1-782888bddc02"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="36" y="0" width="1" height="29" uuid="9099f44c-7719-4cc1-944f-e5f766b874c3"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="29" uuid="1b2472c7-252f-41b7-bca3-851184171961"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="571" y="0" width="1" height="29" uuid="08f981b4-4224-4734-8a39-ec156e356c25"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="411" y="0" width="1" height="29" uuid="e2a5d4ee-fc07-43c6-94ed-86f4d1eb5640"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Prevent"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="29" splitType="Stretch">
+			<textField pattern="MM/dd/yyyy h:mm a">
+				<reportElement style="Column header" x="1" y="16" width="197" height="13" uuid="8be0e961-2d12-4a96-9c70-3a255c19514a"/>
+				<textElement textAlignment="Left">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sladate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Column header" x="201" y="16" width="80" height="13" uuid="85ba15dd-908d-433d-8f75-7c9c15879bb2"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="280" y="16" width="40" height="13" uuid="6b84bfcb-70fc-4bc0-929e-bf10b0303842"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="329" y="0" width="241" height="29" uuid="d6190240-e0f7-4081-80dc-d85785a10882"/>
+				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="1.0" textPosition="bottom">
+					<jr:codeExpression><![CDATA[$F{order_num_barcode}]]></jr:codeExpression>
+				</jr:Code39>
+			</componentElement>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
